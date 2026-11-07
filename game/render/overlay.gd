@@ -47,7 +47,7 @@ func _update_particles(delta: float) -> void:
 		return
 	var hint: String = main.hd.particle_hint()
 	var vs := get_viewport_rect().size
-	var want := 26 if hint != "mist" else 10
+	var want := 26 if hint != "mist" else 0
 	while parts.size() < want:
 		parts.append(_spawn(hint, vs, true))
 	for p in parts:
@@ -99,7 +99,18 @@ func _draw() -> void:
 		if flash > 0:
 			draw_rect(Rect2(Vector2.ZERO, vs), Color(0.8, 0.0, 0.0, flash * 0.35))
 	if core.d == 1 and not core.fV:
-		_draw_hud(u, vs)
+		var dlg: bool = Engine.get_process_frames() - main.hd.dialogue_frame < 3
+		modulate.a = 1.0
+		if dlg:
+			draw_set_transform(Vector2.ZERO, 0, Vector2.ONE)
+		_draw_hud(u, vs, 0.25 if dlg else 1.0)
+	if not main.world_mode:
+		# letterbox outside the original 480x320 canvas
+		var vp: Vector2 = main.view.position
+		var cw: float = 480.0 * main.view.scale.x
+		draw_rect(Rect2(0, 0, vp.x, vs.y), Color.BLACK)
+		draw_rect(Rect2(vp.x + cw, 0, vs.x - vp.x - cw, vs.y), Color.BLACK)
+		_txt("F10: Cài đặt / đổi phím   ·   F11: Toàn màn hình", Vector2(20 * u, vs.y - 20 * u), 18 * u, Color(1, 1, 1, 0.5))
 	if debug:
 		_txt("d=%d v=%d A=%d B=%d fh=%d fi=%d fR=%d fS=%d fV=%s fW=%d fX=%d r=%d fU=%d aX=%d" % [core.d, core.v, core.A, core.B, core.fh, core.fi, core.fR, core.fS, str(core.fV), core.fW, core.fX, core.r, core.fU, core.aX], Vector2(20, vs.y - 60 * u), 22 * u, Color(0.6, 1, 1))
 
@@ -116,7 +127,7 @@ func _draw_particles() -> void:
 				draw_circle(p["pos"], p["size"] * 2.5, Color(c, c.a * 0.15 * a))
 				draw_circle(p["pos"], p["size"], Color(c, c.a * a))
 			_:
-				draw_circle(p["pos"], p["size"], c)
+				pass  # mist is part of the Blender background layers
 
 func _bar(pos: Vector2, size: Vector2, v: float, col_a: Color, col_b: Color) -> void:
 	draw_rect(Rect2(pos - Vector2(2, 2), size + Vector2(4, 4)), Color(0.05, 0.03, 0.02, 0.85))
@@ -130,7 +141,12 @@ func _txt(s: String, pos: Vector2, size: float, col := Color.WHITE, align := HOR
 	draw_string_outline(font, pos, s, align, width, int(size), int(max(3, size * 0.18)), Color(0.05, 0.02, 0, 0.95))
 	draw_string(font, pos, s, align, width, int(size), col)
 
-func _draw_hud(u: float, vs: Vector2) -> void:
+func _draw_hud(u: float, vs: Vector2, fade := 1.0) -> void:
+	if fade < 1.0:
+		var s := Color(1, 1, 1, fade)
+		self.self_modulate = s
+	else:
+		self.self_modulate = Color.WHITE
 	var o := Vector2(28, 24) * u
 	# portrait medallion
 	var pr := 64.0 * u

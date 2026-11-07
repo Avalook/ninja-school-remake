@@ -40,6 +40,7 @@ func setup(core_, renderer) -> void:
 			hero_meta = JSON.parse_string(mf.get_as_text())
 	r.replacers["a_o"] = Callable(self, "_draw_sky")
 	r.replacers["b_o"] = Callable(self, "_draw_player")
+	r.replacers["f_o"] = Callable(self, "_draw_dialogue")
 	r.hidden_tags["d_o"] = true      # original bottom HUD strip (redrawn as overlay)
 	r.hidden_tags["c_o"] = true
 
@@ -157,6 +158,40 @@ func _draw_player(rr, cmds: Array) -> void:
 		for c in cmds:
 			if c[0] == 4 and str(c[1]["p"]).begins_with("/c/w"):
 				rr.draw_cmd(c, ord2)
+
+# dialogue bubble (original f_o): white rounded box + dark outline + text + tail (/u/co.png)
+var dialogue_frame := -10
+
+func _draw_dialogue(rr, cmds: Array) -> void:
+	dialogue_frame = Engine.get_process_frames()
+	var box := Rect2()
+	for c in cmds:
+		if c[0] == 2:
+			box = Rect2(c[1], c[2], c[3], c[4])
+	for c in cmds:
+		if c[0] == 2:
+			var sb := StyleBoxFlat.new()
+			sb.bg_color = Color(1.0, 0.98, 0.92, 0.97)
+			sb.border_color = Color(0.55, 0.12, 0.1)
+			sb.set_border_width_all(1)
+			sb.set_corner_radius_all(5)
+			sb.shadow_color = Color(0, 0, 0, 0.35)
+			sb.shadow_size = 2
+			sb.shadow_offset = Vector2(1, 2)
+			rr.draw_style_box(sb, box.grow(1))
+		elif c[0] == 3:
+			pass
+		elif c[0] == 4 and str(c[1]["p"]) == "/u/co.png":
+			var tip := Vector2(c[2], c[3])
+			var pts := PackedVector2Array([tip + Vector2(-4, -1), tip + Vector2(4, -1), tip + Vector2(0, 6)])
+			rr.draw_colored_polygon(pts, Color(1.0, 0.98, 0.92))
+			rr.draw_polyline(PackedVector2Array([pts[0], pts[2], pts[1]]), Color(0.55, 0.12, 0.1), 1.0)
+		elif c[0] == 6 and c[5] == 1:
+			rr.draw_text_fit(c[1], Vector2(c[2], c[3]), 2, rr.core.M_c_s(c[1]), 11.0, Color(0.16, 0.08, 0.05), false)
+		else:
+			rr.draw_cmd(c)
+	if box.size.x > 0 and int(t * 2.0) % 2 == 0:
+		rr.draw_text_fit("▼", box.position + Vector2(box.size.x - 9, box.size.y - 9), 0, -1, 7.0, Color(0.6, 0.15, 0.1), false)
 
 func on_tick() -> void:
 	pass

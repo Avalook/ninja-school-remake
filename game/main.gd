@@ -11,11 +11,15 @@ var view: Node2D
 var renderer
 var hd
 var overlay
+var settings
+var music: AudioStreamPlayer
+var music_track := -2
 var auto_lines: PackedStringArray = []
 var auto_i := 0
 var auto_wait := 0
 var auto_shots := ""
 var held_keys: Dictionary = {}
+var capturing := false
 
 func _ready() -> void:
 	Engine.max_fps = 0
@@ -37,6 +41,10 @@ func _ready() -> void:
 	get_viewport().size_changed.connect(_layout)
 	_layout()
 	Controls.ensure_defaults()
+	music = AudioStreamPlayer.new()
+	add_child(music)
+	settings = load("res://ui/settings.gd").new()
+	add_child(settings)
 	var args := OS.get_cmdline_user_args()
 	for i in args.size():
 		if args[i] == "--auto" and i + 1 < args.size():
@@ -59,6 +67,10 @@ func _layout() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not auto_lines.is_empty():
 		return
+	if event is InputEventKey and event.pressed and not event.echo and (event.physical_keycode == KEY_F10 or event.physical_keycode == KEY_F1):
+		_release_all()
+		settings.open_panel()
+		return
 	for action in Controls.ACTIONS:
 		if event.is_action_pressed(action, false, true):
 			_press(action, true)
@@ -67,6 +79,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_fullscreen"):
 		var w := get_window()
 		w.mode = Window.MODE_WINDOWED if w.mode == Window.MODE_FULLSCREEN else Window.MODE_FULLSCREEN
+
+func _release_all() -> void:
+	for a in held_keys.keys():
+		core.key_up(int(held_keys[a]))
+	held_keys.clear()
 
 func _press(action: String, down: bool) -> void:
 	var code: int = Controls.code_for(action, core)
@@ -83,9 +100,11 @@ func _press(action: String, down: bool) -> void:
 		core.key_up(int(c))
 
 func _process(delta: float) -> void:
+	if settings.visible:
+		return
 	acc += min(delta, 0.25)
 	var stepped := false
-	while acc >= TICK:
+	while acc >= TICK and not capturing:
 		acc -= TICK
 		if not auto_lines.is_empty():
 			_auto_step()
@@ -94,6 +113,7 @@ func _process(delta: float) -> void:
 		if core.quit_requested:
 			get_tree().quit()
 			return
+	_update_music()
 	var wm: bool = core.d == 1 or core.d == 7 or core.d == 2
 	if wm != world_mode:
 		world_mode = wm
@@ -128,9 +148,16 @@ func _auto_step() -> void:
 				auto_lines.insert(auto_i, "wait 80")
 				auto_lines.insert(auto_i + 2, "wait 120")
 			"shot":
+				capturing = true
 				_capture.call_deferred(t[1])
+				return
 			"set":
 				core.set(t[1], int(t[2]))
+			"call":
+				var a := []
+				for k in range(2, t.size()):
+					a.append(int(t[k]))
+				core.callv(t[1] + "_" + "i".repeat(a.size()), a)
 			"quit":
 				get_tree().quit()
 				return
@@ -140,3 +167,20 @@ func _capture(name: String) -> void:
 	await RenderingServer.frame_post_draw
 	var img := get_viewport().get_texture().get_image()
 	img.save_png(auto_shots + "/" + name + ".png")
+	capturing = false
+
+# Original: Midlet.b(n) selects /s/n.mid per map (MF_t); Midlet.h = sound off. MIDI rendered to MP3 (tools/midi).
+func _update_music() -> void:
+	var want: int = -1 if core.MF_h else int(core.MF_t)
+	if want == music_track:
+		return
+	music_track = want
+	if want < 0:
+		music.stop()
+		return
+	var p := "res://audio/music%d.mp3" % want
+	if ResourceLoader.exists(p):
+		var st: AudioStreamMP3 = load(p)
+		st.loop = true
+		music.stream = st
+		music.play()

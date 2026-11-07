@@ -89,7 +89,29 @@ func world_offset(c: Array) -> Vector2:
 		return Vector2.ZERO
 	return cam_delta
 
+const PANEL_FILL := 6562304     # original brown menu/popup panel
+const PANEL_BORDER := 12281361  # its gold-brown outline (drawn by the skin instead)
+
+func draw_panel(r: Rect2, accent := Color(0.95, 0.75, 0.3)) -> void:
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.10, 0.07, 0.18, 0.94)
+	sb.border_color = accent
+	sb.set_border_width_all(1)
+	sb.set_corner_radius_all(4)
+	sb.shadow_color = Color(0, 0, 0, 0.45)
+	sb.shadow_size = 3
+	draw_style_box(sb, r)
+	draw_rect(Rect2(r.position + Vector2(2, 2), Vector2(r.size.x - 4, r.size.y * 0.35)), Color(1, 1, 1, 0.05))
+
 func draw_cmd(c: Array, ord = null) -> void:
+	# UI skin: original brown panels become modern panels; their outline/corner sprites are dropped
+	if c[0] == 0 and c[5] == PANEL_FILL and world_offset(c) == Vector2.ZERO:
+		draw_panel(Rect2(c[1], c[2], c[3], c[4]))
+		return
+	if c[0] == 1 and c[5] == PANEL_BORDER:
+		return
+	if c[0] == 4 and str(c[1]["p"]).begins_with("/u/bd"):
+		return
 	match c[0]:
 		0, 2:
 			var off := world_offset(c)
@@ -218,6 +240,17 @@ func _text(c: Array) -> void:
 		else:
 			target_w = core.M_d_s(s)
 			size = 8.5
+	if c[0] == 6 and c[5] == 0:
+		if s == "*":
+			s = "◀"
+		elif s == "/":
+			s = "▶"
+	if c[0] == 6 and y >= core.aX - 15 and c[8] == 0:
+		if x < 40:
+			s = "[Esc] " + s
+		elif x > core.aW - 40:
+			s = s + " [E]"
+		target_w = -1.0
 	draw_text_fit(s, Vector2(x, y), align, target_w, size, col, outline)
 
 func draw_text_fit(s: String, pos: Vector2, align: int, target_w: float, size: float, col: Color, outline: bool, outline_col := Color(0.12, 0.05, 0.0, 0.9)) -> void:

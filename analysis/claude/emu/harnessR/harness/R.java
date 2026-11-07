@@ -13,7 +13,8 @@ public class R {
     done.release(); go.acquireUninterruptibly();
   }
   // lockstep: loader threads (new Thread(Midlet.c)) run synchronously like the Godot host; the game thread (started from main) starts normally
-  public static void start(Thread t){ if(!lockstep || Thread.currentThread().getName().equals("main")){ t.start(); return; }
+  static boolean started=false;
+  public static void start(Thread t){ if(!lockstep || !started){ started=true; t.start(); return; }
     try{ java.lang.reflect.Field sf=Class.forName("a").getDeclaredField("S"); sf.setAccessible(true); sf.setInt(null,100); java.lang.reflect.Field f=Class.forName("Midlet").getDeclaredField("c"); f.setAccessible(true); ((Runnable)f.get(null)).run(); }catch(Exception e){ throw new RuntimeException(e);} }
   public static void step(int n){ for(int i=0;i<n;i++){ go.release(); done.acquireUninterruptibly(); } }
 }

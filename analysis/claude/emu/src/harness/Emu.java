@@ -12,6 +12,7 @@ public class Emu {
   public static void service(javax.microedition.lcdui.Canvas c){ synchronized(lock){ javax.microedition.lcdui.Graphics g=new javax.microedition.lcdui.Graphics(fb); g.setClip(0,0,W,H); try{ c._paint(g);}catch(Throwable t){ System.err.println("[emu] paint err "+t); } repaintReq=false; } }
   static Class<?> A;
   public static void main(String[] args) throws Exception {
+    Thread.setDefaultUncaughtExceptionHandler((t,e)->{ System.err.println("[emu] FATAL in "+t.getName()+": "+e); e.printStackTrace(); if(R.trace!=null) R.trace.flush(); System.exit(3); });
     String script=args[0]; outDir=args.length>1?args[1]:"out"; new File(outDir).mkdirs(); rmsDir=outDir+"/rms";
     A=Class.forName("a"); Class<?> M=Class.forName("Midlet"); Object mid=M.getDeclaredConstructor().newInstance(); A=Class.forName("a");
     Method st=M.getDeclaredMethod("startApp"); st.setAccessible(true); st.invoke(mid);
@@ -34,10 +35,10 @@ public class Emu {
         case "drawlog": if(t[1].equals("on")){ drawLog=new PrintWriter(new FileWriter(new File(outDir,t[2]+".log"))); logDraws=true;} else { logDraws=false; drawLog.close(); } break;
         case "call": { Method m=A.getDeclaredMethod(t[1], intArgs(t.length-2)); m.setAccessible(true); Object[] a=new Object[t.length-2]; for(int i=2;i<t.length;i++) a[i-2]=Integer.parseInt(t[i]); synchronized(lock){ m.invoke(null,a);} break; }
         case "images": { PrintWriter w=new PrintWriter(new File(outDir,"loaded-images.txt")); synchronized(loadedImgs){ for(String s:loadedImgs) w.println(s);} w.close(); break; }
-        case "quit": System.exit(0);
+        case "quit": if(R.trace!=null) R.trace.flush(); System.exit(0);
       }
     }
-    System.exit(0);
+    if(R.trace!=null) R.trace.flush(); System.exit(0);
   }
   static void pause(long ms) throws Exception { if(R.lockstep) R.step((int)(ms/40)); else Thread.sleep(ms); }
   static String[] TF={"d","v","A","B","fh","fi","fR","fS","fV","fX","gc","G","I","N","M","dg","O","fF","w","jN","jO","kc","jS"};

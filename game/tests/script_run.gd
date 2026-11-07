@@ -17,7 +17,7 @@ func _init():
 	var args := OS.get_cmdline_user_args()
 	# clean save storage for deterministic tests
 	var rd := OS.get_environment("NINJA_RMS") if OS.get_environment("NINJA_RMS") != "" else "user://rms"
-	var dir := DirAccess.open(rd)
+	var dir := DirAccess.open(rd) if OS.get_environment("KEEP_RMS") == "" else null
 	if dir:
 		for f in dir.get_files():
 			dir.remove(f)
@@ -44,6 +44,11 @@ func _init():
 			"press": g.key_down(int(t[1]))
 			"release": g.key_up(int(t[1]))
 			"set": g.set(t[1], int(t[2]))
+			"call":
+				var a := []
+				for k in range(2, t.size()):
+					a.append(int(t[k]))
+				g.callv(t[1] + "_" + "i".repeat(a.size()), a)
 			"vars":
 				var s := ""
 				for k in range(1, t.size()):

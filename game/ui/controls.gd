@@ -70,6 +70,7 @@ func load_cfg() -> void:
 
 func save_cfg() -> void:
 	var cf := ConfigFile.new()
+	cf.load(CFG)
 	for a in ACTIONS:
 		var ks := []
 		for ev in InputMap.action_get_events(a):
