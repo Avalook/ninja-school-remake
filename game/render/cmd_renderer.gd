@@ -18,6 +18,7 @@ var cam := Vector2.ZERO        # interpolated camera (world px)
 var smooth_cam := Vector2.ZERO
 var pixel_snap := false
 var life := 0.0
+var native_cam := Vector2.ZERO
 var cam_delta := Vector2.ZERO  # current tick camera - interpolated camera
 var _prev_index: Dictionary = {}
 var _runs: Array = []          # [tag, start, end]
@@ -86,6 +87,23 @@ func _draw() -> void:
 		return
 	var target: Vector2 = core.prev_cam.lerp(core.cur_cam, alpha)
 	var dt: float = get_process_delta_time()
+	var nat = core.nat
+	if nat != null and not nat.suspended and core.fx and not core.fV and core.d == 1:
+		# native camera: original framing rule (fL = fh - bF + bI*fp, fM = fi - bH, clamped to the map),
+		# but following the 120 Hz body, critically smoothed
+		var tg := Vector2(nat.x - core.bF + core.bI * nat.facing, nat.y - core.bH)
+		tg.x = clampf(tg.x, 0.0, float(core.fT))
+		tg.y = clampf(tg.y, 0.0, float(core.fU))
+		if dt > 0.0 and (tg - native_cam).length() < 200.0:
+			native_cam += (tg - native_cam) * (1.0 - exp(-dt / 0.16))
+		else:
+			native_cam = target
+		# stay close to the original camera so its tile culling still covers the screen
+		native_cam.x = clampf(native_cam.x, target.x - 20.0, target.x + 20.0)
+		native_cam.y = clampf(native_cam.y, target.y - 20.0, target.y + 20.0)
+		target = native_cam
+	else:
+		native_cam = target
 	if (target - smooth_cam).length() > 48.0 or dt <= 0.0:
 		smooth_cam = target
 	else:

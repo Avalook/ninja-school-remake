@@ -128,9 +128,14 @@ func _draw_player(rr, cmds: Array) -> void:
 	if use_rig and rig != null and rig.ok and core.d == 1:
 		var wpos: Vector2 = core.prev_player.lerp(core.cur_player, alpha)
 		var dtr := get_process_delta_time()
+		var native: bool = core.nat != null and not core.nat.suspended
 		# visual inertia: the drawn body eases into speed changes (accelerate / glide to a stop)
 		# instead of the original's instant start/stop. Max offset from the logic position is a few px.
-		if absf(wpos.x - vis_x) > 40.0 or dtr <= 0.0:
+		if native:
+			wpos = Vector2(core.nat.x, core.nat.y)
+			vis_x = wpos.x
+			vis_v = 0.0
+		elif absf(wpos.x - vis_x) > 40.0 or dtr <= 0.0:
 			vis_x = wpos.x
 			vis_v = 0.0
 		else:
@@ -138,10 +143,11 @@ func _draw_player(rr, cmds: Array) -> void:
 			vis_v += ((wpos.x - vis_x) * w * w - 2.0 * 0.85 * w * vis_v) * dtr
 			vis_x += vis_v * dtr
 			vis_x = clampf(vis_x, wpos.x - 6.0, wpos.x + 6.0)
-		wpos.x = vis_x
+		if not native:
+			wpos.x = vis_x
 		rig.update(core, cur_B, prev_B, alpha, wpos.x, dtr)
 		if veo != null and veo.ok():
-			veo.update(core, cur_B, wpos.x, dtr)
+			veo.update(core, core.nat.anim_B() if native else cur_B, wpos.x, dtr)
 		var gp: Vector2 = wpos - rr.cam
 		if OS.get_cmdline_user_args().has("--motionlog"):
 			print("[mot] f=%d cam=%.3f,%.3f hero_scr=%.3f,%.3f hero_w=%.3f fR=%d fh=%d a=%.3f" % [Engine.get_process_frames(), rr.cam.x, rr.cam.y, gp.x, gp.y, wpos.x, core.fR, core.fh, alpha])
@@ -154,8 +160,8 @@ func _draw_player(rr, cmds: Array) -> void:
 			m2 = Color(1.25, 0.8, 0.75)
 		if core.fz:
 			m2.a = 0.6
-		if not (veo != null and veo.ok() and veo.draw(rr, gp, 1 if core.fp == 1 else -1, HERO_SCALE, m2)):
-			rig.draw(rr, gp, 1 if core.fp == 1 else -1, HERO_SCALE, m2, dtr, rr.cam)
+		if not (veo != null and veo.ok() and veo.draw(rr, gp, (core.nat.facing if native else (1 if core.fp == 1 else -1)), HERO_SCALE, m2)):
+			rig.draw(rr, gp, (core.nat.facing if native else (1 if core.fp == 1 else -1)), HERO_SCALE, m2, dtr, rr.cam)
 		_draw_weapon_fx(rr, cmds)
 		return
 	var B: int = cur_B

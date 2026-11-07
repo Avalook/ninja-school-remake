@@ -1,0 +1,127 @@
+PHẦN B — Codex / Image gen: nhân vật và quái HD cùng phong cách hero
+B0. Quy chuẩn bắt buộc
+Tiền tố — dán đầu mọi prompt:
+
+Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.
+Đính kèm khi gen: HERO REF + ảnh sprite gốc tương ứng trong art/prompts/codex/refs/.
+
+Bản tách mảnh để rig (khuyến nghị: gen thêm cho mỗi nhân vật chính) — thêm câu:
+
+Also provide a second image: a RIG PARTS SHEET of the same character on transparent background, each body part separated with gaps: head (with hair and accessories), torso with belt, upper arm and forearm+hand for each arm, thigh and shin+foot for each leg, all in the same scale and orientation as the full-body image, each part slightly extended at the joints (overlap margin) so it can rotate without gaps.
+Đặt tên file trả về:
+
+<mã>.png (full body)
+<mã>_parts.png (bảng tách mảnh)
+B1. NPC giáo viên & người trong trường
+Mã sprite gốc: refs/npc_parts.png.
+
+npc0_old_master (npc/00): ông thầy già hói, râu trắng dài, kính tròn đỏ-xanh lá như kính bơi, áo choàng tím, tay chống gậy nhỏ; dáng còng, hiền và hài hước.
+an old bald kung-fu master, long white beard and moustache, round red-framed goggles with green lenses, purple robe with white collar, slightly hunched, holding a small wooden cane, cheerful wise expression
+npc1_ayumi (npc/10): cô giáo trẻ Kagome Ayumi, tóc đen búi có hoa anh đào hồng, kimono đỏ hoa văn, obi vàng, dịu dàng.
+a young female ninja teacher, glossy black hair in a bun with a pink cherry-blossom hairpin, red patterned kimono with a gold obi, gentle smile, graceful posture
+npc2_hiroyaki (npc/20): thầy Hiroyaki, tóc búi củ hành samurai, mắt nhắm điềm tĩnh, haori xanh trắng sọc, đai đỏ.
+a calm middle-aged samurai teacher with a topknot, eyes closed serenely, blue-and-white striped haori over a dark kimono, red sash, arms folded
+npc3_honda (npc/30): thầy Honda già, hói, ria và râu trắng, áo gi xanh dương, đứng nghiêm.
+an elderly bald martial-arts teacher, white bushy moustache and short white beard, royal-blue gi with dark trim, stern but kind face, standing upright
+npc4_principal (npc/40, hiệu trưởng Okamesama): mặc đen, băng đô xám, mặt nghiêm, áo choàng ninja đen.
+a strict ninja school principal, black ninja robes and a black cloak with red lining, grey headband, sharp stern eyes, short black hair, commanding pose with one hand behind his back
+npc5_takanashi (npc/50, thầy chủ nhiệm Takanashi): băng đô bạc, áo xanh đậm, mặt ngầu có vết sẹo, cầm thanh kiếm gỗ.
+a tough ninja homeroom teacher, silver headband, dark navy gi with light blue trim, scar on the cheek, holding a wooden practice sword, confident grin
+npc_dog (npc/d0-d1): chó sói xám lông trắng, mắt xanh.
+a grey and white wolf-dog (husky-like) with blue eyes, fluffy tail, side view walking to the right
+Gen thêm 2 tư thế: đứng và đang bước.
+B2. Bạn cùng lớp
+Gốc là đầu khác nhau trên cùng thân áo xanh như hero: refs/student_heads.png. Mỗi bạn: thân trang phục giống hero (gi xanh viền vàng), chỉ khác đầu/tóc/phụ kiện.
+
+stu0_beanie: mũ len xanh ngọc, mắt đỏ, mặt lém lỉnh.
+stu1_bald: đầu cạo trọc, mặt hiền, má phúng phính.
+stu2_redspike: tóc dựng đỏ rực, mắt đỏ, mặt nóng tính.
+stu3_dreads: tóc đen tết dreadlock buộc cao kiểu mohawk, mắt tím.
+stu4_glasses: hói, đeo kính trắng to, mặt mọt sách.
+stu5_sakura: cô bé Sakura, tóc đen buộc đuôi ngựa nơ đỏ, mắt xanh to (nhân vật được giải cứu cuối game).
+Gen thêm phiên bản áo kimono hồng.
+stu6_bucket: đội nón thúng gỗ che kín mặt (kiểu komusō).
+stu7_toniku: Toniku, kẻ phản đồ — tóc đỏ rối, mặt bầm, ánh mắt gian; gi xanh rách.
+Gen thêm phiên bản thủ lĩnh băng cướp: áo da thú, dây đai.
+B3. Boss
+Gốc: refs/boss_parts.png.
+
+boss_boar: heo rừng thành tinh khổng lồ, lông nâu đỏ sẫm dựng gai, nanh trắng cong, mắt vàng dữ.
+Gen 3 tư thế: đứng, lao húc, bị trúng đòn.
+boss_squid: thuỷ quái sông Waramato — mực/bạch tuộc xanh ngọc khổng lồ, đầu nhọn, mắt giận, xúc tu cong.
+Gen 3 tư thế: nổi lên, quất xúc tu, bị đánh.
+boss_golem: khổng lồ gỗ (giáp gỗ điêu khắc) đai tím, nắm đấm gỗ to, chân gỗ.
+Gen tách mảnh: thân, 2 nắm tay, 2 chân, đầu.
+B4. Quái thường (20 loại)
+Gốc: refs/monster_XX.png. Mỗi quái gen 1 ảnh full + 4 tư thế trên cùng một sheet ngang, nền trong suốt: đi/bay 1, đi/bay 2, tấn công, bị trúng đòn. Mặt quay PHẢI, cùng tỉ lệ.
+
+Mã	Tên	Mô tả
+mob00	Ma một mắt	hồn ma trắng tím một mắt to, đuôi khói
+mob01	Ốc sên	ốc sên vỏ xoắn nâu cam, thân xanh lá, mắt lồi
+mob02	Dơi quỷ	dơi tím đen cánh rách, răng nanh
+mob03	Quỷ một chân	yêu quái một chân nhảy, da đỏ, sừng nhỏ, cầm chuỳ
+mob04	Cóc xanh	cóc xanh to mụn cóc, lưỡi dài
+mob05	Nhện	nhện đen sọc đỏ 8 chân xoè chữ X
+mob06	Ong bồ vẽ	ong vàng đen to, ngòi nhọn, cánh trong
+mob07	Bù nhìn rơm	bù nhìn rơm tập đánh trên cọc gỗ, đầu bao tải
+mob08	Cá cọp	cá vằn cọp cam đen, răng sắc, nhảy khỏi nước
+mob09	Ninja gió	ninja áo xám xanh che mặt, khăn bay, kunai
+mob10	Cá cọp đỏ	cá cọp đỏ lớn hơn, vây gai
+mob11	Ma một mắt (mạnh)	như mob00 nhưng đỏ thẫm, có hào quang
+mob12	Rết sa mạc	rết đốt dài đỏ nâu, càng to
+mob13	Dơi vàng	dơi lông vàng óng, cánh mạ vàng
+mob14	Chuột	chuột xám to răng cửa, đuôi dài
+mob15	Thổ dân	chiến binh thổ dân băng Toniku, mặt nạ, giáo
+mob16	Ong đỏ	ong đỏ thẫm hung dữ
+mob17	Bò cạp	bò cạp vàng đất, đuôi cong ngòi
+mob18	Quỷ hoa	hoa ăn thịt đỏ, miệng răng, rễ chân
+mob19	Quỷ tử hoa	hoa ăn thịt tím khổng lồ, boss nhỏ
+Prompt mẫu quái (thay <mô tả>):
+
+<prefix B0> Monster: <mô tả in English>. Provide one horizontal sprite strip with 4 poses of the same monster at the same scale, evenly spaced: move pose A, move pose B, attack pose, hurt pose; facing right; transparent background.
+B5. Bối cảnh / tile
+Hiện trạng:
+
+Lớp xa (núi, trời, làng, rừng xa): đã là ảnh nền Blender nhiều lớp parallax.
+Lớp gần (đất cỏ, tường, mái, cây, đèn đá, nước, tre…): vẫn là tile gốc 24×24 phóng to. Vì vậy nhìn như "khối ảnh".
+Muốn đẹp hẳn thì phải vẽ lại tileset. Tôi giữ đúng lưới và va chạm gốc, chỉ thay hình.
+
+Cách 1 — khuyến nghị: vẽ lại từng tile. Gửi cho Codex ảnh game/orig_res/t/t.png (120 tile, 24 px, xếp dọc). Prompt:
+
+Redraw this 24x24 pixel-art game tileset at 4x resolution (96x96 per tile, output 96x11520 PNG with transparency), keeping EXACTLY the same tile grid, the same silhouette and the same edges of every tile so neighbouring tiles still connect seamlessly. Convert the pixel art into clean high-resolution anime-style painted art matching the attached hero reference: soft cel shading, subtle texture (grass blades, dirt grain, stone cracks, wood grain, roof tile highlights), consistent top-left lighting, no outlines on tile edges that touch other tiles. Keep transparent pixels transparent. Do not move, merge or reorder tiles.
+Nếu ảnh quá dài: chia thành 6 phần, mỗi phần 20 tile (96×1920). Đặt tên t_part1.png … t_part6.png.
+Cách 2: vật liệu liền mạch. 1024×1024, tileable cả hai chiều. Tôi sẽ đắp vật liệu lên mặt nạ hình tile gốc.
+
+grass top edge
+dirt/earth
+grey stone brick wall
+wooden plank wall
+blue roof tiles
+red temple wall
+bamboo stalk
+tree bark
+foliage
+water
+Prompt:
+
+Seamless tileable 1024x1024 texture of <material>, anime painted game style matching the attached hero reference, soft cel shading, top-left light, no perspective, flat orthographic side view, tiles perfectly on all four edges.
+Đạo cụ riêng (mỗi cái PNG trong suốt):
+
+đèn đá
+đèn lồng đỏ
+hàng rào tre
+bia mộ
+tượng đá
+chum sứ xanh
+xe máy cũ
+thùng gỗ
+Prompt:
+
+<prefix B0 adapted> Prop: <tên>, side view, transparent background, 1024x1024.
+PHẦN C — Tôi sẽ làm gì khi nhận file
+Video Veo: trích khung, tách nền xanh, đo quỹ đạo và nhịp. Sau đó chỉnh tư thế/lò xo của rig xương runtime (game/render/hero_rig.gd) và thêm tư thế mới (ví dụ phanh trượt, theo đà chém). Khi nào chạy xong tôi gửi lại video so sánh game với Veo.
+Ảnh nhân vật/quái Codex:
+Tách mảnh (hoặc dùng sheet parts), dựng rig Blender và rig runtime như hero.
+Xuất sprite đúng khung và hitbox gốc.
+Thay vào game/hd_art/, kiểm vi sai để chắc logic không đổi.
+Tileset: kiểm từng tile đúng kích thước 96 px và mép liền. Sau đó thay vào game/hd_art/t/t.png.

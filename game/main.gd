@@ -21,12 +21,15 @@ var auto_wait := 0
 var auto_shots := ""
 var held_keys: Dictionary = {}
 var capturing := false
+var hitstop := 0.0
 var zoom := 1.0
 
 func _ready() -> void:
 	Engine.max_fps = 0
 	core = load("res://core/core.gd").new()
 	core.boot(LOGICAL.x, LOGICAL.y)
+	if not OS.get_cmdline_user_args().has("--classic"):
+		core.enable_native()
 	Input.set_use_accumulated_input(false)
 	view = Node2D.new()
 	add_child(view)
@@ -91,7 +94,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _tick_now() -> void:
 	acc = 0.0
+	if core.nat != null:
+		core.nat.pre_tick()
 	core.tick()
+	if core.nat != null:
+		core.nat.post_tick()
 	renderer.on_tick()
 	hd.on_tick()
 	fxl.on_tick()
@@ -141,13 +148,24 @@ func _process(delta: float) -> void:
 		print("[jit] dt=%.2f a=%.2f px=%.2f cam=%.2f scr=%.2f B=%d" % [delta * 1000.0, acc / TICK, pw.x, renderer.cam.x, pw.x - renderer.cam.x, core.B])
 	if settings.visible:
 		return
+	# hitstop: a 55 ms freeze when the player's blow connects (modern impact feel)
+	if hitstop > 0.0:
+		hitstop -= delta
+		delta = 0.0
 	acc += min(delta, 0.25)
 	var stepped := false
 	while acc >= TICK and not capturing:
 		acc -= TICK
 		if not auto_lines.is_empty():
 			_auto_step()
+		if core.nat != null:
+			core.nat.pre_tick()
 		core.tick()
+		if core.nat != null:
+			core.nat.post_tick()
+		for e in core.fx_events:
+			if e[0] == "hit":
+				hitstop = 0.055
 		stepped = true
 		if core.quit_requested:
 			get_tree().quit()
@@ -157,6 +175,8 @@ func _process(delta: float) -> void:
 	if wm != world_mode:
 		world_mode = wm
 		_layout()
+	if core.nat != null:
+		core.nat.update(delta)
 	hd.alpha = acc / TICK
 	renderer.alpha = acc / TICK
 	if zoom > 1.0 and world_mode:

@@ -87,3 +87,36 @@ func f_iii(_n, _n2, _n3):
 		fx_events.clear()
 	fx_events.append(["hit", _n, _n2, _n3])
 	super(_n, _n2, _n3)
+
+# ---- native player body (modern 120 Hz movement), see core/player_native.gd ----
+var nat = null
+var nat_A := 1
+
+func enable_native() -> void:
+	nat = load("res://core/player_native.gd").new()
+	nat.attach(self)
+	nat.active = true
+	nat.suspended = true
+
+func R_():
+	if nat != null and nat.active and not nat.suspended and A in [1, 2, 3, 4]:
+		nat.capture_intent()
+		if nat.pending_jump == 0 and A in [5, 8, 21, 23]:
+			nat.suspended = true
+			super()
+			return
+		var keep_A: int = nat_A
+		if nat.grounded:
+			var sfh: int = fh
+			var sfi: int = fi
+			var sB: int = B
+			A = 1
+			y = 0
+			super()          # idle case: NPC / object talk detection and S() side effects only
+			fh = sfh
+			fi = sfi
+			B = sB
+		A = keep_A
+		y = 0
+		return
+	super()
