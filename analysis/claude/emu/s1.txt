@@ -1,0 +1,7 @@
+wait 2500
+shot boot0
+dump init
+wait 3000
+shot boot1
+texts boot
+vars v A fh fi

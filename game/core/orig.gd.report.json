@@ -1,0 +1,16 @@
+{
+ "errors": [],
+ "skipped_calls": [
+  "Display.setCurrent",
+  "Player.deallocate",
+  "Player.getControl",
+  "Player.prefetch",
+  "Player.realize",
+  "Player.setLoopCount",
+  "Player.start",
+  "Player.stop",
+  "TextBox.addCommand",
+  "TextBox.setCommandListener",
+  "Thread.start"
+ ]
+}

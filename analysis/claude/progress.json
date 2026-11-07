@@ -1,0 +1,14 @@
+{
+  "updated_at": "2026-11-07",
+  "owner": "claude (Opus 5.5) session in worktree claude/ninja-pc-game-dev-f010c2",
+  "status": "in_progress",
+  "artifacts": {
+    "j2me_emulator": {
+      "path": "analysis/claude/emu",
+      "what": "Minimal J2ME (MIDP lcdui/rms/media stubs over AWT) runtime that executes the ORIGINAL NinjaSchool1.jar bytecode headless, with scripted key input, screenshots, static-field dumps and text capture. Class a/Midlet patched only in a copy (emu/pcls) so Class.getResourceAsStream routes to the classpath (Java9+ module issue); raw JAR untouched.",
+      "run": "analysis/claude/emu/run.sh <outdir> < script  (commands: wait ms | tap key [n] | hold key ms | press/release key | shot name | dump name | vars f1 f2 | set f v | call method args | texts name)",
+      "verified": "boots, sound/quality prompts, title menu, New Game map99 intro cutscene (gate + principal dialogue) rendered identically to original assets"
+    }
+  },
+  "next": ["dump static tables + per-map runtime state from emulator", "port core logic to Godot", "Blender hero cutout rig + sprite sheets", "environment layers"]
+}

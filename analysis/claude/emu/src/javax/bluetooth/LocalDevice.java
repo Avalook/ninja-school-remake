@@ -1,0 +1,1 @@
+package javax.bluetooth; public class LocalDevice { public static LocalDevice getLocalDevice() throws BluetoothStateException { throw new BluetoothStateException(); } public String getBluetoothAddress(){return "000000000000";} }

@@ -1,0 +1,14 @@
+wait 2500
+tap -7
+wait 2500
+shot m0
+tap -5
+wait 1500
+shot m1
+tap -5
+wait 1500
+shot m2
+tap -5
+wait 2500
+shot m3
+vars v A fh fi eH

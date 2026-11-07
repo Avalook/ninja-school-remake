@@ -5,3 +5,12 @@ __pycache__/
 builds/
 .tools/
 *.blend1
+.venv-tools/
+analysis/claude/emu/o*/
+analysis/claude/emu/out*/
+analysis/claude/emu/classes/
+analysis/claude/emu/pcls/
+analysis/claude/emu/tst/
+analysis/claude/emu/patchres/
+analysis/claude/extract/jar/
+game/.godot/

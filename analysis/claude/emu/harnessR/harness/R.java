@@ -1,0 +1,1 @@
+package harness; public class R { public static java.io.InputStream g(Class<?> c,String n){ java.io.InputStream i=R.class.getResourceAsStream(n); if(i==null) System.err.println("[emu] missing res "+n); return i; } }
