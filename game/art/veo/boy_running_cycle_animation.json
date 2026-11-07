@@ -1,0 +1,17 @@
+{
+ "clip": "boy_running_cycle_animation",
+ "fps": 24,
+ "count": 165,
+ "cols": 16,
+ "cell": [
+  320,
+  320
+ ],
+ "anchor": [
+  160,
+  288
+ ],
+ "skipped_fade_frames": 25,
+ "scale": 0.3097,
+ "source": "art/incoming/veo/boy_running_cycle_animation.mp4"
+}

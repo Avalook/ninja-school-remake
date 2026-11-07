@@ -1,0 +1,17 @@
+{
+ "clip": "boy_performing_sword_attacks",
+ "fps": 24,
+ "count": 167,
+ "cols": 16,
+ "cell": [
+  320,
+  320
+ ],
+ "anchor": [
+  160,
+  288
+ ],
+ "skipped_fade_frames": 23,
+ "scale": 0.3013,
+ "source": "art/incoming/veo/boy_performing_sword_attacks.mp4"
+}

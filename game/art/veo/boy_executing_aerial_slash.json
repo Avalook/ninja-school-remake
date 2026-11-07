@@ -1,0 +1,17 @@
+{
+ "clip": "boy_executing_aerial_slash",
+ "fps": 24,
+ "count": 181,
+ "cols": 16,
+ "cell": [
+  320,
+  320
+ ],
+ "anchor": [
+  160,
+  288
+ ],
+ "skipped_fade_frames": 9,
+ "scale": 0.3226,
+ "source": "art/incoming/veo/boy_executing_aerial_slash.mp4"
+}

@@ -1,0 +1,17 @@
+{
+ "clip": "boy_breathing_stance_anima_",
+ "fps": 24,
+ "count": 161,
+ "cols": 16,
+ "cell": [
+  320,
+  320
+ ],
+ "anchor": [
+  160,
+  288
+ ],
+ "skipped_fade_frames": 29,
+ "scale": 0.3097,
+ "source": "art/incoming/veo/boy_breathing_stance_anima_.mp4"
+}

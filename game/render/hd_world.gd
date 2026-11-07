@@ -8,6 +8,7 @@ var alpha := 0.0
 var hero_tex: Texture2D
 var hero_meta := {}
 var rig
+var veo
 var use_rig := true
 var tween_tex: Texture2D
 var tween_meta := {}
@@ -44,6 +45,8 @@ func setup(core_, renderer) -> void:
 		var mf := FileAccess.open("res://art/hero/hero_sheet.json", FileAccess.READ)
 		if mf:
 			hero_meta = JSON.parse_string(mf.get_as_text())
+	veo = load("res://render/veo_anim.gd").new()
+	veo.preload_all()
 	rig = load("res://render/hero_rig.gd").new()
 	rig.load_assets()
 	if ResourceLoader.exists("res://art/hero/hero_tweens.png"):
@@ -124,6 +127,8 @@ func _draw_player(rr, cmds: Array) -> void:
 		var wpos: Vector2 = core.prev_player.lerp(core.cur_player, alpha)
 		var dtr := get_process_delta_time()
 		rig.update(core, cur_B, prev_B, alpha, wpos.x, dtr)
+		if veo != null and veo.ok():
+			veo.update(core, cur_B, wpos.x, dtr)
 		var gp: Vector2 = wpos - rr.cam
 		if core.A in [1, 2, 5, 8, 22]:
 			rr.draw_set_transform(gp + Vector2(0, -1), 0.0, Vector2(1.0, 0.28))
@@ -134,7 +139,8 @@ func _draw_player(rr, cmds: Array) -> void:
 			m2 = Color(1.25, 0.8, 0.75)
 		if core.fz:
 			m2.a = 0.6
-		rig.draw(rr, gp, 1 if core.fp == 1 else -1, HERO_SCALE, m2, dtr, rr.cam)
+		if not (veo != null and veo.ok() and veo.draw(rr, gp, 1 if core.fp == 1 else -1, HERO_SCALE, m2)):
+			rig.draw(rr, gp, 1 if core.fp == 1 else -1, HERO_SCALE, m2, dtr, rr.cam)
 		_draw_weapon_fx(rr, cmds)
 		return
 	var B: int = cur_B

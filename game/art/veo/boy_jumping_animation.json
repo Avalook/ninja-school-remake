@@ -1,0 +1,17 @@
+{
+ "clip": "boy_jumping_animation",
+ "fps": 24,
+ "count": 168,
+ "cols": 16,
+ "cell": [
+  320,
+  320
+ ],
+ "anchor": [
+  160,
+  288
+ ],
+ "skipped_fade_frames": 22,
+ "scale": 0.346,
+ "source": "art/incoming/veo/boy_jumping_animation.mp4"
+}
