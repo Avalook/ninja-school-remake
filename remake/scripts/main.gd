@@ -103,6 +103,16 @@ func new_game() -> void:
 				S.set(a[0], (a[1] == "true") if cur is bool else (int(a[1]) if cur is int else a[1]))
 		var p: PackedStringArray = str(auto["map"]).split(",")
 		world.load_map(int(p[0]), Vector2(int(p[1]) if p.size() > 1 else 48, int(p[2]) if p.size() > 2 else 0), -1)
+		if auto.has("drops") and enemies:   # test: loot on screen for screenshots (3 coin sizes, both potions, scroll)
+			var x := int(S.fh)
+			var y := int(S.fi) - 40
+			var s := 1 if x + 200 < world.w * 24 else -1   # on the side of the player that is inside the map
+			enemies.drops.spawn_coin(x + 40 * s, y, 0, -4, 50)
+			enemies.drops.spawn_coin(x + 60 * s, y, 0, -4, 300)
+			enemies.drops.spawn_coin(x + 80 * s, y, 0, -4, 800)
+			enemies.drops.spawn_item(x + 100 * s, y, 0, 50, 0)
+			enemies.drops.spawn_item(x + 120 * s, y, 0, 250, 1)
+			enemies.drops.spawn_scroll(x + 150 * s, y + 10)
 	elif story:
 		story.new_game()          # original: reset, map 99 at (108, 312) + intro cutscene
 	else:

@@ -11,8 +11,8 @@
 # ({"t": "fx"|"text"|"popup"|"flash", ...}). With `on_event` set (the view) each event is delivered at the
 # moment it happens, so FX keep their exact order relative to the player's own FX (fx_layer seeds each FX
 # with randf() in call order); without it (headless tests) they collect in `events`.
-# Still coupled (later M1 items: World, Drops): `world` for flags_at, cam_pos, view_size, player.hurt and
-# companion.hurt; drops.gd (scripts/enemies) still holds its own draw().
+# Still coupled (later M1 item sim/sim.gd): `world` for flags_at, cam_pos, view_size, player.hurt and
+# companion.hurt. Loot rules are sim/enemies/drops.gd, drawn by view/drops_view.gd.
 #
 # Contract (archive/docs/REMAKE_PLAN.md): setup(map), hit(area, damage, dir) -> index | -1, boss_state(),
 # spawn_projectile(x, y, vx, vy, strong), signal enemy_killed(type, pos); damages the player through
@@ -29,7 +29,7 @@ signal player_hit(damage: int, dir: int)  # every attack that reached the player
 
 const Enemy := preload("res://sim/enemies/enemy.gd")
 const MT := preload("res://sim/enemies/monster_types.gd")
-const Drops := preload("res://scripts/enemies/drops.gd")
+const Drops := preload("res://sim/enemies/drops.gd")
 const Shots := preload("res://sim/enemies/projectiles.gd")
 const Classmates := preload("res://sim/enemies/classmates.gd")
 const Boar := preload("res://sim/enemies/boss_boar.gd")

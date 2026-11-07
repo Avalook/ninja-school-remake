@@ -1,0 +1,30 @@
+same map1_loot/shot_0.3.png
+same map1_loot/shot_0.8.png
+same map1_loot/shot_1.5.png
+same map1_loot/shot_2.5.png
+same map4_boar/shot_1.2.png
+same map4_boar/shot_1.8.png
+DIFF map4_boar/shot_2.6.png (1367, 805, 1389, 828)
+same map4_boar/shot_3.2.png
+same map6_monsters/shot_1.8.png
+same map6_monsters/shot_2.4.png
+same map6_monsters/shot_3.0.png
+same map6_monsters/shot_3.6.png
+same map97_river/shot_1.2.png
+same map97_river/shot_2.0.png
+same map97_river/shot_3.0.png
+same map97_river/shot_4.0.png
+same map9_classmates/shot_1.4.png
+same map9_classmates/shot_2.0.png
+same map9_classmates/shot_2.8.png
+same map9_classmates/shot_3.6.png
+same map9_loot/shot_0.3.png
+same map9_loot/shot_0.8.png
+same map9_loot/shot_1.5.png
+same map9_loot/shot_2.5.png
+same map9_pickup/shot_1.2.png
+same map9_pickup/shot_1.6.png
+same map9_pickup/shot_2.0.png
+same map9_pickup/shot_2.4.png
+same map9_pickup/shot_3.0.png
+28 same, 1 differ

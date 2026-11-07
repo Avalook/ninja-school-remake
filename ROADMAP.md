@@ -120,7 +120,8 @@ và chỉ qua mốc khi chủ dự án đồng ý. Claude không tự đánh gi�
         _(2026-11-07, nhánh `m1-story-split`. Story oracle 77 check + trace 23 kịch bản (9 kịch bản story mới) khớp 100%, xem STATUS.md.)_
   - [x] World (va chạm): `world.gd` (cờ ô `flags_at`, lối ra, camera mà luật đọc), `objects.gd`, `npcs.gd`.
         _(2026-11-07, nhánh `m1-world-split`. Trace 27 kịch bản (4 kịch bản world mới) + story 77 check + oracle 12 map khớp 100%, 41/43 ảnh trùng từng pixel, xem STATUS.md.)_
-  - [ ] Drops: `drops.gd` (xu, bình, bí kíp; luật `w % 20` đã ở sim enemies, phần nhặt và vẽ còn trộn).
+  - [x] Drops: `drops.gd` (xu, bình, bí kíp; luật `w % 20` đã ở sim enemies, phần nhặt và vẽ còn trộn).
+        _(2026-11-07, nhánh `m1-drops-split`. `drops_trace` mới (phủ nhặt) + trace 27 kịch bản + story 77 + oracle 7 map khớp 100%, 28/29 ảnh trùng từng pixel, xem STATUS.md.)_
   - [ ] Projectiles: phần còn lại sau mục Enemies (nếu có), ví dụ phi tiêu của bạn đồng hành `hf` (TODO trong code).
 - [ ] Viết `sim/sim.gd`: hàm `step(input) -> events`, kèm snapshot và restore (phục vụ save và test).
 - [ ] Viết `tests/sim_run.gd` chạy headless, đọc cùng định dạng script với `tools/diff_run.sh`.

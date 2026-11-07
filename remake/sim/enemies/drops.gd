@@ -1,9 +1,11 @@
 # Loot dropped by monsters/bosses: coins (original slots dh=5: di dj dk dl dm dn do dp, W() ~L6265),
 # potions (cP=5: cR cS cT cU cV cW cX cQ, ab() ~L6759) and the quest scroll (fI fJ fK, run() ~L10468).
+# Rules only (RefCounted, no drawing): spawn, fall / bounce, expiry, pickup. Floating text and the scroll
+# popup go through the owner `m` (EnemiesSim text() / popup() events). px/py and scroll_py keep the previous
+# 25 Hz state for the view to interpolate; view/drops_view.gd draws it.
 @warning_ignore_start("integer_division")
 extends RefCounted
 
-const SP := preload("res://view/sprites.gd")
 const COIN_SLOTS := 5   # dh
 const ITEM_SLOTS := 5   # cP
 
@@ -125,17 +127,3 @@ func _tick_scroll(m) -> void:
 		scroll_state += 1
 		if scroll_state > 40:
 			scroll_state = 0
-
-# draw: coins ej[dp] region (0, dn*15, 8, 15) anchor 33 (~L7838); potions ez[cQ] region (0, cW*15, 13, 15)
-func draw(ci: CanvasItem, alpha: float, t_sec: float) -> void:
-	for d in coins:
-		if d.age != 0 and d.age != 301:
-			var p := Vector2(lerpf(d.px, d.x, alpha), lerpf(d.py, d.y, alpha))
-			SP.draw(ci, "/i/dm%d.png" % d.size, p.x, p.y, 33, false, Color.WHITE, Rect2(0, d.spin * 15, 8, 15))
-	for d in items:
-		if d.age != 0 and d.age != 301:
-			var p := Vector2(lerpf(d.px, d.x, alpha), lerpf(d.py, d.y, alpha))
-			var bob := 0.0 if d.vy != 0 else sin(t_sec * 4.0 + d.x) * 0.6
-			SP.draw(ci, "/i/pt%d.png" % d.kind, p.x, p.y + bob, 33, false, Color.WHITE, Rect2(0, d.size * 15, 13, 15))
-	if scroll_state != 0:
-		SP.draw(ci, "/i/bk.png", scroll_x, lerpf(scroll_py, scroll_y, alpha), 33)

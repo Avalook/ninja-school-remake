@@ -20,6 +20,7 @@ const River := preload("res://sim/enemies/boss_river.gd")
 const Golem := preload("res://sim/enemies/boss_golem.gd")
 const Classmates := preload("res://sim/enemies/classmates.gd")
 const SP := preload("res://view/sprites.gd")
+const DropsView := preload("res://view/drops_view.gd")
 const TICK := 0.04
 const TEXT_COLORS := [Color(1, 0.3, 0.3), Color(1, 0.9, 0.3), Color(0.45, 0.75, 1)]
 const GOLEM_PARTS := ["/mob/b20.png", "/mob/b21.png", "/mob/b22.png", "/mob/b21.png", "/mob/b23.png", "/cp/f2h0.png"]
@@ -173,7 +174,7 @@ func _draw() -> void:
 	var a := _alpha()
 	var dt := get_process_delta_time()
 	_draw_river(a, dt)
-	sim.drops.draw(self, a, _time)
+	DropsView.draw(self, sim.drops, a, _time)
 	_draw_boar(a, sim.w, dt)
 	_draw_golem(a, dt)
 	_draw_monsters(a)

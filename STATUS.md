@@ -1,6 +1,6 @@
 # STATUS — Ninja School PC remake
 
-Cập nhật: 2026-11-07, phiên M1 mục 2c world (nhánh `m1-world-split` tách từ `main` dc96ae7, rebase lên 8451b32).
+Cập nhật: 2026-11-07, phiên M1 mục 2d drops (nhánh `m1-drops-split` tách từ `main` 88c85d0).
 Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. Phần nào chỉ lấy lại từ
 `analysis/claude/progress.json` mà chưa chạy lại thì có ghi chú rõ.
 
@@ -17,8 +17,11 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
 - **M1 mục 2c (world) xong**: `scripts/world/` tách thành `remake/sim/world_sim.gd` (+ `sim/world/objects.gd`: khối,
   bè, xe máy) và `remake/view/world_view.gd` (+ `view/world/`: `objects_view.gd`, `npcs_view.gd`, `tile_layer.gd`,
   `background.gd`). Hành vi không đổi: trace 27 kịch bản khớp 100%, story 77 check, oracle 12 map. Kết quả ở bảng bên dưới.
+- **M1 mục 2d (drops) xong**: `scripts/enemies/drops.gd` → `remake/sim/enemies/drops.gd` (chỉ luật) +
+  `remake/view/drops_view.gd` (vẽ). Hành vi không đổi: `drops_trace` mới (phủ nhặt xu/bình/bí kíp) khớp 100%,
+  trace 27 kịch bản, story 77 check, oracle 7 map, 28/29 ảnh trùng từng pixel. Kết quả ở bảng bên dưới.
 - Mục M1 "làm tương tự cho enemies, story, world, drops, projectiles" đã chia 5 mục con trong ROADMAP.
-  Mục tiếp theo: M1 mục 2d, tách drops.
+  Mục tiếp theo: M1 mục 2e, projectiles (phi tiêu/kiếm trúng bạn đồng hành `hf`).
 - **M3 việc nhỏ (2026-11-07, commit thẳng `main` 8451b32)**: `art_src/env/rung_truc/TILE_NEEDS.md` (32 tile id của map 4,
   số lần, cờ theo ô), `tiles_orig_4x/` (tile gốc phóng 4×), `ref_map4.png` (toàn map 4 ghép từ tile gốc, 4×, không có
   trời/nền xa, không phải ảnh chụp emulator). Sinh bằng `tools/art/tile_needs.py 4 rung_truc`. Không đụng `sim/`.
@@ -28,6 +31,46 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
   M1 (di chuyển native bước cố định 100 Hz), M2 Combat (sửa Xích Mao, cờ thật của Xích Mao, trace A = 18/19/23).
 - Codex đang vẽ trong `art_src/` trên nhánh `claude/project-directory-codex-c71a67`.
   Nhánh này **không tạo, không sửa** gì trong `art_src/`.
+
+## M1 mục 2d: kế hoạch tách drops (viết trước khi sửa code, nhánh `m1-drops-split` tách từ `main` 88c85d0)
+Nguồn: `remake/scripts/enemies/drops.gd` (RefCounted, 155 dòng). Luật đã gần như thuần: rơi xu `W()`, bình `ab()`,
+bí kíp `fK`, nhặt (cộng `S.dg`/`S.G`/`S.I`, `S.fD`), chữ nổi/popup đã đi qua `m.text`/`m.popup` (event của sim enemies).
+Phần còn trộn: `preload("res://view/sprites.gd")` và hàm `draw()` (vẽ xu, bình nhấp nhô theo `t_sec`, bí kíp).
+- `git mv` → `remake/sim/enemies/drops.gd`: bỏ preload sprites và `draw()`, giữ nguyên luật và thứ tự. Giữ `px/py`,
+  `scroll_py` (trạng thái tick trước để view nội suy, như các sim khác).
+- `remake/view/drops_view.gd` (mới): `static func draw(ci, drops, alpha, t_sec)` y hệt `draw()` cũ.
+  `view/enemies_view.gd` gọi `DropsView.draw(self, sim.drops, a, _time)` đúng chỗ cũ (giữ thứ tự vẽ).
+- `sim/enemies_sim.gd` đổi đường dẫn preload. `main.gd` (trace), `enemies_oracle.gd` không đổi (đọc `enemies.drops`).
+
+**Test chứng minh không đổi hành vi**
+1. `remake/tests/drops_trace.sh` (mới): chạy luật drops headless với "người chơi" và nền giả có seed (rơi xu 3 cỡ,
+   bình HP/MP, bí kíp; người chơi đi qua nhặt; nảy trên sàn cờ 2; rơi khỏi map; hết hạn 200 tick), ghi mỗi tick mọi
+   slot + `S.dg G I fD c` + event. Lý do: 27 kịch bản `player_trace.sh` gần như không có đồ rơi (chỉ 8 tick ở
+   `m3_bike`) và **không có lần nhặt nào**.
+   Mốc ghi bằng code trước refactor, sau refactor phải khớp 100%.
+2. `player_trace.sh` 27 kịch bản, `story_run_tests.sh` 77 check, `run_enemies_oracle.sh 500` vẫn xanh.
+3. Ảnh có cửa sổ (`enemies_shots.sh` + kịch bản có xu/bình trên màn) trước/sau trùng từng pixel → `review/2026-11-07/m1_drops_split/`.
+
+## M1 mục 2d: kết quả (chạy 2026-11-07)
+Mốc ghi **bằng code trước refactor** (main 88c85d0 + chỉ thêm `drops_trace` và hook `--drops`), rồi mới sửa code.
+| Kiểm tra | Trước refactor | Sau refactor |
+|---|---|---|
+| `remake/tests/drops_trace.sh` (mới): 4 seed × 1500 tick, 89 tick có event nhặt (23 xu nhỏ / 43 HP / 16 MP / 8 bí kíp; chạm trần H, J) | ghi mốc; chạy lại khớp 0 dòng lệch (tất định) | **6000/6000 tick khớp, 0 dòng lệch** |
+| Độ nhạy | ngưỡng nhặt dọc `< 10` → `< 11`: 3020 dòng lệch | đã hoàn nguyên |
+| `remake/tests/player_trace.sh` (27 kịch bản) | mốc cũ | **27/27 khớp 100%, 0 SCRIPT ERROR** |
+| `remake/tests/story_run_tests.sh` | | **77 check, 0 fail** |
+| `remake/tests/run_enemies_oracle.sh 500` | | **7 map (4, 1, 6, 7, 12, 95, 97) 500/500 tick**, các trường đồ rơi `dk cT di dj dg` khớp |
+| Ảnh có cửa sổ: `drops_shots.sh` (mới, 13 ảnh: xu 3 cỡ, bình HP/MP, bí kíp, cảnh nhặt) + `enemies_shots.sh` 16 | chụp | **28/29 trùng từng pixel**. Lệch: `map4_boar/shot_2.6` vùng 22×23 px = mũi tên "tiếp" hộp thoại nhấp nháy theo giờ thật (đã biết, xem "Chưa rõ") |
+
+Bằng chứng: `review/2026-11-07/m1_drops_split/` (4 ảnh sau refactor có đồ rơi và cảnh nhặt, 2 ảnh cắt vùng lệch,
+`pixel_compare.txt`, `drops_trace_check.txt`, `player_trace_check.txt`, `story_tests_after.txt`, `enemies_oracle_after.txt`).
+Bộ ảnh trước/sau đầy đủ (≈51 MB) không commit; sinh lại bằng `tests/drops_shots.sh <dir>` và `tests/enemies_shots.sh <dir>`.
+
+Đã làm đúng kế hoạch. Ghi chú:
+- Hook test mới `main.gd --drops` (chỉ chạy khi có cờ, cùng `--map`): rải 3 xu, 2 bình, 1 bí kíp cạnh người chơi.
+- Vị trí `--map=6,5976,240` (dùng trong `enemies_shots.sh`) nằm trên lối ra: người chơi sang map 7 ngay tick đầu.
+  Ảnh `map6_monsters` thật ra là map 7. Không sửa trong phiên này (đổi ảnh mốc của bộ cũ).
+- Bình nhấp nhô (`sin(t_sec ...)`) vẫn theo `_time` của view (dt frame); thuộc mục M1 "đồng hồ game".
 
 ## M1 mục 2c: kế hoạch tách world (viết trước khi sửa code, nhánh `m1-world-split` tách từ `main` dc96ae7)
 Nguồn: `remake/scripts/world/` — `world.gd` (Node2D, 308 dòng: nạp map, cờ ô, tấm ván lún 0x800/0x400, lối ra,
