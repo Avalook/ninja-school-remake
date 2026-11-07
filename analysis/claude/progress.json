@@ -1,7 +1,7 @@
 {
  "updated_at": "2026-11-07",
  "owner": "claude (Opus 5.5) session in worktree claude/ninja-pc-game-dev-f010c2",
- "status": "playable_mac_build; windows_exported_unverified; art_pass_in_progress(monsters)",
+ "status": "mac_app_playable_verified; windows_exported_not_run",
  "artifacts": {
   "j2me_emulator": {
    "path": "analysis/claude/emu",
@@ -46,19 +46,21 @@
   "verification": {
    "path": "analysis/claude/VERIFICATION.md",
    "status": "~50k ticks identical to original JAR incl. all maps, boss, ending chain; save/load roundtrip"
+  },
+  "monsters_hd": {
+   "path": "game/hd_art/{mob,npc} (scripts/run_monster_pipeline.py, art/blender/monsters.blend)",
+   "status": "164/164 replaced: 53 Blender toon renders, 111 algorithmic fallback (types 0,3,9,11,12,13,15,16,17, bosses, effects, NPC parts)"
   }
  },
  "next": [
-  "integrate monster HD set",
-  "Windows real-hardware test (needs user's Acer)",
-  "optional: HD tile redraw, human full playthrough"
+  "Run builds/windows/NinjaSchool1.exe on the Windows 11 Acer (i5-11400H/GTX1650) and measure 1080p fps",
+  "Replace fallback monsters/NPC/tiles with bespoke HD art",
+  "Optional human full playthrough of all 18 quests (logic verified vs JAR by differential tests, not by a full manual run)"
  ],
  "verified_runtime": [
   "emulator lockstep trace compare (analysis/claude/emu/cmp_trace.py)",
   "Godot headless boot+intro",
   "Godot windowed screenshots of intro"
  ],
- "in_progress": [
-  "HD monsters/NPC sprites via Blender (subagent) -> game/hd_art/{mob,npc}"
- ]
+ "in_progress": []
 }
