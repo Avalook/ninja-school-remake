@@ -1,14 +1,22 @@
-# Player: modern native controller on the ORIGINAL rules (a.java R(), input block in run(), u(), a(n,dir)).
+# PlayerSim: player RULES (no Node, no drawing, no Input/UI/Game calls). Split from scripts/player/player.gd (M1).
+# Original sources: a.java R(), input block in run(), u(), a(n,dir).
 #
 # Locomotion (original states A = 1 idle, 2 run, 3 jump, 4 fall) is simulated per display frame with
-# continuous physics: acceleration / deceleration, air control, variable jump height, coyote time,
-# jump buffering. Constants are the original ones converted to per-second units
+# continuous physics (frame(dt, alpha)): acceleration / deceleration, air control, variable jump height,
+# coyote time, jump buffering. Constants are the original ones converted to per-second units
 # (run P px/tick, jump z0 -8 / -10 khinh công / -7 double, gravity 1 px/tick², terminal 18 px/tick).
 # Every other original state (5 attack combo, 6 death, 7 hurt, 8 crouch, 11 swim, 12 sink, 13-15 dig,
-# 16/17 under water walk, 23 Xích Mao) is a literal port of R() stepped on the 25 Hz clock, drawn
-# interpolated between ticks. The original variables are kept in S (fh, fi, fp, A, B, C, D, y, z, ...)
-# so story / enemy modules can read them like the original did.
-extends Node2D
+# 16/17 under water walk, 18-21 bike, 23 Xích Mao) is a literal port of R() stepped on the 25 Hz clock (tick()).
+# The original variables are kept in S (fh, fi, fp, A, B, C, D, y, z, ...) so story / enemy modules read them
+# like the original did.
+#
+# Boundaries (see STATUS.md, M1):
+#   input   raw_key: Callable(k) -> bool, is_play: Callable() -> bool, injected by the view (read live).
+#   output  presentation requests go to `events` (fx, text, shake, hitstop, message, changed, run_dust);
+#           the view drains them right after every call.
+#   still coupled (later M1 items): world (collision flags, objects, enemies, story, camera in _st_dead),
+#           and native locomotion runs on display dt, not on the 25 Hz tick.
+extends RefCounted
 
 const HZ := 25.0
 const G := 625.0
@@ -21,14 +29,15 @@ const BUFFER := 0.12
 const NATIVE := [1, 2, 3, 4]
 
 var world
+var raw_key: Callable = func(_k: String) -> bool: return false
+var is_play: Callable = func() -> bool: return false
+var events: Array = []         # presentation requests since the last drain
+
 var pos := Vector2.ZERO        # feet (fh, fi), smooth
 var vel := Vector2.ZERO        # px/s (native states)
 var facing := 1
-var state := "idle"
 var scripted := false
 var script_keys := {}
-var weapon: int:
-	get: return S.fg
 
 var grounded := false
 var coyote := 0.0
@@ -40,49 +49,35 @@ var tick_alpha := 0.0
 var run_phase := 0.0
 var land_t := 0.0
 var near_npc := -1
-var anim
 var _pressed := {}             # edge-triggered keys latched until consumed
 var _held_prev := {}
-var trail: Array = []
 
-var external_tick := false     # main drives the order: projectiles -> player -> monsters (original run())
+# ---------------- events (drained by the view) ----------------
+func _fx(kind: String, p: Vector2, dir := 1) -> void:
+	events.append({"t": "fx", "kind": kind, "p": p, "dir": dir})
 
-func _ready() -> void:
-	if not external_tick:
-		Game.tick25.connect(_tick)
-	anim = preload("res://scripts/player/hero_anim.gd").new()
-	anim.preload_all()
-	z_index = 5
+func _text(txt: String, p: Vector2, c: Color) -> void:
+	events.append({"t": "text", "s": txt, "p": p, "c": c})
+
+func _shake(v: float) -> void:
+	events.append({"t": "shake", "v": v})
+
+func _changed() -> void:
+	events.append({"t": "changed"})
 
 # ---------------- input ----------------
 func held(k: String) -> bool:
 	if scripted:
 		return bool(script_keys.get(k, false))
-	if Game.mode != "play":
+	if not is_play.call():
 		return false
-	return _raw(k)
-
-func _raw(k: String) -> bool:
-	match k:
-		"left": return Input.is_action_pressed("move_left")
-		"right": return Input.is_action_pressed("move_right")
-		"jump": return Input.is_action_pressed("jump")
-		"down": return Input.is_action_pressed("down")
-		"attack": return Input.is_action_pressed("attack")
-		"jump_left": return Input.is_action_pressed("jump_left")
-		"jump_right": return Input.is_action_pressed("jump_right")
-		"weapon": return Input.is_action_pressed("weapon")
-		"stealth": return Input.is_action_pressed("stealth")
-		"transform": return Input.is_action_pressed("transform")
-		"hp": return Input.is_action_pressed("hp_potion")
-		"mp": return Input.is_action_pressed("mp_potion")
-	return false
+	return raw_key.call(k)
 
 func _poll_edges() -> void:
 	for k in ["jump", "attack", "weapon", "stealth", "transform", "hp", "mp", "jump_left", "jump_right", "down"]:
 		# edges come from the raw keys so a key still held from a dialogue never fires on return
-		var h := held(k) if scripted else _raw(k)
-		if h and not _held_prev.get(k, false) and (scripted or Game.mode == "play"):
+		var h: bool = held(k) if scripted else raw_key.call(k)
+		if h and not _held_prev.get(k, false) and (scripted or is_play.call()):
 			_pressed[k] = true
 			if k == "jump":
 				buffer = BUFFER
@@ -156,10 +151,10 @@ func hurt(n: int, dir: int) -> void:
 		S.D = 0
 		S.A = 7
 	_enter_tick_state()
-	world.spawn_fx("hit", Vector2(S.fh, S.fi - 12), -S.fp)
-	world.float_text("-%d" % n, Vector2(S.fh, S.fi - FK), Color(1, 0.35, 0.3))
-	world.screen_shake(0.1)
-	S.changed.emit()
+	_fx("hit", Vector2(S.fh, S.fi - 12), -S.fp)
+	_text("-%d" % n, Vector2(S.fh, S.fi - FK), Color(1, 0.35, 0.3))
+	_shake(0.1)
+	_changed()
 
 func _enter_tick_state() -> void:
 	S.fh = int(round(pos.x))
@@ -168,20 +163,15 @@ func _enter_tick_state() -> void:
 	cur_tick_pos = Vector2(S.fh, S.fi)
 	vel = Vector2.ZERO
 
-# ---------------- per frame ----------------
-func _process(dt: float) -> void:
-	if world == null or world.map_id < 0:
-		return
+# ---------------- per display frame (alpha = Game.acc / 0.04, interpolation of tick states) ----------------
+func frame(dt: float, alpha: float) -> void:
 	_poll_edges()
-	if Game.mode == "play" or scripted:
+	if is_play.call() or scripted:
 		if is_native():
 			_native(min(dt, 1.0 / 30.0))
 		else:
-			tick_alpha = clampf(Game.acc / 0.04, 0.0, 1.0)
+			tick_alpha = alpha
 			pos = prev_tick_pos.lerp(cur_tick_pos, tick_alpha)
-	state = _state_name()
-	anim.update(self, dt)
-	queue_redraw()
 
 func _native(dt: float) -> void:
 	var dir := (1 if held("right") else 0) - (1 if held("left") else 0)
@@ -217,10 +207,10 @@ func _native(dt: float) -> void:
 		if take("jump") and S.I > 0 and vel.y > -4.0 * HZ and ((air_jumps == 0 and S.eM) or (air_jumps == 1 and S.eY)):
 			air_jumps += 1
 			S.I = max(0, S.I - 3)
-			world.spawn_fx("dust", pos + Vector2(-8, 0), -1)
-			world.spawn_fx("dust", pos + Vector2(8, 0), 1)
+			_fx("dust", pos + Vector2(-8, 0), -1)
+			_fx("dust", pos + Vector2(8, 0), 1)
 			_jump(-7)
-			S.changed.emit()
+			_changed()
 	if take("attack"):
 		# ground attack anytime; in the air while rising (A 3) or falling fast (A 4, z > 4)
 		if grounded or vel.y < 0.0 or vel.y > 4.0 * HZ:
@@ -307,8 +297,8 @@ func _native(dt: float) -> void:
 				return
 	if grounded:
 		run_phase = fposmod(run_phase + abs(vel.x) * dt / 40.0, 1.0)
-		if abs(vel.x) > 60.0 and int(S.w) % 6 == 0 and randf() < 0.25:
-			world.spawn_fx("dust", pos - Vector2(facing * 6, 0), -facing)
+		if abs(vel.x) > 60.0 and int(S.w) % 6 == 0:
+			events.append({"t": "run_dust", "p": pos - Vector2(facing * 6, 0), "dir": -facing})   # view rolls randf() < 0.25
 		_crumble()
 	land_t = max(0.0, land_t - dt)
 	_publish()
@@ -340,7 +330,7 @@ func _jump(z0: int) -> void:
 		h += k
 	vel.y = -sqrt(2.0 * G * h)
 	if grounded:
-		world.spawn_fx("dust", pos, 0)
+		_fx("dust", pos, 0)
 	grounded = false
 	coyote = 0.0
 	buffer = 0.0
@@ -354,8 +344,8 @@ func _land() -> void:
 	grounded = true
 	air_jumps = 0
 	land_t = 0.18 if vel.y > 300.0 else 0.0
-	world.spawn_fx("dust", pos + Vector2(-6, 0), -1)
-	world.spawn_fx("dust", pos + Vector2(6, 0), 1)
+	_fx("dust", pos + Vector2(-6, 0), -1)
+	_fx("dust", pos + Vector2(6, 0), 1)
 	vel.y = 0.0
 	if S.O == 11 and S.fF < 20:
 		S.fF = 0           # quest 11: the hit counter resets when touching the ground
@@ -373,10 +363,10 @@ func _common_actions() -> void:
 				S.fg = 1
 		else:
 			S.fg = 0
-		S.changed.emit()
+		_changed()
 	if take("stealth") and S.fc:
 		S.fz = not S.fz
-		S.changed.emit()
+		_changed()
 	if take("transform"):
 		if int(S.A) == 1 and S.eT and grounded:
 			_start_tick_state(23)
@@ -386,17 +376,17 @@ func _common_actions() -> void:
 			if S.V[i] > 0:
 				S.V[i] -= 1
 				S.G = min(S.H, S.G + int(S.kJ[i]))
-				world.float_text("+%d" % int(S.kJ[i]), pos - Vector2(0, 40), Color(0.4, 1, 0.4))
+				_text("+%d" % int(S.kJ[i]), pos - Vector2(0, 40), Color(0.4, 1, 0.4))
 				break
-		S.changed.emit()
+		_changed()
 	if take("mp") and S.I < S.J:
 		for i in range(3, 6):
 			if S.V[i] > 0:
 				S.V[i] -= 1
 				S.I = min(S.J, S.I + int(S.kJ[i]))
-				world.float_text("+%d" % int(S.kJ[i]), pos - Vector2(0, 40), Color(0.4, 0.6, 1))
+				_text("+%d" % int(S.kJ[i]), pos - Vector2(0, 40), Color(0.4, 0.6, 1))
 				break
-		S.changed.emit()
+		_changed()
 
 # publish the native body into the original variables (for story / enemies / exits)
 func _publish() -> void:
@@ -447,10 +437,7 @@ func _resume_native() -> void:
 
 # ---------------- 25 Hz: tick states + global timers ----------------
 func tick() -> void:
-	_tick()
-
-func _tick() -> void:
-	if world == null or world.map_id < 0 or (Game.mode != "play" and not scripted):
+	if world == null or world.map_id < 0 or (not is_play.call() and not scripted):
 		return
 	# MP drain of stealth / Xích Mao (original: every 3 ticks)
 	if S.w % 3 == 0:
@@ -459,13 +446,13 @@ func _tick() -> void:
 			if S.I <= 0:
 				S.I = 0
 				S.fz = false
-			S.changed.emit()
+			_changed()
 		if S.fA:
 			S.I -= 1
 			if S.I <= 0:
 				S.I = 0
 				S.fA = false
-			S.changed.emit()
+			_changed()
 	if S.fq < 0:
 		S.fq += 1
 	if is_native():
@@ -529,7 +516,7 @@ func _step_original() -> void:
 				if S.I <= 0:
 					S.I = 0
 					S.A = 15
-				S.changed.emit()
+				_changed()
 		15:
 			S.fi -= 10
 			S.z = -10
@@ -700,14 +687,14 @@ func _u() -> void:
 		hit = world.enemies.hit(attack_box(), n, -S.fp)
 		if OS.get_cmdline_user_args().has("--log"):
 			print("[hit] box=", attack_box(), " n=", n, " -> ", hit, " enemies=", world.enemies.enemies.map(func(e): return [e.x, e.y, e.state]).slice(0, 6))
-	world.spawn_fx("slash", Vector2(S.fh + S.fp * 18, S.fi - 20), S.fp)
+	_fx("slash", Vector2(S.fh + S.fp * 18, S.fi - 20), S.fp)
 	if hit != -1:
 		S.fu = true
 		if S.z > 0:
 			S.z = -6
-		Game.hitstop(0.05)
+		events.append({"t": "hitstop", "v": 0.05})
 		if S.fA:
-			world.screen_shake(0.12)
+			_shake(0.12)
 	if world.objects:
 		world.objects.hit_blocks(S.fh, S.fi, S.fp)
 
@@ -736,9 +723,9 @@ func _st_dead() -> void:
 		S.hj = S.hk
 	if S.hl:
 		S.hp = S.hq
-	S.changed.emit()
+	_changed()
 	prev_tick_pos = Vector2(S.fh, S.fi)
-	UI.message("Bạn đã bị trọng thương! Mất một số điểm kinh nghiệm!")
+	events.append({"t": "message", "s": "Bạn đã bị trọng thương! Mất một số điểm kinh nghiệm!"})
 
 # ---- A = 7: hit knock-back for 7 ticks, then 20 ticks of invulnerability (fq) ----
 func _st_hurt() -> void:
@@ -812,7 +799,7 @@ func _st_swim() -> void:
 			S.I = 0
 			S.y = 0
 			S.A = 12
-		S.changed.emit()
+		_changed()
 
 # ---- A = 12: sinking (water body / depth) ----
 func _st_sink() -> void:
@@ -895,15 +882,15 @@ func _st_underwater(A: int) -> void:
 func _st_transform() -> void:
 	S.C += 1
 	if S.C == 1:
-		world.spawn_fx("power", Vector2(S.fh, S.fi - 40), 1)
-		world.screen_shake(0.25)
+		_fx("power", Vector2(S.fh, S.fi - 40), 1)
+		_shake(0.25)
 	elif S.C >= 30:
 		S.A = 1
 		S.C = 0
 		if S.I == 0:
 			return
 		S.fA = not S.fA
-		S.changed.emit()
+		_changed()
 	S.B = 0 if S.C % 2 > 0 else 1
 
 # ---- A = 18 parked on the bike, 19 riding, 20 airborne, 21 jump (original R() cases 18-21 + input) ----
@@ -912,7 +899,7 @@ func _bike_dust() -> void:
 		S.B = 43
 	else:
 		S.B = 44
-		world.spawn_fx("dust", Vector2(S.fh - (S.fp << 4), S.fi - 5), -S.fp)
+		_fx("dust", Vector2(S.fh - (S.fp << 4), S.fi - 5), -S.fp)
 
 func _bike_walls() -> void:
 	if S.fp == 1:
@@ -1037,29 +1024,3 @@ func _st_bike(A: int) -> void:
 			if S.C > 0:
 				S.C -= 1
 				S.B = 45
-
-# ---------------- animation state name ----------------
-func _state_name() -> String:
-	match int(S.A):
-		1: return "idle"
-		2: return "run"
-		3: return "jump"
-		4: return "fall"
-		5: return "attack"
-		6: return "dead"
-		7: return "hurt"
-		8: return "crouch"
-		11: return "swim"
-		12: return "sink"
-		13, 14: return "dig"
-		15: return "jump"
-		16: return "run"
-		17: return "idle"
-		18, 19, 20, 21: return "bike"
-		23: return "power"
-	return "idle"
-
-func _draw() -> void:
-	if int(S.im) != -1 and int(S.A) in [18, 19, 20, 21] and world.objects:
-		world.objects.draw_bike(self, pos, facing, int(S.iq[S.im]) if S.im < S.iq.size() else 0)
-	anim.draw(self)

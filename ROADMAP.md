@@ -110,7 +110,8 @@ và chỉ qua mốc khi chủ dự án đồng ý. Claude không tự đánh gi�
 - Qua mốc: `godot --path remake` chạy được, `game/` vẫn chạy làm oracle, test cũ vẫn xanh.
 
 ### M1 — Tách Sim / View trong remake/
-- [ ] Tách `player.gd` (đang vừa là luật vừa là Node2D vẽ) thành `sim/player_sim.gd` và `view/player_view.gd`.
+- [x] Tách `player.gd` (đang vừa là luật vừa là Node2D vẽ) thành `sim/player_sim.gd` và `view/player_view.gd`.
+      _(2026-11-07, nhánh `m1-sim-view`. Bằng chứng: `remake/tests/player_trace.sh` 10 kịch bản khớp 100%, xem STATUS.md.)_
 - [ ] Làm tương tự cho enemies, story, world (va chạm), drops, projectiles.
 - [ ] Viết `sim/sim.gd`: hàm `step(input) -> events`, kèm snapshot và restore (phục vụ save và test).
 - [ ] Viết `tests/sim_run.gd` chạy headless, đọc cùng định dạng script với `tools/diff_run.sh`.

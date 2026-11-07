@@ -27,7 +27,7 @@ func _ready() -> void:
 	world = preload("res://scripts/world/world.gd").new()
 	add_child(world)
 	world.visible = false
-	player = preload("res://scripts/player/player.gd").new()
+	player = preload("res://view/player_view.gd").new()
 	player.external_tick = true
 	player.world = world
 	world.player = player
@@ -129,6 +129,27 @@ func _tick25() -> void:
 	player.tick()
 	if enemies and Game.mode in ["play", "cutscene"]:
 		enemies.step_actors()
+	if auto.has("trace"):
+		_trace_tick()
+
+# test automation: --trace=file writes the rule state once per tick (player + monsters), used by
+# tests/player_trace.sh to prove a refactor does not change behaviour (run with --fixed-fps 60).
+var _trace_f: FileAccess
+func _trace_tick() -> void:
+	if _trace_f == null:
+		_trace_f = FileAccess.open(str(auto["trace"]), FileAccess.WRITE)
+	var p = player
+	var l := "w=%d map=%d mode=%s A=%d B=%d C=%d D=%d fh=%d fi=%d fp=%d y=%d z=%d G=%d I=%d N=%d M=%d fw=%d fv=%d fy=%s fu=%s fq=%d fz=%s fA=%s fg=%d ff=%d im=%d iu=%d V=%s O=%d fF=%d pos=%s vel=%s gr=%s nn=%d" % [
+		S.w, world.map_id, Game.mode, S.A, S.B, S.C, S.D, S.fh, S.fi, S.fp, S.y, S.z, S.G, S.I, S.N, S.M,
+		S.fw, S.fv, S.fy, S.fu, S.fq, S.fz, S.fA, S.fg, S.ff, S.im, S.iu, str(S.V), S.O, S.fF,
+		"%.4f,%.4f" % [p.pos.x, p.pos.y], "%.4f,%.4f" % [p.vel.x, p.vel.y], p.grounded, p.near_npc]
+	if enemies:
+		var e: Array = []
+		for m in enemies.enemies:
+			e.append("%d:%d,%d,%d,%d" % [m.type, m.x, m.y, m.state, m.hp])
+		l += " E=" + ";".join(e)
+	_trace_f.store_line(l)
+	_trace_f.flush()
 
 func _on_map_loaded(id: int) -> void:
 	var st: Dictionary = world.map.get("state", {})

@@ -1,0 +1,169 @@
+##### intro (game/tests/scripts/d1.txt)
+seg0 map99 frames emu=418 godot=418
+seg1 map4 frames emu=381 godot=381
+TOTAL compared 799 mismatching 0
+##### fuzz1 (game/tests/scripts/f1.txt)
+seg0 map99 frames emu=592 godot=592
+seg1 map4 frames emu=3255 godot=3255
+TOTAL compared 3847 mismatching 0
+##### fuzz2 (tools/diff_scripts/f2.txt)
+seg0 map99 frames emu=525 godot=525
+seg1 map4 frames emu=3547 godot=3547
+TOTAL compared 4072 mismatching 0
+##### fuzz3 (tools/diff_scripts/f3.txt)
+seg0 map99 frames emu=452 godot=452
+seg1 map4 frames emu=4386 godot=4386
+TOTAL compared 4838 mismatching 0
+##### fm0 (game/tests/scripts/fm0.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map0 frames emu=190 godot=190
+seg2 map1 frames emu=30 godot=30
+seg3 map0 frames emu=16 godot=16
+seg4 map1 frames emu=3 godot=3
+seg5 map0 frames emu=3746 godot=3746
+TOTAL compared 4370 mismatching 0
+##### fm1 (game/tests/scripts/fm1.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map1 frames emu=386 godot=386
+TOTAL compared 771 mismatching 0
+##### fm2 (game/tests/scripts/fm2.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map2 frames emu=1346 godot=1346
+TOTAL compared 1731 mismatching 0
+##### fm3 (game/tests/scripts/fm3.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map4 frames emu=69 godot=69
+seg2 map3 frames emu=60 godot=60
+seg3 map4 frames emu=3474 godot=3474
+TOTAL compared 3988 mismatching 0
+##### fm5 (game/tests/scripts/fm5.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map5 frames emu=1726 godot=1726
+TOTAL compared 2111 mismatching 0
+##### fm6 (game/tests/scripts/fm6.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map7 frames emu=93 godot=93
+seg2 map6 frames emu=28 godot=28
+seg3 map7 frames emu=159 godot=159
+TOTAL compared 665 mismatching 0
+##### fm7 (game/tests/scripts/fm7.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map7 frames emu=141 godot=141
+seg2 map6 frames emu=25 godot=25
+seg3 map7 frames emu=329 godot=329
+TOTAL compared 880 mismatching 0
+##### fm8 (game/tests/scripts/fm8.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map8 frames emu=331 godot=331
+TOTAL compared 716 mismatching 0
+##### fm9 (game/tests/scripts/fm9.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map9 frames emu=95 godot=95
+seg2 map8 frames emu=35 godot=35
+seg3 map9 frames emu=96 godot=96
+seg4 map8 frames emu=152 godot=152
+TOTAL compared 763 mismatching 0
+##### fm10 (game/tests/scripts/fm10.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map11 frames emu=378 godot=378
+TOTAL compared 763 mismatching 0
+##### fm11 (game/tests/scripts/fm11.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map11 frames emu=1293 godot=1293
+TOTAL compared 1678 mismatching 0
+##### fm12 (game/tests/scripts/fm12.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map12 frames emu=92 godot=92
+seg2 map96 frames emu=2249 godot=2249
+TOTAL compared 2726 mismatching 0
+##### fm13 (game/tests/scripts/fm13.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map14 frames emu=68 godot=68
+seg2 map13 frames emu=25 godot=25
+seg3 map14 frames emu=9 godot=9
+seg4 map13 frames emu=92 godot=92
+seg5 map14 frames emu=55 godot=55
+seg6 map13 frames emu=175 godot=175
+seg7 map14 frames emu=230 godot=230
+seg8 map13 frames emu=291 godot=291
+TOTAL compared 1330 mismatching 0
+##### fm14 (game/tests/scripts/fm14.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map15 frames emu=79 godot=79
+seg2 map14 frames emu=44 godot=44
+seg3 map15 frames emu=55 godot=55
+seg4 map14 frames emu=173 godot=173
+seg5 map15 frames emu=43 godot=43
+TOTAL compared 779 mismatching 0
+##### fm15 (game/tests/scripts/fm15.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map16 frames emu=281 godot=281
+seg2 map15 frames emu=194 godot=194
+TOTAL compared 860 mismatching 0
+##### fm16 (game/tests/scripts/fm16.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map17 frames emu=76 godot=76
+seg2 map16 frames emu=22 godot=22
+seg3 map17 frames emu=71 godot=71
+TOTAL compared 554 mismatching 0
+##### fm17 (game/tests/scripts/fm17.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map18 frames emu=34 godot=34
+seg2 map17 frames emu=7 godot=7
+TOTAL compared 426 mismatching 0
+##### fm18 (game/tests/scripts/fm18.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map18 frames emu=70 godot=70
+TOTAL compared 455 mismatching 0
+##### fm94 (game/tests/scripts/fm94.txt)
+SCRIPT ERROR: Invalid access of index '7' on a base object of type: 'Array'.
+          at: __g_o (res://core/orig.gd:5452)
+          GDScript backtrace (most recent call first):
+              [0] __g_o (res://core/orig.gd:5452)
+--
+SCRIPT ERROR: Invalid access of index '7' on a base object of type: 'Array'.
+          at: __g_o (res://core/orig.gd:5452)
+          GDScript backtrace (most recent call first):
+              [0] __g_o (res://core/orig.gd:5452)
+--
+SCRIPT ERROR: Invalid access of index '7' on a base object of type: 'Array'.
+          at: __g_o (res://core/orig.gd:5452)
+          GDScript backtrace (most recent call first):
+              [0] __g_o (res://core/orig.gd:5452)
+seg0 map99 frames emu=385 godot=385
+seg1 map94 frames emu=2040 godot=2040
+seg2 map0 frames emu=643 godot=643
+seg3 map1 frames emu=7 godot=7
+seg4 map0 frames emu=29 godot=29
+seg5 map1 frames emu=36 godot=36
+seg6 map0 frames emu=14 godot=14
+seg7 map1 frames emu=38 godot=38
+seg8 map0 frames emu=27 godot=27
+seg9 map1 frames emu=22 godot=22
+seg10 map0 frames emu=40 godot=40
+seg11 map1 frames emu=46 godot=46
+seg12 map0 frames emu=926 godot=926
+TOTAL compared 4253 mismatching 0
+##### fm95 (game/tests/scripts/fm95.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map95 frames emu=327 godot=327
+seg2 map18 frames emu=17 godot=17
+TOTAL compared 729 mismatching 0
+##### fm96 (game/tests/scripts/fm96.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map96 frames emu=2878 godot=2878
+TOTAL compared 3263 mismatching 0
+##### fm97 (game/tests/scripts/fm97.txt)
+seg0 map99 frames emu=385 godot=385
+seg1 map97 frames emu=331 godot=331
+TOTAL compared 716 mismatching 0
+##### boss95 (tools/diff_scripts/boss95.txt)
+seg0 map99 frames emu=80 godot=80
+seg1 map95 frames emu=4622 godot=4622
+TOTAL compared 4702 mismatching 0
+##### ending (game/tests/scripts/end3d.txt)
+seg0 map99 frames emu=80 godot=80
+seg1 map95 frames emu=702 godot=702
+seg2 map94 frames emu=847 godot=847
+seg3 map0 frames emu=1198 godot=1198
+TOTAL compared 2827 mismatching 0
