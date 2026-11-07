@@ -1,0 +1,20 @@
+wait 5000
+tap -5
+wait 6000
+tap -5 16
+wait 800
+tap -5 16
+wait 2000
+hold -4 1500
+tap -1
+hold -4 1500
+vars v fh fi G I N M dg O fF V
+tap -6
+wait 600
+tap -2
+wait 300
+tap -2
+wait 300
+tap -5
+wait 2000
+vars d quit_requested

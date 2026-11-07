@@ -1,0 +1,922 @@
+wait 2500
+tap -7
+wait 1500
+tap -6
+wait 3000
+tap -5
+wait 6000
+tap -5 16
+wait 800
+tap -5 16
+wait 2000
+set eH 0
+set fh 552
+set fi 264
+set fs 552
+set ft 264
+call x 96
+wait 2500
+hold -4 200
+wait 0
+hold 51 800
+wait 40
+press -3
+tap -4
+wait 80
+release -3
+hold 48 120
+wait 0
+hold -5 800
+wait 40
+press -4
+tap 51
+wait 80
+release -4
+hold -5 200
+wait 40
+hold -7 200
+wait 0
+hold 49 400
+wait 80
+hold 51 400
+wait 200
+press -3
+tap -7
+wait 800
+release -3
+hold -5 80
+wait 80
+press -3
+tap 49
+wait 80
+release -3
+hold 49 400
+wait 200
+press -3
+tap -2
+wait 400
+release -3
+hold -4 200
+wait 0
+hold -3 80
+wait 40
+hold -7 800
+wait 40
+hold -4 120
+wait 80
+press -4
+tap -5
+wait 120
+release -4
+hold 51 120
+wait 80
+hold -3 200
+wait 80
+press -3
+tap -2
+wait 800
+release -3
+hold -7 400
+wait 40
+hold -7 800
+wait 200
+hold -4 80
+wait 200
+hold -5 400
+wait 80
+hold -7 400
+wait 80
+hold -2 80
+wait 0
+hold -5 120
+wait 0
+hold -4 800
+wait 200
+press -4
+tap -1
+wait 120
+release -4
+hold -4 80
+wait 80
+hold -4 200
+wait 80
+hold -4 200
+wait 40
+hold -4 200
+wait 80
+hold -1 800
+wait 200
+press -3
+tap 51
+wait 80
+release -3
+hold 51 80
+wait 40
+hold 51 400
+wait 40
+hold 49 120
+wait 0
+hold 48 200
+wait 80
+hold -1 120
+wait 40
+hold 51 400
+wait 40
+hold -5 120
+wait 0
+press -3
+tap -7
+wait 200
+release -3
+press -4
+tap 49
+wait 400
+release -4
+hold -5 120
+wait 200
+hold -1 80
+wait 80
+hold -1 800
+wait 40
+hold 49 200
+wait 0
+hold -7 800
+wait 40
+hold -4 400
+wait 0
+hold -4 80
+wait 200
+hold 51 400
+wait 200
+hold -4 80
+wait 80
+hold -1 200
+wait 80
+hold -5 800
+wait 40
+hold 51 400
+wait 0
+hold -3 120
+wait 80
+hold -2 400
+wait 80
+press -3
+tap -2
+wait 400
+release -3
+hold -5 400
+wait 40
+hold -2 120
+wait 200
+hold -4 800
+wait 40
+press -4
+tap -4
+wait 80
+release -4
+hold 51 80
+wait 0
+hold -5 120
+wait 40
+hold -1 200
+wait 200
+press -3
+tap 49
+wait 400
+release -3
+hold 48 800
+wait 200
+press -3
+tap -5
+wait 400
+release -3
+hold -5 200
+wait 80
+hold 48 800
+wait 200
+press -3
+tap 48
+wait 80
+release -3
+hold -1 80
+wait 0
+hold -2 80
+wait 80
+press -4
+tap 48
+wait 800
+release -4
+hold 51 200
+wait 80
+press -3
+tap 49
+wait 800
+release -3
+hold -4 80
+wait 40
+press -4
+tap -3
+wait 800
+release -4
+press -4
+tap -2
+wait 120
+release -4
+press -3
+tap -5
+wait 80
+release -3
+hold -5 80
+wait 0
+press -3
+tap -5
+wait 200
+release -3
+press -4
+tap 51
+wait 400
+release -4
+press -4
+tap -1
+wait 800
+release -4
+hold -2 400
+wait 200
+hold 51 400
+wait 80
+press -4
+tap -1
+wait 800
+release -4
+press -3
+tap -2
+wait 200
+release -3
+hold -2 800
+wait 80
+hold -4 200
+wait 40
+hold -5 120
+wait 0
+press -4
+tap -3
+wait 800
+release -4
+hold -4 80
+wait 40
+hold 51 120
+wait 200
+hold -4 80
+wait 80
+press -4
+tap -4
+wait 800
+release -4
+hold -4 800
+wait 0
+hold 48 800
+wait 0
+hold -4 800
+wait 40
+hold -5 120
+wait 40
+press -4
+tap -3
+wait 800
+release -4
+hold -7 120
+wait 40
+hold -5 120
+wait 0
+hold -2 200
+wait 0
+hold -3 800
+wait 80
+hold 49 80
+wait 0
+hold -2 120
+wait 40
+press -3
+tap -5
+wait 80
+release -3
+press -3
+tap -1
+wait 400
+release -3
+hold 49 800
+wait 40
+hold -4 800
+wait 0
+hold 48 80
+wait 40
+hold -4 400
+wait 40
+hold -1 400
+wait 40
+press -4
+tap -3
+wait 800
+release -4
+press -3
+tap 48
+wait 400
+release -3
+hold -1 800
+wait 0
+hold -4 200
+wait 40
+hold -1 400
+wait 40
+hold -1 200
+wait 40
+hold -4 200
+wait 200
+hold -4 400
+wait 80
+hold -1 800
+wait 80
+hold -7 200
+wait 0
+hold -4 200
+wait 40
+hold -1 200
+wait 0
+press -3
+tap 48
+wait 800
+release -3
+press -4
+tap -7
+wait 200
+release -4
+hold -5 80
+wait 40
+hold -2 400
+wait 0
+hold -2 200
+wait 0
+hold -5 800
+wait 80
+press -3
+tap 51
+wait 400
+release -3
+press -3
+tap -2
+wait 80
+release -3
+hold -4 80
+wait 200
+press -3
+tap -1
+wait 200
+release -3
+hold 49 80
+wait 0
+press -4
+tap -1
+wait 400
+release -4
+hold -1 800
+wait 40
+hold -3 400
+wait 40
+hold -7 200
+wait 40
+hold -1 400
+wait 0
+hold -2 200
+wait 200
+hold 49 400
+wait 80
+press -4
+tap 49
+wait 400
+release -4
+hold -5 120
+wait 200
+hold -5 400
+wait 40
+hold -4 120
+wait 200
+hold -4 120
+wait 0
+hold -5 80
+wait 80
+press -3
+tap 49
+wait 800
+release -3
+press -3
+tap 48
+wait 400
+release -3
+hold -5 800
+wait 200
+hold -5 120
+wait 40
+hold -4 80
+wait 200
+press -4
+tap 49
+wait 80
+release -4
+hold 49 120
+wait 0
+hold -5 80
+wait 0
+press -3
+tap -5
+wait 80
+release -3
+press -3
+tap -5
+wait 80
+release -3
+hold -4 120
+wait 200
+press -3
+tap -3
+wait 800
+release -3
+hold -1 80
+wait 0
+hold -2 200
+wait 80
+hold -1 120
+wait 0
+hold 48 200
+wait 80
+hold -4 120
+wait 80
+press -4
+tap 48
+wait 120
+release -4
+hold -1 800
+wait 200
+hold -2 80
+wait 80
+press -3
+tap -1
+wait 200
+release -3
+press -3
+tap -7
+wait 800
+release -3
+press -4
+tap 51
+wait 120
+release -4
+hold 48 120
+wait 0
+hold 48 400
+wait 80
+hold -4 120
+wait 40
+hold -1 800
+wait 0
+hold -7 800
+wait 200
+hold -3 80
+wait 200
+hold -2 800
+wait 200
+press -3
+tap -1
+wait 120
+release -3
+hold -3 80
+wait 200
+press -3
+tap -7
+wait 80
+release -3
+hold -2 400
+wait 0
+hold 49 800
+wait 200
+press -3
+tap -3
+wait 200
+release -3
+press -3
+tap -5
+wait 400
+release -3
+hold -1 80
+wait 40
+press -4
+tap 48
+wait 80
+release -4
+press -4
+tap -5
+wait 80
+release -4
+hold 49 120
+wait 0
+hold -2 80
+wait 40
+hold -1 80
+wait 200
+hold -4 400
+wait 0
+hold -5 400
+wait 0
+hold -4 400
+wait 40
+press -3
+tap -4
+wait 400
+release -3
+press -4
+tap -4
+wait 80
+release -4
+hold -7 800
+wait 200
+press -3
+tap 51
+wait 800
+release -3
+hold 48 120
+wait 80
+hold -5 200
+wait 200
+hold 51 80
+wait 80
+hold 49 400
+wait 0
+hold -5 200
+wait 80
+hold -4 200
+wait 200
+hold -4 800
+wait 200
+press -4
+tap -7
+wait 120
+release -4
+hold -5 120
+wait 200
+hold -4 800
+wait 0
+hold -4 200
+wait 0
+press -4
+tap -2
+wait 800
+release -4
+hold -5 200
+wait 200
+hold -7 120
+wait 80
+hold -2 800
+wait 80
+hold -1 800
+wait 200
+press -4
+tap -5
+wait 800
+release -4
+hold 49 120
+wait 40
+hold -4 400
+wait 40
+hold -4 800
+wait 200
+hold 49 400
+wait 0
+press -4
+tap -5
+wait 80
+release -4
+hold -5 400
+wait 200
+press -4
+tap -5
+wait 80
+release -4
+hold 48 800
+wait 0
+hold -4 400
+wait 0
+hold -4 800
+wait 200
+hold -2 200
+wait 40
+hold -4 400
+wait 40
+press -4
+tap -3
+wait 120
+release -4
+hold -5 400
+wait 80
+hold -1 200
+wait 80
+hold -4 120
+wait 200
+hold -1 80
+wait 40
+hold -1 80
+wait 0
+hold -7 120
+wait 200
+press -4
+tap -3
+wait 200
+release -4
+press -3
+tap -1
+wait 800
+release -3
+hold 48 800
+wait 0
+hold -4 800
+wait 80
+press -4
+tap -5
+wait 800
+release -4
+press -3
+tap 48
+wait 120
+release -3
+press -3
+tap -3
+wait 200
+release -3
+hold 49 80
+wait 0
+hold -5 80
+wait 0
+hold -5 800
+wait 0
+press -3
+tap -1
+wait 80
+release -3
+press -3
+tap 48
+wait 400
+release -3
+hold -4 200
+wait 0
+press -4
+tap -4
+wait 200
+release -4
+hold -5 200
+wait 40
+hold -2 120
+wait 40
+hold -4 80
+wait 200
+hold -3 120
+wait 0
+hold -2 200
+wait 0
+hold -7 120
+wait 80
+hold 48 400
+wait 80
+hold -4 200
+wait 200
+hold -4 800
+wait 40
+hold -4 200
+wait 40
+hold -5 400
+wait 0
+press -3
+tap -5
+wait 120
+release -3
+hold -5 80
+wait 200
+hold -4 120
+wait 0
+hold -4 120
+wait 0
+press -3
+tap -5
+wait 80
+release -3
+hold 48 80
+wait 0
+hold 51 200
+wait 80
+hold -5 200
+wait 0
+hold 48 400
+wait 200
+press -4
+tap -2
+wait 200
+release -4
+hold 51 200
+wait 80
+hold 51 80
+wait 80
+press -3
+tap -2
+wait 80
+release -3
+press -4
+tap 48
+wait 800
+release -4
+hold -5 800
+wait 200
+hold -5 400
+wait 200
+hold -5 400
+wait 40
+hold -4 120
+wait 200
+press -3
+tap -1
+wait 200
+release -3
+press -3
+tap -7
+wait 200
+release -3
+press -4
+tap 51
+wait 200
+release -4
+hold -4 800
+wait 40
+hold -5 400
+wait 40
+hold -4 200
+wait 200
+hold -4 200
+wait 0
+hold -5 120
+wait 40
+hold 49 200
+wait 40
+press -3
+tap -5
+wait 400
+release -3
+hold -4 80
+wait 40
+hold -2 800
+wait 0
+hold -4 120
+wait 80
+hold -1 800
+wait 200
+press -3
+tap -3
+wait 400
+release -3
+hold 51 120
+wait 0
+press -4
+tap 48
+wait 80
+release -4
+hold -3 80
+wait 200
+hold -2 400
+wait 80
+hold 51 120
+wait 80
+hold -5 400
+wait 80
+hold 49 200
+wait 0
+hold -1 400
+wait 80
+press -4
+tap -1
+wait 120
+release -4
+hold 51 80
+wait 40
+hold -2 120
+wait 40
+press -3
+tap -7
+wait 120
+release -3
+press -4
+tap -3
+wait 400
+release -4
+hold -5 400
+wait 80
+hold -4 80
+wait 0
+press -4
+tap -7
+wait 800
+release -4
+hold -5 400
+wait 200
+hold -5 120
+wait 40
+hold -5 400
+wait 80
+hold 51 200
+wait 80
+hold -2 400
+wait 80
+hold -1 120
+wait 80
+press -3
+tap 49
+wait 400
+release -3
+hold -2 200
+wait 80
+press -3
+tap -4
+wait 80
+release -3
+press -4
+tap -4
+wait 800
+release -4
+hold -3 80
+wait 200
+hold -5 200
+wait 200
+hold 49 80
+wait 40
+press -3
+tap -1
+wait 80
+release -3
+press -3
+tap -1
+wait 400
+release -3
+press -4
+tap -4
+wait 800
+release -4
+hold -4 800
+wait 200
+hold -1 120
+wait 0
+hold -5 120
+wait 200
+hold -4 80
+wait 200
+hold -1 400
+wait 80
+hold -1 200
+wait 80
+hold -7 400
+wait 0
+press -4
+tap 49
+wait 80
+release -4
+press -3
+tap 48
+wait 120
+release -3
+hold -4 120
+wait 200
+press -4
+tap -1
+wait 400
+release -4
+press -4
+tap -5
+wait 80
+release -4
+press -3
+tap -3
+wait 120
+release -3
+press -3
+tap -5
+wait 400
+release -3
+hold -7 400
+wait 40
+hold -5 400
+wait 40
+press -4
+tap -5
+wait 400
+release -4
+press -3
+tap 48
+wait 80
+release -3
+hold -7 800
+wait 40
+hold -5 800
+wait 40

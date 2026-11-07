@@ -1,0 +1,213 @@
+wait 4500
+tap -5
+wait 3000
+set fV 0
+set eH 0
+set fh 1896
+set fi 360
+set fs 1896
+set ft 360
+call x 0
+wait 2500
+set fV 0
+wait 500
+shot map00
+set fh 3
+set fi 216
+set fs 3
+set ft 216
+call x 1
+wait 2500
+set fV 0
+wait 500
+shot map01
+set fh 1416
+set fi 264
+set fs 1416
+set ft 264
+call x 2
+wait 2500
+set fV 0
+wait 500
+shot map02
+set fh 2856
+set fi 216
+set fs 2856
+set ft 216
+call x 3
+wait 2500
+set fV 0
+wait 500
+shot map03
+set fh 48
+set fi 120
+set fs 48
+set ft 120
+call x 4
+wait 2500
+set fV 0
+wait 500
+shot map04
+set fh 456
+set fi 1872
+set fs 456
+set ft 1872
+call x 5
+wait 2500
+set fV 0
+wait 500
+shot map05
+set fh 5976
+set fi 240
+set fs 5976
+set ft 240
+call x 6
+wait 2500
+set fV 0
+wait 500
+shot map06
+set fh 1896
+set fi 264
+set fs 1896
+set ft 264
+call x 7
+wait 2500
+set fV 0
+wait 500
+shot map07
+set fh 24
+set fi 288
+set fs 24
+set ft 288
+call x 8
+wait 2500
+set fV 0
+wait 500
+shot map08
+set fh 24
+set fi 264
+set fs 24
+set ft 264
+call x 9
+wait 2500
+set fV 0
+wait 500
+shot map09
+set fh 936
+set fi 720
+set fs 936
+set ft 720
+call x 10
+wait 2500
+set fV 0
+wait 500
+shot map10
+set fh 2112
+set fi 288
+set fs 2112
+set ft 288
+call x 11
+wait 2500
+set fV 0
+wait 500
+shot map11
+set fh 24
+set fi 192
+set fs 24
+set ft 192
+call x 12
+wait 2500
+set fV 0
+wait 500
+shot map12
+set fh 1896
+set fi 264
+set fs 1896
+set ft 264
+call x 13
+wait 2500
+set fV 0
+wait 500
+shot map13
+set fh 1416
+set fi 144
+set fs 1416
+set ft 144
+call x 14
+wait 2500
+set fV 0
+wait 500
+shot map14
+set fh 936
+set fi 168
+set fs 936
+set ft 168
+call x 15
+wait 2500
+set fV 0
+wait 500
+shot map15
+set fh 1656
+set fi 144
+set fs 1656
+set ft 144
+call x 16
+wait 2500
+set fV 0
+wait 500
+shot map16
+set fh 1176
+set fi 384
+set fs 1176
+set ft 384
+call x 17
+wait 2500
+set fV 0
+wait 500
+shot map17
+set fh 1632
+set fi 312
+set fs 1632
+set ft 312
+call x 18
+wait 2500
+set fV 0
+wait 500
+shot map18
+set fh 72
+set fi 48
+set fs 72
+set ft 48
+call x 94
+wait 2500
+set fV 0
+wait 500
+shot map94
+set fh 24
+set fi 192
+set fs 24
+set ft 192
+call x 95
+wait 2500
+set fV 0
+wait 500
+shot map95
+set fh 552
+set fi 264
+set fs 552
+set ft 264
+call x 96
+wait 2500
+set fV 0
+wait 500
+shot map96
+set fh 552
+set fi 168
+set fs 552
+set ft 168
+call x 97
+wait 2500
+set fV 0
+wait 500
+shot map97
+quit
