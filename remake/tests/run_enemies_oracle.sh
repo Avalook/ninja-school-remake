@@ -3,7 +3,7 @@
 # 1) runs the ORIGINAL game (game/, oracle) from the exported state of each map with no input for N ticks
 # 2) runs remake/tests/enemies_oracle.gd on the same state and compares monster/boss state per tick
 R=$(cd "$(dirname "$0")/../.."; pwd)
-GODOT=/Users/quangdang/Downloads/ninja/.tools/godot/Godot.app/Contents/MacOS/Godot
+GODOT=${GODOT:-/Users/quangdang/Downloads/ninja/.tools/godot/Godot.app/Contents/MacOS/Godot}
 T=${1:-500}; shift
 MAPS=${@:-4 1 6 7 12 95 97}
 # optional per-map scenario: ACT_<map>="k@313:10:500:1 set@303:hu:1" (remake test syntax, see enemies_oracle.gd)

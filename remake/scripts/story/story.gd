@@ -6,7 +6,7 @@
 #   NPC / quests   npc_quests.gd       (talk switch L8361, z() L2393, L(n) L11672, u() L2112)
 #   menus          menus.gd            (as() L14282, aq() L14174, world map d=6, ap() L14009, title d=3)
 #
-# Integration (see REMAKE_PLAN.md "Story"):
+# Integration (see archive/docs/REMAKE_PLAN.md "Story"):
 #   story.attach(world)              world: map_loaded(id) signal, player, camera_override(), flags
 #   on_map_enter(id)                 called automatically from world.map_loaded (or call it yourself)
 #   tick()                           25 Hz; auto-connected to Game.tick25 when Game exists

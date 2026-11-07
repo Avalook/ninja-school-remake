@@ -1,4 +1,4 @@
-# Original content as data (exported from the original game, see REMAKE_PLAN.md).
+# Original content as data (exported from the original game, see archive/docs/REMAKE_PLAN.md).
 extends Node
 
 var static_data := {}

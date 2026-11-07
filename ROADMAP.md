@@ -99,12 +99,13 @@ Mỗi mốc có điều kiện qua mốc. Mốc nào có **[DUYỆT]** thì ph�
 và chỉ qua mốc khi chủ dự án đồng ý. Claude không tự đánh giá "đẹp".
 
 ### M0 — Dọn repo (1 phiên)
-- [ ] Chuyển `games/ninja1`, `games/ninja1-original` vào `archive/`.
-- [ ] Chuyển `CLAUDE_TASK.md`, `START_HERE_CLAUDE.md`, `PROJECT_KNOWLEDGE.md`, `REVIEW_FLAGS.md`,
+- [x] Chuyển `games/ninja1`, `games/ninja1-original` vào `archive/`.
+- [x] Chuyển `CLAUDE_TASK.md`, `START_HERE_CLAUDE.md`, `PROJECT_KNOWLEDGE.md`, `REVIEW_FLAGS.md`,
       `analysis/PC_REMAKE_PLAN.md`, `remake/REMAKE_PLAN.md` vào `archive/docs/` (giữ lịch sử, không xoá).
-- [ ] Tạo `STATUS.md` từ `analysis/claude/progress.json` và kiểm tra thực tế.
-- [ ] Bỏ đường dẫn tuyệt đối `/Users/quangdang/...` khỏi `export_presets.cfg`.
+- [x] Tạo `STATUS.md` từ `analysis/claude/progress.json` và kiểm tra thực tế.
+- [x] Bỏ đường dẫn tuyệt đối `/Users/quangdang/...` khỏi `export_presets.cfg`.
 - [ ] Đưa file lớn (blend, mp4, png nguồn) sang Git LFS hoặc vào `.gitignore` nếu sinh lại được.
+      _(Đã đề xuất trong `STATUS.md`, chờ chủ dự án duyệt.)_
 - Qua mốc: `godot --path remake` chạy được, `game/` vẫn chạy làm oracle, test cũ vẫn xanh.
 
 ### M1 — Tách Sim / View trong remake/

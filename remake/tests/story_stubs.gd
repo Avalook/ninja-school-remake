@@ -1,5 +1,5 @@
 # Minimal stand-ins for the lead's World / Player / UI so the story module runs headless
-# (tests only). They implement just the contract surface of REMAKE_PLAN.md that story.gd uses.
+# (tests only). They implement just the contract surface of archive/docs/REMAKE_PLAN.md that story.gd uses.
 extends RefCounted
 
 # ------------------------------------------------------------------ UI

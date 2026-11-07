@@ -6,7 +6,7 @@
 # darts O(), seeds P(), monsters al() ~L12112, students aa(), boar, river monster, golem ac(), coins W(),
 # potions ab(), scroll). Rendering interpolates between the last two 25 Hz states every display frame.
 #
-# Contract (REMAKE_PLAN.md): setup(map), hit(area, damage, dir) -> index | -1, boss_state(),
+# Contract (archive/docs/REMAKE_PLAN.md): setup(map), hit(area, damage, dir) -> index | -1, boss_state(),
 # spawn_projectile(x, y, vx, vy, strong), signal enemy_killed(type, pos); damages the player through
 # world.player.hurt(dmg, dir) where dir is the push direction of the original a(int n, int dir).
 # Player state is read from the original variables the player module publishes into S
