@@ -1,0 +1,17 @@
+{
+ "clip": "throwing_steel_shuriken",
+ "fps": 24,
+ "count": 171,
+ "cols": 16,
+ "cell": [
+  320,
+  320
+ ],
+ "anchor": [
+  160,
+  288
+ ],
+ "skipped_fade_frames": 19,
+ "scale": 0.3097,
+ "source": "art/incoming/veo/throwing_steel_shuriken.mp4"
+}

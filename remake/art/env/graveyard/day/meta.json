@@ -1,0 +1,90 @@
+{
+  "biome": "graveyard",
+  "lighting": "day",
+  "generator": "scripts/blender_env_backgrounds.py",
+  "blender": "5.2.3 LTS",
+  "engine": "BLENDER_EEVEE",
+  "samples": 48,
+  "res_scale": 1.0,
+  "layers": [
+    {
+      "file": "layer0.png",
+      "parallax": 0.05,
+      "size": [
+        1024,
+        576
+      ],
+      "transparent": false,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00219,
+        "local_max": 0.00265,
+        "ok": true
+      },
+      "render_seconds": 2.99
+    },
+    {
+      "file": "layer1.png",
+      "parallax": 0.15,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00077,
+        "local_max": 0.00077,
+        "ok": true
+      },
+      "render_seconds": 6.74
+    },
+    {
+      "file": "layer2.png",
+      "parallax": 0.35,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00168,
+        "local_max": 0.00929,
+        "ok": true
+      },
+      "render_seconds": 6.13
+    },
+    {
+      "file": "layer3.png",
+      "parallax": 0.6,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.0,
+        "local_max": 0.0,
+        "ok": true
+      },
+      "render_seconds": 1.46
+    }
+  ],
+  "fog_colors": {
+    "L0": "#e4e2dc",
+    "L1": "#cfd2d8",
+    "L2": "#d6d8da",
+    "L3": "#d8d8d4"
+  },
+  "tint": "#d6d8da",
+  "sky": {
+    "horizon": "#e4e2dc",
+    "zenith": "#8a96b0"
+  },
+  "ambient_particles": "mist",
+  "calm_bottom_fraction": 0.25,
+  "build_seconds": 0.15,
+  "notes": "overcast day; fog bands between grave rows"
+}

@@ -1,0 +1,90 @@
+{
+  "biome": "valley",
+  "lighting": "day",
+  "generator": "scripts/blender_env_backgrounds.py",
+  "blender": "5.2.3 LTS",
+  "engine": "BLENDER_EEVEE",
+  "samples": 48,
+  "res_scale": 1.0,
+  "layers": [
+    {
+      "file": "layer0.png",
+      "parallax": 0.05,
+      "size": [
+        1024,
+        576
+      ],
+      "transparent": false,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00254,
+        "local_max": 0.00234,
+        "ok": true
+      },
+      "render_seconds": 2.88
+    },
+    {
+      "file": "layer1.png",
+      "parallax": 0.15,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00131,
+        "local_max": 0.00139,
+        "ok": true
+      },
+      "render_seconds": 7.9
+    },
+    {
+      "file": "layer2.png",
+      "parallax": 0.35,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00211,
+        "local_max": 0.00489,
+        "ok": true
+      },
+      "render_seconds": 5.35
+    },
+    {
+      "file": "layer3.png",
+      "parallax": 0.6,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00407,
+        "local_max": 0.00598,
+        "ok": true
+      },
+      "render_seconds": 1.74
+    }
+  ],
+  "fog_colors": {
+    "L0": "#f8eed8",
+    "L1": "#dee4e4",
+    "L2": "#e2e8de",
+    "L3": "#e4e8d6"
+  },
+  "tint": "#e2e8de",
+  "sky": {
+    "horizon": "#f8eed8",
+    "zenith": "#62a2e0"
+  },
+  "ambient_particles": "mist",
+  "calm_bottom_fraction": 0.25,
+  "build_seconds": 0.18,
+  "notes": "four atmospheric ridge rows (classic layered-valley look)"
+}

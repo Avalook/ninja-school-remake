@@ -1,0 +1,90 @@
+{
+  "biome": "river",
+  "lighting": "night",
+  "generator": "scripts/blender_env_backgrounds.py",
+  "blender": "5.2.3 LTS",
+  "engine": "BLENDER_EEVEE",
+  "samples": 48,
+  "res_scale": 1.0,
+  "layers": [
+    {
+      "file": "layer0.png",
+      "parallax": 0.05,
+      "size": [
+        1024,
+        576
+      ],
+      "transparent": false,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00149,
+        "local_max": 0.00324,
+        "ok": true
+      },
+      "render_seconds": 3.28
+    },
+    {
+      "file": "layer1.png",
+      "parallax": 0.15,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00104,
+        "local_max": 0.00127,
+        "ok": true
+      },
+      "render_seconds": 6.07
+    },
+    {
+      "file": "layer2.png",
+      "parallax": 0.35,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00146,
+        "local_max": 0.00175,
+        "ok": true
+      },
+      "render_seconds": 4.7
+    },
+    {
+      "file": "layer3.png",
+      "parallax": 0.6,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.01369,
+        "local_max": 0.0232,
+        "ok": true
+      },
+      "render_seconds": 1.8
+    }
+  ],
+  "fog_colors": {
+    "L0": "#2c4070",
+    "L1": "#283c6a",
+    "L2": "#23345e",
+    "L3": "#1c2a50"
+  },
+  "tint": "#23345e",
+  "sky": {
+    "horizon": "#2c4070",
+    "zenith": "#060b22"
+  },
+  "ambient_particles": "fireflies",
+  "calm_bottom_fraction": 0.25,
+  "build_seconds": 0.13,
+  "notes": "water is a flat plane with periodic streak highlights, no reflections"
+}

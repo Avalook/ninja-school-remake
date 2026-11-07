@@ -1,0 +1,17 @@
+{
+ "clip": "boy_running_animation_refe_",
+ "fps": 24,
+ "count": 169,
+ "cols": 16,
+ "cell": [
+  320,
+  320
+ ],
+ "anchor": [
+  160,
+  288
+ ],
+ "skipped_fade_frames": 21,
+ "scale": 0.3496,
+ "source": "art/incoming/veo/boy_running_animation_refe_.mp4"
+}

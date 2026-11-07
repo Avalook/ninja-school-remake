@@ -1,0 +1,90 @@
+{
+  "biome": "bamboo",
+  "lighting": "day",
+  "generator": "scripts/blender_env_backgrounds.py",
+  "blender": "5.2.3 LTS",
+  "engine": "BLENDER_EEVEE",
+  "samples": 48,
+  "res_scale": 1.0,
+  "layers": [
+    {
+      "file": "layer0.png",
+      "parallax": 0.05,
+      "size": [
+        1024,
+        576
+      ],
+      "transparent": false,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00132,
+        "local_max": 0.00698,
+        "ok": true
+      },
+      "render_seconds": 3.31
+    },
+    {
+      "file": "layer1.png",
+      "parallax": 0.15,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00109,
+        "local_max": 0.00112,
+        "ok": true
+      },
+      "render_seconds": 8.03
+    },
+    {
+      "file": "layer2.png",
+      "parallax": 0.35,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.05164,
+        "local_max": 0.0616,
+        "ok": true
+      },
+      "render_seconds": 7.38
+    },
+    {
+      "file": "layer3.png",
+      "parallax": 0.6,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.0,
+        "local_max": 0.0,
+        "ok": true
+      },
+      "render_seconds": 2.0
+    }
+  ],
+  "fog_colors": {
+    "L0": "#eef3dc",
+    "L1": "#dbe9d4",
+    "L2": "#dfecd6",
+    "L3": "#e2eed8"
+  },
+  "tint": "#dfecd6",
+  "sky": {
+    "horizon": "#eef3dc",
+    "zenith": "#8cc4e0"
+  },
+  "ambient_particles": "mist",
+  "calm_bottom_fraction": 0.25,
+  "build_seconds": 0.14,
+  "notes": "bamboo rows are separate stalk meshes with leaf quads; mist between rows"
+}

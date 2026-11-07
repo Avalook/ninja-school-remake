@@ -1,0 +1,17 @@
+{
+ "clip": "drawing_katana_and_attacking",
+ "fps": 24,
+ "count": 174,
+ "cols": 16,
+ "cell": [
+  320,
+  320
+ ],
+ "anchor": [
+  160,
+  288
+ ],
+ "skipped_fade_frames": 16,
+ "scale": 0.296,
+ "source": "art/incoming/veo/drawing_katana_and_attacking.mp4"
+}

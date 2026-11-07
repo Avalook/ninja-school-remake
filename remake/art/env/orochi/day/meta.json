@@ -1,0 +1,90 @@
+{
+  "biome": "orochi",
+  "lighting": "day",
+  "generator": "scripts/blender_env_backgrounds.py",
+  "blender": "5.2.3 LTS",
+  "engine": "BLENDER_EEVEE",
+  "samples": 48,
+  "res_scale": 1.0,
+  "layers": [
+    {
+      "file": "layer0.png",
+      "parallax": 0.05,
+      "size": [
+        1024,
+        576
+      ],
+      "transparent": false,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00281,
+        "local_max": 0.00367,
+        "ok": true
+      },
+      "render_seconds": 4.4
+    },
+    {
+      "file": "layer1.png",
+      "parallax": 0.15,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.0019,
+        "local_max": 0.00536,
+        "ok": true
+      },
+      "render_seconds": 6.27
+    },
+    {
+      "file": "layer2.png",
+      "parallax": 0.35,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00034,
+        "local_max": 0.00143,
+        "ok": true
+      },
+      "render_seconds": 4.92
+    },
+    {
+      "file": "layer3.png",
+      "parallax": 0.6,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.0,
+        "local_max": 0.0,
+        "ok": true
+      },
+      "render_seconds": 1.38
+    }
+  ],
+  "fog_colors": {
+    "L0": "#e88a5a",
+    "L1": "#a8607a",
+    "L2": "#9a5470",
+    "L3": "#86486a"
+  },
+  "tint": "#9a5470",
+  "sky": {
+    "horizon": "#e88a5a",
+    "zenith": "#2e1e44"
+  },
+  "ambient_particles": "mist",
+  "calm_bottom_fraction": 0.25,
+  "build_seconds": 0.13,
+  "notes": "serpent body is a tube mesh arching out of the ground; eyes glow at night"
+}
