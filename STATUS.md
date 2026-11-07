@@ -1,6 +1,6 @@
 # STATUS — Ninja School PC remake
 
-Cập nhật: 2026-11-07, phiên M1 mục 2e projectiles (nhánh `m1-projectiles-split` tách từ `main` c103c7c).
+Cập nhật: 2026-11-07, phiên M1 `sim/sim.gd`: **mới viết kế hoạch, CHỜ DUYỆT, chưa sửa code** (nhánh `m1-sim-step` tách từ `main` 81c3481).
 Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. Phần nào chỉ lấy lại từ
 `analysis/claude/progress.json` mà chưa chạy lại thì có ghi chú rõ.
 
@@ -23,7 +23,7 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
 - **M1 mục 2e (projectiles) xong, không sửa code**: rà lại thì không còn gì để tách. Mục M1 "làm tương tự cho
   enemies, story, world, drops, projectiles" đã tick đủ 5 mục con. Hai TODO `hf` hoá ra là luật gốc chưa từng làm,
   đã chuyển thành 2 mục con mới trong M2 Boss. Chi tiết ở "M1 mục 2e" bên dưới.
-- Mục M1 tiếp theo: `sim/sim.gd` (`step(input) -> events`, snapshot/restore).
+- Mục M1 đang làm: `sim/sim.gd`. Kế hoạch ở mục "M1 `sim/sim.gd`: kế hoạch" bên dưới, **chờ chủ dự án duyệt rồi mới sửa code**.
 - **M3 việc nhỏ (2026-11-07, commit thẳng `main` 8451b32)**: `art_src/env/rung_truc/TILE_NEEDS.md` (32 tile id của map 4,
   số lần, cờ theo ô), `tiles_orig_4x/` (tile gốc phóng 4×), `ref_map4.png` (toàn map 4 ghép từ tile gốc, 4×, không có
   trời/nền xa, không phải ảnh chụp emulator). Sinh bằng `tools/art/tile_needs.py 4 rung_truc`. Không đụng `sim/`.
@@ -33,6 +33,92 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
   M1 (di chuyển native bước cố định 100 Hz), M2 Combat (sửa Xích Mao, cờ thật của Xích Mao, trace A = 18/19/23).
 - Codex đang vẽ trong `art_src/` trên nhánh `claude/project-directory-codex-c71a67`.
   Nhánh này **không tạo, không sửa** gì trong `art_src/`.
+
+## M1 `sim/sim.gd`: kế hoạch (viết trước khi sửa code, CHỜ DUYỆT; nhánh `m1-sim-step` tách từ `main` 81c3481)
+
+### Hiện trạng (đã đọc code, chưa chạy gì)
+- 4 sim đã tách (`player_sim`, `enemies_sim`, `story_sim`, `world_sim` + `world/objects.gd`) nhưng **nối với nhau qua view**:
+  `world_sim.player/enemies/story` là các Node view; `player_sim` gọi `world.enemies.hit/launch/ram/spawn_projectile`
+  (= `EnemiesView` chuyển tiếp sang sim); `enemies_sim` gọi `world.player.hurt` (= `PlayerView`, view xả event của player
+  ngay sau đó); `story_sim.player` là `PlayerView`; `objects.gd` gọi `world.player.carry`.
+- Không có hàm "một tick". Thứ tự tick 25 Hz hiện do **thứ tự connect `Game.tick25`** quyết định:
+  `objects_view._tick` (connect lúc thêm world) → `story_view.tick` (lúc thêm story) → `main._tick25`
+  (projectiles → `player.tick` → monsters/boss/bạn học). `S.w += 1` nằm trong `Game._process`, trước khi emit.
+- Mỗi sim tự lọc `Game.mode` theo cách riêng: objects `play`; story `play|cutscene|dialogue`; enemies `play|cutscene`;
+  player tick luôn chạy, `is_play()` đọc `Game.mode`.
+- Input: `player_sim.raw_key` đọc `Input` trực tiếp, đúng lúc cần (trong tick và trong `frame`).
+- Di chuyển native (A = 1–4) chạy **theo frame** (`player_sim.frame(dt, alpha)` trong `PlayerView._process`), không theo tick.
+  Mục "100 Hz" trong ROADMAP sẽ đổi chuyện này; mục này **không** đổi.
+- Event trình bày: enemies/story/world gửi ngay qua `on_event`; player gom vào `events`, view xả sau mỗi lần gọi.
+  Thứ tự gọi `spawn_fx` quan trọng cho ảnh (FX lấy `randf()` theo thứ tự gọi).
+- Trong `sim/` không có `randi/randf/Time`: luật tất định, snapshot không cần trạng thái RNG.
+- Luật đọc camera (`world_sim.cam_pos/cam_shown/view` do view ghi mỗi frame). Lối ra kiểm mỗi frame trong `WorldView._process`
+  và có `await` fade.
+
+### Thiết kế
+**`remake/sim/sim.gd`** (RefCounted, mới): giữ và nối trực tiếp 4 sim, không qua view.
+- `var world, player, enemies, story` (các sim), `var on_event: Callable`, `var events: Array`.
+- **Một bus event**: mọi sim gọi chung một `emit(ev)` của `sim.gd`. Có `on_event` thì giao ngay (giữ thứ tự FX như hiện
+  tại), không có (test headless) thì gom vào `events`. `player_sim` đổi `events.append` sang bus, nên view không cần
+  xả sau mỗi lần gọi nữa (thứ tự giữ nguyên vì trước nay view cũng xả ngay sau mỗi lần gọi).
+- `step(input: Dictionary) -> Array`: **một tick 25 Hz** đúng thứ tự hiện có:
+  `S.w = (S.w + 1) % 10000` → objects (nếu `play`) → story (nếu `play|cutscene|dialogue`) → projectiles (nếu `play|cutscene`)
+  → `player.tick()` → monsters/boss/bạn học (nếu `play|cutscene`). Trả về event của tick này (cũng đã giao qua `on_event`).
+- `input` = `{"mode": Game.mode, "keys": {left, right, jump, down, attack, jump_left, jump_right, weapon, stealth,
+  transform, hp, mp}}`. `raw_key` đọc từ `input.keys`. View dựng `input` **đúng chỗ đang đọc `Input` bây giờ**
+  (trong `Game._process` cho tick, trong `PlayerView._process` cho frame), nên lúc đọc phím không đổi.
+  `Game.mode` vẫn do view/story_view sở hữu (sự kiện `"mode"` của story như cũ); sim chỉ nhận qua input.
+- `frame(dt, alpha, input)`: chuyển tiếp `player_sim.frame` (di chuyển native theo frame), giữ tạm tới mục 100 Hz.
+- `exit_check()` / `take_exit()`: vẫn gọi từ `WorldView` (vì có fade `await`). Không đưa vào `step` ở mục này:
+  đổi từ "mỗi frame" sang "mỗi tick" là đổi hành vi.
+- **`snapshot() -> Dictionary` / `restore(d)`**: chụp toàn bộ trạng thái luật dạng dữ liệu thuần (int/bool/String/float/
+  Array/Dictionary/Vector2), JSON được:
+  - `S`: mọi biến script (giống `S.save_game()` nhưng thêm float/Dictionary, copy sâu).
+  - từng sim + object con (Enemy, Shot, Drops, classmates, 3 boss, Objects, cutscene/quests/items): duyệt biến script
+    bằng `get_property_list()`, đệ quy vào RefCounted con, **bỏ qua** tham chiếu (`world`, `player`, `enemies`, `story`,
+    `data`, `st`, `on_event`, Callable, `_static`/map json nạp lại từ `Data`). Danh sách bỏ qua ghi rõ trong `sim.gd`.
+  - Không chụp: view (camera mượt, FX, hộp thoại đang hiện, nhạc), đồng hồ `Game.acc`. Camera mà luật đọc
+    (`cam_pos/cam_shown/view` trong `world_sim`) **có** chụp.
+  - Save game giữ nguyên `S.save_game()` (mục Save/load ở M2 sẽ dùng snapshot sau).
+- **View**: `main.gd` tạo một `Sim`, đưa cho các view; `Game.tick25` chỉ còn `main._tick25` gọi `sim.step(input)`
+  (bỏ 3 connect riêng của objects/story/player; `EnemiesView.autotick` bỏ). Các view giữ API cũ cho test/UI
+  (`EnemiesView.hit`, `PlayerView.place`...) nhưng chỉ chuyển tiếp. `world_sim.player/enemies/story` và
+  `story_sim.player` trỏ sang sim, không sang view. `objects_view` thôi tự tick.
+
+### Các bước (mỗi bước chạy lại bộ test bên dưới, xanh mới sang bước sau)
+1. Ghi mốc **bằng code trước refactor**: chạy toàn bộ test + ảnh, lưu vào `review/2026-11-07/m1_sim_step/before/`.
+2. Bus event chung (player sang `emit`), chưa đổi thứ tự tick.
+3. `sim.gd` + nối trực tiếp các sim; `main._tick25` → `sim.step(input)`; bỏ connect riêng.
+4. Input qua `input.keys` / `input.mode`.
+5. `snapshot()` / `restore()` + test mới.
+
+### Test chứng minh không đổi hành vi
+1. `player_trace.sh` 27 kịch bản khớp 100% từng dòng (trace đã ghi player, quái, boss, bạn học, projectiles, drops,
+   world, story mỗi tick, nên bắt được đổi thứ tự tick).
+2. `story_run_tests.sh` 77 check, `run_enemies_oracle.sh 500` (12 map), `drops_trace.sh` 4 seed: khớp như trước.
+3. Ảnh có cửa sổ `enemies_shots.sh`, `world_shots.sh`, `story_shots.sh`, `drops_shots.sh` trước/sau trùng từng pixel
+   (bắt đổi thứ tự FX). Ảnh nào vốn không lặp lại được giữa hai lần chạy cùng code (các phiên trước: 28/29, 41/43 ảnh trùng) thì ghi rõ, so với lần chạy lại của mốc.
+4. **Mới `tests/sim_snapshot.sh`** (headless, chạy thẳng `sim.gd`, không view; phím ngẫu nhiên có seed, 3–4 map:
+   4 có quái, 9 bạn học, 95 golem, 99 intro có cutscene): chạy N tick → `snapshot()` → chạy tiếp tới M ghi trace;
+   `restore()` → chạy lại cùng input tới M → trace phải trùng 100%. Thêm: `snapshot` → JSON → parse → `restore` →
+   `snapshot` lần 2 phải bằng lần 1.
+5. Độ nhạy: cố ý đổi thứ tự (story chạy sau player) phải làm `player_trace` lệch; bỏ một biến khỏi snapshot phải làm
+   test 4 lệch. Hoàn nguyên sau khi thử.
+
+### Rủi ro đã thấy
+- Thứ tự connect `tick25` là luật ngầm: gom vào `step` phải giữ đúng objects → story → projectiles → player → actors.
+- Nếu các nơi trong view vẫn tự đọc `Input` hay `Game.mode` giữa tick thì sẽ lộ ra ở bước 4; gặp thì ghi lại, không đoán.
+- `story_sim._dialogs` giữ trạng thái hộp thoại đang chờ view đóng (`close_dialog(id)`): có chụp, nhưng restore lúc đang
+  mở hộp thoại thì view không tự hiện lại hộp. Test snapshot chọn điểm chụp khi đang không có hộp thoại; ghi rõ giới hạn.
+
+### Ngoài phạm vi (để mục sau)
+Di chuyển native theo bước cố định (mục 100 Hz), `tests/sim_run.gd` đọc định dạng `diff_run.sh` (mục kế tiếp),
+đồng hồ game cho view, save/load mới (M2), lối ra kiểm theo tick.
+
+### Cần chủ dự án duyệt
+1. `step(input)` = **một tick 25 Hz**; di chuyển native vẫn ở `frame(dt, alpha, input)` cho tới mục 100 Hz. Được không?
+2. `Game.mode` vẫn thuộc view, sim nhận qua `input.mode` (không chuyển quyền sở hữu mode vào sim ở mục này). Được không?
+3. Snapshot chỉ gồm trạng thái luật (`S` + các sim + camera mà luật đọc), không gồm view; save game chưa đổi. Được không?
 
 ## M1 mục 2e: projectiles, rà soát (2026-11-07, nhánh `m1-projectiles-split`)
 Không sửa `sim/` hay `view/`, nên không có diff test hay ảnh mới. Cách rà (chạy grep trên `remake/`, đọc `a.java` của NinjaSchool1):
