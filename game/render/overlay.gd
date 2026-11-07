@@ -113,7 +113,7 @@ func _draw() -> void:
 		var cw: float = 480.0 * main.view.scale.x
 		draw_rect(Rect2(0, 0, vp.x, vs.y), Color.BLACK)
 		draw_rect(Rect2(vp.x + cw, 0, vs.x - vp.x - cw, vs.y), Color.BLACK)
-		_txt("F10: Cài đặt / đổi phím   ·   F11: Toàn màn hình", Vector2(20 * u, vs.y - 20 * u), 18 * u, Color(1, 1, 1, 0.5))
+		_txt("F10: Cài đặt / đổi phím   ·   F11: Toàn màn hình", Vector2(20 * u, 30 * u), 18 * u, Color(1, 1, 1, 0.5))
 	if core.d == 3 and hero_title:
 		# title screen: approved style master art beside the original logo/menu
 		var h := vs.y * 0.62

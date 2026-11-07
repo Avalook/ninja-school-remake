@@ -92,6 +92,8 @@ func _init():
 				print("[bot] near npc o=", g.o, " A=", g.A, " fh=", g.fh)
 				g.key_down(-7); step(2); g.key_up(-7); step(4)
 				for k in 40:
+					if g.d != 1:
+						break
 					g.key_down(-5); step(2); g.key_up(-5); step(6)
 			"bot_kill":
 				# hunt living monsters of type t[1] for t[2] ticks

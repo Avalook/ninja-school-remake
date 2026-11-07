@@ -1,0 +1,33 @@
+wait 4500
+tap -5
+wait 3000
+set fV 0
+set eH 1
+set fh 864
+set fi 336
+set fs 864
+set ft 336
+call x 0
+wait 2000
+tap -5 80
+wait 2000
+set dg 5000
+vars fV d ly lA
+set fh 600
+set fi 408
+wait 1500
+vars o fh fi
+tap -7
+wait 1500
+wait 500
+vars d dg V lq
+vars d dg V lq
+tap -6
+wait 1000
+vars d dg V lq
+tap -5
+wait 1000
+vars d dg V
+tap -6
+wait 1000
+vars d dg V

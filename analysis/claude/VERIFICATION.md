@@ -47,6 +47,8 @@ expression (`(by = ...).length()`) was dropped.
 
 ## Other runtime checks
 
+- Shop (map0 NPC 6, d=9): buying "Bình HP nhỏ" 200$ x3 → money 5000→4400, potions 5→8; item use menu (d=8) consumes a potion. Script game/tests/scripts/shop.txt; screenshot of the reskinned shop taken.
+
 - Quest 0 end-to-end in the port with a test bot (`tests/script_run.gd` bot_npc/bot_walk/bot_kill):
   after the prologue, talk to Ayumi in map0 → quest O=0 accepted → walk to map1, snail kills
   increment fF (0→2 observed by the bot) → (counter then set to 10 to save time) → walk back, talk →
