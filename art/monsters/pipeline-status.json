@@ -1,11 +1,11 @@
 {
-  "started": "2026-11-07T06:37:49+00:00",
+  "started": "2026-11-07T06:39:46+00:00",
   "state": "passed",
   "steps": {
     "blender": {
       "ok": true,
-      "seconds": 1.3,
-      "rendered": 3,
+      "seconds": 3.4,
+      "rendered": 34,
       "tail": ""
     },
     "post": {
@@ -13,9 +13,9 @@
       "seconds": 0.3,
       "files": 164,
       "methods": {
-        "blender": 50,
+        "blender": 53,
         "cutout": 0,
-        "fallback_upscale": 114
+        "fallback_upscale": 111
       }
     },
     "verify": {
@@ -29,5 +29,5 @@
       "seconds": 0.2
     }
   },
-  "finished": "2026-11-07T06:37:50+00:00"
+  "finished": "2026-11-07T06:39:50+00:00"
 }

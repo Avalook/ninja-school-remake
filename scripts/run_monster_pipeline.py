@@ -41,7 +41,7 @@ OUTLINE_RGB = (26, 14, 22)
 HIT = {"m102": {}, "m402": {}, "m502": {}, "m202": {}, "m602": {},
        "m1402": {"extra": [(0xc1, 0xc1, 0xc1), (0xe5, 0xe5, 0xe5)],
                  "anchors": [(0xc1, 0xc1, 0xc1)]},
-       "m1902": {}}
+       "m1902": {}, "m702": {}, "m712": {}}
 NAMES = {0: "Ma mot mat", 1: "Oc sen", 2: "Doi quy", 3: "Quy mot chan", 4: "Coc xanh", 5: "Nhen",
          6: "Ong bo ve", 7: "Bu nhin rom", 8: "Ca cop", 9: "Ninja gio", 10: "Ca cop do",
          11: "Ma mot mat+", 12: "Ret sa mac", 13: "Doi vang", 14: "Chuot", 15: "Tho dan",

@@ -127,8 +127,31 @@ def _obj(name, bm, mat, smooth=True, outline=True, thick=0.0):
     return ob
 
 
-def S(loc, scl, mat, rot=(0, 0, 0), outline=True):
-    """ellipsoid; rot in degrees (XYZ)."""
+def prism(pts2d, y0, y1):
+    """hidden boolean cutter: polygon in XZ extruded from y0 to y1."""
+    bm = bmesh.new()
+    a = [bm.verts.new((x, y0, z)) for x, z in pts2d]
+    b = [bm.verts.new((x, y1, z)) for x, z in pts2d]
+    bm.faces.new(a)
+    bm.faces.new(list(reversed(b)))
+    n = len(a)
+    for k in range(n):
+        bm.faces.new((a[(k + 1) % n], a[k], b[k], b[(k + 1) % n]))
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    me = bpy.data.meshes.new("cutter")
+    bm.to_mesh(me)
+    bm.free()
+    ob = bpy.data.objects.new("cutter", me)
+    _ctx["coll"].objects.link(ob)
+    ob.hide_render = True
+    ob.display_type = "WIRE"
+    if _ctx["parent"] is not None:
+        ob.parent = _ctx["parent"]
+    return ob
+
+
+def S(loc, scl, mat, rot=(0, 0, 0), outline=True, cut=None):
+    """ellipsoid; rot in degrees (XYZ); cut = boolean cutter object (difference)."""
     if not isinstance(scl, (tuple, list)):
         scl = (scl, scl, scl)
     bm = bmesh.new()
@@ -136,7 +159,14 @@ def S(loc, scl, mat, rot=(0, 0, 0), outline=True):
     M = (Matrix.Translation(loc) @ Euler([math.radians(r) for r in rot]).to_matrix().to_4x4()
          @ Matrix.Diagonal((scl[0], scl[1], scl[2], 1)))
     bmesh.ops.transform(bm, matrix=M, verts=bm.verts)
-    return _obj("sph", bm, mat, outline=outline)
+    ob = _obj("sph", bm, mat, outline=outline)
+    if cut is not None:
+        bo = ob.modifiers.new("cut", "BOOLEAN")
+        bo.operation = "DIFFERENCE"
+        bo.object = cut
+        bo.solver = "EXACT"
+        ob.modifiers.move(len(ob.modifiers) - 1, 0)
+    return ob
 
 
 def _smooth_path(pts, n=6):
@@ -452,31 +482,68 @@ def rat(f):
         S((x + st * 0.5, -1.5, 0.45), (1.3, 0.6, 0.45), yel)
 
 
+def _on_bulb(cx, cz, rx, ry, rz, x, z, lift=0.15):
+    q = 1 - ((x - cx) / rx) ** 2 - ((z - cz) / rz) ** 2
+    return (x, -math.sqrt(max(q, 0.0)) * ry - lift, z)
+
+
 def flower(f):
     red = toon("db0000", "b60000", "ff3a3a")
-    seam = toon("6e0000", "4a0000", "8a0000")
+    seam = toon("5a0000", "3a0000", "7a0000")
     g = toon("00b600", "006d00", "00ff00")
+    white = toon("ffffff", "c8c8d0", "ffffff")
     bob = -0.5 if f == 1 else 0.0
     T([(10.0, 0, 9.0), (7.0, 0, 6.2), (8.0, 0, 3.0), (9.2, 0, 0.6)], [0.9, 0.85, 0.8, 0.8], g)
     F([(9.2, 0.6), (4.0, 4.6), (0.4, 5.2), (2.0, 2.4), (5.0, 0.4)], g, y=0.4, thick=0.8, smooth_n=3)
     F([(9.4, 0.6), (14.0, 4.0), (17.8, 4.6), (16.6, 1.8), (13.0, 0.2)], g, y=-0.6, thick=0.8, smooth_n=3)
     T([(4.6, 0.6, 9.6 + bob), (2.4, 0.6, 14.0 + bob), (3.8, 0.6, 19.6 + bob)], [0.55, 0.6, 0.45], g)
-    if f == 3:   # bite: bulb opens to the right, teeth
-        cx, cz = 10.6, 15.6
-        S((cx, 0, cz), (7.8, 5.0, 7.4), red)
-        S((cx + 6.8, -0.8, cz - 1.6), (3.2, 3.6, 3.8), toon("3a0006", "1a0002", "5a0010"))
-        for i in range(3):
-            T([(cx + 5.6 + i * 1.6, -2.6, cz + 1.8 - i * 0.2), (cx + 6.4 + i * 1.5, -2.8, cz - 0.2)],
-              [0.55, 0.06], toon("ffffff", "c8c8d0", "ffffff"))
-            T([(cx + 5.6 + i * 1.6, -2.6, cz - 4.4 + i * 0.3), (cx + 6.2 + i * 1.5, -2.8, cz - 2.6)],
-              [0.55, 0.06], toon("ffffff", "c8c8d0", "ffffff"))
-        S((cx - 2.5, -3.6, cz + 3.6), (1.8, 0.4, 1.0), toon("ff7070", "ff3a3a", "ffb0b0"), rot=(0, 20, 0), outline=False)
+    rx, ry, rz = 7.6, 4.8, 7.2
+    if f == 3:   # bite: Pac-Man bulb opening to the right, zig-zag teeth
+        cx, cz = 10.4, 15.6
+        mouth = [(cx + 0.5, cz - 1.2), (cx + 9.5, cz + 4.6), (cx + 9.5, cz - 7.8)]
+        cut = prism(mouth, -8, 8)
+        S((cx, 0, cz), (rx, ry, rz), red, cut=cut)
+        S((cx + 1.4, 0.6, cz - 1.3), (4.6, 3.4, 4.2), toon("3a0006", "1a0002", "5a0010"), outline=False)
+        for i in range(4):
+            t = 0.22 + i * 0.2
+            ux, uz = cx + 0.5 + 8.6 * t, cz - 1.2 + 5.6 * t     # upper jaw edge
+            lx, lz = cx + 0.5 + 8.6 * t, cz - 1.2 - 6.4 * t     # lower jaw edge
+            T([(ux, -1.5, uz + 0.2), (ux + 0.5, -1.7, uz - 1.6)], [0.7, 0.06], white)
+            T([(lx, -1.5, lz - 0.2), (lx + 0.5, -1.7, lz + 1.6)], [0.7, 0.06], white)
+        S((cx - 2.5, -3.9, cz + 3.6), (1.8, 0.4, 1.0), toon("ff7070", "ff3a3a", "ffb0b0"), rot=(0, 20, 0), outline=False)
         return
     cx, cz = 11.4, 15.6 + bob
-    S((cx, 0, cz), (7.6, 4.8, 7.2), red, rot=(0, 6 if f == 1 else 0, 0))
-    T([(cx - 2.0, -4.3, cz + 1.0), (cx + 3.0, -3.9, cz - 1.2), (cx + 7.3, -1.6, cz - 2.6)], [0.35, 0.4, 0.3], seam, outline=False)
-    T([(cx + 0.5, -4.6, cz - 2.6), (cx + 3.6, -4.0, cz - 2.4), (cx + 7.0, -1.8, cz - 3.4)], [0.3, 0.35, 0.3], seam, outline=False)
-    S((cx - 2.6, -3.5, cz + 3.6), (1.8, 0.4, 1.0), toon("ff7070", "ff3a3a", "ffb0b0"), rot=(0, 20, 0), outline=False)
+    S((cx, 0, cz), (rx, ry, rz), red, rot=(0, 6 if f == 1 else 0, 0))
+    # closed lips: a dark "<" seam on the visible side, tip pointing into the bulb
+    for zz in (2.6, -4.4):
+        pts = [_on_bulb(cx, cz, rx, ry, rz, cx + dx, cz + dz) for dx, dz in
+               ((-0.6, -0.8), (3.0, (zz - 0.8) * 0.55 - 0.4), (7.3, zz - 0.8))]
+        T(pts, [0.55, 0.6, 0.45], seam, outline=False)
+    S((cx - 2.6, -3.9, cz + 3.6), (1.8, 0.4, 1.0), toon("ff7070", "ff3a3a", "ffb0b0"), rot=(0, 20, 0), outline=False)
+
+
+def scarecrow(f):
+    st = toon("cc8832", "b66d1b", "f0ac56")
+    line = toon("b66d1b", "6d2400", "cc8832")
+    red = toon("b60000", "800000", "e02020")
+    cream = toon("ffffdb", "e8d8a0", "ffffff")
+    rot = {0: (0, 0, 0), 2: (0, -12, 18), 12: (0, 10, -42)}[f]
+    group((13, 0, 0), rot)
+    S((0, 0, 24.5), (5.4, 4.4, 6.0), st)
+    for k in range(-3, 4):
+        x = k * 1.25
+        T([_on_bulb(0, 24.5, 5.4, 4.4, 6.0, x, 29.0), _on_bulb(0, 24.5, 5.4, 4.4, 6.0, x * 1.1, 24.5),
+           _on_bulb(0, 24.5, 5.4, 4.4, 6.0, x, 20.5)], [0.22, 0.25, 0.2], line, outline=False)
+    S((0, 0, 14.5), (5.0, 3.6, 6.4), st)
+    S((0, 0, 6.0), (4.6, 3.3, 5.6), st)
+    for sx in (-1, 1):
+        T([(sx * 3.5, 0, 17.6), (sx * 8.2, 0, 17.0), (sx * 11.2, 0, 15.6)], [2.3, 2.1, 1.9], st)
+        T([(sx * 2.2, 0, 3.0), (sx * 2.6, 0, 0.9)], [2.0, 1.8], st)
+    for cz, radii in ((17.4, (4.0, 3.1, 2.2, 1.3, 0.55)), (7.8, (2.7, 1.9, 1.0, 0.4))):
+        for i, r in enumerate(radii):
+            F(ellipse_pts(0, cz, r, r, 0, 24), red if i % 2 == 0 else cream,
+              y=-3.7 - (0.6 if cz > 10 else 0.1) - i * 0.05, thick=0.05, outline=False)
+    _ctx["parent"] = None
 
 
 def pflower(f):
@@ -512,6 +579,7 @@ FRAMES = {
     "m1000": (fish, (0, True), 0), "m1001": (fish, (1, True), 0),
     "m1002": (fish, (0, True, True, -90), 0), "m1003": (fish, (0, True, True, 90), 0),
     "m1400": (rat, (0,), 0), "m1401": (rat, (1,), 0), "m1402": (rat, (2,), 0),
+    "m700": (scarecrow, (0,), 0), "m702": (scarecrow, (2,), 0), "m712": (scarecrow, (12,), 0),
     "m1800": (flower, (0,), 0), "m1801": (flower, (1,), 0), "m1803": (flower, (3,), 0),
     "m1900": (pflower, (0,), 0), "m1901": (pflower, (1,), 0), "m1902": (pflower, (2,), 0),
     "m1903": (pflower, (3,), 0),
@@ -563,7 +631,7 @@ def frame_camera(sc, cam, objs, elev):
     dg = bpy.context.evaluated_depsgraph_get()
     xs, ys, zs = [], [], []
     for ob in objs:
-        if ob.type != "MESH":
+        if ob.type != "MESH" or ob.hide_render:
             continue
         ev = ob.evaluated_get(dg)
         me = ev.to_mesh()
