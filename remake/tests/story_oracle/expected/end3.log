@@ -1,0 +1,57 @@
+[story] 57 group 1 map=99
+[story] 112 warp 99 from=99 fh=108 fi=312
+[story] 112 group 1 map=99
+[story] 113 seq 3 map=99 fh=108 fi=312
+[story] 116 title ["Trường đạo tạo Ninja Hirosaki, Mùa thu 1937"]
+[story] 192 warp 95 from=99 fh=24 fi=192
+[story] 192 group 7 map=95
+[story] 192 seq 14 map=95 fh=24 fi=192
+[story] 221 say cb=-1 lines=["Chúng ta lại gặp nhau rồi!","Ta cho ngươi một cơ hội lần cuối. hãy theo ta, hoặc là chết!"]
+[story] 278 dialog_end cb=-1
+[story] 319 say cb=-1 lines=["Haha. Tên phản bội kia, ta sẽ cho mi biết sức mạnh một ninja thực thụ!"]
+[story] 338 dialog_end cb=-1
+[vars] v=95 d=1 fV=false fW=14 fX=6 hu=8 hp=90000 
+[story] 657 seq 15 map=95 fh=59 fi=264
+[story] 666 say cb=-1 lines=["Cuối cùng thì mi cũng đã phải dền tội!"]
+[vars] v=95 d=1 fV=true fW=15 fX=1 hu=22 ig=7 ii=2 
+[story] 704 dialog_end cb=-1
+[story] 744 say cb=-1 lines=["Sakura, bạn có sao không!"]
+[story] 764 dialog_end cb=-1
+[story] 784 say cb=-1 lines=["Mình không sao, bạn không bị thương chứ!"]
+[story] 809 dialog_end cb=-1
+[story] 829 say cb=-1 lines=["Mình cũng không sao! Tên Toniku chắc cũng không chạy xa được đâu , hắn cũng sớm bị bắt thôi!","Chúng ta về thôi!"]
+[story] 884 dialog_end cb=-1
+[story] 894 warp 94 from=95 fh=48 fi=120
+[story] 894 group 10 map=94
+[story] 895 seq 18 map=94 fh=24 fi=288
+[story] 905 title ["2 ngày sau, tại trường Hirosaki..."]
+[story] 954 say cb=-1 lines=["Toniku, ngươi đã biết tội chưa!"]
+[story] 974 dialog_end cb=-1
+[story] 976 say cb=-1 lines=["..vâng..con biết...."]
+[story] 1004 dialog_end cb=-1
+[story] 1005 say cb=-1 lines=["Theo nội quy của nhà trường. Ngươi phải rời khỏi ngôi trường này.","Vĩnh viễn không được trở lại nữa.."]
+[vars] v=94 d=1 fV=true fW=18 fX=5 ig=10 ii=1 hu=22 M=1 
+[story] 1064 dialog_end cb=-1
+[story] 1065 say cb=-1 lines=["......"]
+[story] 1079 dialog_end cb=-1
+[story] 1080 say cb=-1 lines=["Thưa thầy...","Toniku vốn là học sinh giỏi của trường.."," Chỉ vì nghe lời xúi giục của bọn xấu nên mới hành động như thế...","Đây là lần vi phạm đầu tiên, xin nhà trường tha thứ cho bạn ấy..."]
+[story] 1184 dialog_end cb=-1
+[story] 1185 say cb=-1 lines=["......"]
+[story] 1199 dialog_end cb=-1
+[story] 1200 say cb=-1 lines=["Xin các thầy hãy tha thứ cho bạn ấy ạ!"]
+[story] 1229 dialog_end cb=-1
+[story] 1230 say cb=-1 lines=["..thôi được rồi..","Tội Toniku rất nặng, đáng lẽ ra phải bị đuổi học.","Con đường để thành một nhẫn giả thật gian lao và chông gai..","..ngươi phải luyện tập bằng khả năng và sức lực của mình"," sẽ không có con đường nào khác"," ... các con đều biết chữ Nhẫn gồm chữ Đao và chữ Tâm.","..nếu Tâm không tịnh thì Đao sẽ bổ xuống!","Các con hãy lấy Toniku mà làm gương ...","Toniku, ngươi đã quá tham lam...","..nhưng ta cũng thây nơi con người ngươi có tố chất tiềm tàng!","Nên ta quyết định tha cho con lần này...","Sẽ không có lần sau, Toniku, ngươi nhớ đấy!!"]
+[vars] v=94 d=1 fV=true fW=18 fX=10 ig=10 ii=1 hu=22 M=1 
+[story] 1589 dialog_end cb=-1
+[story] 1590 say cb=-1 lines=["Vâng, con xin cảm ơn thầy!"]
+[story] 1619 dialog_end cb=-1
+[story] 1620 say cb=-1 lines=["Sẵn đây ta muốn nhắc nhở thêm các con..","Hai tháng nữa là đến kỳ thi kết khoá cho Genin. Các con phải cố gắng tập luyện hơn nữa..","..Mọi thứ chỉ mới bắt đầu thôi!"]
+[story] 1709 dialog_end cb=-1
+[story] 1710 say cb=-1 lines=["Vâng, chúng con xin nghe!"]
+[story] 1739 dialog_end cb=-1
+[story] 1741 warp 0 from=94 fh=48 fi=120
+[vars] v=0 d=1 fV=false fW=18 fX=14 ig=0 ii=1 hu=22 M=1 
+[vars] v=0 d=1 fV=false fW=18 fX=14 ig=0 ii=1 hu=22 M=1 
+[vars] v=0 d=1 fV=false fW=18 fX=14 ig=0 ii=1 hu=22 M=1 
+[vars] v=0 d=1 fV=false fW=18 fX=14 ig=0 ii=1 hu=22 M=1 
+[final] v=0 d=1 fh=49 fi=384 O=-1 fF=0 eL=false eM=false eH=0 fV=false ig=0 ii=1 hu=22 eK=true gp=0 gn=true fe=true fd=false

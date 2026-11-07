@@ -52,6 +52,10 @@ func _ready() -> void:
 		if "world" in story:
 			story.world = world
 		add_child(story)
+		if story.has_signal("return_to_title"):
+			story.return_to_title.connect(_back_to_title)
+		if story.has_signal("quit_to_title"):
+			story.quit_to_title.connect(_back_to_title)
 	world.map_loaded.connect(_on_map_loaded)
 	if ResourceLoader.exists("res://art/env/school/day/layer0.webp"):
 		title_bg = load("res://art/env/school/day/layer0.webp")
@@ -81,38 +85,43 @@ func _title() -> void:
 	title_sel = 1 if S.has_save() else 0
 
 func new_game() -> void:
-	S.reset_state() if S.has_method("reset_state") else null
 	world.visible = true
 	UI.show_hud = true
 	Game.mode = "play"
 	if auto.has("map"):
+		S.reset_state()
 		var p: PackedStringArray = str(auto["map"]).split(",")
 		world.load_map(int(p[0]), Vector2(int(p[1]) if p.size() > 1 else 48, int(p[2]) if p.size() > 2 else 0), -1)
+	elif story:
+		story.new_game()          # original: reset, map 99 at (108, 312) + intro cutscene
 	else:
-		# original new game: map 99 (school yard), feet at (108, 312), facing left
+		S.reset_state()
 		world.load_map(99, Vector2(108, 312), -1)
 	UI.fade_in(0.6)
 
 func continue_game() -> void:
-	if not S.load_game():
-		new_game()
-		return
 	world.visible = true
 	UI.show_hud = true
 	Game.mode = "play"
-	world.load_map(int(S.v), Vector2(S.fh, S.fi), S.fp)
+	if story:
+		if not story.continue_game():
+			new_game()
+			return
+	elif S.load_game():
+		world.load_map(int(S.v), Vector2(S.fh, S.fi), S.fp)
+	else:
+		new_game()
+		return
 	UI.fade_in(0.6)
 
 func _on_map_loaded(id: int) -> void:
 	var st: Dictionary = world.map.get("state", {})
 	if st.has("MF_t"):
 		_set_music(int(st["MF_t"]))
-	if story and story.has_method("on_map_enter"):
-		story.on_map_enter(id)
 
 func _on_killed(type: int, p: Vector2) -> void:
 	if story and story.has_method("on_enemy_killed"):
-		story.on_enemy_killed(type)
+		story.on_enemy_killed(type, p)
 
 func _set_music(t: int) -> void:
 	if t == music_track:
@@ -142,10 +151,10 @@ func _auto(delta: float) -> void:
 			var tt := a[1].split("-")
 			var act := {"right": "move_right", "left": "move_left"}.get(a[0], a[0])
 			var on := run_t >= float(tt[0]) and run_t < float(tt[1])
-			if on and not Input.is_action_pressed(act):
-				Input.action_press(act)
-			elif not on and Input.is_action_pressed(act) and run_t >= float(tt[1]) and run_t - delta < float(tt[1]) + 0.001:
-				Input.action_release(act)
+			if on and not Input.is_action_pressed(act) and not _auto_down.get(act, false):
+				_inject(act, true)
+			elif not on and _auto_down.get(act, false) and run_t >= float(tt[1]) and run_t - delta < float(tt[1]) + 0.001:
+				_inject(act, false)
 	if auto.has("shots"):
 		for t in str(auto["shots"]).split(","):
 			if run_t >= float(t) and not shots_done.has(t):
@@ -174,6 +183,15 @@ func _auto(delta: float) -> void:
 	if auto.has("quit") and run_t >= float(auto["quit"]):
 		get_tree().quit()
 
+var _auto_down := {}
+
+func _inject(act: String, on: bool) -> void:
+	var e := InputEventAction.new()
+	e.action = act
+	e.pressed = on
+	_auto_down[act] = on
+	Input.parse_input_event(e)
+
 func _process(delta: float) -> void:
 	if not auto.is_empty():
 		_auto(delta)
@@ -182,8 +200,12 @@ func _process(delta: float) -> void:
 		queue_redraw()
 		return
 	if Game.mode == "play" and player:
-		var n: int = player.near_npc
-		UI.prompt = "Giao tiếp" if n >= 0 else ""
+		if story:
+			UI.prompt = "" if story.is_busy() else story.talk_label()
+		else:
+			UI.prompt = "Giao tiếp" if player.near_npc >= 0 else ""
+	else:
+		UI.prompt = ""
 
 func _unhandled_input(ev: InputEvent) -> void:
 	if Game.mode == "title":
@@ -208,9 +230,11 @@ func _unhandled_input(ev: InputEvent) -> void:
 		return
 	if Game.mode != "play":
 		return
-	if ev.is_action_pressed("talk") and player.near_npc >= 0 and story and story.has_method("talk"):
+	if story and story.is_busy():
+		return
+	if ev.is_action_pressed("talk") and story and S.A == 1:
 		get_viewport().set_input_as_handled()
-		story.talk(player.near_npc)
+		story.interact()
 	elif ev.is_action_pressed("menu"):
 		get_viewport().set_input_as_handled()
 		_pause_menu()
@@ -219,10 +243,21 @@ func _start(f: Callable) -> void:
 	await UI.fade_out(0.4)
 	f.call()
 
+func _back_to_title() -> void:
+	await UI.fade_out(0.4)
+	_title()
+	UI.fade_in(0.4)
+
 func _pause_menu() -> void:
 	Game.paused = true
-	var i: int = await UI.choose("Tạm dừng", ["Tiếp tục", "Lưu game", "Cài đặt phím", "Về màn hình chính"])
+	var i: int = await UI.choose("Tạm dừng", ["Tiếp tục", "Túi đồ / Bản đồ / Menu game", "Lưu game", "Cài đặt phím", "Về màn hình chính"])
 	Game.paused = false
+	if i == 1:
+		if story:
+			await story.game_menu()
+		return
+	if i >= 2:
+		i -= 1
 	match i:
 		1:
 			S.save_game()

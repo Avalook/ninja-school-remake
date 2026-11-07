@@ -1,0 +1,15 @@
+{
+ "anchor": [
+  137,
+  282
+ ],
+ "scale": 0.20863,
+ "facing": "right",
+ "world_height": 58.0,
+ "orig_height": 58,
+ "source": "art/generated/codex_hd/boss_golem.png",
+ "size": [
+  267,
+  286
+ ]
+}

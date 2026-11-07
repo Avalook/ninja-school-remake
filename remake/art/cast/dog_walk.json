@@ -1,0 +1,15 @@
+{
+ "anchor": [
+  44,
+  116
+ ],
+ "scale": 0.20833,
+ "facing": "right",
+ "world_height": 23.33,
+ "orig_height": 20,
+ "source": "art/generated/codex_hd/npc_dog_walk.png",
+ "size": [
+  116,
+  120
+ ]
+}

@@ -205,6 +205,16 @@ func _camera_target(snap := false) -> Vector2:
 	var maxy: float = max(0.0, (h - 1) * TILE - vs.y)
 	return Vector2(clampf(t.x, 0.0, maxx), clampf(t.y, 0.0, maxy))
 
+func camera_snap() -> void:
+	cam_pos = _camera_target(true)
+	cam_vx[0] = 0.0
+	cam_vy[0] = 0.0
+	camera.position = cam_pos
+
+func set_flag_tile(tx: int, ty: int, f: int) -> void:
+	if tx >= 0 and ty >= 0 and tx < w and ty < h:
+		flags[ty * w + tx] = f
+
 func camera_override(target: Vector2, active: bool) -> void:
 	cam_override_active = active
 	cam_override_target = target

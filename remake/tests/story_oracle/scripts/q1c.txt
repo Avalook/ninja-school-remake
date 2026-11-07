@@ -1,0 +1,27 @@
+wait 4500
+tap -5
+wait 3000
+set fV 0
+set eH 1
+set fh 864
+set fi 336
+set fs 864
+set ft 336
+call x 0
+wait 2000
+tap -5 60
+wait 2000
+vars v d fV O fF eL eH ly lz lA fh fi
+bot_npc 1 400
+vars v d fV O fF eL fh fi o
+bot_walk -100 1500
+wait 2000
+vars v d fV O fF fh fi
+set fF 10
+vars v O fF
+bot_walk 5000 2500
+wait 2000
+vars v d O fF fh fi
+
+bot_npc 1 1500
+vars v d O fF eL fh fi o

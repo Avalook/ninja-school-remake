@@ -1,0 +1,31 @@
+{
+ "cell": [
+  119,
+  211
+ ],
+ "anchor": [
+  59,
+  206
+ ],
+ "cols": 6,
+ "count": 6,
+ "frames": {
+  "idle": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "talk": [
+   4,
+   5
+  ]
+ },
+ "fps": {
+  "idle": 3,
+  "talk": 5
+ },
+ "facing": "right",
+ "scale": 0.20896,
+ "source": "art/generated/codex_hd/npc5_takanashi.png"
+}

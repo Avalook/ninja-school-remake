@@ -44,7 +44,8 @@ var cutscene
 var quests
 var menus
 
-var handle_input := true      # poll talk / menu / potion actions in _process
+var handle_input := false     # true: poll talk / menu / potion actions here (main.gd may do it)
+var notice_text := ""        # c(String): current notice (original cr), shown while S.cp
 var events: Array = []        # story log (tests compare it with the oracle)
 var verbose := false
 var _dialog_open := 0
@@ -67,10 +68,9 @@ func _ready() -> void:
 		game = root.get_node_or_null("Game")
 	if game and game.has_signal("tick25") and not game.tick25.is_connected(tick):
 		game.tick25.connect(tick)
-	if world == null:
-		var w = get_tree().get_first_node_in_group("world")
-		if w:
-			attach(w)
+	var w = world if world != null else get_tree().get_first_node_in_group("world")
+	if w:
+		attach(w)
 
 func attach(w) -> void:
 	world = w
@@ -131,7 +131,8 @@ func quick_potion(hp: bool) -> bool:
 func tick() -> void:
 	if st == null:
 		return
-	if game and "mode" in game and str(game.mode) not in ["play", "cutscene"]:
+	# UI.say switches Game.mode to "dialogue": the original keeps running ad()/V()/camera then
+	if game and "mode" in game and str(game.mode) not in ["play", "cutscene", "dialogue"]:
 		return
 	_sync_player_in()
 	cutscene.tick_triggers()          # ad()
@@ -171,6 +172,7 @@ func on_map_enter(id: int) -> void:
 	if world and "player" in world and world.player:
 		player = world.player
 	_sync_player_in()
+	log_event("enter %d fh=%d fi=%d" % [id, st.fh, st.fi])
 	var before := Vector2(st.fh, st.fi)
 	var before_fp: int = st.fp
 	st.v = id
@@ -183,7 +185,6 @@ func on_map_enter(id: int) -> void:
 	if Vector2(st.fh, st.fi) != before or st.fp != before_fp:
 		_place_player(Vector2(st.fh, st.fi), st.fp)
 	_push_camera(true)
-	log_event("enter %d fh=%d fi=%d" % [id, st.fh, st.fi])
 
 # m(n) L4097
 func _m(n: int) -> void:
@@ -476,13 +477,17 @@ func show_title_card(text: String, seconds: float) -> void:
 
 # c(String) L4761: short notice line (HUD), 150 ticks
 func notice(text: String) -> void:
-	st.cr = text
+	notice_text = text
+	st.set("cr", text)          # cr was null at boot, so the generated state may not declare it
 	st.cq = 0
 	st.cp = true
 	log_event("note %s" % text)
 	notice_shown.emit(text)
-	if ui and ui.has_method("notice") and text != "":
-		ui.notice(text)
+	if ui and text != "":
+		if ui.has_method("notice"):
+			ui.notice(text)
+		elif ui.has_method("popup"):
+			ui.popup(text)          # non-blocking toast
 
 # a(int,int,int,int) L4626: objective marker (map ge, position gf/gg, NPC gm)
 func set_marker(map_id: int, x: int, y: int, npc: int) -> void:

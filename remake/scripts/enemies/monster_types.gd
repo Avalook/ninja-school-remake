@@ -155,7 +155,7 @@ static func green_toad_active(e, m) -> void:
 		e.jump = -3
 		e.aux = e.dir << 2
 		e.timer = 0
-		e.y = m.spawn_y(e)
+		e.y = m.spawn_y_of(e)
 		e.state = E.IDLE
 	if e.jump == -2:
 		_turn_at_range(e)
@@ -338,7 +338,7 @@ static func _hop_recoil(e, m, ticks: int) -> void:   # kinds 3, 4 (7 ticks) and 
 	e.timer += 1
 	if e.timer != ticks:
 		return
-	e.y = m.spawn_y(e)
+	e.y = m.spawn_y_of(e)
 	e.state = E.ACTIVE
 	e.jump = -4
 	e.timer = e.dir * 3
@@ -384,7 +384,7 @@ static func wind_ninja_hurt(e, m, timer_after: int) -> void:
 	e.timer += 1
 	if e.timer != 6:
 		return
-	e.y = m.spawn_y(e)
+	e.y = m.spawn_y_of(e)
 	e.state = E.ATTACK
 	e.timer = timer_after
 	e.x += e.dir << 3
@@ -504,7 +504,7 @@ static func _lunge(e, m, back_frame: int) -> void:   # kinds 3, 4, 15
 		e.x -= e.dir
 	if e.timer != 12:
 		return
-	e.y = m.spawn_y(e)
+	e.y = m.spawn_y_of(e)
 	e.state = E.IDLE
 	e.jump = -4
 	e.timer = 0
@@ -556,8 +556,8 @@ static func tiger_fish_attack(e, m) -> void:
 	if e.timer > 10:
 		e.y += e.jump
 		e.jump += 1
-		if e.y > m.spawn_y(e):
-			e.y = m.spawn_y(e)
+		if e.y > m.spawn_y_of(e):
+			e.y = m.spawn_y_of(e)
 			e.jump = 0
 			e.timer = 0
 			e.state = E.ACTIVE
@@ -573,7 +573,7 @@ static func wind_ninja_attack(e, m) -> void:
 	elif e.timer < 12:
 		e.x -= e.dir << 1
 	elif e.timer == 12:
-		e.y = m.spawn_y(e)
+		e.y = m.spawn_y_of(e)
 		e.state = E.IDLE
 		e.jump = -4
 		e.timer = 0
@@ -603,9 +603,9 @@ static func red_tiger_fish_attack(e, m) -> void:
 	e.jump += 1
 	if _near_player_body(e, m):
 		m.hurt_player(e.attack, -m.fp)
-	if e.y <= m.spawn_y(e):
+	if e.y <= m.spawn_y_of(e):
 		return
-	e.y = m.spawn_y(e)
+	e.y = m.spawn_y_of(e)
 	e.jump = 0
 	e.timer = 0
 	e.state = E.ACTIVE

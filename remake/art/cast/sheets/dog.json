@@ -1,0 +1,29 @@
+{
+ "cell": [
+  111,
+  115
+ ],
+ "anchor": [
+  60,
+  111
+ ],
+ "cols": 4,
+ "count": 4,
+ "frames": {
+  "idle": [
+   0,
+   1
+  ],
+  "walk": [
+   2,
+   3
+  ]
+ },
+ "fps": {
+  "idle": 2,
+  "walk": 6
+ },
+ "facing": "right",
+ "scale": 0.20896,
+ "source": "art/generated/codex_hd/npc_dog.png + npc_dog_walk.png"
+}

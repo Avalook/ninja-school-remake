@@ -35,6 +35,7 @@ func _process(_d: float) -> void:
 func _draw() -> void:
 	if world == null or world.map_id < 0:
 		return
+	_draw_marker()
 	var n: int = int(S.lx)
 	for i in n:
 		if i >= S.ly.size() or i >= S.lz.size() or i >= S.lA.size():
@@ -69,3 +70,31 @@ func _draw() -> void:
 		if world.player and world.player.near_npc == i:
 			var a := 0.6 + 0.4 * sin(t * 6.0)
 			draw_string(font, Vector2(x - 20, y - 44 - 2 * sin(t * 4.0)), "!", HORIZONTAL_ALIGNMENT_CENTER, 40, 14, Color(1, 0.9, 0.3, a))
+
+# objective marker (original ge / gf / gg / gm, drawn at gi/gj in paint): a bobbing arrow at the target,
+# kept on the screen edge (pointing towards it) while the target is off screen
+func _draw_marker() -> void:
+	if int(S.ge) != world.map_id or int(S.ge) < 0:
+		return
+	var t := Time.get_ticks_msec() / 1000.0
+	var cam: Vector2 = world.camera.position
+	var vs: Vector2 = world.view_size()
+	var target := Vector2(float(S.gf), float(S.gg))
+	if int(S.gm) >= 0 and int(S.gm) < S.ly.size():
+		target = Vector2(float(S.ly[S.gm]), float(S.lz[S.gm]) - 50)
+	if target.x >= 20000:
+		target.x = world.w * 24.0
+	var m := 14.0
+	var p := Vector2(clampf(target.x, cam.x + m, cam.x + vs.x - m), clampf(target.y, cam.y + m + 20, cam.y + vs.y - m))
+	var dir := Vector2.DOWN
+	if target.x > cam.x + vs.x - m:
+		dir = Vector2.RIGHT
+	elif target.x < cam.x + m:
+		dir = Vector2.LEFT
+	var bob := dir * (3.0 * sin(t * 6.0))
+	var c := Color(1, 0.85, 0.2, 0.95)
+	var tip := p + bob + dir * 6.0
+	var side := Vector2(-dir.y, dir.x) * 6.0
+	var back := p + bob - dir * 4.0
+	draw_colored_polygon(PackedVector2Array([tip, back + side, back - side]), c)
+	draw_polyline(PackedVector2Array([tip, back + side, back - side, tip]), Color(0.3, 0.1, 0, 0.9), 1.0)

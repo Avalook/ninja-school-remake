@@ -1,0 +1,15 @@
+{
+ "anchor": [
+  42,
+  188
+ ],
+ "scale": 0.20924,
+ "facing": "right",
+ "world_height": 38.5,
+ "orig_height": 33,
+ "source": "art/generated/codex_hd/stu2_redspike.png",
+ "size": [
+  91,
+  192
+ ]
+}

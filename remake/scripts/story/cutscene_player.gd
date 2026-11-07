@@ -212,7 +212,7 @@ func tick_sequence() -> bool:
 			st.fh = st.jx
 			st.ft = st.jy
 			st.fi = st.jy
-			story.log_event("warp %d from=%d fh=%d fi=%d" % [arg, st.v, st.fh, st.fi])
+			story.log_event("op_warp %d from=%d fh=%d fi=%d" % [arg, st.v, st.fh, st.fi])
 			_release_all_keys()
 			story.warp(arg, Vector2(st.jx, st.jy))
 			return true

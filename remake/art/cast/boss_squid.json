@@ -1,0 +1,15 @@
+{
+ "anchor": [
+  135,
+  266
+ ],
+ "scale": 0.20913,
+ "facing": "right",
+ "world_height": 55.0,
+ "orig_height": 55,
+ "source": "art/generated/codex_hd/boss_squid.png",
+ "size": [
+  260,
+  271
+ ]
+}

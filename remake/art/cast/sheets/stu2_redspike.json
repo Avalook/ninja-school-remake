@@ -1,0 +1,50 @@
+{
+ "cell": [
+  256,
+  256
+ ],
+ "anchor": [
+  128,
+  240
+ ],
+ "cols": 10,
+ "count": 10,
+ "frames": {
+  "idle": [
+   0,
+   1
+  ],
+  "talk": [
+   2,
+   3
+  ],
+  "walk": [
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ]
+ },
+ "fps": {
+  "idle": 2,
+  "talk": 4,
+  "walk": 10
+ },
+ "facing": "right",
+ "scale": 0.20896,
+ "rig_pose_ids": [
+  0,
+  1,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52,
+  53
+ ],
+ "source": "hero cutout rig + head of head swap: art/generated/codex_hd/stu2_redspike.png on art/generated/ninja1-hero-cloud-v1.png"
+}

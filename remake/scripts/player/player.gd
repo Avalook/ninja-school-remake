@@ -57,6 +57,9 @@ func held(k: String) -> bool:
 		return bool(script_keys.get(k, false))
 	if Game.mode != "play":
 		return false
+	return _raw(k)
+
+func _raw(k: String) -> bool:
 	match k:
 		"left": return Input.is_action_pressed("move_left")
 		"right": return Input.is_action_pressed("move_right")
@@ -74,8 +77,9 @@ func held(k: String) -> bool:
 
 func _poll_edges() -> void:
 	for k in ["jump", "attack", "weapon", "stealth", "transform", "hp", "mp", "jump_left", "jump_right", "down"]:
-		var h := held(k)
-		if h and not _held_prev.get(k, false):
+		# edges come from the raw keys so a key still held from a dialogue never fires on return
+		var h := held(k) if scripted else _raw(k)
+		if h and not _held_prev.get(k, false) and (scripted or Game.mode == "play"):
 			_pressed[k] = true
 			if k == "jump":
 				buffer = BUFFER
@@ -114,6 +118,9 @@ func place(p: Vector2, f := 0) -> void:
 	prev_tick_pos = p
 	cur_tick_pos = p
 	_pressed.clear()
+
+func is_standing() -> bool:
+	return int(S.A) == 1 and grounded
 
 func hitbox() -> Rect2:
 	return Rect2(pos.x - 11, pos.y - 32, 22, 32)
@@ -666,9 +673,9 @@ func _st_attack() -> void:
 
 # original u(): damage roll and the hit (sword) or the shuriken throw
 func _u() -> void:
-	if S.O == 11 and S.z != 0:
-		S.fF += 1
-		UI.popup("Thành công 20 hit!" if S.fF >= 20 else "Hit: %d" % S.fF, 0.6)
+	var st = world.get_parent().story if world.get_parent() and "story" in world.get_parent() else null
+	if st:
+		st.on_player_attack(S.z != 0)     # quest 11 air-hit counter (story module, original u() start)
 	var n: int = S.E + S.w % max(1, S.E >> 1)
 	n += (n >> 1) * S.x
 	if S.fA:

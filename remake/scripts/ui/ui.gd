@@ -76,6 +76,7 @@ func say(lines: Array, _speaker_pos := Vector2.ZERO, speaker := "") -> void:
 	say_chars = 0.0
 	say_speaker = speaker
 	say_active = true
+	_open_frame = Engine.get_process_frames()
 	var prev := Game.mode
 	Game.mode = "dialogue"
 	while say_active:
@@ -97,6 +98,7 @@ func popup(text: String, dur := 2.6) -> void:
 func message(text: String) -> void:
 	modal_text = text
 	modal_active = true
+	_open_frame = Engine.get_process_frames()
 	var prev := Game.mode
 	Game.mode = "dialogue"
 	while modal_active:
@@ -109,6 +111,7 @@ func choose(title: String, options: Array) -> int:
 	choice_opts = options
 	choice_i = 0
 	choice_active = true
+	_open_frame = Engine.get_process_frames()
 	choice_prev_mode = Game.mode
 	Game.mode = "menu"
 	var r: int = await chosen
@@ -149,33 +152,6 @@ func _unhandled_input(ev: InputEvent) -> void:
 	if ev is InputEventKey and ev.pressed and not ev.echo and ev.physical_keycode == KEY_F3:
 		show_ft = not show_ft
 		return
-	if choice_active:
-		if ev.is_action_pressed("jump") or ev.is_action_pressed("move_left"):
-			choice_i = (choice_i - 1 + choice_opts.size()) % choice_opts.size()
-		elif ev.is_action_pressed("down") or ev.is_action_pressed("move_right"):
-			choice_i = (choice_i + 1) % choice_opts.size()
-		elif ev.is_action_pressed("attack") or ev.is_action_pressed("talk"):
-			_finish_choice(choice_i)
-		elif ev.is_action_pressed("menu"):
-			_finish_choice(-1)
-		get_viewport().set_input_as_handled()
-		return
-	if modal_active and (ev.is_action_pressed("attack") or ev.is_action_pressed("talk") or ev.is_action_pressed("menu")):
-		modal_active = false
-		advanced.emit()
-		get_viewport().set_input_as_handled()
-		return
-	if say_active and (ev.is_action_pressed("attack") or ev.is_action_pressed("talk") or ev.is_action_pressed("jump")):
-		var full_len := _line_text(say_lines[say_i]).length()
-		if say_chars < full_len:
-			say_chars = full_len
-		else:
-			say_i += 1
-			say_chars = 0.0
-			if say_i >= say_lines.size():
-				say_active = false
-			advanced.emit()
-		get_viewport().set_input_as_handled()
 
 func _finish_choice(i: int) -> void:
 	choice_active = false
@@ -201,7 +177,58 @@ func _line_speaker(l) -> String:
 		return str(l[0])
 	return say_speaker
 
+func _jp(a: String) -> bool:
+	return Input.is_action_just_pressed(a)
+
+# dialogue / modal / choice keys are polled (works for real keys and Input.action_press in tests)
+var _open_frame := -1
+
+var autoskip := OS.get_cmdline_user_args().has("--autoskip")
+var _auto_t := 0.0
+
+func _poll_keys() -> void:
+	if Engine.get_process_frames() <= _open_frame:
+		return      # the key that opened this box must not also answer it
+	if autoskip and (say_active or modal_active):
+		_auto_t += get_process_delta_time()
+		if _auto_t > 0.5:
+			_auto_t = 0.0
+			if say_active:
+				say_i += 1
+				say_chars = 0.0
+				if say_i >= say_lines.size():
+					say_active = false
+			else:
+				modal_active = false
+			advanced.emit()
+		return
+	if choice_active:
+		if _jp("jump") or _jp("move_left"):
+			choice_i = (choice_i - 1 + choice_opts.size()) % choice_opts.size()
+		elif _jp("down") or _jp("move_right"):
+			choice_i = (choice_i + 1) % choice_opts.size()
+		elif _jp("attack") or _jp("talk"):
+			_finish_choice(choice_i)
+		elif _jp("menu"):
+			_finish_choice(-1)
+		return
+	if modal_active and (_jp("attack") or _jp("talk") or _jp("menu")):
+		modal_active = false
+		advanced.emit()
+		return
+	if say_active and (_jp("attack") or _jp("talk") or _jp("jump")):
+		var full_len := _line_text(say_lines[say_i]).length()
+		if say_chars < full_len:
+			say_chars = full_len
+		else:
+			say_i += 1
+			say_chars = 0.0
+			if say_i >= say_lines.size():
+				say_active = false
+			advanced.emit()
+
 func _process(delta: float) -> void:
+	_poll_keys()
 	fade_a = move_toward(fade_a, _fade_target, _fade_speed * delta)
 	if say_active:
 		say_chars += delta * 60.0

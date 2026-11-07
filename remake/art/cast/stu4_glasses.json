@@ -1,0 +1,15 @@
+{
+ "anchor": [
+  38,
+  172
+ ],
+ "scale": 0.20833,
+ "facing": "right",
+ "world_height": 35.0,
+ "orig_height": 30,
+ "source": "art/generated/codex_hd/stu4_glasses.png",
+ "size": [
+  77,
+  176
+ ]
+}

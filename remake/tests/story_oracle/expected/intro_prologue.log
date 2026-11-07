@@ -1,0 +1,25 @@
+[story] 57 group 1 map=99
+[story] 112 warp 99 from=99 fh=108 fi=312
+[story] 112 group 1 map=99
+[story] 113 seq 3 map=99 fh=108 fi=312
+[story] 116 title ["Trường đạo tạo Ninja Hirosaki, Mùa thu 1937"]
+[story] 274 say cb=-1 lines=["Này các con, sau bao năm tháng tập luyện...","Đây là lúc các con thể hiện tài năng!","Gần đây, trong khu rừng trúc...","..xuất hiện 1 con quái vật to lớn..","Nó thường phá phách, đe dọa dân làng.","Các con biết phải làm gì rồi chứ?","Đây là lúc các con chứng minh khả năng của mình.. ","Đi đi. Và hãy cẩn thận đấy !!"]
+[story] 502 dialog_end cb=-1
+[story] 800 seq 4 map=99 fh=484 fi=264
+[story] 805 warp 4 from=99 fh=48 fi=120
+[story] 805 group 0 map=4
+[story] 806 seq 0 map=4 fh=48 fi=120
+[story] 811 title ["2 ngày sau, tại rừng trúc..."]
+[vars] v=4 d=1 fh=49 fi=165 fV=true ig=0 ii=1 A=4 gV=2 
+[story] 863 say cb=-1 lines=["Rừng trúc đây rồi!","Hôm nay ta phải hạ được con quái vật đó!","Nó chắc quanh quẩn đây thôi!"]
+[story] 896 dialog_end cb=-1
+[story] 941 seq 1 map=4 fh=364 fi=272
+[story] 947 title ["Chỉ dẫn: Dùng phím 5 để tấn công."]
+[story] 1000 say cb=-1 lines=["Bọn quái vật nhãi nhép này làm gì được ta chứ!"]
+[story] 1008 dialog_end cb=-1
+[story] 1211 seq 2 map=4 fh=1129 fi=240
+[story] 1229 say cb=-1 lines=["Con quái vật hung hăng kia rồi!","Ngươi phải đền tội vì những gì gây ra!"]
+[story] 1248 dialog_end cb=-1
+[vars] v=4 d=1 fh=1299 fi=285 fV=false ig=0 ii=3 A=3 gV=5 fW=2 fX=12 
+[vars] v=4 d=1 fh=1348 fi=264 fV=false ig=0 ii=3 A=1 gV=2 fW=2 fX=12 gS=1198 gT=312 
+[final] v=4 d=1 fh=1348 fi=264 O=-1 fF=0 eL=true eM=false eH=true fV=false ig=0 ii=3 hu=0 eK=false gp=-1 gn=false fe=false fd=false

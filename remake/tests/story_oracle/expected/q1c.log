@@ -1,0 +1,30 @@
+[story] 57 group 1 map=99
+[story] 112 warp 99 from=99 fh=108 fi=312
+[story] 112 group 1 map=99
+[story] 113 seq 3 map=99 fh=108 fi=312
+[story] 116 title ["Trường đạo tạo Ninja Hirosaki, Mùa thu 1937"]
+[story] 192 warp 0 from=99 fh=864 fi=336
+[story] 192 group 2 map=0
+[story] 192 seq 6 map=0 fh=864 fi=336
+[story] 195 title ["6 tháng trước, tại trường Hirosaki..."]
+[story] 453 say cb=-1 lines=["Chào mừng ngươi đến với trường đào tạo ninja Hirosaki.","Ta là Okamesama, hiệu trưởng trường này.","Tại đây chúng ta sẽ đào tạo các ngươi, trở thành những ninja chuyên nghiệp.","Giáo viên chủ nhiêm của ngươi là thầy Takanashi","Hãy đến gặp thầy để nhận bài tập.","Có vấn đề gì, ngươi có thể hỏi những đồng môn của mình.","Chúc ngươi sớm đạt được thành công nhé."]
+[story] 522 dialog_end cb=-1
+[story] 524 say cb=-1 lines=["Vâng, thưa thầy!"]
+[story] 532 dialog_end cb=-1
+[vars] v=0 d=1 fV=false O=-1 fF=0 eL=false eH=false ly=[828, 1044, 1212, 1380, 1044, 1860, 612] lz=[312, 408, 408, 288, 288, 360, 408] lA=[0, 1, 2, 3, 4, 5, 5] fh=864 fi=336 
+[bot] near npc o=Giao tiếp A=1 fh=1055
+[story] 638 say cb=3 lines=["Chào cậu bé, ta là Kagome Ayumi, giảng viên cao cấp bộ môn Khí.","Khí là môn đầu tiên bất kỳ học sinh nào cũng phải học khi bước vào đây.","Bài học đâu tiên là kỹ năng khinh công. Sau khi học xong con sẽ phi thân cao hơn  gấp đôi bình thường.","Bây giờ ta phải kiểm tra sơ bộ con. Hãy chạy thẳng về tay trái đến khu luyện tập.","đến đó giết đủ 10 con ốc sên đá, sau đó quay lại đây!"]
+[story] 716 dialog_end cb=3
+[story] 716 note NV: Giết 10 ốc sên
+[vars] v=0 d=1 fV=false O=0 fF=0 eL=false fh=1055 fi=408 o=Giao tiếp 
+[story] 1141 warp 1 from=0 fh=1415 fi=216
+[vars] v=1 d=1 fV=false O=0 fF=0 fh=1338 fi=216 
+[vars] v=1 O=0 fF=10 
+[story] 1213 warp 0 from=1 fh=3 fi=384
+[vars] v=0 d=1 O=0 fF=10 fh=66 fi=384 
+[bot] near npc o=Giao tiếp A=1 fh=1057
+[story] 1438 say cb=4 lines=["Thể lực con rất tốt, ta sẽ dạy khinh công cho con...","Hãy tập trung khí huyết, hít thở nhẹ, người con nhẹ dần, nhẹ dần tựa chiếc lá khô...","Chúc mừng con! Hãy thử nhảy lên xem kết quả thế nào.","à, suýt nữa ta quên, lúc nãy thầy Hiroyaki trên tầng 1 gọi con đấy."]
+[story] 1500 dialog_end cb=4
+[story] 1500 note đã học phép khinh công
+[vars] v=0 d=1 O=-1 fF=0 eL=true fh=1057 fi=408 o=Giao tiếp 
+[final] v=0 d=1 fh=1057 fi=408 O=-1 fF=0 eL=true eM=true eH=false fV=false ig=2 ii=1 hu=0 eK=false gp=-1 gn=false fe=false fd=false

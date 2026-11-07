@@ -20,8 +20,13 @@ func _choose(title: String, options: Array) -> int:
 		opts.append(str(o))
 	return int(await story.ui.choose(title, opts))
 
+# original s(n) popups (d = 7) are modal: UI.message when the UI has it, else UI.popup
 func _popup(text: String) -> void:
-	if story.ui != null:
+	if story.ui == null:
+		return
+	if story.ui.has_method("message"):
+		await story.ui.message(text)
+	else:
 		await story.ui.popup(text)
 
 # ---------------------------------------------------------------- in-game menu (as())

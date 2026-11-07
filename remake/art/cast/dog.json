@@ -1,0 +1,15 @@
+{
+ "anchor": [
+  50,
+  110
+ ],
+ "scale": 0.20912,
+ "facing": "right",
+ "world_height": 22.17,
+ "orig_height": 19,
+ "source": "art/generated/codex_hd/npc_dog.png",
+ "size": [
+  91,
+  114
+ ]
+}

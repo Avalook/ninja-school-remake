@@ -1,0 +1,15 @@
+{
+ "anchor": [
+  99,
+  171
+ ],
+ "scale": 0.20833,
+ "facing": "right",
+ "world_height": 35.0,
+ "orig_height": 35,
+ "source": "art/generated/codex_hd/boss_boar.png",
+ "size": [
+  217,
+  176
+ ]
+}
