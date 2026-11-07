@@ -1,0 +1,88 @@
+
+[a+b] map 99 intro D(1) -> map 4 prologue D(0) up to the boar trigger
+  ok   n(99) places the player: (108.0, 312.0) == (108.0, 312.0)
+  ok   n(99) arms group 1 (D(1))
+  ok   first tick: trigger kind 2 starts sequence 3
+  ok   trigger 4 (fh > fR + q) -> seq 4 -> warp to map 4 (after 285 ticks)
+  ok   map loads: [99, 4] == [99, 4]
+  ok   map 4 sequences 0,1,2 completed
+  ok   intro+prologue: 16 story events identical to the oracle (from 'enter 99')
+  ok   intro+prologue final v (oracle): 4 == 4
+  ok   intro+prologue final O (oracle): -1 == -1
+  ok   intro+prologue final fF (oracle): 0 == 0
+  ok   intro+prologue final eL (oracle): true == true
+  ok   intro+prologue final eH (oracle): true == true
+  ok   intro+prologue final fV (oracle): false == false
+  ok   intro+prologue final ig (oracle): 0 == 0
+  ok   intro+prologue final ii (oracle): 3 == 3
+  ok   n(4) prologue powers (eT eS H=1000 E=25)
+  ok   next trigger waits for the boar (kind 5, gV == 22): 5 == 5
+  ok   boar dead (gV 22) -> seq 5 -> map 0
+  ok   n(0) with eH resets the hero and starts D(2)
+  ok   n(0) start position: (864.0, 336.0) == (864.0, 336.0)
+[c] quest 0: Ayumi (map 0) -> 10 snails -> reward eL
+  ok   D(2) seq 6 (school intro) completed
+  ok   V(2) marker after the intro dialogue: [0, 2] == [0, 2]
+  ok   talk label near Ayumi: Giao tiếp == Giao tiếp
+  ok   quest 0 accepted (z() cb 3): 0 == 0
+  ok   quest0: 12 story events identical to the oracle (from 'enter 0')
+  ok   quest0 final v (oracle): 0 == 0
+  ok   quest0 final O (oracle): -1 == -1
+  ok   quest0 final fF (oracle): 0 == 0
+  ok   quest0 final eL (oracle): true == true
+  ok   quest0 final eM (oracle): true == true
+  ok   quest0 final eH (oracle): false == false
+  ok   quest0 final fV (oracle): false == false
+  ok   reward marker -> Takanashi (lK/lL/lM/lN): [0, 1044, 240, 4] == [0, 1044, 240, 4]
+[d] ending: map 95 boss (hu == 22) -> map 94 D(10) -> map 0
+  ok   seq 14 starts the boss fight (opcode 28 hu = 1)
+  ok   trigger 9 -> seq 15 -> map 94 -> seq 18 -> map 0
+  ok   ending: 26 story events identical to the oracle (from 'enter 95')
+  ok   ending final v (oracle): 0 == 0
+  ok   ending final O (oracle): -1 == -1
+  ok   ending final hu (oracle): 22 == 22
+  ok   ending final eK (oracle): true == true
+  ok   ending final gp (oracle): 0 == 0
+  ok   ending final gn (oracle): true == true
+  ok   ending final fe (oracle): true == true
+  ok   ending final fd (oracle): false == false
+  ok   ending final fV (oracle): false == false
+  ok   ending final ig (oracle): 0 == 0
+  ok   warp 94 -> 0 at the real-play spawn (24,192)
+[d2] ending with quest 16 active (real play): m(0) O==16 && fe -> fd, (984,408)
+  ok   fd set, quest cleared, girl home
+  ok   m(0) final position: (984.0, 408.0) == (984.0, 408.0)
+  ok   headmaster after the ending (fe): ["Dù sau này có đi đâu, ngươi cũng phải trở thành 1 ninja tốt nhé!"] == ["Dù sau này có đi đâu, ngươi cũng phải trở thành 1 ninja tốt nhé!"]
+[k] L(n) quest counter / quest-item drop / pickup
+  ok   10 snails counted, other types ignored: 10 == 10
+  ok   kill notice text: ốc sên: 10#10 == ốc sên: 10#10
+  ok   scroll dropped (w%10=1 < fC=2): 1 == 1
+  ok   scroll picked up -> fD
+[u] quest 11 air attacks
+  ok   only airborne attacks count: 2 == 2
+  ok   notice: Hit: 2 == Hit: 2
+[m] menus: item use, world map cost/travel, shop rules
+  ok   HP potion: +400 clamped to H, consumed
+  ok   empty slot does nothing
+  ok   unvisited location: not_visited == not_visited
+  ok   current location: here == here
+  ok   travel cost 2/3 of kQ[0..2]: 120 == 120
+  ok   lr >= dg refused (120 == cost)
+  ok   travel pays and warps
+  ok   spawn at kT/kU tile: (408.0, 288.0) == (408.0, 288.0)
+  ok   potion bought (99 -> 100: the original refuses only when the sum > 99): 100 == 100
+  ok   HP group already > 99: refused silently: 0 == 0
+  ok   own weapon tier 0: Không cần thiết phải mua vũ khí này vì vũ khí đang sử dụng mạnh hơn! == Không cần thiết phải mua vũ khí này vì vũ khí đang sử dụng mạnh hơn!
+  ok   level gate kq: Bạn phải đạt cấp độ 10 mới có thể mua vũ khí này! == Bạn phải đạt cấp độ 10 mới có thể mua vũ khí này!
+  ok   weapon tier 1 bought
+  ok   menu -> use item -> MP potion
+[n] NPC talk switch spot checks
+  ok   Takanashi offers quest 1 (cb 5): 5 == 5
+  ok   quest 1 active: 1 == 1
+  ok   quest 1 done -> reward cb 6: 6 == 6
+  ok   eN (shuriken) learned
+  ok   V(3) marker -> NPC 3: [0, 3] == [0, 3]
+  ok   NPC 6 in map 0 = school shop: 0 == 0
+  ok   Ayumi level gate 10: ["Hãy quay lại gặp ta khi con đạt cấp độ 10"] == ["Hãy quay lại gặp ta khi con đạt cấp độ 10"]
+
+STORY TESTS: 77 checks, 0 failed

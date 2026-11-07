@@ -1,0 +1,4 @@
+map1_blocks: 4 shots, script errors 0
+map3_bike: 3 shots, script errors 0
+map2_houses: 3 shots, script errors 0
+map97_rafts: 4 shots, script errors 0

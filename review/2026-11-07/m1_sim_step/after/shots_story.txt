@@ -1,0 +1,3 @@
+intro_m99: 5 shots, script errors 0
+m0_ayumi: 4 shots, script errors 0
+m97_cutscene: 4 shots, script errors 0

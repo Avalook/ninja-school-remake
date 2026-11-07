@@ -2,7 +2,7 @@
 # bosses, their projectiles, the shared shuriken system and the loot they drop. RefCounted: no Node, no
 # drawing (view/enemies_view.gd draws it and keeps the old EnemyManager API for main / world / player).
 #
-# Fidelity: all decisions run on the original fixed 25 Hz step (Game.tick25, the same tick that advances
+# Fidelity: all decisions run on the original fixed 25 Hz step (sim/sim.gd step(), the same tick that advances
 # S.w) with the original integer math and the original update order of run() (shurikens ~L9341,
 # darts O(), seeds P(), monsters al() ~L12112, students aa(), boar, river monster, golem ac(), coins W(),
 # potions ab(), scroll). prev_x/prev_y (px/py) keep the previous 25 Hz state for the view to interpolate.
@@ -11,8 +11,8 @@
 # ({"t": "fx"|"text"|"popup"|"flash", ...}). With `on_event` set (the view) each event is delivered at the
 # moment it happens, so FX keep their exact order relative to the player's own FX (fx_layer seeds each FX
 # with randf() in call order); without it (headless tests) they collect in `events`.
-# Still coupled (later M1 item sim/sim.gd): `world` for flags_at, cam_pos, view_size, player.hurt and
-# companion.hurt. Loot rules are sim/enemies/drops.gd, drawn by view/drops_view.gd.
+# `world` is sim/world_sim.gd (flags_at, cam_pos / view_size = the camera given as input, player.hurt =
+# sim/player_sim.gd), wired by sim/sim.gd. Loot rules are sim/enemies/drops.gd, drawn by view/drops_view.gd.
 #
 # Contract (archive/docs/REMAKE_PLAN.md): setup(map), hit(area, damage, dir) -> index | -1, boss_state(),
 # spawn_projectile(x, y, vx, vy, strong), signal enemy_killed(type, pos); damages the player through
@@ -130,6 +130,7 @@ func setup(m: Dictionary) -> void:
 	golem.active = golem.active and not bool(S.eK)
 	_last_sync = {}
 	_sync_to_state()
+	_event({"t": "setup", "monsters": enemies.size(), "classmates": classmates.count if classmates else 0})
 
 static func _ints(a) -> Array:
 	var o := []
@@ -431,7 +432,7 @@ func on_damaged(e) -> void:      # presentation only: white flash + squash in th
 
 # original L(n) ~L11672: EXP, loot (w % 20), quest scroll; quest kill counters are the story's job
 func kill(e) -> void:
-	S.add_exp(int(S.aq[e.type]))
+	gain_exp(int(S.aq[e.type]))
 	var roll := w % 20
 	if roll > 15:
 		drops.spawn_item(e.x, e.y, -(e.dir << 3), e.attack << 2, (w + 1) % 2)
@@ -479,6 +480,28 @@ func _event(ev: Dictionary) -> void:
 		on_event.call(ev)
 	else:
 		events.append(ev)
+
+# original u(int n) a.java L2089 (was S.add_exp in scripts/core/state.gd): gain EXP; at most one level per gain,
+# N resets to 0 (no carry-over), E += aj[M-2], F += 2, H += al[M-2], HP full, MP refilled (max MP unchanged),
+# modal popup (d = 7). (The demo-build lock at level 7, Midlet.a, does not apply to the PC version.)
+# Same order of effects as before: floating text, power FX, message, S.changed.
+func gain_exp(n: int) -> void:
+	S.N += n
+	var p := Vector2(S.fh, S.fi - 32)
+	if S.N > int(S.ak[clampi(S.M - 1, 0, S.ak.size() - 1)]) and S.M < S.ak.size():
+		S.N = 0
+		S.M += 1
+		S.E += int(S.aj[S.M - 2])
+		S.F += 2
+		S.H += int(S.al[S.M - 2])
+		S.G = S.H
+		S.I = S.J
+		_event({"t": "text", "s": "LEVEL UP", "p": p, "c": 0, "color": Color(1, 0.85, 0.2)})
+		_event({"t": "fx", "kind": "power", "p": Vector2(S.fh, S.fi - 20), "d": 1})
+		_event({"t": "message", "s": "Chúc mừng! Bạn đạt được cấp %d\nHP: %d\nSức đánh: %d" % [S.M, S.H, S.E + (S.E >> 2) * (S.x + 1)]})
+	else:
+		_event({"t": "text", "s": "+%d" % n, "p": p, "c": 0, "color": Color(0.6, 1, 0.6)})
+	S.changed.emit()
 
 func fx(kind: String, x: int, y: int, d := 1) -> void:
 	_event({"t": "fx", "kind": kind, "p": Vector2(x, y), "d": d})

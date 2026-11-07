@@ -1,7 +1,9 @@
-# Main: title screen -> world. Wires World (sim/world_sim.gd + view/world_view.gd), Player, Enemies (sim/enemies_sim.gd + view/enemies_view.gd), Story (sim/story_sim.gd + view/story_view.gd),
+# Main: title screen -> world. Builds the rule state sim/sim.gd from the module sims of the views and drives
+# its 25 Hz step (Game.tick25 -> sim.step(input)). Wires World (sim/world_sim.gd + view/world_view.gd), Player, Enemies (sim/enemies_sim.gd + view/enemies_view.gd), Story (sim/story_sim.gd + view/story_view.gd),
 # music (original per-map track MF_t), pause menu and settings.
 extends Node2D
 
+var sim                         # sim/sim.gd: every rule module, wired directly
 var world
 var player
 var enemies
@@ -25,6 +27,7 @@ func _ready() -> void:
 	add_child(settings)
 	settings.closed.connect(func(): Game.paused = false)
 	world = preload("res://view/world_view.gd").new()
+	world.external_tick = true
 	add_child(world)
 	world.visible = false
 	player = preload("res://view/player_view.gd").new()
@@ -45,12 +48,11 @@ func _ready() -> void:
 		if "world" in enemies:
 			enemies.world = world
 		world.layer_actors.add_child(enemies)
-		if enemies.has_signal("enemy_killed"):
-			enemies.enemy_killed.connect(_on_killed)
 	var st_s = load("res://view/story_view.gd") if ResourceLoader.exists("res://view/story_view.gd") and not OS.get_cmdline_user_args().has("--nostory") else null
 	if st_s != null and st_s.can_instantiate():
 		story = st_s.new()
 		story.name = "Story"
+		story.external_tick = true
 		if "world" in story:
 			story.world = world
 		add_child(story)
@@ -59,6 +61,14 @@ func _ready() -> void:
 			story.return_to_title.connect(_back_to_title)
 		if story.has_signal("quit_to_title"):
 			story.quit_to_title.connect(_back_to_title)
+	sim = preload("res://sim/sim.gd").new(S, Data, world.sim, player.sim, enemies.sim if enemies else null, story.sim if story else null)
+	if enemies == null:
+		sim.disable("enemies")
+	if story == null:
+		sim.disable("story")
+	player.root = sim
+	sim.set_mode(Game.mode)
+	Game.mode_changed.connect(sim.set_mode)
 	world.map_loaded.connect(_on_map_loaded)
 	Game.tick25.connect(_tick25)
 	if ResourceLoader.exists("res://art/env/school/day/layer0.webp"):
@@ -135,13 +145,9 @@ func continue_game() -> void:
 		return
 	UI.fade_in(0.6)
 
-# original run() order inside one tick: projectiles, player R(), monsters / bosses / students
+# one original tick (order inside: S.w, objects, story, projectiles, player R(), monsters / bosses / students)
 func _tick25() -> void:
-	if enemies and Game.mode in ["play", "cutscene"]:
-		enemies.step_projectiles()
-	player.tick()
-	if enemies and Game.mode in ["play", "cutscene"]:
-		enemies.step_actors()
+	sim.step({"keys": player.input_keys(), "mode": Game.mode, "camera": world.camera_input()})
 	if auto.has("trace"):
 		_trace_tick()
 
@@ -201,10 +207,6 @@ func _on_map_loaded(id: int) -> void:
 	var st: Dictionary = world.map.get("state", {})
 	if st.has("MF_t"):
 		_set_music(int(st["MF_t"]))
-
-func _on_killed(type: int, p: Vector2) -> void:
-	if story and story.has_method("on_enemy_killed"):
-		story.on_enemy_killed(type, p)
 
 func _set_music(t: int) -> void:
 	if t == music_track:

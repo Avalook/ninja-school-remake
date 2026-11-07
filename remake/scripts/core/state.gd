@@ -21,28 +21,7 @@ var is_: Array = []
 func level_need() -> int:
 	return int(ak[clampi(M - 1, 0, ak.size() - 1)])
 
-# original u(int n) a.java L2089: gain EXP; at most one level per gain, N resets to 0 (no carry-over),
-# E += aj[M-2], F += 2, H += al[M-2], HP full, MP refilled (max MP unchanged), modal popup (d = 7).
-# (The demo-build lock at level 7, Midlet.a, does not apply to the PC version.)
-func add_exp(n: int) -> void:
-	N += n
-	var w = get_tree().get_first_node_in_group("world") if is_inside_tree() else null
-	var p := Vector2(fh, fi - 32)
-	if N > int(ak[clampi(M - 1, 0, ak.size() - 1)]) and M < ak.size():
-		N = 0
-		M += 1
-		E += int(aj[M - 2])
-		F += 2
-		H += int(al[M - 2])
-		G = H
-		I = J
-		if w:
-			w.float_text("LEVEL UP", p, Color(1, 0.85, 0.2))
-			w.spawn_fx("power", Vector2(fh, fi - 20), 1)
-		UI.message("Chúc mừng! Bạn đạt được cấp %d\nHP: %d\nSức đánh: %d" % [M, H, E + (E >> 2) * (x + 1)])
-	elif w:
-		w.float_text("+%d" % n, p, Color(0.6, 1, 0.6))
-	changed.emit()
+# EXP gain (original u(int n)) is a rule: sim/enemies_sim.gd gain_exp().
 
 func add_money(n: int) -> void:
 	dg += n

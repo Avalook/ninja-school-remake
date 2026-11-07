@@ -1,5 +1,6 @@
 # Story view: runs sim/story_sim.gd (the original story rules) and does everything that is not a rule:
-# 25 Hz tick hookup (Game.tick25, world.map_loaded), input polling, UI (dialogue boxes, title cards,
+# 25 Hz tick hookup when used alone (tests; in the game sim/sim.gd runs tick() and on_map_enter()),
+# input polling, UI (dialogue boxes, title cards,
 # notices), menus (view/story_menus.gd), Game.mode, map warps and the camera override.
 #
 # Keeps the API of the old scripts/story/story.gd for main.gd, tests and player_sim:
@@ -29,6 +30,7 @@ var ui              # autoload UI (say / title_card / popup / choose [/ notice /
 var game            # autoload Game (mode, goto_map) - optional
 var handle_input := false     # true: poll talk / menu / potion actions here (main.gd may do it)
 var _menu_open := false
+var external_tick := false     # main.gd: sim/sim.gd runs tick() and on_map_enter() in the game's order
 
 var st:
 	get: return sim.st
@@ -69,7 +71,7 @@ func _ready() -> void:
 		game = root.get_node_or_null("Game")
 	if sim.data == null:
 		sim.data = root.get_node_or_null("Data")
-	if game and game.has_signal("tick25") and not game.tick25.is_connected(tick):
+	if not external_tick and game and game.has_signal("tick25") and not game.tick25.is_connected(tick):
 		game.tick25.connect(tick)
 	var w = world if world != null else get_tree().get_first_node_in_group("world")
 	if w:
@@ -78,7 +80,7 @@ func _ready() -> void:
 func attach(w) -> void:
 	world = w
 	player = w.player if "player" in w else null
-	if w.has_signal("map_loaded") and not w.map_loaded.is_connected(on_map_enter):
+	if not external_tick and w.has_signal("map_loaded") and not w.map_loaded.is_connected(on_map_enter):
 		w.map_loaded.connect(on_map_enter)
 
 # ================================================================= public API

@@ -1,0 +1,3 @@
+map9_loot: 4 shots, script errors 0
+map9_pickup: 5 shots, script errors 0
+map1_loot: 4 shots, script errors 0

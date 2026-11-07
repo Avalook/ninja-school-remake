@@ -228,7 +228,7 @@ func damage(m, n: int, dmg: int, d: int) -> bool:
 		timer[n] = 0
 		bar[n] = 0
 		state[n] = DYING
-		S.add_exp(int(S.ae[kind[n]]))
+		m.gain_exp(int(S.ae[kind[n]]))
 		m.drops.spawn_coin(x[n], y[n], -(dir[n] << 2), -4, int(S.ac[kind[n]]) + m.w % 10)
 		if m.w % 20 > 5:
 			m.drops.spawn_item(x[n], y[n], -(dir[n] << 3), int(S.ad[kind[n]]) << 2, (m.w + 1) % 2)

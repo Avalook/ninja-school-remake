@@ -1,0 +1,48 @@
+  oracle script errors (paint only expected): 660
+MAP 4: ticks=500 exact_ticks=500 (100.0%) fields=91948/91948 (100.00%) first_mismatch=-1 
+  per field: jN 10000/10000  jO 10000/10000  jS 10000/10000  kc 10000/10000  jX 10000/10000  ka 10000/10000  kb 10000/10000  dk 2500/2500  cT 2500/2500  db 5000/5000  bS 5000/5000  bZ 4000/4000  dg 500/500  N 500/500  gS 500/500  gT 500/500  gV 500/500  cX 112/112  cQ 112/112  cR 112/112  cS 112/112  
+  player damage: oracle 4 hits / 105 HP lost, remake 4 hurt() calls / 105 dmg
+  oracle script errors (paint only expected): 500
+MAP 1: ticks=500 exact_ticks=500 (100.0%) fields=44500/44500 (100.00%) first_mismatch=-1 
+  per field: jN 3500/3500  jO 3500/3500  jS 3500/3500  kc 3500/3500  jX 3500/3500  ka 3500/3500  kb 3500/3500  dk 2500/2500  cT 2500/2500  db 5000/5000  bS 5000/5000  bZ 4000/4000  dg 500/500  N 500/500  
+  player damage: oracle 0 hits / 0 HP lost, remake 0 hurt() calls / 0 dmg
+  oracle script errors (paint only expected): 2000
+MAP 6: ticks=500 exact_ticks=500 (100.0%) fields=112194/112194 (100.00%) first_mismatch=-1 
+  per field: jN 13000/13000  jO 13000/13000  jS 13000/13000  kc 13000/13000  jX 13000/13000  ka 13000/13000  kb 13000/13000  dk 2500/2500  cT 2500/2500  db 5000/5000  bS 5000/5000  bZ 4000/4000  dg 500/500  N 500/500  di 597/597  dj 597/597  
+  player damage: oracle 0 hits / 0 HP lost, remake 0 hurt() calls / 0 dmg
+  oracle script errors (paint only expected): 512
+MAP 7: ticks=500 exact_ticks=500 (100.0%) fields=101646/101646 (100.00%) first_mismatch=-1 
+  per field: jN 11500/11500  jO 11500/11500  jS 11500/11500  kc 11500/11500  jX 11500/11500  ka 11500/11500  kb 11500/11500  dk 2500/2500  cT 2500/2500  db 5000/5000  bS 5000/5000  bZ 4000/4000  dg 500/500  N 500/500  di 573/573  dj 573/573  
+  player damage: oracle 0 hits / 0 HP lost, remake 0 hurt() calls / 0 dmg
+  oracle script errors (paint only expected): 510
+MAP 9: ticks=500 exact_ticks=500 (100.0%) fields=42650/42650 (100.00%) first_mismatch=-1 
+  per field: jN 1500/1500  jO 1500/1500  jS 1500/1500  kc 1500/1500  jX 1500/1500  ka 1500/1500  kb 1500/1500  cx 3000/3000  cy 3000/3000  cH 3000/3000  cu 3000/3000  dk 2500/2500  cT 2500/2500  db 5000/5000  bS 5000/5000  bZ 4000/4000  dg 500/500  N 500/500  cZ 75/75  da 75/75  
+  player damage: oracle 2 hits / 50 HP lost, remake 2 hurt() calls / 50 dmg
+  oracle script errors (paint only expected): 500
+MAP 10: ticks=500 exact_ticks=500 (100.0%) fields=54500/54500 (100.00%) first_mismatch=-1 
+  per field: jN 1500/1500  jO 1500/1500  jS 1500/1500  kc 1500/1500  jX 1500/1500  ka 1500/1500  kb 1500/1500  cx 6000/6000  cy 6000/6000  cH 6000/6000  cu 6000/6000  dk 2500/2500  cT 2500/2500  db 5000/5000  bS 5000/5000  bZ 4000/4000  dg 500/500  N 500/500  
+  player damage: oracle 0 hits / 0 HP lost, remake 0 hurt() calls / 0 dmg
+  oracle script errors (paint only expected): 500
+MAP 11: ticks=500 exact_ticks=500 (100.0%) fields=71000/71000 (100.00%) first_mismatch=-1 
+  per field: jN 5000/5000  jO 5000/5000  jS 5000/5000  kc 5000/5000  jX 5000/5000  ka 5000/5000  kb 5000/5000  cx 4000/4000  cy 4000/4000  cH 4000/4000  cu 4000/4000  dk 2500/2500  cT 2500/2500  db 5000/5000  bS 5000/5000  bZ 4000/4000  dg 500/500  N 500/500  
+  player damage: oracle 0 hits / 0 HP lost, remake 0 hurt() calls / 0 dmg
+  oracle script errors (paint only expected): 518
+MAP 12: ticks=500 exact_ticks=500 (100.0%) fields=87376/87376 (100.00%) first_mismatch=-1 
+  per field: jN 9500/9500  jO 9500/9500  jS 9500/9500  kc 9500/9500  jX 9500/9500  ka 9500/9500  kb 9500/9500  dk 2500/2500  cT 2500/2500  db 5000/5000  bS 5000/5000  bZ 4000/4000  dg 500/500  N 500/500  di 438/438  dj 438/438  
+  player damage: oracle 1 hits / 60 HP lost, remake 1 hurt() calls / 60 dmg
+  oracle script errors (paint only expected): 500
+MAP 16: ticks=500 exact_ticks=500 (100.0%) fields=49000/49000 (100.00%) first_mismatch=-1 
+  per field: jN 3000/3000  jO 3000/3000  jS 3000/3000  kc 3000/3000  jX 3000/3000  ka 3000/3000  kb 3000/3000  cx 2000/2000  cy 2000/2000  cH 2000/2000  cu 2000/2000  dk 2500/2500  cT 2500/2500  db 5000/5000  bS 5000/5000  bZ 4000/4000  dg 500/500  N 500/500  
+  player damage: oracle 0 hits / 0 HP lost, remake 0 hurt() calls / 0 dmg
+  oracle script errors (paint only expected): 500
+MAP 17: ticks=500 exact_ticks=500 (100.0%) fields=50000/50000 (100.00%) first_mismatch=-1 
+  per field: jN 2000/2000  jO 2000/2000  jS 2000/2000  kc 2000/2000  jX 2000/2000  ka 2000/2000  kb 2000/2000  cx 4000/4000  cy 4000/4000  cH 4000/4000  cu 4000/4000  dk 2500/2500  cT 2500/2500  db 5000/5000  bS 5000/5000  bZ 4000/4000  dg 500/500  N 500/500  
+  player damage: oracle 0 hits / 0 HP lost, remake 0 hurt() calls / 0 dmg
+  oracle script errors (paint only expected): 535
+MAP 95: ticks=500 exact_ticks=500 (100.0%) fields=36814/36814 (100.00%) first_mismatch=-1 
+  per field: jN 2000/2000  jO 2000/2000  jS 2000/2000  kc 2000/2000  jX 2000/2000  ka 2000/2000  kb 2000/2000  dk 2500/2500  cT 2500/2500  db 5000/5000  bS 5000/5000  bZ 4000/4000  dg 500/500  N 500/500  hs 500/500  ht 500/500  hu 500/500  di 657/657  dj 657/657  
+  player damage: oracle 7 hits / 3030 HP lost, remake 7 hurt() calls / 3030 dmg
+  oracle script errors (paint only expected): 500
+MAP 97: ticks=500 exact_ticks=500 (100.0%) fields=22612/22612 (100.00%) first_mismatch=-1 
+  per field: dk 2500/2500  cT 2500/2500  db 5000/5000  bS 5000/5000  bZ 4000/4000  dg 500/500  N 500/500  hS 500/500  hT 500/500  ia 500/500  hP 500/500  bX 306/306  bY 306/306  
+  player damage: oracle 0 hits / 0 HP lost, remake 0 hurt() calls / 0 dmg

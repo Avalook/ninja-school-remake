@@ -1,0 +1,9 @@
+
+ok   m4_boar: 31 snapshot points (ticks 100..850, up to 169 KB JSON), 50 ticks replayed each: 0 lines differ, 0 JSON round trips differ, map 4
+ok   m6_moves: 31 snapshot points (ticks 100..850, up to 236 KB JSON), 50 ticks replayed each: 0 lines differ, 0 JSON round trips differ, map 6
+ok   m9_classmates: 31 snapshot points (ticks 100..850, up to 160 KB JSON), 50 ticks replayed each: 0 lines differ, 0 JSON round trips differ, map 9
+ok   m95_golem: 31 snapshot points (ticks 100..850, up to 133 KB JSON), 50 ticks replayed each: 0 lines differ, 0 JSON round trips differ, map 95
+ok   m1_blocks: 31 snapshot points (ticks 100..850, up to 149 KB JSON), 50 ticks replayed each: 0 lines differ, 0 JSON round trips differ, map 1
+ok   story_intro: 29 snapshot points (ticks 100..850, up to 170 KB JSON), 50 ticks replayed each: 0 lines differ, 0 JSON round trips differ, map 4
+SIM SNAPSHOT: 6 scenarios, 0 failed
+exit 0

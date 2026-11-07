@@ -1,6 +1,7 @@
 # Draws the map objects of sim/world/objects.gd (push blocks / rafts, parked motorbikes), interpolated between
 # the positions of the tick before (prev_b / prev_v) and now. Steps the object rules on Game.tick25: this node
-# connects in WorldView._ready, the same place in the tick25 order as the old objects.gd.
+# connects in WorldView._ready, the same place in the tick25 order as the old objects.gd. In the game
+# (main.gd, world.external_tick) sim/sim.gd step() runs them instead, at that same place in the tick.
 extends Node2D
 
 var world                     # view/world_view.gd
@@ -13,7 +14,8 @@ func _ready() -> void:
 	tex_b = load("res://art/obj/b.png")
 	for i in 3:
 		tex_v.append(load("res://art/obj/v%d.png" % i))
-	Game.tick25.connect(_tick)
+	if not world.external_tick:
+		Game.tick25.connect(_tick)
 
 func _tick() -> void:
 	if world == null:

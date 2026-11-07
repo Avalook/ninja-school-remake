@@ -1,6 +1,7 @@
 # EnemiesView: draws every hostile thing of a map (monsters, the three bosses, rival students, projectiles,
 # loot) from the rules in sim/enemies_sim.gd, interpolating between the last two 25 Hz states.
-# Keeps the old EnemyManager API for main / world / player_sim / tests (setup, step_projectiles,
+# In the game sim/sim.gd steps the rules and wires them to the other modules; this view keeps the old
+# EnemyManager API for tests and debugging (setup, step_projectiles,
 # step_actors, hit, spawn_projectile, boss_state, start_golem, enemies, the signals...): each call is
 # forwarded to the sim. Presentation events of the sim (fx, floating text, popup, hit flash) arrive through
 # sim.on_event at the moment they happen and are turned into world FX / UI here.
@@ -89,7 +90,9 @@ func _process(dt: float) -> void:
 
 # ============================================================== API (forwarded to the sim)
 func setup(m: Dictionary) -> void:
-	sim.setup(m)
+	sim.setup(m)              # the sim's "setup" event resets the presentation state below
+
+func _reset_presentation() -> void:
 	var n: int = sim.enemies.size()
 	enemy_flash = []; enemy_flash.resize(n); enemy_flash.fill(0.0)
 	enemy_squash = []; enemy_squash.resize(n); enemy_squash.fill(0.0)
@@ -143,7 +146,13 @@ func _on_event(ev: Dictionary) -> void:
 				world.spawn_fx(ev["kind"], ev["p"], ev["d"])
 		"text":
 			if world and world.has_method("float_text"):
-				world.float_text(ev["s"], ev["p"], TEXT_COLORS[clampi(ev["c"], 0, 2)])
+				world.float_text(ev["s"], ev["p"], ev["color"] if ev.has("color") else TEXT_COLORS[clampi(ev["c"], 0, 2)])
+		"message":
+			var ui_m = get_node_or_null("/root/UI")
+			if ui_m and ui_m.has_method("message"):
+				ui_m.message(ev["s"])
+		"setup":
+			_reset_presentation()
 		"popup":
 			var ui = get_node_or_null("/root/UI")
 			if ui and ui.has_method("popup"):

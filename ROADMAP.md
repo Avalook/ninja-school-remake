@@ -125,7 +125,9 @@ và chỉ qua mốc khi chủ dự án đồng ý. Claude không tự đánh gi�
   - [x] Projectiles: phần còn lại sau mục Enemies (nếu có), ví dụ phi tiêu của bạn đồng hành `hf` (TODO trong code).
         _(2026-11-07, nhánh `m1-projectiles-split`. Rà lại: không còn gì để tách, luật projectiles đã nằm hết trong `sim/` từ mục
         Enemies. Hai TODO `hf` là luật gốc **chưa từng làm** (đối thủ map 96, AI bạn đồng hành gái), chuyển sang M2 Boss. Xem STATUS.md.)_
-- [ ] Viết `sim/sim.gd`: hàm `step(input) -> events`, kèm snapshot và restore (phục vụ save và test).
+- [x] Viết `sim/sim.gd`: hàm `step(input) -> events`, kèm snapshot và restore (phục vụ save và test).
+      _(2026-11-08, nhánh `m1-sim-step`. Trace 27 + story 77 + oracle 12 map + drops khớp 100%, `sim_snapshot.sh` mới 6/6,
+      `sim/` không còn tham chiếu tới view, xem STATUS.md.)_
 - [ ] Viết `tests/sim_run.gd` chạy headless, đọc cùng định dạng script với `tools/diff_run.sh`.
 - [ ] Di chuyển native (state 1–4) chạy theo bước cố định 100 Hz (4 bước mỗi tick 25 Hz), không theo dt của frame.
       View nội suy giữa hai bước khi vẽ. Mục tiêu: kết quả như nhau ở 60/120/144 Hz.

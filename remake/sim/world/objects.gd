@@ -65,7 +65,7 @@ func _snap() -> void:
 func g(x: int, y: int, f: int) -> bool:
 	return (world.flags_at(x, y) & f) == f
 
-# one 25 Hz tick; play = Game.mode == "play" (given by the view)
+# one 25 Hz tick; play = mode == "play" (given by sim/sim.gd)
 func tick(play: bool) -> void:
 	if world == null or world.map_id < 0 or not play:
 		return

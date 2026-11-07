@@ -1,6 +1,6 @@
 # STATUS — Ninja School PC remake
 
-Cập nhật: 2026-11-07, phiên M1 `sim/sim.gd`: **mới viết kế hoạch, CHỜ DUYỆT, chưa sửa code** (nhánh `m1-sim-step` tách từ `main` 81c3481).
+Cập nhật: 2026-11-08, phiên M1 `sim/sim.gd`: xong, test xanh (nhánh `m1-sim-step` tách từ `main` 81c3481).
 Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. Phần nào chỉ lấy lại từ
 `analysis/claude/progress.json` mà chưa chạy lại thì có ghi chú rõ.
 
@@ -23,7 +23,9 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
 - **M1 mục 2e (projectiles) xong, không sửa code**: rà lại thì không còn gì để tách. Mục M1 "làm tương tự cho
   enemies, story, world, drops, projectiles" đã tick đủ 5 mục con. Hai TODO `hf` hoá ra là luật gốc chưa từng làm,
   đã chuyển thành 2 mục con mới trong M2 Boss. Chi tiết ở "M1 mục 2e" bên dưới.
-- Mục M1 đang làm: `sim/sim.gd`. Kế hoạch ở mục "M1 `sim/sim.gd`: kế hoạch" bên dưới, **chờ chủ dự án duyệt rồi mới sửa code**.
+- **M1 `sim/sim.gd` xong**: các sim nối thẳng qua `remake/sim/sim.gd` (`step(input)` một tick 25 Hz, `frame()`, `snapshot()/restore()`).
+  Hành vi không đổi: trace 27, story 77, oracle 12 map, drops khớp 100%; `sim_snapshot.sh` mới 6/6. Kết quả ở bảng bên dưới.
+  `sim/` không còn tham chiếu tới view (grep). Mục M1 tiếp theo: `tests/sim_run.gd`.
 - **M3 việc nhỏ (2026-11-07, commit thẳng `main` 8451b32)**: `art_src/env/rung_truc/TILE_NEEDS.md` (32 tile id của map 4,
   số lần, cờ theo ô), `tiles_orig_4x/` (tile gốc phóng 4×), `ref_map4.png` (toàn map 4 ghép từ tile gốc, 4×, không có
   trời/nền xa, không phải ảnh chụp emulator). Sinh bằng `tools/art/tile_needs.py 4 rung_truc`. Không đụng `sim/`.
@@ -34,7 +36,7 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
 - Codex đang vẽ trong `art_src/` trên nhánh `claude/project-directory-codex-c71a67`.
   Nhánh này **không tạo, không sửa** gì trong `art_src/`.
 
-## M1 `sim/sim.gd`: kế hoạch (viết trước khi sửa code, CHỜ DUYỆT; nhánh `m1-sim-step` tách từ `main` 81c3481)
+## M1 `sim/sim.gd`: kế hoạch (viết trước khi sửa code, ĐÃ DUYỆT 2026-11-07 kèm 3 bổ sung; nhánh `m1-sim-step` tách từ `main` 81c3481)
 
 ### Hiện trạng (đã đọc code, chưa chạy gì)
 - 4 sim đã tách (`player_sim`, `enemies_sim`, `story_sim`, `world_sim` + `world/objects.gd`) nhưng **nối với nhau qua view**:
@@ -115,10 +117,78 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
 Di chuyển native theo bước cố định (mục 100 Hz), `tests/sim_run.gd` đọc định dạng `diff_run.sh` (mục kế tiếp),
 đồng hồ game cho view, save/load mới (M2), lối ra kiểm theo tick.
 
-### Cần chủ dự án duyệt
+### Chủ dự án đã duyệt (2026-11-07), thêm 3 yêu cầu
+1. `snapshot()/restore()` gồm cả trạng thái di chuyển native của player (`vel`, `coyote`, `buffer`, `air_jumps` và mọi biến
+   theo frame mà luật dùng). `sim_snapshot.sh` chạy ở fps cố định.
+2. Luật nào đọc camera của view (quái thức dậy trên màn, chết rơi...) thì nhận camera qua `input` của `step()`, camera đó có
+   trong snapshot. Hành vi không đổi. Xong mục này `sim/` không còn tham chiếu nào tới `view/` (kiểm bằng grep, ghi kết quả).
+3. Sim muốn đổi mode (cutscene, hộp thoại, shop...) thì phát event, view đổi `Game.mode`. Sim không gọi `Game` trực tiếp.
+
+### Câu hỏi đã hỏi (giữ để tra)
 1. `step(input)` = **một tick 25 Hz**; di chuyển native vẫn ở `frame(dt, alpha, input)` cho tới mục 100 Hz. Được không?
 2. `Game.mode` vẫn thuộc view, sim nhận qua `input.mode` (không chuyển quyền sở hữu mode vào sim ở mục này). Được không?
 3. Snapshot chỉ gồm trạng thái luật (`S` + các sim + camera mà luật đọc), không gồm view; save game chưa đổi. Được không?
+
+## M1 `sim/sim.gd`: kết quả (chạy 2026-11-07/08)
+Mốc ghi **bằng code trước refactor** (`main` 81c3481, không sửa gì), rồi mới sửa code.
+
+**Phát hiện khi làm (khác với lúc viết kế hoạch)**
+- Worktree mới không có cache import của Godot (`.godot/` không nằm trong git): lần chạy mốc đầu, texture và nhạc là null,
+  hàng trăm nghìn SCRIPT ERROR ở view (trace luật vẫn khớp). Đã chạy `godot --headless --import` rồi ghi lại mốc. Lần sau,
+  worktree mới phải import trước khi chạy test có cửa sổ.
+- `Game.mode` đổi **giữa tick** (story phát `"mode"`, `UI.say` đặt `"dialogue"`), và các bước sau trong cùng tick đọc giá trị
+  mới. Vì vậy `input.mode` chỉ là giá trị đầu tick: `Game.mode` giờ có setter phát `mode_changed`, `main.gd` nối vào
+  `sim.set_mode()`. Story phát `"mode"` thì `sim.gd` cũng tự cập nhật (chạy headless không cần view).
+- `S.add_exp()` (trong `scripts/core/state.gd`, không phải `sim/`) gọi thẳng `world.float_text`, `world.spawn_fx`, `UI.message`.
+  Đã chuyển thành `EnemiesSim.gain_exp()`, cùng luật, cùng thứ tự; hiệu ứng thành event `text` (có `color`), `fx`, `message`.
+- Bản đầu của test snapshot chụp một điểm (tick 400): độ nhạy cho thấy bỏ `coyote/buffer/air_jumps` mà vẫn xanh (giá trị lúc đó
+  bằng mặc định). Đã đổi sang chụp mỗi 25 tick. GDScript lambda chụp biến cục bộ theo giá trị (lỗi trong test, đã sửa). JSON làm mất bit cuối của số thực:
+  snapshot ghi float/Vector2 kèm bit chính xác (`"#x"`, hex của `var_to_bytes`).
+- `on_map_enter(id, frame)`: trước đây `frame` = `Engine.get_process_frames()` của view (chống chạy hai lần khi tín hiệu
+  và lời gọi tay rơi vào cùng frame). Lời gọi tay chỉ còn ở nhánh không có world. `sim.gd` truyền số thứ tự lần nạp map.
+  Khác duy nhất: nạp **cùng một map hai lần trong một frame** trước đây chạy story một lần, giờ hai lần. Trace 27 kịch bản
+  không có trường hợp này.
+
+**Đã làm**
+- `remake/sim/sim.gd` (mới): giữ 4 sim, nối thẳng với nhau; `step(input)` = một tick 25 Hz theo đúng thứ tự cũ
+  (`S.w`, objects, story, projectiles, player, quái/boss/bạn học/đồ rơi; `S.w` chuyển từ `Game._process` vào đây);
+  `frame(dt, input)` cho di chuyển native; `snapshot()` / `restore()`.
+- Event: mỗi sim gửi qua `sim.gd` (`ev.src` = world/player/enemies/story) tới handler của view, ngay lúc phát sinh như cũ.
+  Player gom event và xả ở cuối mỗi lời gọi từ ngoài (`place/hurt/carry/tick/frame`), đúng như `PlayerView._drain` trước đây.
+  `sim.gd` tự xử lý `warp` của story (nạp map), `map_loaded` (gọi `story.on_map_enter` trước, rồi tới view: nhạc), và
+  `enemy_killed` → `story.on_enemy_killed` (trước đây đi qua EnemiesView → main → StoryView).
+- Camera là input: `world_view` giữ `cam_pos`/`cam_shown` của mình, đưa vào `sim.step()`/`sim.frame()` qua `camera_input()`,
+  và đẩy ngay (`_push_camera`) ở các lúc luật cần camera vừa đặt lại (nạp map, `camera_snap`, trước `take_exit`).
+- `main.gd`: tạo `Sim` từ sim của các view, `Game.tick25` → `sim.step(input)` là listener duy nhất (objects_view, story_view
+  thôi tự tick khi `external_tick`); `player_view` chạy `sim.frame()` mỗi frame.
+
+**Kiểm**
+| Kiểm tra | Trước refactor | Sau refactor |
+|---|---|---|
+| `remake/tests/player_trace.sh` (27 kịch bản) | 27/27 khớp mốc, 0 SCRIPT ERROR | **27/27 khớp 100%, 0 dòng lệch, 0 SCRIPT ERROR** |
+| `remake/tests/story_run_tests.sh` | 77 check, 0 fail | **77 check, 0 fail** |
+| `remake/tests/run_enemies_oracle.sh 500` (12 map) | 12 map 500/500 tick 100% | **12 map 500/500 tick 100%**, dòng MAP / sát thương giống hệt mốc |
+| `remake/tests/drops_trace.sh` | 6000 tick, 0 lệch | **6000 tick, 0 lệch** |
+| `remake/tests/sim_snapshot.sh` (mới; headless, 60 fps cố định, 6 kịch bản: map 4 boar, 6 di chuyển đủ phím, 9 bạn học, 95 golem, 1 khối đẩy, intro story 99 → 4; 900 tick, 29–31 điểm chụp mỗi kịch bản) | | **6/6: ở mọi điểm chụp, khôi phục từ JSON vào state và sim mới tinh, 50 tick replay khớp 100% (hash cả snapshot mỗi tick), JSON chụp lại trùng từng byte** (snapshot tới 236 KB) |
+| Độ nhạy trace | | đổi thứ tự trong `step()` (story chạy sau player): `m4_combat` lệch 1766 dòng, `story_m0_start` lệch 1956 dòng. Đã hoàn nguyên |
+| Độ nhạy snapshot (`--skip=<biến>`: bỏ một biến khỏi snapshot, đếm dòng replay lệch trên 6 kịch bản) | | `player.vel` 415–809, `player.grounded` 178–715, `player.prev_tick_pos` 768–1118, `player.buffer` 2–377 (3/6 kịch bản), `player.air_jumps` 2–27 (3/6), `enemies.enemies` 450–1550, `world.flags` 1420–1550. **Không bắt được**: `player.coyote` (bộ đếm vài phần trăm giây, gần như không bao giờ khác 0 ở điểm chụp cách nhau 25 tick), `story._dialogs` (test chỉ chụp lúc không có hộp thoại mở), `world.cam_pos` (camera là input, mỗi tick được nạp lại). Ba biến này vẫn có trong snapshot (JSON chụp lại trùng từng byte) |
+| Ảnh có cửa sổ `enemies/world/story/drops_shots.sh` (56 ảnh, `--fixed-fps 60`) | chạy 2 lần cùng code: 49 ảnh trùng nhau, 7 ảnh vốn lệch (map2_houses 0.6, intro_m99 6.5/9.0, m0_ayumi cả 4) | **49/49 ảnh lặp lại được trùng từng pixel với mốc**; 7 ảnh vốn lệch vẫn lệch, không dùng để kết luận |
+
+Bằng chứng: `review/2026-11-07/m1_sim_step/` (`before/`, `after/`: log từng test; `pixel_compare.txt` so đủ 56 ảnh; `after/shots/`
+14 ảnh mẫu, một ảnh mỗi kịch bản; bộ đủ 56 ảnh chỉ giữ local trong `/tmp/claude-501/shots_*`, không commit vì nặng 67 MB).
+
+**`sim/` không còn tham chiếu tới view** (grep 2026-11-08 trên `remake/sim/`):
+`grep -rnE 'res://view|res://scripts/(ui|fx|main)|extends Node|get_tree|get_node|\bInput\.|\bUI\.|\bGame\.|\bEngine\.|DisplayServer|Camera2D|CanvasItem|queue_redraw|draw_'`
+→ chỉ còn `draw_x/draw_y` (biến luật `hG/hH` của golem) và chữ trong comment (đã sửa comment cho đúng). `world.view` /
+`view_size()` trong sim là kích thước camera nhận qua input. Sim vẫn dùng: autoload `S` (biến luật gốc), `Data` (dữ liệu map),
+`OS.get_cmdline_user_args()` (cờ `--log` in debug trong `player_sim`). Không còn gọi `Game`, `UI`, `Input`, node nào.
+
+**Còn lại / giới hạn (đã biết)**
+- Di chuyển native vẫn theo frame (`frame(dt)`), lối ra vẫn kiểm mỗi frame trong `WorldView` (có fade `await`): đổi sang tick
+  là đổi hành vi, để mục 100 Hz / mục sau.
+- Restore lúc đang mở hộp thoại: sim có trạng thái hộp (`story._dialogs`), nhưng view không tự hiện lại hộp. Save game vẫn là
+  `S.save_game()` cũ (mục Save/load M2 sẽ dùng snapshot).
+- Các view vẫn giữ API cũ (chuyển tiếp) cho test và debug.
 
 ## M1 mục 2e: projectiles, rà soát (2026-11-07, nhánh `m1-projectiles-split`)
 Không sửa `sim/` hay `view/`, nên không có diff test hay ảnh mới. Cách rà (chạy grep trên `remake/`, đọc `a.java` của NinjaSchool1):

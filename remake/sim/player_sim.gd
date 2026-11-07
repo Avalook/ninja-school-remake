@@ -11,11 +11,11 @@
 # like the original did.
 #
 # Boundaries (see STATUS.md, M1):
-#   input   raw_key: Callable(k) -> bool, is_play: Callable() -> bool, injected by the view (read live).
+#   input   raw_key: Callable(k) -> bool, is_play: Callable() -> bool, set by sim/sim.gd from its input
+#           (keys, mode); `world` is sim/world_sim.gd (flags, objects, enemies, story, camera given as input).
 #   output  presentation requests go to `events` (fx, text, shake, hitstop, message, changed, run_dust);
-#           the view drains them right after every call.
-#   still coupled (later M1 items): world (collision flags, objects, enemies, story, camera in _st_dead),
-#           and native locomotion runs on display dt, not on the 25 Hz tick.
+#           flush() hands them to on_event at the end of every call from outside.
+#   still: native locomotion runs on display dt (frame()), not on the 25 Hz tick (ROADMAP item 100 Hz).
 extends RefCounted
 
 const HZ := 25.0
@@ -31,7 +31,9 @@ const NATIVE := [1, 2, 3, 4]
 var world
 var raw_key: Callable = func(_k: String) -> bool: return false
 var is_play: Callable = func() -> bool: return false
-var events: Array = []         # presentation requests since the last drain
+var events: Array = []         # presentation requests since the last flush
+var on_event: Callable         # sim/sim.gd: receives them at the end of every call from outside (place, hurt,
+                               # carry, tick, frame), in the order the old PlayerView drained them
 
 var pos := Vector2.ZERO        # feet (fh, fi), smooth
 var vel := Vector2.ZERO        # px/s (native states)
@@ -53,6 +55,14 @@ var _pressed := {}             # edge-triggered keys latched until consumed
 var _held_prev := {}
 
 # ---------------- events (drained by the view) ----------------
+func flush() -> void:
+	if not on_event.is_valid() or events.is_empty():
+		return
+	var evs: Array = events
+	events = []
+	for e in evs:
+		on_event.call(e)
+
 func _fx(kind: String, p: Vector2, dir := 1) -> void:
 	events.append({"t": "fx", "kind": kind, "p": p, "dir": dir})
 
@@ -91,6 +101,10 @@ func take(k: String) -> bool:
 
 # ---------------- placement ----------------
 func place(p: Vector2, f := 0) -> void:
+	_place_rule(p, f)
+	flush()
+
+func _place_rule(p: Vector2, f := 0) -> void:
 	pos = p
 	S.fh = int(p.x)
 	S.fi = int(p.y)
@@ -133,6 +147,10 @@ func is_native() -> bool:
 
 # ---------------- original a(n, dir): player takes damage ----------------
 func hurt(n: int, dir: int) -> void:
+	_hurt_rule(n, dir)
+	flush()
+
+func _hurt_rule(n: int, dir: int) -> void:
 	if int(S.A) == 6 or S.fq < 0 or S.fz:
 		return
 	S.ff = -1
@@ -165,6 +183,10 @@ func _enter_tick_state() -> void:
 
 # ---------------- per display frame (alpha = Game.acc / 0.04, interpolation of tick states) ----------------
 func frame(dt: float, alpha: float) -> void:
+	_frame_rule(dt, alpha)
+	flush()
+
+func _frame_rule(dt: float, alpha: float) -> void:
 	_poll_edges()
 	if is_play.call() or scripted:
 		if is_native():
@@ -317,6 +339,10 @@ func _mount_bike() -> bool:
 	return false
 
 func carry(d: Vector2, y: float) -> void:
+	_carry_rule(d, y)
+	flush()
+
+func _carry_rule(d: Vector2, y: float) -> void:
 	if is_native():
 		pos += d
 		pos.y = y
@@ -437,6 +463,10 @@ func _resume_native() -> void:
 
 # ---------------- 25 Hz: tick states + global timers ----------------
 func tick() -> void:
+	_tick_rule()
+	flush()
+
+func _tick_rule() -> void:
 	if world == null or world.map_id < 0 or (not is_play.call() and not scripted):
 		return
 	# MP drain of stealth / Xích Mao (original: every 3 ticks)

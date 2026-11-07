@@ -13,6 +13,7 @@ const TILE := 24.0
 const VIEW := Vector2(480, 270)
 
 var sim = WorldSim.new()
+var external_tick := false     # main.gd: sim/sim.gd step() runs the object rules (objects_view does not tick)
 
 var map_id: int:
 	get: return sim.map_id
@@ -42,9 +43,8 @@ var story = null:
 		sim.story = v
 var objects                    # view/world/objects_view.gd (draws blocks / bikes; the rules are sim.objects)
 var camera: Camera2D
-var cam_pos: Vector2:
-	get: return sim.cam_pos
-	set(v): sim.cam_pos = v
+var cam_pos := Vector2.ZERO     # eased camera target (no shake); the rules get it as input (camera_input)
+var cam_shown := Vector2.ZERO   # camera.position (with shake)
 var cam_override_active := false
 var cam_override_target := Vector2.ZERO
 
@@ -108,18 +108,29 @@ func _fit_camera() -> void:
 	var vs := get_viewport_rect().size
 	var z: float = vs.y / VIEW.y
 	camera.zoom = Vector2(z, z)
-	sim.view = view_size()
+	_push_camera()
 
 func view_size() -> Vector2:
 	return get_viewport_rect().size / camera.zoom
 
 func _set_camera(p: Vector2) -> void:
 	camera.position = p
-	sim.cam_shown = p
+	cam_shown = p
+
+# What the rules of the original read of the camera (monsters wake up on screen, death fall, shots leave the
+# screen): main.gd / player_view.gd pass it in the input of sim.step() / sim.frame(). _push_camera() hands it
+# over right away at the moments a rule needs a camera that was just reset (map load, cutscene snap).
+func camera_input() -> Dictionary:
+	return {"pos": cam_pos, "shown": cam_shown, "view": view_size()}
+
+func _push_camera() -> void:
+	sim.cam_pos = cam_pos
+	sim.cam_shown = cam_shown
+	sim.view = view_size()
 
 # ---------------- map (rules in the sim) ----------------
 func load_map(id: int, spawn: Vector2, facing := 0) -> void:
-	sim.view = view_size()
+	_push_camera()
 	sim.load_map(id, spawn, facing)
 
 func flags_at(x: float, y: float) -> int:
@@ -156,6 +167,7 @@ func _on_event(ev: Dictionary) -> void:
 			cam_vy[0] = 0.0
 			cam_pos = _camera_target(true)
 			_set_camera(cam_pos)
+			_push_camera()
 		"map_loaded":
 			map_loaded.emit(ev["id"])
 		"fx":
@@ -197,6 +209,7 @@ func camera_snap() -> void:
 	cam_vx[0] = 0.0
 	cam_vy[0] = 0.0
 	_set_camera(cam_pos)
+	_push_camera()
 
 func camera_override(target: Vector2, active: bool) -> void:
 	cam_override_active = active
@@ -205,7 +218,6 @@ func camera_override(target: Vector2, active: bool) -> void:
 func _process(delta: float) -> void:
 	if map_id < 0:
 		return
-	sim.view = view_size()
 	# look-ahead in the facing direction (original bI * fp), eased so turning never snaps
 	if player:
 		var want_lead: float = view_size().x / 6.0 * player.facing
@@ -259,7 +271,7 @@ func _check_exits() -> void:
 		return
 	_transition = true
 	await UI.fade_out(0.25)
-	sim.view = view_size()
+	_push_camera()
 	sim.take_exit(ex["target"], ex["spawn"])
 	await UI.fade_in(0.25)
 	_transition = false

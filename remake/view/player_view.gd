@@ -1,8 +1,9 @@
 # PlayerView: the player's Node2D. Draws the hero (view/hero_anim.gd) and the bike, feeds input to the
 # rules (sim/player_sim.gd) and turns the sim's events into FX / UI. No game rule lives here.
 # Keeps the old player.gd API (pos, vel, facing, grounded, scripted, script_keys, near_npc, state, place(),
-# hurt(), tick(), carry(), is_standing(), ...) by forwarding to the sim, so main / story / world / objects /
-# enemies / cutscene did not change.
+# hurt(), tick(), carry(), is_standing(), ...) by forwarding to the sim. In the game (main.gd) the other rule
+# modules call sim/player_sim.gd directly through sim/sim.gd; this view gives sim.gd the keys (input_keys) and
+# runs sim.frame() each display frame, and handles the player's events (_on_event).
 extends Node2D
 
 const PlayerSim := preload("res://sim/player_sim.gd")
@@ -11,6 +12,7 @@ var sim = PlayerSim.new()
 var state := "idle"            # animation state name (story reads it)
 var anim
 var external_tick := false     # main drives the order: projectiles -> player -> monsters (original run())
+var root = null                # sim/sim.gd (main.gd): frame() goes through it with this frame's input
 
 var world:                     # view/world_view.gd (FX, bike drawing); the sim reads its world_sim
 	set(v):
@@ -43,6 +45,7 @@ var land_t: float:
 	get: return sim.land_t
 
 func _init() -> void:
+	sim.on_event = _on_event
 	sim.raw_key = _raw
 	sim.is_play = func() -> bool: return Game.mode == "play"
 
@@ -52,6 +55,16 @@ func _ready() -> void:
 	anim = preload("res://view/hero_anim.gd").new()
 	anim.preload_all()
 	z_index = 5
+
+const KEYS := ["left", "right", "jump", "down", "attack", "jump_left", "jump_right", "weapon", "stealth",
+	"transform", "hp", "mp"]
+
+# the keys the player rules read, now (input of sim.step() / sim.frame())
+func input_keys() -> Dictionary:
+	var k := {}
+	for n in KEYS:
+		k[n] = _raw(n)
+	return k
 
 func _raw(k: String) -> bool:
 	match k:
@@ -72,19 +85,15 @@ func _raw(k: String) -> bool:
 # ---------------- forwarded rule calls (each drains the sim events right away, keeping the old order) ----------------
 func place(p: Vector2, f := 0) -> void:
 	sim.place(p, f)
-	_drain()
 
 func hurt(n: int, dir: int) -> void:
 	sim.hurt(n, dir)
-	_drain()
 
 func tick() -> void:
 	sim.tick()
-	_drain()
 
 func carry(d: Vector2, y: float) -> void:
 	sim.carry(d, y)
-	_drain()
 
 func is_standing() -> bool:
 	return sim.is_standing()
@@ -98,29 +107,28 @@ func hitbox() -> Rect2:
 func attack_box() -> Rect2:
 	return sim.attack_box()
 
-func _drain() -> void:
-	if sim.events.is_empty():
-		return
-	var evs: Array = sim.events
-	sim.events = []
-	for e in evs:
-		match e["t"]:
-			"fx": world.spawn_fx(e["kind"], e["p"], e["dir"])
-			"run_dust":
-				if randf() < 0.25:
-					world.spawn_fx("dust", e["p"], e["dir"])
-			"text": world.float_text(e["s"], e["p"], e["c"])
-			"shake": world.screen_shake(e["v"])
-			"hitstop": Game.hitstop(e["v"])
-			"message": UI.message(e["s"])
-			"changed": S.changed.emit()
+# player events (sim/player_sim.gd flushes them at the end of every call, as this view used to drain them)
+func _on_event(e: Dictionary) -> void:
+	match e["t"]:
+		"fx": world.spawn_fx(e["kind"], e["p"], e["dir"])
+		"run_dust":
+			if randf() < 0.25:
+				world.spawn_fx("dust", e["p"], e["dir"])
+		"text": world.float_text(e["s"], e["p"], e["c"])
+		"shake": world.screen_shake(e["v"])
+		"hitstop": Game.hitstop(e["v"])
+		"message": UI.message(e["s"])
+		"changed": S.changed.emit()
 
 # ---------------- per frame ----------------
 func _process(dt: float) -> void:
 	if world == null or world.map_id < 0:
 		return
-	sim.frame(dt, clampf(Game.acc / 0.04, 0.0, 1.0))
-	_drain()
+	var alpha := clampf(Game.acc / 0.04, 0.0, 1.0)
+	if root:
+		root.frame(dt, {"keys": input_keys(), "camera": world.camera_input(), "alpha": alpha})
+	else:
+		sim.frame(dt, alpha)
 	state = _state_name()
 	anim.update(self, dt)
 	queue_redraw()

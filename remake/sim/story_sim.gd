@@ -3,7 +3,8 @@
 #   cutscenes      sim/story/cutscene.gd  (D/C L4660-4784, ad() L6992, V() L5881)
 #   NPC / quests   sim/story/quests.gd    (talk switch L8361, z() L2393, L(n) L11672, u() L2112)
 #   items / travel sim/story/items.gd     (aq() L14174, hot keys L8315, world map d=6/7, ap() L14009)
-# The view (view/story_view.gd) owns UI, menus, input, Game.mode and the camera node.
+# The view (view/story_view.gd) owns UI, menus, input, Game.mode and the camera node; the sim asks for a mode
+# with the "mode" event.
 #
 # Effects leave the sim as events through on_event (called immediately, in the original order):
 #   {"t": "say", "lines", "anchor", "id"}   dialogue box; the view calls close_dialog(id) when it is closed
@@ -11,8 +12,8 @@
 #   "weapon" (tier) | "changed" | "cutscene_started" (group, seq) | "cutscene_finished" (seq) | "to_title"
 #   "mode" (m) | "warp" (map, spawn) | "camera" (target, active) | "camera_snap"
 # Without on_event they are queued in `out`.
-# Still kept (World milestone): reads/writes `world` (map json, set_flag_tile) and `player` (pos, facing,
-# is_standing, place, scripted, script_keys), like sim/player_sim.gd.
+# Reads/writes `world` (sim/world_sim.gd: map json, set_flag_tile) and `player` (sim/player_sim.gd: pos,
+# facing, is_standing, place, scripted, script_keys), wired by sim/sim.gd.
 extends RefCounted
 
 const Cutscene := preload("res://sim/story/cutscene.gd")
@@ -20,7 +21,7 @@ const Quests := preload("res://sim/story/quests.gd")
 const Items := preload("res://sim/story/items.gd")
 
 var st              # original state (autoload S, or a state_base instance in tests)
-var world           # World node (map json, collision flags)
+var world           # sim/world_sim.gd (map json, collision flags)
 var player          # player (pos, facing, is_standing, place, scripted, script_keys)
 var data            # Data autoload (map(id), static_data) - optional
 

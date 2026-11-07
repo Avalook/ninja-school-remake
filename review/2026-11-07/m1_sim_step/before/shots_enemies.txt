@@ -1,0 +1,4 @@
+map4_boar: 4 shots, script errors 0
+map9_classmates: 4 shots, script errors 0
+map97_river: 4 shots, script errors 0
+map6_monsters: 4 shots, script errors 0

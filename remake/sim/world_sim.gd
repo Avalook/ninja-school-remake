@@ -2,8 +2,9 @@
 # Tile data/flags come from remake/data/maps (original q(int)): collision flags (2 floor, 4/8 walls, 0x40 water,
 # 0x800 springy planks + 0x400 "pressed" marker, 0x1000 vines ...), the map exits jr/js/jt/ju and the per-map
 # variables of the original. The camera is presentation (view/world_view.gd) but the rules of the original read
-# it (monsters wake up on screen, death falls until off screen), so the view writes what it shows into cam_pos /
-# cam_shown / view every frame. Things the view must do in the middle of a rule (reset the camera after the
+# it (monsters wake up on screen, death falls until off screen), so what the view shows comes in as input
+# (sim/sim.gd step()/frame() input.camera -> cam_pos / cam_shown / view; the view also pushes it right after a
+# camera reset). Things the view must do in the middle of a rule (reset the camera after the
 # monsters are set up, the map_loaded signal, FX, popups) go out through on_event at the moment they happen.
 extends RefCounted
 
@@ -18,10 +19,10 @@ var tiles: Array = []
 var flags: Array = []
 var exits := {}
 
-var data = null               # Data autoload (map json, static_data), given by the view
-var player = null             # player view (forwards to sim/player_sim.gd, flushes its events)
-var enemies = null            # enemies view (same reason)
-var story = null              # story view (player_sim._u() quest-11 counter); null in tests
+var data = null               # Data autoload (map json, static_data), given by sim/sim.gd
+var player = null             # sim/player_sim.gd (wired by sim/sim.gd)
+var enemies = null            # sim/enemies_sim.gd
+var story = null              # sim/story_sim.gd (player_sim._u() quest-11 counter); null in tests
 var objects = Objects.new()   # push blocks / rafts / motorbikes
 var on_event: Callable        # view: camera_reset, map_loaded, fx, popup
 

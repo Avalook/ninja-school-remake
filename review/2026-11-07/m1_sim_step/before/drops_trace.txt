@@ -1,0 +1,1 @@
+drops_trace: 6000 ticks, 89 ticks with pickup events, 0 differing lines, script errors 0
