@@ -254,3 +254,83 @@ func M_startApp_() -> void:
 func _hx_start_loader() -> void:
 	loader_requests += 1
 	call("M_run_")
+
+# ---------- Graphics shim: the original paint code records draw commands ----------
+# Command layout (all coords in logical screen pixels, already translated):
+#  [0 FILL, x,y,w,h,color,clip]  [1 RECT, x,y,w,h,color,clip]  [2 RRECT_FILL,...]  [3 RRECT,...]
+#  [4 IMG, img, x,y,anchor, transform, sx,sy,sw,sh, clip, tx,ty]
+#  [5 STR, text, x,y,anchor,color,clip]   [6 TEXT(style), text, x,y,align, style, clip]
+var _gq: Array = []
+var _gq_tag := "paint"
+var _gq_tx := 0
+var _gq_ty := 0
+var _gq_col := 0
+var _gq_clip := Rect2i(0, 0, 4096, 4096)
+
+func _gq_begin() -> void:
+	_gq = []
+	_gq_tag = "paint"
+	_gq_tx = 0
+	_gq_ty = 0
+	_gq_col = 0
+	_gq_clip = Rect2i(-8192, -8192, 16384, 16384)
+
+func _gx_translate(x, y) -> void:
+	_gq_tx += int(x)
+	_gq_ty += int(y)
+
+func _gx_getTranslateX() -> int:
+	return _gq_tx
+
+func _gx_getTranslateY() -> int:
+	return _gq_ty
+
+func _gx_setColor(c, g2 = null, b2 = null) -> void:
+	if g2 != null:
+		_gq_col = (int(c) << 16) | (int(g2) << 8) | int(b2)
+	else:
+		_gq_col = int(c) & 0xFFFFFF
+
+func _gx_setFont(_f) -> void:
+	pass
+
+func _gx_setClip(x, y, w, h) -> void:
+	_gq_clip = Rect2i(int(x) + _gq_tx, int(y) + _gq_ty, int(w), int(h))
+
+func _gx_fillRect(x, y, w, h) -> void:
+	_gq.append([0, int(x) + _gq_tx, int(y) + _gq_ty, int(w), int(h), _gq_col, _gq_clip, _gq_tx, _gq_ty, _gq_tag])
+
+func _gx_drawRect(x, y, w, h) -> void:
+	_gq.append([1, int(x) + _gq_tx, int(y) + _gq_ty, int(w), int(h), _gq_col, _gq_clip, _gq_tx, _gq_ty, _gq_tag])
+
+func _gx_fillRoundRect(x, y, w, h, _a, _b) -> void:
+	_gq.append([2, int(x) + _gq_tx, int(y) + _gq_ty, int(w), int(h), _gq_col, _gq_clip, _gq_tx, _gq_ty, _gq_tag])
+
+func _gx_drawRoundRect(x, y, w, h, _a, _b) -> void:
+	_gq.append([3, int(x) + _gq_tx, int(y) + _gq_ty, int(w), int(h), _gq_col, _gq_clip, _gq_tx, _gq_ty, _gq_tag])
+
+func _gx_drawImage(img, x, y, anchor) -> void:
+	if img == null:
+		return
+	_gq.append([4, img, int(x) + _gq_tx, int(y) + _gq_ty, int(anchor), 0, 0, 0, img["w"], img["h"], _gq_clip, _gq_tx, _gq_ty, _gq_tag])
+
+func _gx_drawRegion(img, sx, sy, sw, sh, t, x, y, anchor) -> void:
+	if img == null:
+		return
+	_gq.append([4, img, int(x) + _gq_tx, int(y) + _gq_ty, int(anchor), int(t), int(sx), int(sy), int(sw), int(sh), _gq_clip, _gq_tx, _gq_ty, _gq_tag])
+
+func _gx_drawString(s, x, y, anchor) -> void:
+	_gq.append([5, str(s), int(x) + _gq_tx, int(y) + _gq_ty, int(anchor), _gq_col, _gq_clip, _gq_tx, _gq_ty, _gq_tag])
+
+func _gx_drawLine(x1, y1, x2, y2) -> void:
+	_gq.append([0, mini(x1, x2) + _gq_tx, mini(y1, y2) + _gq_ty, absi(x2 - x1) + 1, absi(y2 - y1) + 1, _gq_col, _gq_clip, _gq_tx, _gq_ty, _gq_tag])
+
+# Midlet bitmap-font text (style 0 = main font, 1 = font2 centered, 2 = numeric font n)
+func M_a_osiii(_g, s, x, y, align) -> void:
+	_gq.append([6, str(s), int(x) + _gq_tx, int(y) + _gq_ty, int(align), 0, _gq_clip, _gq_tx, _gq_ty, _gq_tag])
+
+func M_b_osiii(_g, s, x, y, _align) -> void:
+	_gq.append([6, str(s), int(x) + _gq_tx, int(y) + _gq_ty, 2, 1, _gq_clip, _gq_tx, _gq_ty, _gq_tag])
+
+func M_a_osiiii(_g, s, n, x, y, align) -> void:
+	_gq.append([6, str(s), int(x) + _gq_tx, int(y) + _gq_ty, int(align), 10 + int(n), _gq_clip, _gq_tx, _gq_ty, _gq_tag])

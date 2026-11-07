@@ -40,11 +40,26 @@ func key_down(k: int) -> void:
 func key_up(k: int) -> void:
 	keyReleased_i(k)
 
+var prev_cam := Vector2.ZERO
+var cur_cam := Vector2.ZERO
+var prev_player := Vector2.ZERO
+var cur_player := Vector2.ZERO
+var prev_gq: Array = []
+
 func tick() -> void:
 	frame_ended = false
+	# PC: answer the two startup prompts (sound on, high quality) — see PC_DEVIATIONS
+	if d == 10 and not lo:
+		aV[12] = true
+	prev_cam = cur_cam
+	prev_player = cur_player
+	prev_gq = _gq
 	# The original keeps aW/aX in sync with the canvas each frame in some states.
 	run_tick()
 	ticks += 1
+	# the original repaints once per loop iteration: record this frame's draw commands
+	_gq_begin()
+	paint_o(null)
 	# Licensing screen (d==13, Y==0) is bypassed: behave like choosing "1. Tiếp tục".
 	if d == 13 and Y == 0:
 		d = 4

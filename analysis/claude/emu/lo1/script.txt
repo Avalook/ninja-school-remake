@@ -1,0 +1,14 @@
+wait 2500
+tap -7
+wait 1500
+tap -6
+wait 3000
+vars d ba v
+tap -5
+wait 1000
+vars v d A fh fi eH
+wait 1500
+vars v d A fh fi eH fV fW fX gc
+wait 6000
+vars v d A fh fi eH fV fW fX gc
+vars q r p aW aX aY aZ bF bG fT fU fL fM iR iS

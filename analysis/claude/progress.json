@@ -1,14 +1,44 @@
 {
-  "updated_at": "2026-11-07",
-  "owner": "claude (Opus 5.5) session in worktree claude/ninja-pc-game-dev-f010c2",
-  "status": "in_progress",
-  "artifacts": {
-    "j2me_emulator": {
-      "path": "analysis/claude/emu",
-      "what": "Minimal J2ME (MIDP lcdui/rms/media stubs over AWT) runtime that executes the ORIGINAL NinjaSchool1.jar bytecode headless, with scripted key input, screenshots, static-field dumps and text capture. Class a/Midlet patched only in a copy (emu/pcls) so Class.getResourceAsStream routes to the classpath (Java9+ module issue); raw JAR untouched.",
-      "run": "analysis/claude/emu/run.sh <outdir> < script  (commands: wait ms | tap key [n] | hold key ms | press/release key | shot name | dump name | vars f1 f2 | set f v | call method args | texts name)",
-      "verified": "boots, sound/quality prompts, title menu, New Game map99 intro cutscene (gate + principal dialogue) rendered identically to original assets"
-    }
+ "updated_at": "2026-11-07",
+ "owner": "claude (Opus 5.5) session in worktree claude/ninja-pc-game-dev-f010c2",
+ "status": "in_progress",
+ "artifacts": {
+  "j2me_emulator": {
+   "path": "analysis/claude/emu",
+   "what": "Minimal J2ME (MIDP lcdui/rms/media stubs over AWT) runtime that executes the ORIGINAL NinjaSchool1.jar bytecode headless, with scripted key input, screenshots, static-field dumps and text capture. Class a/Midlet patched only in a copy (emu/pcls) so Class.getResourceAsStream routes to the classpath (Java9+ module issue); raw JAR untouched.",
+   "run": "analysis/claude/emu/run.sh <outdir> < script  (commands: wait ms | tap key [n] | hold key ms | press/release key | shot name | dump name | vars f1 f2 | set f v | call method args | texts name)",
+   "verified": "boots, sound/quality prompts, title menu, New Game map99 intro cutscene (gate + principal dialogue) rendered identically to original assets"
   },
-  "next": ["dump static tables + per-map runtime state from emulator", "port core logic to Godot", "Blender hero cutout rig + sprite sheets", "environment layers"]
+  "transpiler": {
+   "path": "tools/transpile (j2gd.py, bc2gd.py, build.sh)",
+   "what": "CFR a.java+Midlet.java -> game/core/orig.gd (all structured methods incl. draw routines); javap bytecode of a.run()/a.paint() -> game/core/orig_run.gd state machines. Rebuild: tools/transpile/build.sh",
+   "status": "0 translation errors; parses and runs in Godot 4.7.2"
+  },
+  "godot_game": {
+   "path": "game/",
+   "what": "Godot project: core (original logic, 25Hz), render/cmd_renderer (draw commands, 60fps interpolation, HD replacement by routine tag), render/hd_world, render/overlay (new HUD/particles), ui/controls (remap)",
+   "status": "boots -> New Game -> map99 intro cutscene plays; trace vs emulator lockstep: 185/191 frames identical (diffs = camera ±1px during loader timing)"
+  },
+  "hd_upscale": {
+   "path": "tools/art/upscale_scale4x.py -> game/hd_res",
+   "what": "Scale4x of all 362 original PNG (crisp base for tiles/NPC/monsters)"
+  }
+ },
+ "next": [
+  "play map99->map4 boss, all maps",
+  "menus/shop/inventory UI reskin",
+  "save/load UI",
+  "Mac export",
+  "full playthrough verification"
+ ],
+ "verified_runtime": [
+  "emulator lockstep trace compare (analysis/claude/emu/cmp_trace.py)",
+  "Godot headless boot+intro",
+  "Godot windowed screenshots of intro"
+ ],
+ "in_progress": [
+  "Blender hero cutout rig 46 frames (subagent) -> art/hero",
+  "Blender parallax biomes (subagent) -> art/env",
+  "camera vertical offset bug in renderer (investigating)"
+ ]
 }

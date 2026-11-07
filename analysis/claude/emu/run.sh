@@ -1,7 +1,7 @@
 #!/bin/bash
 # usage: run.sh outdir < script ; makes sheet.png of shots in order
 D=$(cd "$(dirname "$0")"; pwd); OUT=$1; rm -rf "$D/$OUT"; mkdir -p "$D/$OUT"; cat > "$D/$OUT/script.txt"
-cd "$D"; timeout ${T:-120} /opt/homebrew/opt/openjdk@21/bin/java -Djava.awt.headless=true -Dmicroedition.platform=Nokia6300 -cp pcls:classes:../../../NinjaSchool1.jar harness.Emu "$OUT/script.txt" "$OUT" 2>&1 | grep -E '^\[vars\]|Exception|err' | head -30
+cd "$D"; timeout ${T:-120} /opt/homebrew/opt/openjdk@21/bin/java -Djava.awt.headless=true -Dmicroedition.platform=Nokia6300 $JOPTS -cp pcls:classes:../../../NinjaSchool1.jar harness.Emu "$OUT/script.txt" "$OUT" 2>&1 | grep -E '^\[vars\]|Exception|err' | head -30
 python3 - "$D/$OUT" <<'P'
 import sys,os,re
 from PIL import Image

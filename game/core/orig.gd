@@ -3074,6 +3074,49 @@ func a_iiiiiiiS(_n, _n2, _n3, _n4, _n5, _n6, _n7, _stringArray):
     dN[_n] = _n5
     dy[_n] = _stringArray
 
+func a_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "a_o"
+    __a_o(_graphics)
+    _gq_tag = _tp
+
+func __a_o(_graphics):
+    var _n
+    if (b and (not a)):
+        _gx_setColor(i)
+        _gx_fillRect(0, 0, q, p)
+        _n = _hx_mod((fR >> 1), 24)
+        while (_n < q):
+            _gx_drawImage(s[0], _n, j, 0)
+            _n += 24
+        _n = _hx_mod((fR >> 2), 24)
+        while (_n < q):
+            _gx_drawImage(s[1], _n, k, 0)
+            _n += 24
+        _n = _hx_mod((fR >> 4), 64)
+        while (_n < q):
+            _gx_drawImage(s[3], _n, m, 0)
+            _n += 64
+        _gx_drawImage(u, g, h, 3)
+        _n = 0
+        while (_n < 2):
+            _gx_drawImage(t, e[_n], f[_n], 3)
+            _n += 1
+        _n = _hx_mod((fR >> 3), 192)
+        while (_n < q):
+            _gx_drawImage(s[2], _n, l, 0)
+            _n += 192
+        return
+    _gx_setColor(i)
+    _gx_fillRect(0, 0, q, r)
+    if a:
+        return
+    _gx_drawImage(u, g, h, 3)
+    _n = 0
+    while (_n < 2):
+        _gx_drawImage(t, e[_n], f[_n], 3)
+        _n += 1
+
 func a_iiii(_n, _n2, _n3, _n4):
     ge = _n
     gf = _n2
@@ -3872,6 +3915,29 @@ func b_iiiiii(_n, _n2, _n3, _n4, _n5, _n6):
     cO[_n] = ((_n5 * 24) + 12)
     cu[_n] = af[cG[_n]]
 
+func b_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "b_o"
+    __b_o(_graphics)
+    _gq_tag = _tp
+
+func __b_o(_graphics):
+    if fz:
+        B = (25 if (_hx_mod(w, 20) > 2) else 26)
+    if (fp == 1):
+        _gx_drawImage(er[f_as[B][0][0]], (fh + f_as[B][0][1]), (fi - f_as[B][0][2]), 0)
+        _gx_drawImage(et[f_as[B][1][0]], (fh + f_as[B][1][1]), (fi - f_as[B][1][2]), 0)
+        _gx_drawImage(eg[f_as[B][2][0]], (fh + f_as[B][2][1]), (fi - f_as[B][2][2]), 0)
+        if (ff != (-1)):
+            _gx_drawImage(eE[ff], (fh - at[ff]), (fi - au[ff]), 0)
+            return
+    else:
+        _gx_drawRegion(er[f_as[B][0][0]], 0, 0, _hx_iw(er[f_as[B][0][0]]), _hx_ih(er[f_as[B][0][0]]), 2, (fh - f_as[B][0][1]), (fi - f_as[B][0][2]), 24)
+        _gx_drawRegion(et[f_as[B][1][0]], 0, 0, _hx_iw(et[f_as[B][1][0]]), _hx_ih(et[f_as[B][1][0]]), 2, (fh - f_as[B][1][1]), (fi - f_as[B][1][2]), 24)
+        _gx_drawRegion(eg[f_as[B][2][0]], 0, 0, _hx_iw(eg[f_as[B][2][0]]), _hx_ih(eg[f_as[B][2][0]]), 2, (fh - f_as[B][2][1]), (fi - f_as[B][2][2]), 24)
+        if (ff != (-1)):
+            _gx_drawRegion(eE[ff], 0, 0, _hx_iw(eE[ff]), _hx_ih(eE[ff]), 2, (fh + at[ff]), (fi - au[ff]), 24)
+
 func b_iiiii(_n, _n2, _n3, _n4, _n5):
     var _n6
     var _n7
@@ -4416,6 +4482,40 @@ func c_iii(_n, _n2, _n3):
     iw[_n] = ((_n3 * jh) + 24)
     ix[_n] = 1
 
+func c_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "c_o"
+    __c_o(_graphics)
+    _gq_tag = _tp
+
+func __c_o(_graphics):
+    var _n
+    if bh:
+        return
+    _gx_translate((-_gx_getTranslateX()), (-_gx_getTranslateY()))
+    _gx_drawImage(er[0], 0, 2, 0)
+    _gx_setColor(0)
+    _gx_drawRect(23, 2, (br + 1), 4)
+    _gx_drawRect(23, 8, (br + 1), 4)
+    _gx_drawRect(23, 14, (br + 1), 3)
+    _gx_setColor(16711680)
+    _n = _hx_div((G * br), H)
+    _gx_fillRect(24, 3, _n, 3)
+    _gx_setColor(5570560)
+    _gx_fillRect((_n + 24), 3, (br - _n), 3)
+    _gx_setColor(255)
+    _n = _hx_div((I * br), J)
+    _gx_fillRect(24, 9, _n, 3)
+    _gx_setColor(5570560)
+    _gx_fillRect((_n + 24), 9, (br - _n), 3)
+    _gx_setColor(7274435)
+    _n = _hx_div((N * br), ak[(M - 1)])
+    _gx_fillRect(24, 15, _n, 2)
+    _gx_setColor(19506)
+    _gx_fillRect((_n + 24), 15, (br - _n), 2)
+    M_a_osiiii(_graphics, ("lv:" + str(M)), 2, bt, 7, 0)
+    M_a_osiiii(_graphics, (str(dg) + "$"), 1, bu, 7, 0)
+
 func c_iiiii(_n, _n2, _n3, _n4, _n5):
     var _n6
     var _n7
@@ -4490,6 +4590,81 @@ func d_i(_n):
         c_iii(1, 7, 4)
         c_iii(2, 12, 3)
         c_iii(3, 22, 6)
+
+func d_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "d_o"
+    __d_o(_graphics)
+    _gq_tag = _tp
+
+func __d_o(_graphics):
+    var _n
+    c = false
+    _gx_translate((-_gx_getTranslateX()), (-_gx_getTranslateY()))
+    _gx_setClip((-1), (bj - 1), (bk + 2), 100)
+    _gx_setColor(0)
+    if (not bh):
+        _gx_fillRect(0, bj, bk, 15)
+        M_a_osiii(_graphics, n, 3, (bj + 3), 0)
+        M_a_osiii(_graphics, o, (bk - 3), (bj + 3), 1)
+        return
+    _gx_fillRect(0, (bj + 33), bk, 15)
+    M_a_osiii(_graphics, n, 3, (bj + 36), 0)
+    M_a_osiii(_graphics, o, (bk - 3), (bj + 36), 1)
+    _gx_setColor(4352)
+    _gx_fillRect(bm, bj, bo, 1)
+    _gx_fillRect(bm, (bj + 35), bo, 1)
+    _gx_fillRect(bm, (bj + 33), bo, 1)
+    _gx_fillRect(bm, (bj + 30), bo, 1)
+    _gx_fillRect(bm, (bj + 28), bo, 1)
+    _gx_fillRect(bm, (bj + 26), bo, 1)
+    _gx_fillRect(bm, (bj + 12), bo, 1)
+    _gx_fillRect(bm, (bj + 24), bo, 1)
+    _gx_fillRect(bm, (bj + 18), bo, 1)
+    _gx_fillRect(bm, (bj + 16), bo, 1)
+    _gx_fillRect(bm, (bj + 2), bo, 1)
+    _gx_fillRect(bm, (bj + 4), bo, 1)
+    _gx_fillRect(bm, (bj + 6), bo, 1)
+    _gx_fillRect(bm, (bj + 14), bo, 1)
+    _gx_setColor(15649843)
+    _gx_fillRect(bm, (bj + 1), bo, 1)
+    _gx_fillRect(bm, (bj + 5), bo, 1)
+    _gx_fillRect(bm, (bj + 17), bo, 1)
+    _gx_fillRect(bm, (bj + 34), bo, 1)
+    _gx_fillRect(bm, (bj + 29), bo, 1)
+    _gx_setColor(16767871)
+    _gx_fillRect(bm, (bj + 3), bo, 1)
+    _gx_fillRect(bm, (bj + 15), bo, 1)
+    _gx_fillRect(bm, (bj + 27), bo, 1)
+    _gx_setColor(3355443)
+    _gx_fillRect(bm, (bj + 7), bo, 5)
+    _gx_fillRect(bm, (bj + 19), bo, 5)
+    _gx_fillRect(bm, (bj + 31), bo, 2)
+    _gx_setColor(12281361)
+    _gx_fillRect(bm, (bj + 25), bo, 1)
+    _gx_fillRect(bm, (bj + 13), bo, 1)
+    _gx_drawImage(ei[0], 0, bj, 0)
+    _gx_drawImage(ei[1], (0 + bk), bj, 24)
+    _n = _hx_div((G * br), H)
+    _gx_setColor(7798784)
+    _gx_fillRect(bp, bq, _n, 2)
+    _gx_setColor(13369344)
+    _gx_fillRect(bp, (bq + 1), _n, 4)
+    _n = _hx_div((I * br), J)
+    _gx_setColor(119)
+    _gx_fillRect(bp, (bq + 12), _n, 2)
+    _gx_setColor(204)
+    _gx_fillRect(bp, (bq + 14), _n, (bv - 2))
+    M_a_osiiii(_graphics, ("" + str(dg)), 1, (bk - 18), (bj + 6), 2)
+    _n = _hx_div((N * bs), ak[(M - 1)])
+    _gx_setColor(94373)
+    _gx_fillRect(31, (bj + 31), _n, 1)
+    _gx_setColor(65535)
+    _gx_fillRect(31, (bj + 32), _n, 1)
+    M_a_osiiii(_graphics, ("" + str(M)), 2, 26, (bj + 11), 2)
+    _gx_drawImage(eF[fg], 43, (bj + 16), 3)
+    M_a_osiiii(_graphics, ("" + str(((V[0] + V[1]) + V[2]))), 2, (bk - 29), (bj + 19), 2)
+    M_a_osiiii(_graphics, ("" + str(((V[3] + V[4]) + V[5]))), 2, (bk - 9), (bj + 19), 2)
 
 func d_iii(_n, _n2, _n3):
     il = (_n + 1)
@@ -4977,6 +5152,28 @@ func e_i(_n):
         du = 252
         dv = 708
 
+func e_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "e_o"
+    __e_o(_graphics)
+    _gq_tag = _tp
+
+func __e_o(_graphics):
+    var _n
+    _gx_translate((-_gx_getTranslateX()), (-_gx_getTranslateY()))
+    _gx_setClip((-1), (-1), (aW + 2), (aX + 2))
+    _gx_setColor(0)
+    _gx_fillRect(0, 0, q, bx)
+    if bh:
+        _gx_fillRect(0, ((aX - bx) + 1), q, bx)
+    else:
+        _gx_fillRect(0, (aX - 13), aW, 13)
+    if fY:
+        _n = 0
+        while (_n < fZ.size()):
+            M_a_osiii(_graphics, fZ[_n], bF, (ga + (_n << 4)), 2)
+            _n += 1
+
 func e_ii(_n, _n2):
     fI = _n
     fJ = _n2
@@ -5043,6 +5240,47 @@ func f_i(_n):
         gr = fi
         gC = fp
         gu = 4
+
+func f_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "f_o"
+    __f_o(_graphics)
+    _gq_tag = _tp
+
+func __f_o(_graphics):
+    var _bl
+    var _n
+    var _n2
+    _gx_translate((-_gx_getTranslateX()), (-_gx_getTranslateY()))
+    _gx_setClip((-1), (-1), (aW + 2), (aX + 2))
+    iD = iH[iF].size()
+    _n = ((iJ - fS) - (iD << 4))
+    _bl = true
+    if (_n < 10):
+        _bl = false
+        _n = 10
+    _gx_setColor(16777215)
+    if a:
+        _gx_fillRect(iN, (_n - 5), iM, ((iD << 4) + 7))
+    else:
+        _gx_fillRoundRect(iN, (_n - 5), iM, ((iD << 4) + 7), 10, 10)
+    _gx_setColor(17408)
+    if a:
+        _gx_drawRect((iN - 1), (_n - 5), (iM + 1), ((iD << 4) + 7))
+    else:
+        _gx_drawRoundRect((iN - 1), (_n - 5), (iM + 1), ((iD << 4) + 7), 10, 10)
+    _n2 = 0
+    while (_n2 < iL):
+        M_b_osiii(_graphics, iH[iF][_n2], (iN + (iM >> 1)), (_n + (_n2 << 4)), 2)
+        _n2 += 1
+    if (iL < iH[iF].size()):
+        M_b_osiii(_graphics, iH[iF][iL].substr(0, (iK) - (0)), (iN + (iM >> 1)), (_n + (iL << 4)), 2)
+    _gx_setColor(0)
+    _gx_fillRect(0, (bj + 33), bk, 15)
+    if ((_bl and (iI > (fR + 10))) and (iI < ((fR + q) - 10))):
+        _gx_drawImage(ek, (iI - fR), ((iJ - fS) + 2), 17)
+    if (_hx_mod(w, 10) < 8):
+        M_a_osiii(_graphics, "Tiếp tục", bF, (aX - 13), 2)
 
 func f_ii(_n, _n2):
     ea = 1
@@ -5192,6 +5430,31 @@ func g_i(_n):
         a_iiiiiiiS(5, 5, 5, 12, 0, 0, 1000, _stringArray)
         a_iiiiiiiS(6, 3, 8, 12, 0, 0, 1000, _stringArray)
         y_i(8)
+
+func g_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "g_o"
+    __g_o(_graphics)
+    _gq_tag = _tp
+
+func __g_o(_graphics):
+    var _n
+    _n = 0
+    while (_n < dx):
+        if (((((dC[_n] + fl) >= fR) and ((dC[_n] - fl) <= (fR + q))) and (dD[_n] >= fS)) and ((dD[_n] - fk) <= (fS + r))):
+            if (dM[_n] == 1):
+                _gx_drawImage(ev[dK[_n]][aJ[dJ[_n]][0][0]], (dC[_n] + aJ[dJ[_n]][0][1]), (dD[_n] - aJ[dJ[_n]][0][2]), 0)
+                _gx_drawImage(et[aJ[dJ[_n]][1][0]], (dC[_n] + aJ[dJ[_n]][1][1]), (dD[_n] - aJ[dJ[_n]][1][2]), 0)
+                _gx_drawImage(eg[aJ[dJ[_n]][2][0]], (dC[_n] + aJ[dJ[_n]][2][1]), (dD[_n] - aJ[dJ[_n]][2][2]), 0)
+                if (dL[_n] != (-1)):
+                    _gx_drawImage(eE[dL[_n]], (dC[_n] - at[dL[_n]]), (dD[_n] - au[dL[_n]]), 0)
+            else:
+                _gx_drawRegion(ev[dK[_n]][aJ[dJ[_n]][0][0]], 0, 0, _hx_iw(ev[dK[_n]][aJ[dJ[_n]][0][0]]), _hx_ih(ev[dK[_n]][aJ[dJ[_n]][0][0]]), 2, (dC[_n] - aJ[dJ[_n]][0][1]), (dD[_n] - aJ[dJ[_n]][0][2]), 24)
+                _gx_drawRegion(et[aJ[dJ[_n]][1][0]], 0, 0, _hx_iw(et[aJ[dJ[_n]][1][0]]), _hx_ih(et[aJ[dJ[_n]][1][0]]), 2, (dC[_n] - aJ[dJ[_n]][1][1]), (dD[_n] - aJ[dJ[_n]][1][2]), 24)
+                _gx_drawRegion(eg[aJ[dJ[_n]][2][0]], 0, 0, _hx_iw(eg[aJ[dJ[_n]][2][0]]), _hx_ih(eg[aJ[dJ[_n]][2][0]]), 2, (dC[_n] - aJ[dJ[_n]][2][1]), (dD[_n] - aJ[dJ[_n]][2][2]), 24)
+                if (dL[_n] != (-1)):
+                    _gx_drawRegion(eE[dL[_n]], 0, 0, _hx_iw(eE[dL[_n]]), _hx_ih(eE[dL[_n]]), 2, (dC[_n] + at[dL[_n]]), (dD[_n] - au[dL[_n]]), 24)
+        _n += 1
 
 func g_ii(_n, _n2):
     var _n3
@@ -5412,6 +5675,29 @@ func h_i(_n):
         b_iiiiii(6, 62, 13, 34, 67, 6)
         b_iiiiii(7, 60, 9, 57, 64, 4)
 
+func h_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "h_o"
+    __h_o(_graphics)
+    _gq_tag = _tp
+
+func __h_o(_graphics):
+    _gx_setClip((-1), (-1), (aW + 2), (aX + 1))
+    a_o(_graphics)
+    _gx_translate((-fR), (-fS))
+    if a:
+        j_o(_graphics)
+    else:
+        k_o(_graphics)
+    i_o(_graphics)
+    g_o(_graphics)
+    b_o(_graphics)
+    r_o(_graphics)
+    l_o(_graphics)
+    e_o(_graphics)
+    if iC:
+        f_o(_graphics)
+
 func h_ii(_n, _n2):
     return iU[((_n2 * iP) + _n)]
     return 0
@@ -5486,6 +5772,20 @@ func i_i(_n):
         gW = (-1)
         gX = 0
 
+func i_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "i_o"
+    __i_o(_graphics)
+    _gq_tag = _tp
+
+func __i_o(_graphics):
+    var _n
+    _n = 0
+    while (_n < jq):
+        if (((((jn[_n] + jp[_n]) >= fR) and (jn[_n] <= (fR + q))) and (jo[_n] >= fS)) and ((jo[_n] - 14) <= (fS + r))):
+            M_a_osiii(_graphics, jm[_n], jn[_n], jo[_n], 0)
+        _n += 1
+
 func i_ii(_n, _n2):
     return iU[((_hx_div(_n2, jh) * iP) + _hx_div(_n, jh))]
     return 0
@@ -5543,6 +5843,40 @@ func j_i(_n):
         ib = (-1)
         hQ = 8000
         hP = 8000
+
+func j_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "j_o"
+    __j_o(_graphics)
+    _gq_tag = _tp
+
+func __j_o(_graphics):
+    var _n
+    var _n2
+    var _n3
+    _n = bz
+    while (_n < bD):
+        _n2 = bA
+        while (_n2 < bE):
+            _n3 = (iT[((_n2 * iP) + _n)] - 1)
+            if (_n3 != (-1)):
+                _gx_drawRegion(iW, 0, (_n3 * jh), 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+            if ((h_ii(_n, _n2) & 32) == 32):
+                _gx_drawRegion(iX, 0, (24 * _hx_mod(w, 4)), 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+            elif ((h_ii(_n, _n2) & 64) == 64):
+                if ((h_ii(_n, (_n2 - 1)) & 32) == 32):
+                    _gx_drawRegion(iX, 0, (24 * _hx_mod(w, 4)), 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+                elif ((h_ii(_n, (_n2 - 1)) & 8192) == 8192):
+                    _gx_drawRegion(iW, 0, 504, 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+                _gx_drawRegion(iY, 0, ((_hx_mod(w, 8) >> 2) * 24), 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+            if ((h_ii(_n, _n2) & 4096) == 4096):
+                if ((h_ii(_n, (_n2 - 1)) & 32) == 32):
+                    _gx_drawRegion(iX, 0, (24 * _hx_mod(w, 4)), 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+                elif ((h_ii(_n, (_n2 - 1)) & 8192) == 8192):
+                    _gx_drawRegion(iW, 0, 504, 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+                _gx_drawRegion(iW, 0, ((iT[((_n2 * iP) + _n)] - 1) * jh), 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+            _n2 += 1
+        _n += 1
 
 func j_iii(_n, _n2, _n3):
     var _n4
@@ -5728,6 +6062,42 @@ func k_i(_n):
         _nArrayArray5[2] = _nArray10
         hF = _nArrayArray5
 
+func k_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "k_o"
+    __k_o(_graphics)
+    _gq_tag = _tp
+
+func __k_o(_graphics):
+    var _n
+    var _n2
+    var _n3
+    _n = bz
+    while (_n < bD):
+        _n2 = bA
+        while (_n2 < bE):
+            _n3 = (iT[((_n2 * iP) + _n)] - 1)
+            if ((h_ii(_n, _n2) & 16) == 16):
+                ji = ((_n * jh) - fR)
+                jj = (ji - bF)
+                jl = _hx_div(((jh - 2) * jj), jh)
+                jk = (jl + bF)
+                _gx_drawRegion(iW, 0, (_n3 * jh), 24, 24, 0, (jk + fR), (_n2 * jh), 0)
+            elif (((h_ii(_n, _n2) & 256) != 256) and ((h_ii(_n, _n2) & 512) != 512)):
+                if ((h_ii(_n, _n2) & 32) == 32):
+                    _gx_drawRegion(iX, 0, (24 * _hx_mod(w, 4)), 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+                elif (((h_ii(_n, _n2) & 64) == 64) or ((h_ii(_n, _n2) & 4096) == 4096)):
+                    if ((h_ii(_n, (_n2 - 1)) & 32) == 32):
+                        _gx_drawRegion(iX, 0, (24 * _hx_mod(w, 4)), 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+                    elif ((h_ii(_n, (_n2 - 1)) & 8192) == 8192):
+                        _gx_drawRegion(iW, 0, 504, 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+                elif ((h_ii(_n, _n2) & 1024) == 1024):
+                    _gx_drawRegion(iW, 0, (_n3 * jh), 24, 24, 0, (_n * jh), ((_n2 * jh) + 1), 0)
+                elif (_n3 != (-1)):
+                    _gx_drawRegion(iW, 0, (_n3 * jh), 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+            _n2 += 1
+        _n += 1
+
 func k_iii(_n, _n2, _n3):
     var _n4
     var _n5
@@ -5821,6 +6191,36 @@ func l_i(_n):
         dx = 0
         dG[0] = 0
         dM[0] = 1
+
+func l_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "l_o"
+    __l_o(_graphics)
+    _gq_tag = _tp
+
+func __l_o(_graphics):
+    var _n
+    var _n2
+    if a:
+        return
+    _n = bz
+    while (_n < bD):
+        _n2 = bA
+        while (_n2 < bE):
+            if ((h_ii(_n, _n2) & 64) == 64):
+                _gx_drawRegion(iY, 0, ((_hx_mod(w, 8) >> 2) * 24), 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+            elif ((h_ii(_n, _n2) & 256) == 256):
+                ji = ((_n * jh) - fR)
+                jj = (ji - bF)
+                jl = _hx_div(((jh - 1) * jj), jh)
+                jk = (jl + bF)
+                _gx_drawImage(jg, (((jk + fR) - 2) + _hx_mod((_n + _n2), 5)), (((_n2 * jh) - 3) + _hx_mod(_n2, 5)), 0)
+            if ((h_ii(_n, _n2) & 512) == 512):
+                _gx_drawRegion(iW, 0, ((iT[((_n2 * iP) + _n)] - 1) * jh), 24, 24, 0, (_n * jh), ((_n2 * jh) + 2), 0)
+            if ((h_ii(_n, _n2) & 4096) == 4096):
+                _gx_drawRegion(iW, 0, ((iT[((_n2 * iP) + _n)] - 1) * jh), 24, 24, 0, (_n * jh), (_n2 * jh), 0)
+            _n2 += 1
+        _n += 1
 
 func l_ii(_n, _n2):
     var _n3
@@ -5930,6 +6330,64 @@ func m_ii(_n, _n2):
         kj[_n3] = ap[jM[_n3]]
         kf[_n3] = 60
         _n3 += 1
+
+func m_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "m_o"
+    __m_o(_graphics)
+    _gq_tag = _tp
+
+func __m_o(_graphics):
+    var _n
+    _gx_translate((-_gx_getTranslateX()), (-_gx_getTranslateY()))
+    d_o(_graphics)
+    c_o(_graphics)
+    _gx_setClip(0, 0, aW, aX)
+    _gx_setColor(0)
+    _gx_fillRect((bF - 64), (U - 19), 129, 102)
+    _gx_fillRect(0, (aX - 13), aW, 13)
+    M_a_osiii(_graphics, "Mua", 3, (aX - 13), 0)
+    M_a_osiii(_graphics, "Quay lại", (aW - 3), (aX - 13), 1)
+    _gx_setColor(12281361)
+    _gx_drawRect((bF - 63), (U - 18), 126, 99)
+    _gx_setColor(6562304)
+    _gx_fillRect((bF - 61), (U - 16), 123, 97)
+    if (kv == 0):
+        M_a_osiii(_graphics, (("Tiền: " + str(dg)) + "$"), bF, (U - 8), 2)
+    else:
+        M_a_osiii(_graphics, kx[ku][ks], bF, (U - 8), 2)
+    _n = 0
+    while (_n < 3):
+        _gx_setColor(0)
+        _gx_fillRect(((kr - 10) + (_n * 20)), (U + 10), 19, 20)
+        _gx_fillRect(((kr + 50) + (_n * 20)), (U + 10), 19, 20)
+        _gx_setColor(4856064)
+        _gx_drawRect(((kr - 10) + (_n * 20)), (U + 10), 20, 20)
+        _gx_drawRect(((kr + 50) + (_n * 20)), (U + 10), 20, 20)
+        _gx_drawRegion(ez[0], 0, (_n * 15), 13, 15, 0, (kr + (_n * 20)), (U + 20), 3)
+        _gx_drawRegion(ez[1], 0, (_n * 15), 13, 15, 0, ((kr + 60) + (_n * 20)), (U + 20), 3)
+        _n += 1
+    _n = 0
+    while (_n < 4):
+        _gx_setColor(0)
+        _gx_fillRect(((kr + 10) + (_n * 20)), (U + 32), 19, 20)
+        _gx_setColor(4856064)
+        _gx_drawRect(((kr + 10) + (_n * 20)), (U + 32), 18, 20)
+        _gx_drawImage(kA[_n], ((kr + 20) + (_n * 20)), (U + 42), 3)
+        _n += 1
+    _gx_setColor(kw[kt])
+    if (ku == 0):
+        _gx_drawRect(((kr - 10) + (ks * 20)), (U + 10), 19, 20)
+    else:
+        _gx_drawRect(((kr + 10) + (ks * 20)), (U + 32), 19, 20)
+    if (kv == 0):
+        M_a_osiii(_graphics, (((kx[ku][ks] + "-") + str(kz[ku][ks])) + "$"), bF, (U + 58), 2)
+    else:
+        M_a_osiii(_graphics, ky[ku][ks], bF, (U + 58), 2)
+    _gx_drawImage(kK[0], (bF - 64), (U - 19), 20)
+    _gx_drawImage(kK[1], (bF + 65), (U - 19), 24)
+    _gx_drawImage(kK[2], (bF - 64), (U + 83), 36)
+    _gx_drawImage(kK[3], (bF + 65), (U + 83), 40)
 
 func n_():
     var _n
@@ -6060,6 +6518,48 @@ func n_ii(_n, _n2):
         kf[_n3] = 40
         _n3 += 1
 
+func n_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "n_o"
+    __n_o(_graphics)
+    _gq_tag = _tp
+
+func __n_o(_graphics):
+    var _n
+    _gx_translate((-_gx_getTranslateX()), (-_gx_getTranslateY()))
+    d_o(_graphics)
+    c_o(_graphics)
+    _gx_setClip(0, 0, aW, aX)
+    _gx_setColor(0)
+    _gx_fillRect((bF - 64), (kD - 19), 129, 102)
+    _gx_fillRect(0, (aX - 13), aW, 13)
+    M_a_osiii(_graphics, "Sử dụng", 3, (aX - 13), 0)
+    M_a_osiii(_graphics, "Quay lại", (aW - 3), (aX - 13), 1)
+    _gx_setColor(12281361)
+    _gx_drawRect((bF - 63), (kD - 18), 126, 99)
+    _gx_setColor(6562304)
+    _gx_fillRect((bF - 61), (kD - 16), 123, 97)
+    M_a_osiii(_graphics, "Sử dụng Item", bF, (kD - 8), 2)
+    _n = 0
+    while (_n < 3):
+        _gx_setColor(0)
+        _gx_fillRect(((kE - 10) + (_n * 20)), (kD + 10), 19, 20)
+        _gx_fillRect(((kE + 50) + (_n * 20)), (kD + 10), 19, 20)
+        _gx_setColor(4856064)
+        _gx_drawRect(((kE - 10) + (_n * 20)), (kD + 10), 20, 20)
+        _gx_drawRect(((kE + 50) + (_n * 20)), (kD + 10), 20, 20)
+        _gx_drawRegion(ez[0], 0, (_n * 15), 13, 15, 0, (kE + (_n * 20)), (kD + 20), 3)
+        _gx_drawRegion(ez[1], 0, (_n * 15), 13, 15, 0, ((kE + 60) + (_n * 20)), (kD + 20), 3)
+        _n += 1
+    _gx_setColor(kH[kG])
+    _gx_drawRect(((kE - 10) + (kF * 20)), (kD + 10), 20, 20)
+    M_a_osiii(_graphics, kI[kF], bF, (kD + 40), 2)
+    M_a_osiii(_graphics, ("Số lượng: " + str(V[kF])), bF, (kD + 55), 2)
+    _gx_drawImage(kK[0], (bF - 64), (kD - 19), 20)
+    _gx_drawImage(kK[1], (bF + 65), (kD - 19), 24)
+    _gx_drawImage(kK[2], (bF - 64), (kD + 83), 36)
+    _gx_drawImage(kK[3], (bF + 65), (kD + 83), 40)
+
 func o_():
     var _n
     if (eu == null):
@@ -6165,6 +6665,34 @@ func o_ii(_n, _n2):
         jV[_n4] = 2
         jW[_n4] = 3
         _n4 += 1
+
+func o_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "o_o"
+    __o_o(_graphics)
+    _gq_tag = _tp
+
+func __o_o(_graphics):
+    var _n
+    _gx_translate((-_gx_getTranslateX()), (-_gx_getTranslateY()))
+    _gx_setColor(0)
+    _gx_fillRect((bF - 64), (kL - 19), 129, 102)
+    _gx_fillRect(0, (aX - 13), aW, 13)
+    M_a_osiii(_graphics, "Chọn", 3, (aX - 13), 0)
+    M_a_osiii(_graphics, "Quay lại", (aW - 3), (aX - 13), 1)
+    _gx_setColor(12281361)
+    _gx_drawRect((bF - 63), (kL - 18), 126, 99)
+    _gx_setColor(6562304)
+    _gx_fillRect((bF - 61), (kL - 16), 123, 97)
+    _n = 0
+    while (_n < 4):
+        M_a_osiii(_graphics, kO[_n], (aY - 30), (kL + (_n * 18)), 0)
+        _n += 1
+    _gx_drawImage(eF[0], ((aY - 55) + _hx_mod(kN, 2)), ((kL + (kM * 18)) - _hx_mod(kN, 2)), 0)
+    _gx_drawImage(kK[0], (bF - 64), (kL - 19), 20)
+    _gx_drawImage(kK[1], (bF + 65), (kL - 19), 24)
+    _gx_drawImage(kK[2], (bF - 64), (kL + 83), 36)
+    _gx_drawImage(kK[3], (bF + 65), (kL + 83), 40)
 
 func J_():
     dC = _hx_newarr([dx], 0)
@@ -6373,6 +6901,43 @@ func p_ii(_n, _n2):
         jV[_n4] = 2
         jW[_n4] = 3
         _n4 += 1
+
+func p_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "p_o"
+    __p_o(_graphics)
+    _gq_tag = _tp
+
+func __p_o(_graphics):
+    var _n
+    _gx_translate((-_gx_getTranslateX()), (-_gx_getTranslateY()))
+    _gx_setColor(0)
+    _gx_fillRect(0, 0, q, r)
+    _gx_fillRect(0, (aX - 13), aW, 13)
+    M_a_osiii(_graphics, lm, 3, (aX - 13), 0)
+    M_a_osiii(_graphics, "Quay lại", (aW - 3), (aX - 13), 1)
+    _gx_setClip(0, 0, q, r)
+    _gx_translate((-lh), (-li))
+    _gx_drawImage(kV, 0, 0, 0)
+    _n = 0
+    while (_n < 19):
+        if (_n == ll):
+            _gx_drawImage(er[0], (kR[_n] + 10), kS[_n], 3)
+        if (W[_n] and ((_n != kZ) or (_hx_mod(la, 10) > 5))):
+            _gx_drawImage(kW, kR[_n], kS[_n], 3)
+        _n += 1
+    _gx_drawImage(eF[0], kX, kY, 24)
+    if (kZ != (-1)):
+        _gx_translate((-_gx_getTranslateX()), (-_gx_getTranslateY()))
+        _gx_setColor(6562304)
+        _gx_fillRect((aY - 60), (r - 35), 120, 33)
+        _gx_setColor(12281361)
+        _gx_drawRect((aY - 59), (r - 34), 117, 30)
+        M_a_osiii(_graphics, kP[kZ], aY, (r - 25), 2)
+        _gx_drawImage(kK[0], (aY - 60), (r - 35), 20)
+        _gx_drawImage(kK[1], (aY + 60), (r - 35), 24)
+        _gx_drawImage(kK[2], (aY - 60), (r - 2), 36)
+        _gx_drawImage(kK[3], (aY + 60), (r - 2), 40)
 
 func q_():
     var _n
@@ -6745,6 +7310,33 @@ func q_ii(_n, _n2):
         kj[_n4] = ap[jM[_n4]]
         kf[_n4] = 0
         _n4 += 1
+
+func q_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "q_o"
+    __q_o(_graphics)
+    _gq_tag = _tp
+
+func __q_o(_graphics):
+    var _n
+    _gx_translate((-_gx_getTranslateX()), (-_gx_getTranslateY()))
+    _gx_setColor(0)
+    _gx_fillRect((bF - 64), (X - 19), 129, 102)
+    _gx_fillRect(0, (aX - 13), aW, 13)
+    M_a_osiii(_graphics, lt, 3, (aX - 13), 0)
+    M_a_osiii(_graphics, lu, (aW - 3), (aX - 13), 1)
+    _gx_setColor(12281361)
+    _gx_drawRect((bF - 63), (X - 18), 126, 99)
+    _gx_setColor(6562304)
+    _gx_fillRect((bF - 61), (X - 16), 123, 97)
+    _n = 0
+    while (_n < lv.size()):
+        M_a_osiii(_graphics, lv[_n], aY, (X + (_n * 18)), 2)
+        _n += 1
+    _gx_drawImage(kK[0], (bF - 64), (X - 19), 20)
+    _gx_drawImage(kK[1], (bF + 65), (X - 19), 24)
+    _gx_drawImage(kK[2], (bF - 64), (X + 83), 36)
+    _gx_drawImage(kK[3], (bF + 65), (X + 83), 40)
 
 func r_():
     var _n
@@ -7200,6 +7792,25 @@ func r_ii(_n, _n2):
         kj[_n3] = ap[jM[_n3]]
         kf[_n3] = 0
         _n3 += 1
+
+func r_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "r_o"
+    __r_o(_graphics)
+    _gq_tag = _tp
+
+func __r_o(_graphics):
+    var _graphics2
+    var _n
+    var _n2
+    _n = 0
+    while (_n < lx):
+        _n2 = _n
+        _graphics2 = _graphics
+        if (((((ly[_n2] + 10) >= fR) and ((ly[_n2] - 10) <= (fR + q))) and (lz[_n2] >= fS)) and ((lz[_n2] - 32) <= (fS + r))):
+            _gx_drawImage(lw[lA[_n2]][1], ly[_n2], lz[_n2], 33)
+            _gx_drawImage(lw[lA[_n2]][0], ly[_n2], ((lz[_n2] - lJ[lA[_n2]]) + (0 if (_hx_mod(w, (15 + lA[_n2])) > 4) else 1)), 33)
+        _n += 1
 
 func M_():
     if (iL < iH[iF].size()):
@@ -9681,6 +10292,43 @@ func s_i(_n):
         lt = ""
         lu = "OK"
 
+func s_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "s_o"
+    __s_o(_graphics)
+    _gq_tag = _tp
+
+func __s_o(_graphics):
+    var _n
+    var _n2
+    var _n3
+    var _string
+    _gx_setColor(7171437)
+    _gx_drawString("Nhap ma kich hoat:", aY, (aZ - 60), 17)
+    _gx_setColor(11788624)
+    _gx_fillRect((((mf * 20) + aY) - 50), ((mg * 25) + aZ), 18, 23)
+    _n = 0
+    _n2 = 0
+    while (_n2 < 2):
+        _n3 = 0
+        while (_n3 < 5):
+            _gx_setColor(11788624)
+            _gx_drawRect((((_n3 * 20) + aY) - 50), ((_n2 * 25) + aZ), 18, 23)
+            _gx_setColor((16777215 if ((_n3 == mf) and (_n2 == mg)) else 7171437))
+            _gx_drawString(str(_n), ((((_n3 * 20) + aY) - 50) + 10), (((_n2 * 25) + aZ) + 3), 17)
+            _n += 1
+            _n3 += 1
+        _n2 += 1
+    _string = me
+    if (_hx_mod(lS, 10) > 5):
+        _string = (_string + "|")
+    _gx_setColor(7171437)
+    _gx_drawString(_string, (aY - 20), (aZ - 40), 20)
+    _gx_setColor(16777215)
+    _gx_setFont(lV)
+    _gx_drawString("OK", 2, ((aX - lW) + 3), 20)
+    _gx_drawString("Xoa", (aW - 2), ((aX - lW) + 3), 24)
+
 func keyPressed_i(_n):
     var _n2
     var _n3
@@ -11228,6 +11876,43 @@ func t_i(_n):
         c_iiii(0, 4, 2, 10)
         c_iiii(1, 0, 3, 10)
         c_iiii(2, 2, 4, 10)
+
+func t_o(_graphics):
+    var _tp = _gq_tag
+    _gq_tag = "t_o"
+    __t_o(_graphics)
+    _gq_tag = _tp
+
+func __t_o(_graphics):
+    var _n
+    _gx_setColor(7171437)
+    if ((((ma[1] != ma[5]) and (ma[2] != ma[6])) and (ma[3] != ma[7])) and (ma[4] != ma[8])):
+        Y = 7
+    _gx_setColor(11788624)
+    _gx_drawRect(3, ((aZ - 8) + (mc * lW)), (aW - 6), lW)
+    _gx_drawRect(4, (((aZ - 8) + (mc * lW)) + 1), (aW - 8), (lW - 2))
+    _gx_setColor(208472)
+    if (mb > 0):
+        _gx_setFont(lV)
+        _gx_drawString("VeChai321", aY, (aZ - (lW << 1)), 17)
+        _gx_setFont(lU)
+        _n = 0
+        while (_n < 3):
+            _gx_setColor(7171437)
+            _gx_drawString(lQ[_n], lT, ((aZ - 5) + (_n * lW)), 20)
+            _n += 1
+    else:
+        _gx_drawString("Da het han dung thu", aY, (aZ - (lW << 1)), 17)
+        _gx_drawString("Moi ban kich hoat.", aY, (aZ - lW), 17)
+        _n = 0
+        while (_n < 2):
+            _gx_setColor(7171437)
+            _gx_drawString(lR[_n], lT, ((aZ - 5) + (_n * lW)), 20)
+            _n += 1
+    _gx_setColor(16777215)
+    _gx_setFont(lV)
+    _gx_drawString("Chon", 2, ((aX - lW) + 3), 20)
+    _gx_drawString("Thoat", (aW - 2), ((aX - lW) + 3), 24)
 
 func t_():
     H_()

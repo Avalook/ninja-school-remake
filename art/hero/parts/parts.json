@@ -1,0 +1,288 @@
+{
+  "source": "art/generated/ninja1-hero-cloud-v1.png",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "coords": "source pixels, origin top-left, y down",
+  "z": {
+    "back_shin": 0,
+    "back_thigh": 1,
+    "front_shin": 2,
+    "front_thigh": 3,
+    "back_upper": 4,
+    "back_fore": 5,
+    "torso": 6,
+    "head": 7,
+    "front_upper": 8,
+    "front_fore": 9
+  },
+  "pivots": {
+    "ground": [
+      620,
+      1215
+    ],
+    "hips": [
+      612,
+      868
+    ],
+    "neck": [
+      625,
+      540
+    ],
+    "head_top": [
+      625,
+      40
+    ],
+    "back_shoulder": [
+      495,
+      600
+    ],
+    "back_elbow": [
+      472,
+      728
+    ],
+    "back_hand": [
+      468,
+      868
+    ],
+    "front_shoulder": [
+      757,
+      655
+    ],
+    "front_elbow": [
+      768,
+      744
+    ],
+    "front_hand": [
+      803,
+      866
+    ],
+    "back_hip": [
+      530,
+      890
+    ],
+    "back_knee": [
+      505,
+      1012
+    ],
+    "back_ankle": [
+      490,
+      1120
+    ],
+    "front_hip": [
+      685,
+      895
+    ],
+    "front_knee": [
+      695,
+      1025
+    ],
+    "front_ankle": [
+      700,
+      1120
+    ]
+  },
+  "sole_points": {
+    "back_shin": [
+      [
+        433,
+        1170
+      ],
+      [
+        436,
+        1214
+      ],
+      [
+        480,
+        1216
+      ],
+      [
+        545,
+        1214
+      ],
+      [
+        549,
+        1185
+      ]
+    ],
+    "front_shin": [
+      [
+        640,
+        1180
+      ],
+      [
+        642,
+        1214
+      ],
+      [
+        720,
+        1216
+      ],
+      [
+        812,
+        1212
+      ],
+      [
+        818,
+        1180
+      ]
+    ]
+  },
+  "parts": {
+    "head": {
+      "file": "head.png",
+      "offset": [
+        267,
+        35
+      ],
+      "size": [
+        638,
+        520
+      ]
+    },
+    "front_fore": {
+      "file": "front_fore.png",
+      "offset": [
+        731,
+        740
+      ],
+      "size": [
+        102,
+        176
+      ]
+    },
+    "front_upper": {
+      "file": "front_upper.png",
+      "offset": [
+        729,
+        638
+      ],
+      "size": [
+        71,
+        149
+      ]
+    },
+    "back_fore": {
+      "file": "back_fore.png",
+      "offset": [
+        403,
+        724
+      ],
+      "size": [
+        118,
+        204
+      ]
+    },
+    "back_upper": {
+      "file": "back_upper.png",
+      "offset": [
+        413,
+        539
+      ],
+      "size": [
+        138,
+        250
+      ]
+    },
+    "torso": {
+      "file": "torso.png",
+      "offset": [
+        444,
+        436
+      ],
+      "size": [
+        354,
+        466
+      ]
+    },
+    "front_thigh": {
+      "file": "front_thigh.png",
+      "offset": [
+        604,
+        793
+      ],
+      "size": [
+        191,
+        250
+      ]
+    },
+    "front_shin": {
+      "file": "front_shin.png",
+      "offset": [
+        609,
+        941
+      ],
+      "size": [
+        210,
+        273
+      ]
+    },
+    "back_thigh": {
+      "file": "back_thigh.png",
+      "offset": [
+        411,
+        786
+      ],
+      "size": [
+        222,
+        265
+      ]
+    },
+    "back_shin": {
+      "file": "back_shin.png",
+      "offset": [
+        426,
+        931
+      ],
+      "size": [
+        189,
+        292
+      ]
+    },
+    "head_hurt": {
+      "file": "head_hurt.png",
+      "offset": [
+        267,
+        35
+      ],
+      "size": [
+        638,
+        520
+      ]
+    },
+    "head_dig": {
+      "file": "head_dig.png",
+      "offset": [
+        267,
+        35
+      ],
+      "size": [
+        638,
+        497
+      ]
+    },
+    "eyes_open": {
+      "file": "eyes_open.png",
+      "offset": [
+        608,
+        379
+      ],
+      "size": [
+        181,
+        94
+      ]
+    },
+    "eyes_half": {
+      "file": "eyes_half.png",
+      "offset": [
+        606,
+        415
+      ],
+      "size": [
+        185,
+        58
+      ]
+    }
+  }
+}

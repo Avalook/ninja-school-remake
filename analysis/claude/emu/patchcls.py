@@ -1,7 +1,14 @@
+"""Patch copies of the original classes (never the JAR) so the emulator can:
+ - load resources via the classpath (Class.getResourceAsStream -> harness.R.g)
+ - run in lockstep: System.currentTimeMillis -> harness.R.now, Canvas.repaint -> harness.R.repaint"""
 import struct,sys
+REDIRECTS=[  # (owner,name,old_opcode) -> (new owner, name, descriptor)
+ ('java/lang/Class','getResourceAsStream',0xb6,'harness/R','g','(Ljava/lang/Class;Ljava/lang/String;)Ljava/io/InputStream;'),
+ ('java/lang/System','currentTimeMillis',0xb8,'harness/R','now','()J'),
+ ('javax/microedition/lcdui/Canvas','repaint',0xb6,'harness/R','repaint','(Ljavax/microedition/lcdui/Canvas;)V'),
+]
 def patch(src,dst):
-    b=open(src,'rb').read(); n=struct.unpack('>H',b[8:10])[0]; i=10; cp=[None]
-    k=1
+    b=open(src,'rb').read(); n=struct.unpack('>H',b[8:10])[0]; i=10; cp=[None]; k=1
     while k<n:
         t=b[i]
         if t==1: l=struct.unpack('>H',b[i+1:i+3])[0]; cp.append((1,b[i+3:i+3+l].decode('utf8','replace'))); i+=3+l
@@ -14,18 +21,17 @@ def patch(src,dst):
         k+=1
     end=i
     def u(x): return cp[x][1]
-    target=None
-    for idx,e in enumerate(cp):
-        if e and e[0]==10:
-            c,nt=e[1]; cname=u(u(c)); nm,ds=cp[nt][1]
-            if cname=='java/lang/Class' and u(nm)=='getResourceAsStream': target=idx
-    if target is None: open(dst,'wb').write(b); print(src,'no target'); return
     def utf(s): s=s.encode(); return bytes([1])+struct.pack('>H',len(s))+s
-    base=n
-    add=utf('harness/R')+bytes([7])+struct.pack('>H',base)+utf('g')+utf('(Ljava/lang/Class;Ljava/lang/String;)Ljava/io/InputStream;')+bytes([12])+struct.pack('>HH',base+2,base+3)+bytes([10])+struct.pack('>HH',base+1,base+4)
-    newidx=base+5
-    rest=b[end:]; pat=bytes([0xb6])+struct.pack('>H',target); cnt=rest.count(pat)
-    rest=rest.replace(pat,bytes([0xb8])+struct.pack('>H',newidx))
-    out=b[:8]+struct.pack('>H',n+6)+b[10:end]+add+rest
-    open(dst,'wb').write(out); print(src,'patched',cnt)
-for f in sys.argv[2:]: patch(sys.argv[1]+'/'+f, 'pcls/'+f)
+    add=b''; cnt=n; rest=b[end:]; report=[]
+    for (ow,nm,opc,now_,nnm,nds) in REDIRECTS:
+        targets=[idx for idx,e in enumerate(cp) if e and e[0]==10 and u(u(e[1][0]))==ow and u(cp[e[1][1]][1][0])==nm]
+        if not targets: continue
+        base=cnt
+        add+=utf(now_)+bytes([7])+struct.pack('>H',base)+utf(nnm)+utf(nds)+bytes([12])+struct.pack('>HH',base+2,base+3)+bytes([10])+struct.pack('>HH',base+1,base+4)
+        newidx=base+5; cnt+=6
+        for t_ in targets:
+            pat=bytes([opc])+struct.pack('>H',t_); c=rest.count(pat)
+            rest=rest.replace(pat,bytes([0xb8])+struct.pack('>H',newidx)); report.append('%s.%s x%d'%(ow,nm,c))
+    out=b[:8]+struct.pack('>H',cnt)+b[10:end]+add+rest
+    open(dst,'wb').write(out); print(src,report)
+for f in sys.argv[2:]: patch(sys.argv[1]+'/'+f,'pcls/'+f)
