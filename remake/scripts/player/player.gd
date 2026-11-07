@@ -690,6 +690,8 @@ func _u() -> void:
 	var hit := -1
 	if world.enemies:
 		hit = world.enemies.hit(attack_box(), n, -S.fp)
+		if OS.get_cmdline_user_args().has("--log"):
+			print("[hit] box=", attack_box(), " n=", n, " -> ", hit, " enemies=", world.enemies.enemies.map(func(e): return [e.x, e.y, e.state]).slice(0, 6))
 	world.spawn_fx("slash", Vector2(S.fh + S.fp * 18, S.fi - 20), S.fp)
 	if hit != -1:
 		S.fu = true

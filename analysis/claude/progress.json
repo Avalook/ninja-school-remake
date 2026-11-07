@@ -1,7 +1,7 @@
 {
  "updated_at": "2026-11-07",
  "owner": "claude (Opus 5.5) session in worktree claude/ninja-pc-game-dev-f010c2",
- "status": "mac_app_playable_verified; windows_exported_not_run",
+ "status": "hybrid game shipped earlier (mac verified, windows user-tested); native remake in progress",
  "artifacts": {
   "j2me_emulator": {
    "path": "analysis/claude/emu",
@@ -58,6 +58,12 @@
   "veo_animation": {
    "path": "art/incoming/veo (16 user clips) -> tools/art/veo_extract.py -> game/art/veo; render/veo_anim.gd",
    "status": "hero animation in game"
+  },
+  "native_remake": {
+   "path": "remake/",
+   "what": "Native Godot 4.7 rewrite (decided with the user 2026-11-07): modern GDScript, everything per display frame; original rules/data from remake/data (exported from the transpiled original) and the original source as reference. Player: native continuous locomotion (accel/decel, coyote, buffer, variable jump) on original constants + literal port of R() states 5-23 at 25 Hz with render interpolation; world tiles/flags/exits/decor/blocks/bikes; story module (agent) verified vs oracle for intro, prologue, quest 0, ending; enemies (agent, in progress); HD cast art (agent + Codex outputs in art/generated/codex_hd).",
+   "run": "Godot --path remake  (test flags after --: --newgame --map=id,x,y --keys=act@t0-t1,... --shots=t,.. --out=dir --quit=t --log --ftlog --autoskip --noenemies --nostory)",
+   "status": "playable map 99 -> map 4 natively; enemies not yet integrated"
   }
  },
  "next": [
@@ -71,5 +77,9 @@
   "Godot headless boot+intro",
   "Godot windowed screenshots of intro"
  ],
- "in_progress": []
+ "in_progress": [
+  "remake: integrate enemy module (agent) + cast art (agent)",
+  "remake: full playthrough verification vs oracle",
+  "remake: Mac/Windows export"
+ ]
 }
