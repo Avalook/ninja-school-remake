@@ -1,0 +1,13 @@
+b00 try 1 23.8 s OK 9.15
+b01 try 1 23.5 s OK 9.82
+b02 try 1 23.9 s OK 9.28
+b03 try 1 23.9 s ['facing_mismatch'] 8.73
+b03 try 2 24.4 s ['facing_mismatch'] 11.05
+b03 try 3 24.2 s ['facing_mismatch'] 8.57
+b10 try 1 23.7 s OK 16.71
+b13 try 1 23.8 s OK 7.97
+b20 try 1 23.9 s OK 6.01
+b21 try 1 23.4 s OK 3.59
+b22 try 1 23.3 s OK 7.6
+b23 try 1 23.7 s OK 5.96
+{"b00": "generated", "b01": "generated", "b02": "generated", "b03": "generated", "b10": "generated", "b13": "generated", "b20": "generated", "b21": "generated", "b22": "generated", "b23": "generated"}

@@ -1089,9 +1089,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/student_heads.png",
       "kind": "full",
       "parent": "stu5_sakura",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nSakura, the SAME young girl with black ponytail, red ribbon and big blue eyes; alternate outfit: a pink kimono with a red-pink obi, gentle posture\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu5_sakura_kimono.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu5_sakura_kimono.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-f0208c16-4fcf-4254-879e-3e20ef9e5bc5.png",
+      "generated_at": 1794037566.6732428,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/stu5_sakura_kimono.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "4f4e7f3314b563a7ecbfae5cb8cfcf7a174f3ce9db4759ba2b79fcb797c31005"
     },
     {
       "id": "stu5_sakura_kimono_parts",
@@ -1100,9 +1117,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/student_heads.png",
       "kind": "parts",
       "parent": "stu5_sakura_kimono",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nSakura, the SAME young girl with black ponytail, red ribbon and big blue eyes; alternate outfit: a pink kimono with a red-pink obi, gentle posture\nDELIVERABLE OVERRIDE: Generate ONLY a RIG PARTS SHEET, not an assembled full body, on a square1254x1254 real-alpha canvas. Use the attached generated full-body character as exact identity and color authority. Separate exactly TEN body pieces with ample transparent gaps: head with hair/accessories; torso with belt; left upper arm, right upper arm; left forearm+hand, right forearm+hand; left thigh, right thigh; left shin+foot, right shin+foot. Same relative pixel scale and orientation as the full-body design, front and rear limbs correctly distinguished. All parts complete; extend each beneath joint overlaps so rotation creates no gaps. Spread across a clean grid with NO gridlines, NO labels, NO assembled figure, NO duplicate head, NO backdrop. Include any held cane/sword as an extra separate prop, not baked across other parts.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu5_sakura_kimono_parts.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu5_sakura_kimono_parts.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-0e4a0cc7-ed81-438f-b78b-eb92080d0480.png",
+      "generated_at": 1794037611.95823,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/stu5_sakura_kimono_parts.png",
+        "operation": "sizing and alpha padding only",
+        "joint_overlap_and_parts_count": "requires rig integration verification",
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "2816332835f9c69a1baf7f2369768ed1598043198d11b6dd4a8aadfce3ebcfdc"
     },
     {
       "id": "stu7_toniku_leader",
@@ -1111,9 +1145,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/student_heads.png",
       "kind": "full",
       "parent": "stu7_toniku",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nToniku, the SAME messy red-haired traitor with bruised face and sly eyes; alternate bandit leader outfit of stylized animal-hide leather and straps, no blue school uniform\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu7_toniku_leader.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu7_toniku_leader.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-9ba78075-40ee-450d-86a9-2336ecec1dca.png",
+      "generated_at": 1794037652.6886668,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/stu7_toniku_leader.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "6f8c16fe64e02fe3f4627b5daf2842b1850814017932cd4bece5f6dc2de8ece8"
     },
     {
       "id": "stu7_toniku_leader_parts",
@@ -1122,9 +1173,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/student_heads.png",
       "kind": "parts",
       "parent": "stu7_toniku_leader",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nToniku, the SAME messy red-haired traitor with bruised face and sly eyes; alternate bandit leader outfit of stylized animal-hide leather and straps, no blue school uniform\nDELIVERABLE OVERRIDE: Generate ONLY a RIG PARTS SHEET, not an assembled full body, on a square1254x1254 real-alpha canvas. Use the attached generated full-body character as exact identity and color authority. Separate exactly TEN body pieces with ample transparent gaps: head with hair/accessories; torso with belt; left upper arm, right upper arm; left forearm+hand, right forearm+hand; left thigh, right thigh; left shin+foot, right shin+foot. Same relative pixel scale and orientation as the full-body design, front and rear limbs correctly distinguished. All parts complete; extend each beneath joint overlaps so rotation creates no gaps. Spread across a clean grid with NO gridlines, NO labels, NO assembled figure, NO duplicate head, NO backdrop. Include any held cane/sword as an extra separate prop, not baked across other parts.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu7_toniku_leader_parts.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu7_toniku_leader_parts.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-e7613d09-1345-4c2c-a990-c76ce1820529.png",
+      "generated_at": 1794037694.740803,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/stu7_toniku_leader_parts.png",
+        "operation": "sizing and alpha padding only",
+        "joint_overlap_and_parts_count": "requires rig integration verification",
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "ee4d007be513f6d97272bc3249d36099cfc34a742bb4056e6ac5076986b30a1d"
     },
     {
       "id": "boss_boar",
@@ -1133,9 +1201,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/boss_parts.png",
       "kind": "full",
       "parent": null,
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\na gigantic enchanted wild boar boss, dark reddish-brown bristling spiky fur, large curved white tusks, fierce yellow eyes, powerful stocky quadruped, standing ready, all four feet visible. Enormous relative to humans but alone on canvas\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_boar.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_boar.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-532972ad-a655-4468-94aa-e0f8ef45e8c1.png",
+      "generated_at": 1794037737.541994,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/boss_boar.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "1bb6ddcd5884cae21d6e95fd597160f32ab0fbbfbbeb4c330e1be3744174e8d6"
     },
     {
       "id": "boss_boar_charge",
@@ -1144,9 +1229,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/boss_parts.png",
       "kind": "pose",
       "parent": "boss_boar",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nthe SAME gigantic enchanted wild boar, dark reddish-brown spiky fur, curved white tusks, yellow eyes. CHARGING right, head lowered, front legs reaching, back legs pushing. Preserve exact identity and body scale\nACTION OVERRIDE: Use the specified action pose instead of the neutral stance, preserve exact design from the generated neutral reference. One pose only, 1254x1254 alpha.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_boar_charge.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_boar_charge.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-7efadd28-2675-41db-9bb7-25794be9a580.png",
+      "generated_at": 1794037781.2092302,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/boss_boar_charge.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "b5f271d6f58ad987401f3d1b2e159b518d1bb99452b74c2d8096eb9276ff96ac"
     },
     {
       "id": "boss_boar_hurt",
@@ -1155,9 +1257,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/boss_parts.png",
       "kind": "pose",
       "parent": "boss_boar",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nthe SAME gigantic wild boar boss recoiling from a hit, squinting fierce eyes, head jolting back, no blood or gore. Same color, anatomy and scale\nACTION OVERRIDE: Use the specified action pose instead of the neutral stance, preserve exact design from the generated neutral reference. One pose only, 1254x1254 alpha.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_boar_hurt.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_boar_hurt.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-e55840a9-3814-482a-a622-aa0387a29b27.png",
+      "generated_at": 1794037826.9823759,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/boss_boar_hurt.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "e6b8cabfb49be225ab1de0e10af71fc7d99a06480b64a74616c65be0b3574bcb"
     },
     {
       "id": "boss_squid",
@@ -1166,9 +1285,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/boss_parts.png",
       "kind": "full",
       "parent": null,
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nthe Waramato river monster boss, a gigantic turquoise-blue squid-octopus yokai with a pointed mantle/head, angry eyes, thick curling tentacles. Emerging upright, tentacles visible, no water splash or surrounding scenery\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_squid.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_squid.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-a8e15824-2127-4b7b-96e0-e2d9e2ee116a.png",
+      "generated_at": 1794037872.1130419,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/boss_squid.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "1c5c627d00b7d5be20dcbb77ab9976e846573c31d061e2c7df63176c9aea4469"
     },
     {
       "id": "boss_squid_whip",
@@ -1177,9 +1313,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/boss_parts.png",
       "kind": "pose",
       "parent": "boss_squid",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nthe SAME giant turquoise squid river boss, pointed head and angry eyes, whipping a tentacle to the RIGHT in an attack, same proportions and palette, preserve all tentacles distinctly, no effects or water\nACTION OVERRIDE: Use the specified action pose instead of the neutral stance, preserve exact design from the generated neutral reference. One pose only, 1254x1254 alpha.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_squid_whip.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_squid_whip.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-ad2d6639-2118-4e1e-94cf-3d4df7d6437b.png",
+      "generated_at": 1794037920.7246919,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/boss_squid_whip.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "cb9fc0443b8a4d41230cb6a3e837b69d8805c0035623a9178902bd4d916a83d8"
     },
     {
       "id": "boss_squid_hurt",
@@ -1188,9 +1341,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/boss_parts.png",
       "kind": "pose",
       "parent": "boss_squid",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nthe SAME turquoise squid boss recoiling from a hit with tentacles curling defensively, expressive face, no gore or blood, same scale and exact identity\nACTION OVERRIDE: Use the specified action pose instead of the neutral stance, preserve exact design from the generated neutral reference. One pose only, 1254x1254 alpha.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_squid_hurt.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_squid_hurt.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-9f9ba5e1-9578-489f-be49-91be662f5409.png",
+      "generated_at": 1794037981.964889,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/boss_squid_hurt.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "e9edb029bb7f2b32bf1e8c6a871748b7885ae53b155fa10763c7639dc98ec709"
     },
     {
       "id": "boss_golem",
@@ -1199,9 +1369,28 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/boss_parts.png",
       "kind": "full",
       "parent": null,
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\na massive carved wooden armor golem boss, large wooden fists, stout wooden legs, carved wooden head and chest, purple waist belt, warm oak grain, simple expressive carved eye slots. Standing neutral in a rig-ready pose with arms clear of body\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_golem.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_golem.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-67ff774d-e943-438b-baeb-d699162ff453.png",
+      "generated_at": 1794038027.9075918,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/boss_golem.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "source_sha256": "ed5dac0a5c8a8d365954caf2f9c2c2bfa364f5289bda5be13a20688e506341b6",
+        "normalized_sha256": "4d3e3ce0de8beea69df74395029020ab3120321a3b481496cf643d3a67b9d558"
+      },
+      "final_sha256": "4d3e3ce0de8beea69df74395029020ab3120321a3b481496cf643d3a67b9d558"
     },
     {
       "id": "boss_golem_parts",
@@ -1210,9 +1399,28 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/boss_parts.png",
       "kind": "golem_parts",
       "parent": "boss_golem",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nthe SAME carved wooden golem boss: separated torso, head, TWO distinct wooden fists/arms, TWO distinct wooden feet/legs, all six parts at the same relative scale, with joint overlap margins and no text\nDELIVERABLE OVERRIDE: Generate ONLY a RIG PARTS SHEET, not an assembled full body, on a square1254x1254 real-alpha canvas. Use the attached generated full-body character as exact identity and color authority. Separate SIX pieces: head, torso, two fists/arms, two legs/feet. Same relative pixel scale and orientation as the full-body design, front and rear limbs correctly distinguished. All parts complete; extend each beneath joint overlaps so rotation creates no gaps. Spread across a clean grid with NO gridlines, NO labels, NO assembled figure, NO duplicate head, NO backdrop. Include any held cane/sword as an extra separate prop, not baked across other parts.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_golem_parts.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/boss_golem_parts.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-5742810c-9a86-4d3b-a7c9-78e937ddce15.png",
+      "generated_at": 1794038082.431672,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/boss_golem_parts.png",
+        "operation": "sizing and alpha padding only",
+        "joint_overlap_and_parts_count": "requires rig integration verification",
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "source_sha256": "6e687faba6a25c5ac4a3446ba165194d4b04bf0f2773d147e742353c54861506",
+        "normalized_sha256": "553704fc231720020e389f6da03748a623e3c9f25d2ebf2b0ae2165e1c101e9e"
+      },
+      "final_sha256": "553704fc231720020e389f6da03748a623e3c9f25d2ebf2b0ae2165e1c101e9e"
     },
     {
       "id": "mob00",
@@ -1221,9 +1429,28 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/monster_00.png",
       "kind": "full",
       "parent": null,
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nMonster: one-eyed ghost spirit, pale white and violet body, one huge expressive eye and tapering smoky tail. Use the written redesign specification above when original colors or anatomy differ; the old sprites are only motion/identity context.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/mob00.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/mob00.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-857ce06c-e05c-49cd-a6cc-db489b4cecfc.png",
+      "generated_at": 1794038124.896799,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/mob00.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "source_sha256": "5a85b2eb10e33b168797bfde2caafdfa37f91ef0622f9fc1e1a5c70d0b1d7c68",
+        "normalized_sha256": "b7c5b7495e311dc2f6a58ded73a9bb02f8a5e629a57190797dd24f4dfac80a28"
+      },
+      "final_sha256": "b7c5b7495e311dc2f6a58ded73a9bb02f8a5e629a57190797dd24f4dfac80a28"
     },
     {
       "id": "mob00_sheet",
@@ -1232,9 +1459,13 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/monster_00.png",
       "kind": "strip",
       "parent": "mob00",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nMonster: one-eyed ghost spirit, pale white and violet body, one huge expressive eye and tapering smoky tail. Follow the new full-body design consistently in all four poses. Written redesign takes priority over old sprite colors/anatomy.\nDELIVERABLE OVERRIDE: One HORIZONTAL transparent sprite strip with exactly FOUR complete poses, evenly spaced at the same body scale and baseline: move/fly A; move/fly B; attack; hurt. Every pose faces RIGHT. Canvas3072x1024 preferred, no labels or panels. Keep clear transparent gutters, no overlap and no clipping. For flyers/fish preserve anatomy, natural hover positions. For rooted scarecrow use swayA/swayB/strike/recoil. Hurt is a non-graphic recoil, no blood.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/mob00_sheet.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/mob00_sheet.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-927eca3d-264d-453f-872f-d519e319acdf.png",
+      "generated_at": 1794038153.420136,
+      "normalization_error": "Strip split 3 has no transparent gutter; requires image-generation correction",
+      "final_sha256": "e883b7a50f23943fea1d04b7c7487a1a36245e1721d0eec1540d6eb7e78a1164"
     },
     {
       "id": "mob01",
@@ -1243,9 +1474,28 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/monster_01.png",
       "kind": "full",
       "parent": null,
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nMonster: a snail with an orange-brown spiral shell, green soft body, protruding eye stalks. Use the written redesign specification above when original colors or anatomy differ; the old sprites are only motion/identity context.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/mob01.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/mob01.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-d3cbc880-4bf5-423c-bd1e-b6e9c2740216.png",
+      "generated_at": 1794038190.552791,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/mob01.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "source_sha256": "6130a80928431d4dc81546da87301958f7ef367f576d2cab9db6c1a84713e81e",
+        "normalized_sha256": "fe172a5721763f9fab8c672d35d0e5c2503166f2f960769790261408bf824177"
+      },
+      "final_sha256": "fe172a5721763f9fab8c672d35d0e5c2503166f2f960769790261408bf824177"
     },
     {
       "id": "mob01_sheet",
@@ -1254,9 +1504,60 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/monster_01.png",
       "kind": "strip",
       "parent": "mob01",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nMonster: a snail with an orange-brown spiral shell, green soft body, protruding eye stalks. Follow the new full-body design consistently in all four poses. Written redesign takes priority over old sprite colors/anatomy.\nDELIVERABLE OVERRIDE: One HORIZONTAL transparent sprite strip with exactly FOUR complete poses, evenly spaced at the same body scale and baseline: move/fly A; move/fly B; attack; hurt. Every pose faces RIGHT. Canvas3072x1024 preferred, no labels or panels. Keep clear transparent gutters, no overlap and no clipping. For flyers/fish preserve anatomy, natural hover positions. For rooted scarecrow use swayA/swayB/strike/recoil. Hurt is a non-graphic recoil, no blood.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/mob01_sheet.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/mob01_sheet.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-34f3fed1-01ce-48c6-953d-b40ec9913f2a.png",
+      "generated_at": 1794038221.110771,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/mob01_sheet.png",
+        "operation": "sizing and alpha padding only",
+        "frame_rects": [
+          [
+            0,
+            0,
+            512,
+            512
+          ],
+          [
+            512,
+            0,
+            512,
+            512
+          ],
+          [
+            1024,
+            0,
+            512,
+            512
+          ],
+          [
+            1536,
+            0,
+            512,
+            512
+          ]
+        ],
+        "pose_order": [
+          "move_a",
+          "move_b",
+          "attack",
+          "hurt"
+        ],
+        "common_scale": 0.9083969465648855,
+        "size": [
+          2048,
+          512
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "source_sha256": "91376b8479be45220c12985dcfa2dee5f47643db8c58b090d78157ad773c7cc2",
+        "normalized_sha256": "d5ee21c5edde373e63570152a3ba09bad20057e0a494acc72a99847730b87fae"
+      },
+      "final_sha256": "d5ee21c5edde373e63570152a3ba09bad20057e0a494acc72a99847730b87fae"
     },
     {
       "id": "mob02",
@@ -1265,9 +1566,28 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/monster_02.png",
       "kind": "full",
       "parent": null,
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nMonster: a demonic bat with dark purple-black fur, ragged bat wings and little fangs. Use the written redesign specification above when original colors or anatomy differ; the old sprites are only motion/identity context.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/mob02.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/mob02.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-4142972a-5180-4291-ac93-7605306e9b61.png",
+      "generated_at": 1794038266.144825,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/mob02.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "source_sha256": "c3820ebd43378ba217320bc1cb3577e41d67b44a6797b929ba756c40511dbad6",
+        "normalized_sha256": "13377401c55599e6670c5f5d49103bce392f555e6190b10408ee4ce64a9f6948"
+      },
+      "final_sha256": "13377401c55599e6670c5f5d49103bce392f555e6190b10408ee4ce64a9f6948"
     },
     {
       "id": "mob02_sheet",
@@ -1276,9 +1596,13 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/monster_02.png",
       "kind": "strip",
       "parent": "mob02",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nMonster: a demonic bat with dark purple-black fur, ragged bat wings and little fangs. Follow the new full-body design consistently in all four poses. Written redesign takes priority over old sprite colors/anatomy.\nDELIVERABLE OVERRIDE: One HORIZONTAL transparent sprite strip with exactly FOUR complete poses, evenly spaced at the same body scale and baseline: move/fly A; move/fly B; attack; hurt. Every pose faces RIGHT. Canvas3072x1024 preferred, no labels or panels. Keep clear transparent gutters, no overlap and no clipping. For flyers/fish preserve anatomy, natural hover positions. For rooted scarecrow use swayA/swayB/strike/recoil. Hurt is a non-graphic recoil, no blood.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/mob02_sheet.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/mob02_sheet.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-7a97df0b-93e1-420f-807d-8434ccaf57e1.png",
+      "generated_at": 1794038296.6086998,
+      "normalization_error": "Strip split 1 has no transparent gutter; requires image-generation correction",
+      "final_sha256": "628a2e58dc1441a020da4f6cc8c5c054b1e443480351420e67a0a61d001a4693"
     },
     {
       "id": "mob03",
@@ -1853,6 +2177,6 @@
       "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/prop_wood_crate.png"
     }
   ],
-  "generated_count": 30,
+  "generated_count": 48,
   "normalization_authorization": "User explicitly approved Python normalization of game images."
 }

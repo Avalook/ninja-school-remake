@@ -1,0 +1,258 @@
+{
+ "stu5_sakura": {
+  "master": "art/generated/codex_hd/stu5_sakura.png",
+  "neck_row": 502,
+  "scale": 0.9507,
+  "head_offset": [
+   341,
+   99
+  ],
+  "head_size": [
+   595,
+   469
+  ],
+  "blender_seconds": 2.8,
+  "sheet": {
+   "idle": [
+    0,
+    1
+   ],
+   "talk": [
+    2,
+    3
+   ],
+   "walk": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  }
+ },
+ "stu0_beanie": {
+  "master": "art/generated/codex_hd/stu0_beanie.png",
+  "neck_row": 493,
+  "scale": 0.9375,
+  "head_offset": [
+   437,
+   113
+  ],
+  "head_size": [
+   402,
+   454
+  ],
+  "blender_seconds": 2.8,
+  "sheet": {
+   "idle": [
+    0,
+    1
+   ],
+   "talk": [
+    2,
+    3
+   ],
+   "walk": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  }
+ },
+ "stu1_bald": {
+  "master": "art/generated/codex_hd/stu1_bald.png",
+  "neck_row": 400,
+  "scale": 0.8313,
+  "head_offset": [
+   470,
+   238
+  ],
+  "head_size": [
+   299,
+   326
+  ],
+  "blender_seconds": 1.8,
+  "sheet": {
+   "idle": [
+    0,
+    1
+   ],
+   "talk": [
+    2,
+    3
+   ],
+   "walk": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  }
+ },
+ "stu2_redspike": {
+  "master": "art/generated/codex_hd/stu2_redspike.png",
+  "neck_row": 524,
+  "scale": 0.9811,
+  "head_offset": [
+   354,
+   62
+  ],
+  "head_size": [
+   522,
+   507
+  ],
+  "blender_seconds": 2.7,
+  "sheet": {
+   "idle": [
+    0,
+    1
+   ],
+   "talk": [
+    2,
+    3
+   ],
+   "walk": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  }
+ },
+ "stu3_dreads": {
+  "master": "art/generated/codex_hd/stu3_dreads.png",
+  "neck_row": 543,
+  "scale": 1.009,
+  "head_offset": [
+   316,
+   32
+  ],
+  "head_size": [
+   582,
+   537
+  ],
+  "blender_seconds": 2.9,
+  "sheet": {
+   "idle": [
+    0,
+    1
+   ],
+   "talk": [
+    2,
+    3
+   ],
+   "walk": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  }
+ },
+ "stu4_glasses": {
+  "master": "art/generated/codex_hd/stu4_glasses.png",
+  "neck_row": 422,
+  "scale": 0.8544,
+  "head_offset": [
+   463,
+   211
+  ],
+  "head_size": [
+   351,
+   353
+  ],
+  "blender_seconds": 2.7,
+  "sheet": {
+   "idle": [
+    0,
+    1
+   ],
+   "talk": [
+    2,
+    3
+   ],
+   "walk": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  }
+ },
+ "stu6_bucket": {
+  "master": "art/generated/codex_hd/stu6_bucket.png",
+  "neck_row": 500,
+  "scale": 0.948,
+  "head_offset": [
+   451,
+   103
+  ],
+  "head_size": [
+   394,
+   465
+  ],
+  "blender_seconds": 2.5,
+  "sheet": {
+   "idle": [
+    0,
+    1
+   ],
+   "talk": [
+    2,
+    3
+   ],
+   "walk": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  }
+ },
+ "stu7_toniku": {
+  "master": "art/generated/codex_hd/stu7_toniku.png",
+  "neck_row": 521,
+  "scale": 0.9768,
+  "head_offset": [
+   382,
+   70
+  ],
+  "head_size": [
+   506,
+   498
+  ],
+  "blender_seconds": 2.6,
+  "sheet": {
+   "idle": [
+    0,
+    1
+   ],
+   "talk": [
+    2,
+    3
+   ],
+   "walk": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  }
+ }
+}

@@ -1,0 +1,23 @@
+00:00.649  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/rig/stu7_toniku/raw/b00.png'
+00:00.803  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/rig/stu7_toniku/raw/b01.png'
+00:00.958  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/rig/stu7_toniku/raw/b46.png'
+00:01.105  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/rig/stu7_toniku/raw/b47.png'
+00:01.242  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/rig/stu7_toniku/raw/b48.png'
+00:01.378  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/rig/stu7_toniku/raw/b49.png'
+00:01.522  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/rig/stu7_toniku/raw/b50.png'
+00:01.745  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/rig/stu7_toniku/raw/b51.png'
+00:02.004  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/rig/stu7_toniku/raw/b52.png'
+00:02.228  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/rig/stu7_toniku/raw/b53.png'
+Info: Packed 14 file(s)
+Info: Saved as "rig.blend"
+HERO_RIG_DONE {"engine": "BLENDER_EEVEE", "build_seconds": 0.11, "render_seconds": 1.8}
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit
+
+/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/tools/art/cast_blender_rig.py:205: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/tools/art/cast_blender_rig.py:237: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/tools/art/cast_blender_rig.py:267: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True

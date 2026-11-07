@@ -1,0 +1,411 @@
+{
+  "engine": "BLENDER_EEVEE",
+  "render_scale": 4,
+  "margin": 64,
+  "frames": {
+    "0": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": 0.01,
+      "rendered": true
+    },
+    "1": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": 0.01,
+      "rendered": true
+    },
+    "2": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.1221
+    },
+    "3": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.406
+    },
+    "4": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": 0.2734
+    },
+    "5": {
+      "place": [
+        "ground",
+        12
+      ],
+      "root_dz_bu": 0.611
+    },
+    "6": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.1669
+    },
+    "7": {
+      "place": [
+        "neck",
+        24.24
+      ],
+      "root_dz_bu": 1.4515
+    },
+    "8": {
+      "place": [
+        "ball",
+        82
+      ],
+      "root_dz_bu": 0.449
+    },
+    "9": {
+      "place": [
+        "ball",
+        82
+      ],
+      "root_dz_bu": 3.5923
+    },
+    "10": {
+      "place": [
+        "ball",
+        82
+      ],
+      "root_dz_bu": 2.2706
+    },
+    "11": {
+      "place": [
+        "ball",
+        82
+      ],
+      "root_dz_bu": -0.8727
+    },
+    "12": {
+      "place": [
+        "neck",
+        18.18
+      ],
+      "root_dz_bu": 1.072
+    },
+    "13": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.2142
+    },
+    "14": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.2142
+    },
+    "15": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.2142
+    },
+    "16": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.2142
+    },
+    "17": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.2142
+    },
+    "18": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.2142
+    },
+    "19": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.2142
+    },
+    "20": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.2142
+    },
+    "21": {
+      "place": [
+        "neck",
+        12.12
+      ],
+      "root_dz_bu": 0.7411
+    },
+    "22": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.7532
+    },
+    "23": {
+      "place": [
+        "neck",
+        18.18
+      ],
+      "root_dz_bu": 1.0708
+    },
+    "24": {
+      "place": [
+        "neck",
+        6.06
+      ],
+      "root_dz_bu": 0.3569
+    },
+    "25": {
+      "place": [
+        "neck",
+        0
+      ],
+      "root_dz_bu": 0.0
+    },
+    "26": {
+      "place": [
+        "neck",
+        0
+      ],
+      "root_dz_bu": 0.0
+    },
+    "27": {
+      "place": [
+        "neck",
+        0.0
+      ],
+      "root_dz_bu": 0.0
+    },
+    "28": {
+      "place": [
+        "neck",
+        12.12
+      ],
+      "root_dz_bu": 0.7454
+    },
+    "29": {
+      "place": [
+        "neck",
+        6.06
+      ],
+      "root_dz_bu": 0.4556
+    },
+    "30": {
+      "place": [
+        "neck",
+        6.06
+      ],
+      "root_dz_bu": 0.4069
+    },
+    "31": {
+      "place": [
+        "neck",
+        0.0
+      ],
+      "root_dz_bu": 0.0044
+    },
+    "32": {
+      "place": [
+        "neck",
+        6.06
+      ],
+      "root_dz_bu": 0.4293
+    },
+    "33": {
+      "place": [
+        "neck",
+        0.0
+      ],
+      "root_dz_bu": -0.0011
+    },
+    "34": {
+      "place": [
+        "neck",
+        6.06
+      ],
+      "root_dz_bu": 0.4069
+    },
+    "35": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.1221
+    },
+    "36": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.406
+    },
+    "37": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": 0.2734
+    },
+    "38": {
+      "place": [
+        "ground",
+        12
+      ],
+      "root_dz_bu": 0.611
+    },
+    "39": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.1669
+    },
+    "40": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.406
+    },
+    "41": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": 0.2734
+    },
+    "42": {
+      "place": [
+        "ground",
+        12
+      ],
+      "root_dz_bu": 0.611
+    },
+    "43": {
+      "place": [
+        "neck",
+        36.36
+      ],
+      "root_dz_bu": 2.2403
+    },
+    "44": {
+      "place": [
+        "neck",
+        42.419999999999995
+      ],
+      "root_dz_bu": 2.5709
+    },
+    "45": {
+      "place": [
+        "neck",
+        66.66
+      ],
+      "root_dz_bu": 3.9763
+    },
+    "46": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": 0.01,
+      "rendered": true
+    },
+    "47": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": 0.01,
+      "rendered": true
+    },
+    "48": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.0398,
+      "rendered": true
+    },
+    "49": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": -0.1186,
+      "rendered": true
+    },
+    "50": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": 0.1775,
+      "rendered": true
+    },
+    "51": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": 0.1738,
+      "rendered": true
+    },
+    "52": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": 0.2201,
+      "rendered": true
+    },
+    "53": {
+      "place": [
+        "ground",
+        0
+      ],
+      "root_dz_bu": 0.2572,
+      "rendered": true
+    }
+  },
+  "tweens": [],
+  "build_seconds": 0.12,
+  "render_seconds": 1.99,
+  "rendered": [
+    0,
+    1,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53
+  ],
+  "blend": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/rig/stu5_sakura/rig.blend"
+}

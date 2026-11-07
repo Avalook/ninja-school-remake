@@ -1,0 +1,757 @@
+{
+ "codex": {
+  "npc00": {
+   "palette": 16.85,
+   "aspect_orig": 0.688,
+   "aspect_hd": 0.61,
+   "aspect": 0.12,
+   "facing_orig": 0.0,
+   "facing_hd": 0.016,
+   "key_left": 0.0,
+   "coverage": 0.589,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/npc0_old_master.png",
+   "visual": "good",
+   "note": "goggles smaller than the sprite; trousers purple not teal",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     58,
+     183
+    ],
+    "scale": 0.20857,
+    "facing": "right",
+    "world_height": 37.33,
+    "orig_height": 32,
+    "source": "art/generated/codex_hd/npc0_old_master.png",
+    "size": [
+     117,
+     187
+    ],
+    "file": "remake/art/cast/npc_0.png"
+   }
+  },
+  "npc10": {
+   "palette": 11.45,
+   "aspect_orig": 0.562,
+   "aspect_hd": 0.4,
+   "aspect": 0.34,
+   "facing_orig": 0.002,
+   "facing_hd": 0.091,
+   "key_left": 0.0,
+   "coverage": 0.651,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/npc1_ayumi.png",
+   "visual": "good",
+   "note": "faithful: black bun + pink flower, red kimono, gold obi",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     42,
+     183
+    ],
+    "scale": 0.20857,
+    "facing": "right",
+    "world_height": 37.33,
+    "orig_height": 32,
+    "source": "art/generated/codex_hd/npc1_ayumi.png",
+    "size": [
+     80,
+     187
+    ],
+    "file": "remake/art/cast/npc_1.png"
+   }
+  },
+  "npc20": {
+   "palette": 15.18,
+   "aspect_orig": 0.606,
+   "aspect_hd": 0.447,
+   "aspect": 0.304,
+   "facing_orig": 0.0,
+   "facing_hd": 0.218,
+   "key_left": 0.0,
+   "coverage": 0.631,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/npc2_hiroyaki.png",
+   "visual": "good",
+   "note": "topknot, closed eyes, blue/white haori, red sash",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     47,
+     188
+    ],
+    "scale": 0.20924,
+    "facing": "right",
+    "world_height": 38.5,
+    "orig_height": 33,
+    "source": "art/generated/codex_hd/npc2_hiroyaki.png",
+    "size": [
+     90,
+     192
+    ],
+    "file": "remake/art/cast/npc_2.png"
+   }
+  },
+  "npc30": {
+   "palette": 13.05,
+   "aspect_orig": 0.594,
+   "aspect_hd": 0.474,
+   "aspect": 0.226,
+   "facing_orig": -0.026,
+   "facing_hd": -0.009,
+   "key_left": 0.0,
+   "coverage": 0.642,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/npc3_honda.png",
+   "visual": "good",
+   "note": "bald, white moustache/beard, blue gi; adds a gold belt, no staff",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     47,
+     183
+    ],
+    "scale": 0.20857,
+    "facing": "right",
+    "world_height": 37.33,
+    "orig_height": 32,
+    "source": "art/generated/codex_hd/npc3_honda.png",
+    "size": [
+     93,
+     187
+    ],
+    "file": "remake/art/cast/npc_3.png"
+   }
+  },
+  "npc40": {
+   "palette": 15.07,
+   "aspect_orig": 0.588,
+   "aspect_hd": 0.642,
+   "aspect": 0.088,
+   "facing_orig": -0.02,
+   "facing_hd": 0.197,
+   "key_left": 0.0,
+   "coverage": 0.552,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/npc4_principal.png",
+   "visual": "good",
+   "note": "black robes, grey headband, red-lined cloak",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     69,
+     194
+    ],
+    "scale": 0.20877,
+    "facing": "right",
+    "world_height": 39.67,
+    "orig_height": 34,
+    "source": "art/generated/codex_hd/npc4_principal.png",
+    "size": [
+     130,
+     198
+    ],
+    "file": "remake/art/cast/npc_4.png"
+   }
+  },
+  "npc50": {
+   "palette": 13.34,
+   "aspect_orig": 0.645,
+   "aspect_hd": 0.553,
+   "aspect": 0.154,
+   "facing_orig": -0.092,
+   "facing_hd": 0.16,
+   "key_left": 0.0,
+   "coverage": 0.535,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/npc5_takanashi.png",
+   "visual": "good",
+   "note": "silver headband, navy gi, wooden sword",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     59,
+     204
+    ],
+    "scale": 0.20896,
+    "facing": "right",
+    "world_height": 42.0,
+    "orig_height": 36,
+    "source": "art/generated/codex_hd/npc5_takanashi.png",
+    "size": [
+     119,
+     209
+    ],
+    "file": "remake/art/cast/npc_5.png"
+   }
+  },
+  "dog": {
+   "palette": 7.56,
+   "aspect_orig": 1.526,
+   "aspect_hd": 0.785,
+   "aspect": 0.665,
+   "facing_orig": 0.027,
+   "facing_hd": 0.065,
+   "key_left": 0.0,
+   "coverage": 0.568,
+   "flags": [
+    "aspect"
+   ],
+   "ok": false,
+   "source": "art/generated/codex_hd/npc_dog.png",
+   "visual": "good",
+   "note": "husky wolf-dog, blue eyes; standing (d0)",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     50,
+     110
+    ],
+    "scale": 0.20912,
+    "facing": "right",
+    "world_height": 22.17,
+    "orig_height": 19,
+    "source": "art/generated/codex_hd/npc_dog.png",
+    "size": [
+     91,
+     114
+    ],
+    "file": "remake/art/cast/dog.png"
+   }
+  },
+  "dog_walk": {
+   "palette": 8.69,
+   "aspect_orig": 1.35,
+   "aspect_hd": 0.968,
+   "aspect": 0.333,
+   "facing_orig": 0.013,
+   "facing_hd": 0.05,
+   "key_left": 0.0,
+   "coverage": 0.55,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/npc_dog_walk.png",
+   "visual": "good",
+   "note": "walking pose (d1)",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     44,
+     116
+    ],
+    "scale": 0.20833,
+    "facing": "right",
+    "world_height": 23.33,
+    "orig_height": 20,
+    "source": "art/generated/codex_hd/npc_dog_walk.png",
+    "size": [
+     116,
+     120
+    ],
+    "file": "remake/art/cast/dog_walk.png"
+   }
+  },
+  "stu0_beanie": {
+   "palette": 14.23,
+   "aspect_orig": 0.677,
+   "aspect_hd": 0.385,
+   "aspect": 0.564,
+   "facing_orig": 0.045,
+   "facing_hd": 0.066,
+   "key_left": 0.0,
+   "coverage": 0.674,
+   "flags": [
+    "aspect"
+   ],
+   "ok": false,
+   "source": "art/generated/codex_hd/stu0_beanie.png",
+   "visual": "good",
+   "note": "teal beanie, red eyes, hero gi",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     37,
+     177
+    ],
+    "scale": 0.20906,
+    "facing": "right",
+    "world_height": 36.17,
+    "orig_height": 31,
+    "source": "art/generated/codex_hd/stu0_beanie.png",
+    "size": [
+     75,
+     181
+    ],
+    "file": "remake/art/cast/stu0_beanie.png"
+   }
+  },
+  "stu1_bald": {
+   "palette": 18.31,
+   "aspect_orig": 0.7,
+   "aspect_hd": 0.435,
+   "aspect": 0.476,
+   "facing_orig": 0.037,
+   "facing_hd": 0.024,
+   "key_left": 0.0,
+   "coverage": 0.646,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/stu1_bald.png",
+   "visual": "good",
+   "note": "",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     40,
+     172
+    ],
+    "scale": 0.20833,
+    "facing": "right",
+    "world_height": 35.0,
+    "orig_height": 30,
+    "source": "art/generated/codex_hd/stu1_bald.png",
+    "size": [
+     81,
+     176
+    ],
+    "file": "remake/art/cast/stu1_bald.png"
+   }
+  },
+  "stu2_redspike": {
+   "palette": 13.6,
+   "aspect_orig": 0.636,
+   "aspect_hd": 0.452,
+   "aspect": 0.342,
+   "facing_orig": 0.036,
+   "facing_hd": 0.01,
+   "key_left": 0.0,
+   "coverage": 0.561,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/stu2_redspike.png",
+   "visual": "good",
+   "note": "",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     42,
+     188
+    ],
+    "scale": 0.20924,
+    "facing": "right",
+    "world_height": 38.5,
+    "orig_height": 33,
+    "source": "art/generated/codex_hd/stu2_redspike.png",
+    "size": [
+     91,
+     192
+    ],
+    "file": "remake/art/cast/stu2_redspike.png"
+   }
+  },
+  "stu3_dreads": {
+   "palette": 9.92,
+   "aspect_orig": 0.667,
+   "aspect_hd": 0.491,
+   "aspect": 0.306,
+   "facing_orig": 0.039,
+   "facing_hd": 0.069,
+   "key_left": 0.0,
+   "coverage": 0.534,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/stu3_dreads.png",
+   "visual": "good",
+   "note": "dreads tied high, purple eyes",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     53,
+     188
+    ],
+    "scale": 0.20924,
+    "facing": "right",
+    "world_height": 38.5,
+    "orig_height": 33,
+    "source": "art/generated/codex_hd/stu3_dreads.png",
+    "size": [
+     98,
+     192
+    ],
+    "file": "remake/art/cast/stu3_dreads.png"
+   }
+  },
+  "stu4_glasses": {
+   "palette": 18.15,
+   "aspect_orig": 0.7,
+   "aspect_hd": 0.412,
+   "aspect": 0.53,
+   "facing_orig": 0.047,
+   "facing_hd": -0.055,
+   "key_left": 0.0,
+   "coverage": 0.664,
+   "flags": [
+    "facing_not_right"
+   ],
+   "ok": false,
+   "source": "art/generated/codex_hd/stu4_glasses.png",
+   "visual": "good",
+   "note": "bald + white glasses",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     38,
+     172
+    ],
+    "scale": 0.20833,
+    "facing": "right",
+    "world_height": 35.0,
+    "orig_height": 30,
+    "source": "art/generated/codex_hd/stu4_glasses.png",
+    "size": [
+     77,
+     176
+    ],
+    "file": "remake/art/cast/stu4_glasses.png"
+   }
+  },
+  "stu5_sakura": {
+   "palette": 15.43,
+   "aspect_orig": 0.667,
+   "aspect_hd": 0.53,
+   "aspect": 0.23,
+   "facing_orig": 0.02,
+   "facing_hd": 0.178,
+   "key_left": 0.0,
+   "coverage": 0.577,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/stu5_sakura.png",
+   "visual": "good",
+   "note": "ponytail + red ribbon, blue eyes",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     61,
+     188
+    ],
+    "scale": 0.20924,
+    "facing": "right",
+    "world_height": 38.5,
+    "orig_height": 33,
+    "source": "art/generated/codex_hd/stu5_sakura.png",
+    "size": [
+     105,
+     192
+    ],
+    "file": "remake/art/cast/stu5_sakura.png"
+   }
+  },
+  "stu5_sakura_kimono": {
+   "palette": 25.35,
+   "aspect_orig": 0.667,
+   "aspect_hd": 0.526,
+   "aspect": 0.237,
+   "facing_orig": 0.02,
+   "facing_hd": 0.179,
+   "key_left": 0.0,
+   "coverage": 0.6,
+   "flags": [
+    "palette"
+   ],
+   "ok": false,
+   "source": "art/generated/codex_hd/stu5_sakura_kimono.png",
+   "visual": "good",
+   "note": "pink kimono alternative",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     59,
+     188
+    ],
+    "scale": 0.20924,
+    "facing": "right",
+    "world_height": 38.5,
+    "orig_height": 33,
+    "source": "art/generated/codex_hd/stu5_sakura_kimono.png",
+    "size": [
+     105,
+     192
+    ],
+    "file": "remake/art/cast/stu5_sakura_kimono.png"
+   }
+  },
+  "stu6_bucket": {
+   "palette": 10.12,
+   "aspect_orig": 0.677,
+   "aspect_hd": 0.38,
+   "aspect": 0.578,
+   "facing_orig": 0.033,
+   "facing_hd": 0.003,
+   "key_left": 0.0,
+   "coverage": 0.726,
+   "flags": [
+    "aspect"
+   ],
+   "ok": false,
+   "source": "art/generated/codex_hd/stu6_bucket.png",
+   "visual": "good",
+   "note": "woven bucket hat with mesh window",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     36,
+     177
+    ],
+    "scale": 0.20906,
+    "facing": "right",
+    "world_height": 36.17,
+    "orig_height": 31,
+    "source": "art/generated/codex_hd/stu6_bucket.png",
+    "size": [
+     74,
+     181
+    ],
+    "file": "remake/art/cast/stu6_bucket.png"
+   }
+  },
+  "stu7_toniku": {
+   "palette": 19.43,
+   "aspect_orig": 0.667,
+   "aspect_hd": 0.438,
+   "aspect": 0.421,
+   "facing_orig": 0.043,
+   "facing_hd": 0.039,
+   "key_left": 0.0,
+   "coverage": 0.595,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/stu7_toniku.png",
+   "visual": "good",
+   "note": "messy red hair, bruised, torn gi",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     44,
+     188
+    ],
+    "scale": 0.20924,
+    "facing": "right",
+    "world_height": 38.5,
+    "orig_height": 33,
+    "source": "art/generated/codex_hd/stu7_toniku.png",
+    "size": [
+     89,
+     192
+    ],
+    "file": "remake/art/cast/stu7_toniku.png"
+   }
+  },
+  "stu7_toniku_leader": {
+   "palette": 26.53,
+   "aspect_orig": 0.667,
+   "aspect_hd": 0.46,
+   "aspect": 0.372,
+   "facing_orig": 0.043,
+   "facing_hd": 0.034,
+   "key_left": 0.0,
+   "coverage": 0.632,
+   "flags": [
+    "palette"
+   ],
+   "ok": false,
+   "source": "art/generated/codex_hd/stu7_toniku_leader.png",
+   "visual": "unreviewed_extra",
+   "note": "bandit-leader variant",
+   "alpha_real": true,
+   "use": false
+  },
+  "boss_boar": {
+   "palette": 8.88,
+   "aspect_orig": 1.571,
+   "aspect_hd": 1.241,
+   "aspect": 0.236,
+   "facing_orig": -0.015,
+   "facing_hd": 0.038,
+   "key_left": 0.0,
+   "coverage": 0.662,
+   "flags": [],
+   "ok": true,
+   "source": "art/generated/codex_hd/boss_boar.png",
+   "visual": "good",
+   "note": "dark red-brown boar, white tusks, faces right",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     99,
+     171
+    ],
+    "scale": 0.20833,
+    "facing": "right",
+    "world_height": 35.0,
+    "orig_height": 35,
+    "source": "art/generated/codex_hd/boss_boar.png",
+    "size": [
+     217,
+     176
+    ],
+    "file": "remake/art/cast/boss_boar.png"
+   }
+  },
+  "boss_squid": {
+   "palette": 14.29,
+   "aspect_orig": 0.764,
+   "aspect_hd": 0.958,
+   "aspect": 0.226,
+   "facing_orig": 0.008,
+   "facing_hd": -0.023,
+   "key_left": 0.0,
+   "coverage": 0.512,
+   "flags": [
+    "facing_not_right"
+   ],
+   "ok": false,
+   "source": "art/generated/codex_hd/boss_squid.png",
+   "visual": "good",
+   "note": "blue squid; 8 tentacles vs 4 in the sprite",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     135,
+     266
+    ],
+    "scale": 0.20913,
+    "facing": "right",
+    "world_height": 55.0,
+    "orig_height": 55,
+    "source": "art/generated/codex_hd/boss_squid.png",
+    "size": [
+     260,
+     271
+    ],
+    "file": "remake/art/cast/boss_squid.png"
+   }
+  },
+  "boss_golem": {
+   "palette": 16.17,
+   "aspect_orig": 1.828,
+   "aspect_hd": 0.933,
+   "aspect": 0.673,
+   "facing_orig": 0.009,
+   "facing_hd": 0.002,
+   "key_left": 0.0,
+   "coverage": 0.622,
+   "flags": [
+    "aspect"
+   ],
+   "ok": false,
+   "source": "art/generated/codex_hd/boss_golem.png",
+   "visual": "acceptable",
+   "note": "adds a head/face; original golem is a round barrel body with fists and feet (its 'head' is a classmate head f2h0 in boss_golem.gd)",
+   "alpha_real": true,
+   "use": true,
+   "game_ready": {
+    "anchor": [
+     137,
+     282
+    ],
+    "scale": 0.20863,
+    "facing": "right",
+    "world_height": 58.0,
+    "orig_height": 58,
+    "source": "art/generated/codex_hd/boss_golem.png",
+    "size": [
+     267,
+     286
+    ],
+    "file": "remake/art/cast/boss_golem.png"
+   }
+  },
+  "mob00": {
+   "palette": 57.89,
+   "aspect_orig": 0.667,
+   "aspect_hd": 0.682,
+   "aspect": 0.022,
+   "facing_orig": 0.018,
+   "facing_hd": -0.025,
+   "key_left": 0.0,
+   "coverage": 0.405,
+   "flags": [
+    "palette",
+    "facing_not_right"
+   ],
+   "ok": false,
+   "source": "art/generated/codex_hd/mob00.png",
+   "visual": "reject",
+   "note": "purple ghost from the prompt-pack text; original type 0 is a one-eyed orange caveman (m000..m003)",
+   "alpha_real": true,
+   "use": false
+  },
+  "mob01": {
+   "palette": 29.47,
+   "aspect_orig": 1.067,
+   "aspect_hd": 1.233,
+   "aspect": 0.145,
+   "facing_orig": -0.058,
+   "facing_hd": -0.16,
+   "key_left": 0.0,
+   "coverage": 0.724,
+   "flags": [
+    "palette",
+    "facing_not_right"
+   ],
+   "ok": false,
+   "source": "art/generated/codex_hd/mob01.png",
+   "visual": "acceptable",
+   "note": "snail ok but shell orange, sprite shell maroon; type 1 already has Blender HD",
+   "alpha_real": true,
+   "use": true
+  },
+  "mob02": {
+   "palette": 36.07,
+   "aspect_orig": 1.143,
+   "aspect_hd": 0.942,
+   "aspect": 0.193,
+   "facing_orig": 0.0,
+   "facing_hd": 0.003,
+   "key_left": 0.0,
+   "coverage": 0.417,
+   "flags": [
+    "palette"
+   ],
+   "ok": false,
+   "source": "art/generated/codex_hd/mob02.png",
+   "visual": "reject",
+   "note": "purple bat; original type 2 is a blue/cyan bat; mob02_sheet has no real alpha (min alpha 170)",
+   "alpha_real": true,
+   "use": false
+  }
+ },
+ "updated": "2026-11-07T08:18:56+00:00"
+}

@@ -93,6 +93,11 @@ func new_game() -> void:
 	Game.mode = "play"
 	if auto.has("map"):
 		S.reset_state()
+		if auto.has("set"):      # test state: --set=H=500000;G=500000;fc=true
+			for kv in str(auto["set"]).split(";"):
+				var a := kv.split("=")
+				var cur = S.get(a[0])
+				S.set(a[0], (a[1] == "true") if cur is bool else (int(a[1]) if cur is int else a[1]))
 		var p: PackedStringArray = str(auto["map"]).split(",")
 		world.load_map(int(p[0]), Vector2(int(p[1]) if p.size() > 1 else 48, int(p[2]) if p.size() > 2 else 0), -1)
 	elif story:

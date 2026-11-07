@@ -1,0 +1,11 @@
+Peak MLX memory: 5.76 GB
+
+
+  0%|          | 0/4 [00:00<?, ?it/s]
+ 25%|██▌       | 1/4 [00:17<00:51, 17.04s/it]
+ 50%|█████     | 2/4 [00:32<00:32, 16.16s/it]
+ 75%|███████▌  | 3/4 [00:48<00:15, 15.84s/it]
+100%|██████████| 4/4 [01:03<00:00, 15.74s/it]
+100%|██████████| 4/4 [01:03<00:00, 15.91s/it]
+INFO: Image saved successfully at: /Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/work/raw_npc00_t1.png
+INFO: Metadata embedded successfully at: /Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/cast/work/raw_npc00_t1.png
