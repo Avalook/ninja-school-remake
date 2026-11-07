@@ -15,6 +15,8 @@ var text_scale := 4.0
 var alpha := 1.0
 var hd_root := "res://hd_res"
 var cam := Vector2.ZERO        # interpolated camera (world px)
+var smooth_cam := Vector2.ZERO
+var pixel_snap := false
 var cam_delta := Vector2.ZERO  # current tick camera - interpolated camera
 var _prev_index: Dictionary = {}
 var _runs: Array = []          # [tag, start, end]
@@ -24,6 +26,11 @@ func _ready() -> void:
 
 static func clip_index(c: Array) -> int:
 	return 10 if c[0] == 4 else 6
+
+# load every sprite texture up front (lazy loads inside _draw caused hitches, esp. on Windows)
+func preload_all() -> void:
+	for p in core._img_sizes.keys():
+		tex(p)
 
 func tex(path: String) -> Texture2D:
 	if tex_cache.has(path):
@@ -62,8 +69,13 @@ func on_tick() -> void:
 	if cmds.size() > start:
 		_runs.append([cur, start, cmds.size()])
 
+# match key between ticks: routine tag + sprite family (folder + first letter) + ordinal.
+# The exact file changes with animation frames, so it is NOT part of the key (otherwise every
+# frame change would break interpolation and the sprite would jump).
 func _key(c: Array, ord: Dictionary) -> String:
-	var base: String = c[-1] + "|" + c[1]["p"]
+	var p: String = c[1]["p"]
+	var slash := p.rfind("/")
+	var base: String = c[-1] + "|" + p.substr(0, slash + 2)
 	var n: int = ord.get(base, 0)
 	ord[base] = n + 1
 	return base + "|" + str(n)
@@ -71,7 +83,13 @@ func _key(c: Array, ord: Dictionary) -> String:
 func _draw() -> void:
 	if core == null:
 		return
-	cam = core.prev_cam.lerp(core.cur_cam, alpha)
+	var target: Vector2 = core.prev_cam.lerp(core.cur_cam, alpha)
+	var dt: float = get_process_delta_time()
+	if (target - smooth_cam).length() > 48.0 or dt <= 0.0:
+		smooth_cam = target
+	else:
+		smooth_cam += (target - smooth_cam) * (1.0 - exp(-dt / 0.045))
+	cam = smooth_cam.round() if pixel_snap else smooth_cam
 	cam_delta = core.cur_cam - cam
 	var cmds: Array = core._gq
 	var ord := {}

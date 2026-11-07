@@ -475,12 +475,16 @@ def apply_pose(scene, arm, objs, katana, b, pose, meta):
         rest = W(*piv["neck"])
         cur = posed_point(arm, "torso", rest)       # neck = head bone head, moves with torso
         dz = (rest.z + out_px_to_bu(value)) - cur.z
+    elif kind == "fixed":  # in-between frames: root placement interpolated from the two key poses
+        dz = value[1]
     else:  # "ball": centroid of the tucked body at a height above ground
         c = ball_centre(arm, piv)
         dz = out_px_to_bu(value) - c.z
     dx = 0.0
     if kind == "ball":
         dx = -ball_centre(arm, piv).x
+    elif kind == "fixed":
+        dx = value[0]
     arm.pose.bones["root"].location = (dx, dz, 0)   # root local X/Y = world X/Z
     bpy.context.view_layer.update()
 
@@ -527,7 +531,26 @@ def apply_pose(scene, arm, objs, katana, b, pose, meta):
         pb.keyframe_insert("location", frame=b)
         pb.keyframe_insert("rotation_euler", frame=b)
         pb.keyframe_insert("scale", frame=b)
+    apply_pose.last_dx = dx
     return dz
+
+
+NUMERIC = set(ANGLE_BONE) | {"kd", "kz", "breathe"}
+
+
+def tween(p1, p2, t):
+    """Linear blend of two key poses (angles, katana direction); discrete things switch at t=0.5."""
+    near = p1 if t < 0.5 else p2
+    out = {k: v for k, v in near.items() if k not in NUMERIC and k != "place"}
+    for k in NUMERIC:
+        if k in p1 or k in p2:
+            d = 1.0 if k == "breathe" else 0.0
+            if k in ("kd", "kz") and (k not in p1 or k not in p2):
+                if k in near:
+                    out[k] = near[k]
+                continue
+            out[k] = p1.get(k, d) * (1 - t) + p2.get(k, d) * t
+    return out
 
 
 def constant_interpolation():
@@ -550,6 +573,7 @@ def main():
     ap.add_argument("--project-root", required=True, type=Path)
     ap.add_argument("--frames", default="")
     ap.add_argument("--no-render", action="store_true")
+    ap.add_argument("--tweens", default="", help="comma list of b1-b2 pairs: render in-between frames at t=1/3,2/3")
     args = ap.parse_args(sys.argv[sys.argv.index("--") + 1:])
     root = args.project_root.resolve()
     parts_dir = root / "art/hero/parts"
@@ -570,9 +594,23 @@ def main():
 
     scene.frame_start, scene.frame_end = 0, 45
     report = {"engine": engine, "render_scale": RENDER_SCALE, "margin": MARGIN, "frames": {}}
+    roots = {}
     for b in range(46):
         dz = apply_pose(scene, arm, objs, katana, b, POSES[b], meta)
+        roots[b] = (apply_pose.last_dx, dz)
         report["frames"][b] = {"place": list(POSES[b]["place"]), "root_dz_bu": round(dz, 4)}
+    tweens = []
+    for pr in [x for x in args.tweens.split(",") if x.strip()]:
+        b1, b2 = [int(v) for v in pr.split("-")]
+        for k, t in ((1, 1.0 / 3.0), (2, 2.0 / 3.0)):
+            f = 100 + len(tweens)
+            r1, r2 = roots[b1], roots[b2]
+            pose = tween(POSES[b1], POSES[b2], t)
+            pose["place"] = ("fixed", (r1[0] * (1 - t) + r2[0] * t, r1[1] * (1 - t) + r2[1] * t))
+            apply_pose(scene, arm, objs, katana, f, pose, meta)
+            tweens.append({"frame": f, "b1": b1, "b2": b2, "k": k, "t": t})
+    report["tweens"] = tweens
+    scene.frame_end = 100 + len(tweens) if tweens else 45
     constant_interpolation()
     if arm.animation_data and arm.animation_data.action:
         arm.animation_data.action.name = "HeroPoses_B00_B45"
@@ -593,6 +631,10 @@ def main():
             scene.render.filepath = str(raw / f"b{b:02d}.png")
             bpy.ops.render.render(write_still=True)
             report["frames"][b]["rendered"] = True
+        for tw in tweens:
+            scene.frame_set(tw["frame"])
+            scene.render.filepath = str(raw / ("t_%d_%d_%d.png" % (tw["b1"], tw["b2"], tw["k"])))
+            bpy.ops.render.render(write_still=True)
     report.update(build_seconds=round(build_s, 2), render_seconds=round(time.time() - t1, 2),
                   rendered=[] if args.no_render else frames, blend=str(blend.relative_to(root)))
     (root / "art/hero/build/render-report.json").write_text(json.dumps(report, indent=2))

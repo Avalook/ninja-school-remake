@@ -48,10 +48,15 @@ def main():
                "--project-root", str(ROOT)]
     if args.frames:
         blender += ["--frames", args.frames]
+    pairs_file = ROOT / "art/hero/tween_pairs.json"
+    if pairs_file.is_file():   # in-between poses for smooth 60 fps display of 25 Hz frame changes
+        pairs = json.loads(pairs_file.read_text())
+        blender += ["--tweens", ",".join("%d-%d" % (a, b) for a, b in pairs)]
     steps = [
         ("split", [sys.executable, str(ROOT / "scripts/hero_split_parts.py"), "--debug"], 180),
         ("blender_rig_render", blender, 900),
         ("assemble", [sys.executable, str(ROOT / "scripts/hero_assemble.py")], 180),
+        ("assemble_tweens", [sys.executable, str(ROOT / "scripts/hero_tweens_assemble.py")], 300),
     ]
     state = {"status": "running", "started_at": now(), "finished_at": None, "steps": []}
     write(state)

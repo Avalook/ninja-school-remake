@@ -21,6 +21,7 @@ var auto_wait := 0
 var auto_shots := ""
 var held_keys: Dictionary = {}
 var capturing := false
+var zoom := 1.0
 
 func _ready() -> void:
 	Engine.max_fps = 0
@@ -32,6 +33,7 @@ func _ready() -> void:
 	renderer = load("res://render/cmd_renderer.gd").new()
 	renderer.core = core
 	view.add_child(renderer)
+	renderer.preload_all()
 	fxl = load("res://render/fx_layer.gd").new()
 	fxl.core = core
 	fxl.r = renderer
@@ -54,6 +56,8 @@ func _ready() -> void:
 	for i in args.size():
 		if args[i] == "--auto" and i + 1 < args.size():
 			auto_lines = FileAccess.get_file_as_string(args[i + 1]).split("\n")
+		if args[i] == "--zoom" and i + 1 < args.size():
+			zoom = float(args[i + 1])
 		if args[i] == "--shots" and i + 1 < args.size():
 			auto_shots = args[i + 1]
 			DirAccess.make_dir_recursive_absolute(auto_shots)
@@ -121,6 +125,9 @@ func _perf(delta: float) -> void:
 func _process(delta: float) -> void:
 	if overlay.debug:
 		_perf(delta)
+	if OS.get_cmdline_user_args().has("--jitterlog") and core.d == 1:
+		var pw: Vector2 = core.prev_player.lerp(core.cur_player, acc / TICK)
+		print("[jit] dt=%.2f a=%.2f px=%.2f cam=%.2f scr=%.2f B=%d" % [delta * 1000.0, acc / TICK, pw.x, renderer.cam.x, pw.x - renderer.cam.x, core.B])
 	if settings.visible:
 		return
 	acc += min(delta, 0.25)
@@ -141,6 +148,13 @@ func _process(delta: float) -> void:
 		_layout()
 	hd.alpha = acc / TICK
 	renderer.alpha = acc / TICK
+	if zoom > 1.0 and world_mode:
+		var vs2 := get_viewport_rect().size
+		var s2: float = min(vs2.x / LOGICAL.x, vs2.y / WORLD_H) * zoom
+		view.scale = Vector2(s2, s2)
+		var pw: Vector2 = core.prev_player.lerp(core.cur_player, acc / TICK) - renderer.cam
+		view.position = vs2 * Vector2(0.5, 0.62) - pw * s2
+		renderer.text_scale = s2
 	if stepped:
 		renderer.on_tick()
 		hd.on_tick()

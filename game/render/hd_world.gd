@@ -7,6 +7,12 @@ var r           # cmd_renderer
 var alpha := 0.0
 var hero_tex: Texture2D
 var hero_meta := {}
+var rig
+var use_rig := true
+var tween_tex: Texture2D
+var tween_meta := {}
+var prev_B := 0
+var cur_B := 0
 var env_cache := {}
 var t := 0.0
 var particles: Array = []
@@ -38,6 +44,11 @@ func setup(core_, renderer) -> void:
 		var mf := FileAccess.open("res://art/hero/hero_sheet.json", FileAccess.READ)
 		if mf:
 			hero_meta = JSON.parse_string(mf.get_as_text())
+	rig = load("res://render/hero_rig.gd").new()
+	rig.load_assets()
+	if ResourceLoader.exists("res://art/hero/hero_tweens.png"):
+		tween_tex = load("res://art/hero/hero_tweens.png")
+		tween_meta = JSON.parse_string(FileAccess.get_file_as_string("res://art/hero/hero_tweens.json"))
 	r.replacers["a_o"] = Callable(self, "_draw_sky")
 	r.replacers["b_o"] = Callable(self, "_draw_player")
 	r.replacers["f_o"] = Callable(self, "_draw_dialogue")
@@ -109,9 +120,24 @@ func _draw_player(rr, cmds: Array) -> void:
 		for c in cmds:
 			rr.draw_cmd(c, ord)
 		return
-	var B: int = core.B
-	if core.fz:
-		B = 25 if core.w % 20 > 2 else 26
+	if use_rig and rig != null and rig.ok and core.d == 1:
+		var wpos: Vector2 = core.prev_player.lerp(core.cur_player, alpha)
+		var dtr := get_process_delta_time()
+		rig.update(core, cur_B, prev_B, alpha, wpos.x, dtr)
+		var gp: Vector2 = wpos - rr.cam
+		if core.A in [1, 2, 5, 8, 22]:
+			rr.draw_set_transform(gp + Vector2(0, -1), 0.0, Vector2(1.0, 0.28))
+			rr.draw_circle(Vector2.ZERO, 11.0, Color(0, 0, 0, 0.28))
+			rr.draw_set_transform(Vector2.ZERO)
+		var m2 := Color.WHITE
+		if core.fA:
+			m2 = Color(1.25, 0.8, 0.75)
+		if core.fz:
+			m2.a = 0.6
+		rig.draw(rr, gp, 1 if core.fp == 1 else -1, HERO_SCALE, m2, dtr, rr.cam)
+		_draw_weapon_fx(rr, cmds)
+		return
+	var B: int = cur_B
 	var cell: Array = hero_meta.get("cell", [256, 256])
 	var anc: Array = hero_meta.get("anchor", [128, 240])
 	var cols: int = hero_meta.get("cols", 8)
@@ -119,7 +145,25 @@ func _draw_player(rr, cmds: Array) -> void:
 	if OS.get_cmdline_user_args().has("--debug") and Engine.get_process_frames() % 120 == 0:
 		print("hero B=", B, " pos=", pos, " fp=", core.fp, " cell=", cell)
 	var scale := HERO_SCALE
+	var yoff: Array = hero_meta.get("frame_y_offset", [])
+	var y_extra := 0.0
 	var src := Rect2((B % cols) * cell[0], (B / cols) * cell[1], cell[0], cell[1])
+	var tex: Texture2D = hero_tex
+	# Display runs one tick behind (interpolated), so between prev_B and cur_B we can show the
+	# Blender in-between poses (t=1/3, 2/3). Logic/hit timing is untouched.
+	if prev_B != cur_B and tween_tex != null and alpha >= 1.0 / 6.0 and alpha < 5.0 / 6.0:
+		var key := "%d_%d_%d" % [prev_B, cur_B, 1 if alpha < 0.5 else 2]
+		var mp: Dictionary = tween_meta.get("map", {})
+		if mp.has(key):
+			var ti: int = int(mp[key][0])
+			var tc: int = int(tween_meta.get("cols", 16))
+			tex = tween_tex
+			src = Rect2((ti % tc) * cell[0], (ti / tc) * cell[1], cell[0], cell[1])
+			y_extra = float(mp[key][1]) * scale
+			B = -1
+	elif prev_B != cur_B and alpha < 1.0 / 6.0:
+		B = prev_B
+		src = Rect2((B % cols) * cell[0], (B / cols) * cell[1], cell[0], cell[1])
 	var facing: int = core.fp
 	# shadow on ground
 	if core.A in [1, 2, 5, 8, 22]:
@@ -131,21 +175,25 @@ func _draw_player(rr, cmds: Array) -> void:
 		mod = Color(1.25, 0.8, 0.75)
 	if core.fz:
 		mod.a = 0.6
-	var yoff: Array = hero_meta.get("frame_y_offset", [])
-	if B < yoff.size():
-		pos.y += float(yoff[B]) * scale
+	if B >= 0 and B < yoff.size():
+		y_extra = float(yoff[B]) * scale
+	pos.y += y_extra
 	var dst_size := Vector2(cell[0], cell[1]) * scale
 	var origin := pos - Vector2(anc[0], anc[1]) * scale
 	if facing == 1:
-		rr.draw_texture_rect_region(hero_tex, Rect2(origin, dst_size), src, mod)
+		rr.draw_texture_rect_region(tex, Rect2(origin, dst_size), src, mod)
 	else:
 		rr.draw_set_transform(Vector2(pos.x + anc[0] * scale, origin.y), 0.0, Vector2(-1, 1))
-		rr.draw_texture_rect_region(hero_tex, Rect2(Vector2.ZERO, dst_size), src, mod)
+		rr.draw_texture_rect_region(tex, Rect2(Vector2.ZERO, dst_size), src, mod)
 		rr.draw_set_transform(Vector2.ZERO)
-	# original weapon overlay eE[ff]: 0/3/4 = small held blade (the HD hero holds a katana) -> skipped;
-	# slash arcs and the bamboo breathing tube are kept, arcs drawn with a glow
+	_draw_weapon_fx(rr, cmds, true)
+
+# original weapon overlay eE[ff]: 0/3/4 = small held blade (the HD hero holds a katana) -> skipped;
+# slash arcs (1,2,5,6,9,10) only for the sprite fallback (the runtime rig draws its own trail);
+# 7/8 = bamboo breathing tube while diving, always kept
+func _draw_weapon_fx(rr, cmds: Array, arcs := false) -> void:
 	var ff: int = core.ff
-	if ff in [1, 2, 5, 6, 9, 10]:
+	if arcs and ff in [1, 2, 5, 6, 9, 10]:
 		var ord := {}
 		for c in cmds:
 			if c[0] == 4 and str(c[1]["p"]).begins_with("/c/w"):
@@ -193,8 +241,21 @@ func _draw_dialogue(rr, cmds: Array) -> void:
 	if box.size.x > 0 and int(t * 2.0) % 2 == 0:
 		rr.draw_text_fit("▼", box.position + Vector2(box.size.x - 9, box.size.y - 9), 0, -1, 7.0, Color(0.6, 0.15, 0.1), false)
 
+var _last_v := -999
+
 func on_tick() -> void:
-	pass
+	if core.v != _last_v:
+		_last_v = core.v
+		# warm up this map's background layers (both lightings) off the main thread
+		for night in [false, true]:
+			for i in 4:
+				var p := "res://art/env/%s/%s/layer%d.webp" % [biome(), "night" if night else "day", i]
+				if ResourceLoader.exists(p):
+					ResourceLoader.load_threaded_request(p)
+	prev_B = cur_B
+	cur_B = core.B
+	if core.fz:
+		cur_B = 25 if core.w % 20 > 2 else 26
 
 func _process(delta: float) -> void:
 	t += delta
