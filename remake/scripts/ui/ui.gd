@@ -97,12 +97,18 @@ func popup(text: String, dur := 2.6) -> void:
 # modal message that needs OK (original d = 7 popups)
 func message(text: String) -> void:
 	modal_text = text
+	if modal_active:
+		modal_text = text
+		return
 	modal_active = true
+	var was_paused: bool = Game.paused
+	Game.paused = true        # original d = 7: the game stops while the message is shown
 	_open_frame = Engine.get_process_frames()
 	var prev := Game.mode
 	Game.mode = "dialogue"
 	while modal_active:
 		await advanced
+	Game.paused = was_paused
 	if Game.mode == "dialogue":
 		Game.mode = prev if prev != "dialogue" else "play"
 

@@ -4,12 +4,14 @@ extends SceneTree
 var g
 var trace: FileAccess
 const TF = ["d","v","A","B","fh","fi","fR","fS","fV","fX","gc","G","I","N","M","dg","O","fF","w","jN","jO","kc","jS","hu","hP","hS","hT"]
+# TRACE_EXTRA="a,b,c" appends fields to the trace (used by remake/tests/enemies_oracle.gd)
+var tf_all: Array = TF + Array(OS.get_environment("TRACE_EXTRA").split(",", false))
 func step(n: int) -> void:
 	for i in n:
 		g.tick()
 		if trace:
 			var s := str(g.ticks)
-			for fname in TF:
+			for fname in tf_all:
 				var val = g.get(fname)
 				s += " %s=%s" % [fname, str(val).replace(" ", "")]
 			trace.store_line(s)
@@ -43,6 +45,40 @@ func bot_goto(target: Callable, ticks: int, near := 14) -> void:
 		step(1)
 	g.key_up(-3); g.key_up(-4)
 
+func _jint(v):
+	if v is float and v == floorf(v):
+		return int(v)
+	if v is Array:
+		var o := []
+		for e in v:
+			o.append(_jint(e))
+		return o
+	return v
+func _has_obj(v) -> bool:
+	if v is Dictionary or v is Object:
+		return true
+	if v is Array:
+		for e in v:
+			if _has_obj(e):
+				return true
+	return false
+func load_state(static_path: String, map_path: String) -> void:
+	var st: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(static_path))
+	var mj: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(map_path))
+	var mp: Dictionary = mj["state"]
+	st.merge(mp, true)
+	st["iU"] = mj["flags"]
+	st["iT"] = mj["tiles"]
+	for k in st:
+		if k in ["loader_requests", "prev_gq", "prev_cam", "cur_cam", "prev_player", "cur_player", "ticks", "vclock", "events", "fx_events", "frame_ended", "booted", "auto_prompts"]:
+			continue
+		var v = st[k]
+		if _has_obj(v) or _has_obj(g.get(k)) or g.get(k) is Object:
+			continue
+		if typeof(g.get(k)) == TYPE_BOOL:
+			g.set(k, bool(v))
+		else:
+			g.set(k, _jint(v))
 func _init():
 	var args := OS.get_cmdline_user_args()
 	# clean save storage for deterministic tests
@@ -74,6 +110,10 @@ func _init():
 			"press": g.key_down(int(t[1]))
 			"release": g.key_up(int(t[1]))
 			"set": g.set(t[1], int(t[2]))
+			"loadstate":
+				# loadstate <static.json> <map.json>: overwrite every plain variable with the exported
+				# remake/data state (images/objects keep the values loaded by a preceding "call x <map>")
+				load_state(t[1], t[2])
 			"call":
 				var a := []
 				for k in range(2, t.size()):

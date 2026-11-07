@@ -28,6 +28,7 @@ func _ready() -> void:
 	add_child(world)
 	world.visible = false
 	player = preload("res://scripts/player/player.gd").new()
+	player.external_tick = true
 	player.world = world
 	world.player = player
 	world.layer_actors.add_child(player)
@@ -38,6 +39,7 @@ func _ready() -> void:
 	var em_s = load("res://scripts/enemies/enemy_manager.gd") if ResourceLoader.exists("res://scripts/enemies/enemy_manager.gd") and not OS.get_cmdline_user_args().has("--noenemies") else null
 	if em_s != null and em_s.can_instantiate():
 		enemies = em_s.new()
+		enemies.autotick = false
 		enemies.name = "Enemies"
 		world.enemies = enemies
 		if "world" in enemies:
@@ -57,6 +59,7 @@ func _ready() -> void:
 		if story.has_signal("quit_to_title"):
 			story.quit_to_title.connect(_back_to_title)
 	world.map_loaded.connect(_on_map_loaded)
+	Game.tick25.connect(_tick25)
 	if ResourceLoader.exists("res://art/env/school/day/layer0.webp"):
 		title_bg = load("res://art/env/school/day/layer0.webp")
 	if ResourceLoader.exists("res://art/ui/hero_title.png"):
@@ -114,6 +117,14 @@ func continue_game() -> void:
 		return
 	UI.fade_in(0.6)
 
+# original run() order inside one tick: projectiles, player R(), monsters / bosses / students
+func _tick25() -> void:
+	if enemies and Game.mode in ["play", "cutscene"]:
+		enemies.step_projectiles()
+	player.tick()
+	if enemies and Game.mode in ["play", "cutscene"]:
+		enemies.step_actors()
+
 func _on_map_loaded(id: int) -> void:
 	var st: Dictionary = world.map.get("state", {})
 	if st.has("MF_t"):
@@ -169,6 +180,8 @@ func _auto(delta: float) -> void:
 		hero_hist.append(player.pos.x)
 		if run_t > 0.6:
 			print("[f] %.4f %.3f %.3f %d %s %.2f %d" % [delta, world.camera.position.x, player.pos.x, S.A, player.anim.cur, Performance.get_monitor(Performance.TIME_PROCESS) * 1000, Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)])
+	if auto.has("tour"):
+		_tour_step()
 	if auto.has("quit") and auto.has("ftlog") and run_t >= float(auto["quit"]):
 		ft.sort()
 		var n := ft.size()
@@ -184,6 +197,26 @@ func _auto(delta: float) -> void:
 		get_tree().quit()
 
 var _auto_down := {}
+var _tour_i := -1
+var _tour_t := 0.0
+
+# --tour=id,x,y;id,x,y;...  visit maps, screenshot each after 1.5 s (for visual / error review)
+func _tour_step() -> void:
+	var items: PackedStringArray = str(auto["tour"]).split(";")
+	if run_t < _tour_t:
+		return
+	if _tour_i >= 0:
+		var img := get_viewport().get_texture().get_image()
+		img.save_png("%s/map_%s.png" % [auto.get("out", "/tmp"), items[_tour_i].split(",")[0]])
+		print("[tour] map=%d A=%d pos=%s G=%d enemies=%d" % [world.map_id, S.A, player.pos, S.G, enemies.enemies.size() if enemies else -1])
+	_tour_i += 1
+	if _tour_i >= items.size():
+		get_tree().quit()
+		return
+	var p := items[_tour_i].split(",")
+	S.G = S.H
+	world.load_map(int(p[0]), Vector2(int(p[1]), int(p[2])), 1)
+	_tour_t = run_t + 1.5
 
 func _inject(act: String, on: bool) -> void:
 	var e := InputEventAction.new()

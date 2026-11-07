@@ -45,8 +45,11 @@ var _pressed := {}             # edge-triggered keys latched until consumed
 var _held_prev := {}
 var trail: Array = []
 
+var external_tick := false     # main drives the order: projectiles -> player -> monsters (original run())
+
 func _ready() -> void:
-	Game.tick25.connect(_tick)
+	if not external_tick:
+		Game.tick25.connect(_tick)
 	anim = preload("res://scripts/player/hero_anim.gd").new()
 	anim.preload_all()
 	z_index = 5
@@ -227,10 +230,12 @@ func _native(dt: float) -> void:
 
 	# horizontal + walls (4 = wall on the right, 8 = wall on the left)
 	var nx := pos.x + vel.x * dt
-	if vel.x > 0.0 and (world.flags_at(nx + HALF_W, pos.y - BODY_H) & 4) == 4:
+	# original: on the ground walls are probed at fi - fm (state 2), in the air at the feet fi (states 3/4)
+	var py: float = pos.y - BODY_H if grounded else pos.y - 0.5
+	if vel.x > 0.0 and (world.flags_at(nx + HALF_W, py) & 4) == 4:
 		nx = floor((nx + HALF_W) / 24.0) * 24.0 - HALF_W
 		vel.x = 0.0
-	elif vel.x < 0.0 and (world.flags_at(nx - HALF_W - 1.0, pos.y - BODY_H) & 8) == 8:
+	elif vel.x < 0.0 and (world.flags_at(nx - HALF_W - 1.0, py) & 8) == 8:
 		nx = floor((nx - HALF_W - 1.0) / 24.0) * 24.0 + 24.0 + HALF_W
 		vel.x = 0.0
 	var ob = world.objects
@@ -441,6 +446,9 @@ func _resume_native() -> void:
 		air_jumps = 0
 
 # ---------------- 25 Hz: tick states + global timers ----------------
+func tick() -> void:
+	_tick()
+
 func _tick() -> void:
 	if world == null or world.map_id < 0 or (Game.mode != "play" and not scripted):
 		return
@@ -730,7 +738,7 @@ func _st_dead() -> void:
 		S.hp = S.hq
 	S.changed.emit()
 	prev_tick_pos = Vector2(S.fh, S.fi)
-	UI.popup("Bạn đã bị trọng thương! Mất một số điểm kinh nghiệm!")
+	UI.message("Bạn đã bị trọng thương! Mất một số điểm kinh nghiệm!")
 
 # ---- A = 7: hit knock-back for 7 ticks, then 20 ticks of invulnerability (fq) ----
 func _st_hurt() -> void:
