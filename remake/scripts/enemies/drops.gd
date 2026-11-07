@@ -3,7 +3,7 @@
 @warning_ignore_start("integer_division")
 extends RefCounted
 
-const SP := preload("res://scripts/enemies/sprites.gd")
+const SP := preload("res://view/sprites.gd")
 const COIN_SLOTS := 5   # dh
 const ITEM_SLOTS := 5   # cP
 

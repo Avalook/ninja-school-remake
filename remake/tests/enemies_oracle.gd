@@ -2,12 +2,12 @@
 #   godot --headless --path remake res://tests/enemies_oracle.tscn -- <map_id> <oracle_trace> [ticks]
 # The oracle trace comes from the original game (game/tests/script_run.gd, see run_enemies_oracle.sh):
 # it loads the same exported map state (remake/data/maps/map_<id>.json) and runs N ticks with no input.
-# Here the EnemyManager is set up from the same map state; each tick the original globals the AI reads
+# Here the enemy rules (sim/enemies_sim.gd, plain RefCounted, no Node) are set up from the same map state; each tick the original globals the AI reads
 # (w, player fh/fi/fp/A/fz, companion gq/gr/gu, camera fR/fS) are copied from the oracle row, one
 # 25 Hz step is run, and every monster's jN/jO/jS/kc (+ boss positions/states) is compared.
 extends Node
 
-const EM := preload("res://scripts/enemies/enemy_manager.gd")
+const EM := preload("res://sim/enemies_sim.gd")
 
 class FakePlayer:
 	var hits := []
@@ -66,10 +66,8 @@ func _ready() -> void:
 		elif cur is int and (v is float or v is int):
 			S.set(k, int(v))
 	var em = EM.new()
-	em.autotick = false
 	var fp := FakePlayer.new()
 	em.test_player = fp
-	add_child(em)
 	em.setup(mp)
 	var fields_total := 0
 	var fields_ok := 0
@@ -109,6 +107,7 @@ func _ready() -> void:
 		if row.has("fz"):
 			S.fz = row["fz"]
 		em.step_actors()
+		em.events.clear()           # presentation events (fx/text/flash): nothing draws here
 		if prevG >= 0 and row["G"] < prevG:
 			oracle_hits += 1
 			oracle_hp_loss += prevG - row["G"]

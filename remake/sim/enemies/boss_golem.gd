@@ -1,11 +1,9 @@
 # Toniku golem boss (map 95 while !eK). Original globals hl hs ht hu hv hw hx hy hz hp hq hr hm hn ho and
 # the 6-part rig hG/hH (= hs ± (hI + hK), ht + hJ + hL) with poses hA/hB (idle), hC/hD (strike), hE/hF (walk);
-# setup k(n) ~L3976, AI ac() ~L6815, hit in u() ~L2202, draw ~L7887.
+# setup k(n) ~L3976, AI ac() ~L6815, hit in u() ~L2202; drawn by view/enemies_view.gd (~L7887).
 # hu == 0 waits for the cutscene (opcode 28 sets hu = 1); hu == 22 (after the death burst) ends the fight.
 @warning_ignore_start("integer_division")
 extends RefCounted
-
-const SP := preload("res://scripts/enemies/sprites.gd")
 
 const WAIT := 0      # hu
 const IDLE := 1
@@ -16,7 +14,6 @@ const THROW := 8     # throws shurikens
 const SHOOT := 23    # fires darts (kind 3, cannot be parried)
 const DASH := 24
 const GONE := 22
-const PART_IMAGES := ["/mob/b20.png", "/mob/b21.png", "/mob/b22.png", "/mob/b21.png", "/mob/b23.png", "/cp/f2h0.png"]
 
 var active := false  # hl
 var x := 192         # hs
@@ -43,7 +40,6 @@ var walk_x := []; var walk_y := []     # hE hF
 var draw_x := [0, 0, 0, 0, 0, 0]       # hG
 var draw_y := [0, 0, 0, 0, 0, 0]       # hH
 var prev_x := []; var prev_y := []
-var flash := 0.0
 
 static func _arr(v, n := 6) -> Array:
 	var o := []
@@ -169,7 +165,7 @@ func melee(m, fh: int, fi: int, fp: int, n: int) -> bool:
 	if not (active and _abs(fi - (y - 30)) < 30 and _abs(fh + (fp << 4) - x) < 30):
 		return false
 	hp -= n
-	flash = 0.08
+	m.flash("golem")
 	if hp <= 0:
 		hp = 0
 		timer = 0
@@ -182,19 +178,3 @@ func melee(m, fh: int, fi: int, fp: int, n: int) -> bool:
 		m.fx("hit", x, y - 47, fp)
 		m.text("-%d" % n, x, y - 55, 0)
 	return true
-
-func draw(ci: CanvasItem, alpha: float, dt: float) -> void:
-	if not active:
-		return
-	flash = maxf(0.0, flash - dt)
-	var col := Color(3, 3, 3) if flash > 0.0 else Color.WHITE
-	var a := 1.0
-	if state == DEATH:
-		a = clampf(1.0 - timer / 50.0, 0.0, 1.0)
-	elif state == GONE:
-		return
-	col.a = a
-	for i in 6:
-		SP.draw(ci, PART_IMAGES[i], lerpf(prev_x[i], draw_x[i], alpha), lerpf(prev_y[i], draw_y[i], alpha), 33, dir <= 0, col)
-	if bar != 0:
-		SP.hp_bar(ci, x, y - h - 7, w, hp, max_hp, Color8(0x33, 0, 0x11), Color8(0xEE, 0, 0), Color8(0x44, 0, 0x22))

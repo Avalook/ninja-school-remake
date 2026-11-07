@@ -22,9 +22,14 @@ SCEN=(
   "m7_water_plain|7,300,100||9|left,right,jump,attack|30"
   "m1_transform|1,1416,216|eH=false;eT=true;fc=true;I=300;J=300;eL=true|10|transform,transform,stealth,left,right,attack,mp_potion|40"
   "m1_snails|1,1416,216|eL=true|6|left,right,jump,attack,jump_left|40"
+  "m9_classmates|9,230,288|$SKILLS|11|left,right,right,jump,attack,attack,attack,weapon|40"
+  "m4_boar|4,1250,312|$SKILLS|12|left,right,attack,attack,attack,weapon,jump|40"
+  "m97_river|97,300,200|$SKILLS|13|left,right,attack,attack,weapon,jump|40"
+  "m95_golem|95,150,264|$SKILLS|14|left,right,attack,attack,weapon,jump|30"
 )
 fail=0
 for sc in "${SCEN[@]}"; do
+  [ -n "$ONLY" ] && [[ ! "$sc" =~ $ONLY ]] && continue
   IFS='|' read -r name map set seed keys secs pre <<< "$sc"
   k=$(python3 "$R/tests/player_trace/gen_keys.py" "$seed" "$secs" "$keys" "$pre")
   args=(--map="$map" --keys="$k" --quit="$secs" --trace="$O/$name.txt")

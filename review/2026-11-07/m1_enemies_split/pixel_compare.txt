@@ -1,0 +1,36 @@
+# tests/enemies_shots.sh: before (code at 6629201 + trace hooks) vs after the split, 16 shots
+# columns: shot, differing pixels, bbox
+map4_boar/shot_1.2.png 0 None
+map4_boar/shot_1.8.png 0 None
+map4_boar/shot_2.6.png 0 None
+map4_boar/shot_3.2.png 0 None
+map6_monsters/shot_1.8.png 0 None
+map6_monsters/shot_2.4.png 0 None
+map6_monsters/shot_3.0.png 0 None
+map6_monsters/shot_3.6.png 0 None
+map97_river/shot_1.2.png 0 None
+map97_river/shot_2.0.png 0 None
+map97_river/shot_3.0.png 0 None
+map97_river/shot_4.0.png 0 None
+map9_classmates/shot_1.4.png 0 None
+map9_classmates/shot_2.0.png 0 None
+map9_classmates/shot_2.8.png 0 None
+map9_classmates/shot_3.6.png 0 None
+
+# two runs before the refactor (determinism check)
+map4_boar/shot_1.2.png 0 None
+map4_boar/shot_1.8.png 0 None
+map4_boar/shot_2.6.png 0 None
+map4_boar/shot_3.2.png 0 None
+map6_monsters/shot_1.8.png 0 None
+map6_monsters/shot_2.4.png 0 None
+map6_monsters/shot_3.0.png 0 None
+map6_monsters/shot_3.6.png 0 None
+map97_river/shot_1.2.png 0 None
+map97_river/shot_2.0.png 0 None
+map97_river/shot_3.0.png 0 None
+map97_river/shot_4.0.png 0 None
+map9_classmates/shot_1.4.png 0 None
+map9_classmates/shot_2.0.png 0 None
+map9_classmates/shot_2.8.png 0 None
+map9_classmates/shot_3.6.png 0 None

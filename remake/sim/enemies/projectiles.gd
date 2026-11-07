@@ -5,12 +5,11 @@
 #  - darts (bP=10 slots bS bQ bR bT bU bV; b(5) ~L4605, O() ~L4801): monsters 17/18, classmates,
 #    river monster, golem. kind bV selects /c/ar<kind><dir>.png; kinds < 3 can be parried by a sword swing.
 #  - seeds (bW=8 slots bZ bX bY ca cb cc; c(5) ~L4633, P() ~L4825): monster 19 and the river monster.
-# Positions are integer per 25 Hz tick (original), drawn interpolated.
+# Positions are integer per 25 Hz tick (original); px/py = previous tick for the view (view/enemies_view.gd).
 @warning_ignore_start("integer_division")
 extends RefCounted
 
-const SP := preload("res://scripts/enemies/sprites.gd")
-const E := preload("res://scripts/enemies/enemy.gd")
+const E := preload("res://sim/enemies/enemy.gd")
 
 class Shot:
 	var state := -1      # db: -1 free, 1 flying, 2..9 stuck in a wall, then drops (1 with dd=0)
@@ -24,7 +23,6 @@ class Shot:
 	var dmg := 0         # bU / cc
 	var px := 0.0
 	var py := 0.0
-	var spin := 0.0
 
 var shurikens: Array = []
 var darts: Array = []
@@ -226,28 +224,3 @@ func tick_seeds(m) -> void:
 			m.hurt_player(s.dmg, 1 if s.x < m.fh else -1)
 			s.state = -1
 			return
-
-# ------------------------------------------------------------------ draw (R() ~L8056-8074)
-func draw(ci: CanvasItem, alpha: float, dt: float) -> void:
-	var pt := 2 if S.eZ else 0
-	for s in shurikens:
-		if s.state != -1:
-			var p := Vector2(lerpf(s.px, s.x, alpha), lerpf(s.py, s.y, alpha))
-			if s.state == 1 and s.vx != 0:
-				s.spin += dt * 30.0 * signf(s.vx)
-			var i := SP.get_image("/c/pt%d.png" % (pt + s.frame))
-			if i.is_empty():
-				continue
-			# polish: spin the shuriken around its centre (original swaps 2 frames)
-			ci.draw_set_transform(p, s.spin, Vector2.ONE)
-			var sz := Vector2(i["w"], i["h"])
-			ci.draw_texture_rect(i["tex"], Rect2(-Vector2(int(sz.x / 2), int(sz.y / 2)), sz), false)
-			ci.draw_set_transform(Vector2.ZERO)
-	for s in darts:
-		if s.state != -1:
-			var p := Vector2(lerpf(s.px, s.x, alpha), lerpf(s.py, s.y, alpha))
-			SP.draw(ci, "/c/ar%d%d.png" % [s.kind, 0 if s.vx > 0 else 1], p.x, p.y, 3)
-	for s in seeds:
-		if s.state != 0:
-			var p := Vector2(lerpf(s.px, s.x, alpha), lerpf(s.py, s.y, alpha))
-			SP.draw(ci, "/e/b.png", p.x, p.y, 3)

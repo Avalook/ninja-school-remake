@@ -2,10 +2,9 @@
 # 16, 17): two-part sprites (body /mob/x<frame>.png + head /mob/y<kind><frame>.png), AI aa() ~L6558,
 # sensing w(n)/v(n) ~L2313, damage a(int,int,int) ~L2902.
 # Kinds cG: 2, 3, 6 = melee (dash in and strike), 0, 4 = dart throwers, 1, 5 = fast-dart throwers.
+# Rules only; drawn by view/enemies_view.gd.
 @warning_ignore_start("integer_division")
 extends RefCounted
-
-const SP := preload("res://scripts/enemies/sprites.gd")
 
 # cH states
 const DYING := 1
@@ -33,7 +32,6 @@ var head_frame := []                   # cM
 var min_x := []; var max_x := []       # cN cO
 var hp := []                           # cu
 var bar := []                          # ct
-var flash := []
 var px := []; var py := []; var phx := []; var phy := []
 
 func setup(st: Dictionary) -> bool:
@@ -50,7 +48,6 @@ func setup(st: Dictionary) -> bool:
 		for i in count:
 			arr.append(int(src[i]) if src is Array and i < src.size() and src[i] != null else 0)
 		set(m[k], arr)
-	flash = []; flash.resize(count); flash.fill(0.0)
 	_snap_all()
 	return true
 
@@ -220,7 +217,7 @@ func damage(m, n: int, dmg: int, d: int) -> bool:
 	hp[n] -= dmg
 	if state[n] == DYING or state[n] == GONE:
 		return true
-	flash[n] = 0.08
+	m.flash("classmate", n)
 	if hp[n] <= 0:
 		hp[n] = 0
 		dir[n] = d
@@ -242,30 +239,3 @@ func damage(m, n: int, dmg: int, d: int) -> bool:
 	bar[n] = 100
 	state[n] = HURT
 	return false
-
-# ---------------------------------------------------------------- draw (~L7940)
-func draw(ci: CanvasItem, alpha: float, dt: float) -> void:
-	for n in count:
-		if state[n] == GONE:
-			continue
-		flash[n] = maxf(0.0, flash[n] - dt)
-		var col := Color(4, 4, 4) if flash[n] > 0.0 else Color.WHITE
-		var bx := lerpf(px[n], x[n], alpha)
-		var by := lerpf(py[n], y[n], alpha)
-		var hx := lerpf(phx[n], head_x[n], alpha)
-		var hy := lerpf(phy[n], head_y[n], alpha)
-		var k: int = kind[n]
-		var hf: int = head_frame[n]
-		var head := "/mob/y%d%d.png" % [k, hf]
-		var body := "/mob/x%d.png" % body_frame[n]
-		if dir[n] == -1:
-			SP.draw(ci, body, bx + int(S.ai[k]), by, 33, false, col)
-			SP.draw(ci, head, hx + int(S.ag[k][hf]), hy, 33, false, col)
-		else:
-			SP.draw(ci, body, bx - int(S.ai[k]), by, 33, true, col)
-			SP.draw(ci, head, hx - int(S.ag[k][hf]), hy, 33, true, col)
-		if bar[n] != 0:
-			var filled: int = hp[n] * 24 / int(S.af[k])
-			ci.draw_rect(Rect2(bx - 13, by - 40, 26, 4), Color8(0x00, 0x33, 0x11), false, 1.0)
-			ci.draw_rect(Rect2(bx - 12, by - 39, filled, 3), Color8(0xEE, 0, 0))
-			ci.draw_rect(Rect2(bx - 12 + filled, by - 39, 24 - filled + 1, 3), Color8(0x44, 0, 0x22))

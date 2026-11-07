@@ -1,4 +1,4 @@
-# Main: title screen -> world. Wires World, Player, EnemyManager (scripts/enemies), Story (scripts/story),
+# Main: title screen -> world. Wires World, Player, Enemies (sim/enemies_sim.gd + view/enemies_view.gd), Story (scripts/story),
 # music (original per-map track MF_t), pause menu and settings.
 extends Node2D
 
@@ -36,7 +36,7 @@ func _ready() -> void:
 	npcs.world = world
 	world.layer_actors.add_child(npcs)
 	world.layer_actors.move_child(npcs, 0)
-	var em_s = load("res://scripts/enemies/enemy_manager.gd") if ResourceLoader.exists("res://scripts/enemies/enemy_manager.gd") and not OS.get_cmdline_user_args().has("--noenemies") else null
+	var em_s = load("res://view/enemies_view.gd") if ResourceLoader.exists("res://view/enemies_view.gd") and not OS.get_cmdline_user_args().has("--noenemies") else null
 	if em_s != null and em_s.can_instantiate():
 		enemies = em_s.new()
 		enemies.autotick = false
@@ -79,6 +79,8 @@ func _parse_args() -> void:
 		auto[kv[0]] = kv[1] if kv.size() > 1 else ""
 	if auto.has("map"):
 		auto["newgame"] = ""
+	if auto.has("seed"):         # test: seed the global RNG (FX randomness) for repeatable screenshots
+		seed(int(auto["seed"]))
 
 func _title() -> void:
 	Game.mode = "title"
@@ -148,6 +150,23 @@ func _trace_tick() -> void:
 		for m in enemies.enemies:
 			e.append("%d:%d,%d,%d,%d" % [m.type, m.x, m.y, m.state, m.hp])
 		l += " E=" + ";".join(e)
+		# bosses (mirrored into S), rival students, projectiles, loot
+		l += " B=%s,%d,%d,%d,%d|%s,%d,%d,%d,%d|%s,%d,%d,%d,%d" % [S.gQ, S.gV, S.gS, S.gT, S.hc,
+			S.hM, S.ia, S.hS, S.hT, S.hP, S.hl, S.hu, S.hs, S.ht, S.hp]
+		var cm = enemies.classmates
+		if cm:
+			var c: Array = []
+			for i in cm.count:
+				c.append("%d,%d,%d,%d,%d" % [cm.x[i], cm.y[i], cm.state[i], cm.hp[i], cm.timer[i]])
+			l += " C=" + ";".join(c)
+		var sh: Array = []
+		for s in enemies.shots.shurikens + enemies.shots.darts + enemies.shots.seeds:
+			sh.append("%d,%d,%d" % [s.state, s.x, s.y])
+		l += " P=" + ";".join(sh)
+		var dr: Array = []
+		for d in enemies.drops.coins + enemies.drops.items:
+			dr.append("%d,%d,%d" % [d.age, d.x, d.y])
+		l += " D=" + ";".join(dr) + " K=%d,%d" % [enemies.drops.scroll_state, enemies.drops.scroll_y]
 	_trace_f.store_line(l)
 	_trace_f.flush()
 

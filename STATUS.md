@@ -1,6 +1,6 @@
 # STATUS — Ninja School PC remake
 
-Cập nhật: 2026-11-07, phiên M1 mục 1 (nhánh `m1-sim-view` tách từ `main` 3d04081).
+Cập nhật: 2026-11-07, phiên M1 mục 2a enemies (nhánh `m1-enemies-split` tách từ `main` 6629201).
 Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. Phần nào chỉ lấy lại từ
 `analysis/claude/progress.json` mà chưa chạy lại thì có ghi chú rõ.
 
@@ -8,11 +8,77 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
 - **M0 (dọn repo)**: xong 5/5. Không dùng LFS (chủ dự án chốt). Oracle emulator dựng lại được từ repo.
 - **M1 mục 1 xong**: `player.gd` đã tách thành `remake/sim/player_sim.gd` + `remake/view/player_view.gd`
   (+ `hero_anim.gd` sang `remake/view/`). Hành vi không đổi: trace 10 kịch bản khớp 100% từng dòng.
-- Mục tiếp theo: M1 mục 2, tách enemies, story, world (va chạm), drops, projectiles.
+- **M1 mục 2a (enemies) xong**: `enemy_manager.gd` tách thành `remake/sim/enemies_sim.gd` (+ `sim/enemies/`: quái,
+  3 boss, bạn học, projectiles) và `remake/view/enemies_view.gd` (+ `view/sprites.gd`). Hành vi không đổi:
+  trace 14 kịch bản khớp 100%, oracle 12 map 500/500 tick, 16 ảnh trùng từng pixel. Kết quả ở bảng bên dưới.
+- Mục M1 "làm tương tự cho enemies, story, world, drops, projectiles" đã chia 5 mục con trong ROADMAP.
+  Mục tiếp theo: M1 mục 2b, tách story.
 - Đã merge `m1-sim-view` vào `main` (2026-11-07). Việc phát hiện trong phiên đã thêm vào ROADMAP:
   M1 (di chuyển native bước cố định 100 Hz), M2 Combat (sửa Xích Mao, cờ thật của Xích Mao, trace A = 18/19/23).
 - Codex đang vẽ trong `art_src/` trên nhánh `claude/project-directory-codex-c71a67`.
   Nhánh này **không tạo, không sửa** gì trong `art_src/`.
+
+## M1 mục 2a: kế hoạch tách enemies (viết trước khi sửa code, nhánh `m1-enemies-split` tách từ `main` 6629201)
+Nguồn: `remake/scripts/enemies/` — `enemy_manager.gd` (Node2D, 535 dòng) điều phối `enemy.gd`, `monster_types.gd`,
+`boss_boar.gd`, `boss_river.gd`, `boss_golem.gd`, `classmates.gd`, `projectiles.gd` (RefCounted nhưng có hàm
+`draw` và biến chỉ để vẽ), `drops.gd`, `sprites.gd`. Projectiles đi chung vì vòng lặp phi tiêu trúng quái, bạn
+học, boss và player trong cùng một tick (`_fly_shuriken`), không tách rời được.
+
+**`remake/sim/enemies_sim.gd`** (`git mv` từ `enemy_manager.gd`; RefCounted, không Node, không vẽ):
+- Toàn bộ luật: `setup`, `step_projectiles`/`step_actors` (đúng thứ tự gốc), `_update_monsters`, respawn,
+  `_dying`, sense J/K, `hit` (u()), `damage_monster` (k()), `kill` (L(): EXP, `w % 20`, bí kíp), đồng bộ biến boss
+  với S (`SYNC`), `boss_state`, `start_golem`, `alive_count`, `flags`.
+- Các module con chuyển vào `remake/sim/enemies/` (`git mv`, giữ blame): `enemy.gd`, `monster_types.gd`,
+  `boss_boar.gd`, `boss_river.gd`, `boss_golem.gd`, `classmates.gd`, `projectiles.gd`. Bỏ hàm `draw` và biến chỉ để
+  vẽ (`flash`, `squash`, `fade`, `spin`).
+- Hiệu ứng không gọi thẳng nữa: `fx`, `text`, `popup` và lúc bị đánh (`on_damaged`, trước đây đặt `flash`/`squash`)
+  thành event trong `sim.events` (`fx`, `text`, `popup`, `flash`). View xả event ngay sau mỗi lần gọi sim.
+- Signal `enemy_killed`, `classmate_killed`, `boss_killed`, `player_hit` giữ là signal của sim (gọi đồng bộ, story
+  nhận đúng thời điểm như cũ); view phát lại cùng tên.
+- Biến `prev_x/prev_y`, `px/py` (vị trí tick trước) vẫn ở sim: đó là snapshot tick trước mà view nội suy.
+- Còn giữ (để mục World xử lý): sim vẫn đọc `world` cho `flags_at`, `cam_pos`, `view_size`, `player.hurt`,
+  `companion.hurt`, như `player_sim.gd`.
+- `drops.gd` để nguyên chỗ cũ (`scripts/enemies/drops.gd`, mục Drops riêng): sim vẫn gọi `drops.tick`, view gọi
+  `drops.draw`. `drops.gd` gọi `m.text`/`m.popup` nên tự động thành event.
+
+**`remake/view/enemies_view.gd`** (Node2D, thay `EnemyManager` trong `main.gd`; giữ nguyên API cũ cho main/world/
+player_sim: `setup`, `step_projectiles`, `step_actors`, `hit`, `spawn_projectile`, `enemies`, `boss_state`,
+`start_golem`, `alive_count`, `damage_monster`, `world`, `test_player`, `autotick`, các signal):
+- Vẽ quái, 3 boss, bạn học, projectiles (chuyển từ các hàm `draw` cũ, code vẽ giữ nguyên), gọi `drops.draw`.
+- Giữ thời gian nháy trắng/méo theo event `flash` (trước đây nằm trong record của sim).
+- `sprites.gd` → `remake/view/sprites.gd` (chỉ là cache texture + vẽ kiểu J2ME).
+
+**Test chứng minh không đổi hành vi** (ghi mốc trước khi sửa code)
+1. `remake/tests/player_trace.sh`: mở rộng dòng trace (`main.gd --trace`) thêm boss (gQ/gV/gS/gT/hc, hM/ia/hS/hT/hP,
+   hl/hu/hs/ht/hp), bạn học (cx cy cH cu), phi tiêu/ám khí/hạt, xu/bình. Thêm kịch bản map 9 (bạn học), map 97
+   (quái sông), map 4 gần boar. Ghi lại mốc **bằng code trước refactor**; sau refactor phải khớp 100%.
+2. `remake/tests/run_enemies_oracle.sh 500` thêm map 9, 10, 11, 16, 17 (bạn học) vào danh sách chạy trước/sau.
+3. `remake/tests/story_run_tests.sh` vẫn 77 check, 0 fail. `enemies_oracle.gd` đổi sang chạy thẳng sim (không Node).
+4. Ảnh có cửa sổ map 4 (boar), 97 (quái sông), 9 (bạn học), trước/sau phải trùng từng pixel → `review/2026-11-07/m1_enemies_split/`.
+
+## M1 mục 2a: kết quả (chạy 2026-11-07)
+Mốc ghi **bằng code trước refactor** (main 6629201 + chỉ thêm hook test), rồi mới sửa code.
+| Kiểm tra | Trước refactor | Sau refactor |
+|---|---|---|
+| `remake/tests/player_trace.sh` (14 kịch bản, 12.643 tick; thêm m9 bạn học, m4 boar, m97 quái sông, m95 golem) | ghi mốc | **14/14 khớp 100%, 0 dòng lệch, 0 SCRIPT ERROR** |
+| `remake/tests/run_enemies_oracle.sh 500 4 1 6 7 9 10 11 12 16 17 95 97` (thêm 5 map bạn học) | 12 map 500/500 tick 100% | **12 map 500/500 tick 100%**, output giống hệt mốc từng dòng, sát thương lên player khớp |
+| `remake/tests/story_run_tests.sh` | | **77 check, 0 fail** |
+| `remake/tests/enemies_shots.sh` (mới; có cửa sổ, 4 map × 4 ảnh, `--fixed-fps 60 --seed=1`) | 2 lần chạy trùng nhau 16/16 | **16/16 ảnh trùng từng pixel với trước** |
+| Độ nhạy | đổi luật bạn học (`timer > 50` → `> 51`): trace m9 lệch 1926 dòng; đổi bóng boar `py+1` → `py+2`: 4/4 ảnh map 4 lệch | đã hoàn nguyên |
+| Boot new game có cửa sổ (`--newgame --autoskip --quit=7`) | | 0 SCRIPT ERROR |
+
+Bằng chứng: `review/2026-11-07/m1_enemies_split/` (4 ảnh sau refactor, `pixel_compare.txt`, `player_trace_check.txt`,
+`enemies_oracle_before.txt` / `_after.txt`). Mốc trace mới: `remake/tests/player_trace/expected/*.txt.gz`.
+`tools/diff_suite.sh` (JAR so với `game/`) không chạy lại: phiên này không đụng `game/` hay emulator.
+
+Đã làm đúng kế hoạch, thêm hai điểm:
+- Event của sim enemies đi qua `sim.on_event` (Callable) **ngay lúc phát sinh**, không gom cuối tick: fx_layer lấy
+  `randf()` theo thứ tự gọi `spawn_fx`, gom cuối tick sẽ đổi thứ tự với FX của player (vd. quái trúng phi tiêu
+  rồi phi tiêu khác trúng player trong cùng tick) → tia lửa vẽ khác. Không có view (test headless) thì vào `sim.events`.
+- Hook test mới (chỉ chạy khi có cờ): `main.gd --trace` ghi thêm boss (`B=`), bạn học (`C=`), projectiles (`P=`),
+  xu/bình (`D=`), bí kíp (`K=`), nên mốc trace 10 kịch bản cũ được ghi lại (bằng code trước refactor);
+  `main.gd --seed=N` seed RNG cho ảnh lặp lại được; `player_trace.sh` nhận `ONLY=<regex>`.
+- `tests/enemies_oracle.gd` giờ chạy thẳng `sim/enemies_sim.gd` (RefCounted, không Node): sim chạy headless được.
 
 ## M1 mục 1: kế hoạch tách `player.gd` (viết trước khi sửa code, nhánh `m1-sim-view`)
 Nguồn: `remake/scripts/player/player.gd` (1065 dòng, Node2D vừa luật vừa vẽ).
@@ -128,8 +194,9 @@ enemies/story (bảng trên). Diff remake trên đủ trường luật là việ
 ## Trạng thái remake/ (theo code hiện có)
 - Chơi được map 99 → map 4 native. Đã ghép story (cutscene, quest NPC, menu, bản đồ thế giới, shop)
   và enemies (24 map giống oracle theo commit `52a4a00`).
-- **Sim/View**: player đã tách (`sim/player_sim.gd`, `view/player_view.gd`). Enemies, story, world, drops,
-  projectiles vẫn là Node vừa luật vừa vẽ (M1 mục 2).
+- **Sim/View**: player đã tách (`sim/player_sim.gd`, `view/player_view.gd`), enemies đã tách
+  (`sim/enemies_sim.gd` + `sim/enemies/`, `view/enemies_view.gd`). Story, world, drops vẫn vừa luật vừa vẽ
+  (M1 mục 2b–2e). `drops.gd` còn ở `scripts/enemies/` (luật nhặt + `draw`), sim enemies gọi `tick`, view gọi `draw`.
 - Art đang trộn 5 nguồn (Blender, Codex HD, Veo, Scale4x, FLUX). Từ M3 thống nhất theo pipeline Codex → rig.
 
 ## Đã làm trong M0
@@ -174,6 +241,13 @@ Chỉ đọc, không pull, không reset, không xoá gì:
   Chủ dự án tự chạy `git -C /Users/quangdang/Downloads/ninja-claude-parallel pull --ff-only`.
 
 ## Chưa rõ
+- **Ảnh có cửa sổ không tất định giữa các lần chạy** (có từ trước, không phải do refactor): `world/background.gd`
+  đổi ngày/đêm mỗi lần mở game (đếm trong `user://remake_cfg.ini`), `fx_layer.gd` seed FX bằng `randf()`.
+  `tests/enemies_shots.sh` cố định bộ đếm về 0 rồi trả lại file cũ, và chạy `--seed=1`. Mũi tên "tiếp" của hộp
+  thoại (`ui.gd:293`) nháy theo giờ thật (`Time.get_ticks_msec`), có thể làm ảnh lệch vài trăm pixel ở góc hộp thoại.
+  Nếu muốn ảnh review luôn so được: chuyển các chỗ này sang đồng hồ game (mục World / UI).
+- Trace m95: golem đứng chờ (`hu = 0`) vì không có cutscene mở trận; trận golem có trong oracle (`ACT_95`, `hu = 1`).
+- Còn TODO trong sim enemies: phi tiêu và kiếm trúng bạn đồng hành đối thủ `hf` (dC/dD) chưa làm (mục 2e Projectiles).
 - **Lỗi sẵn có (không sửa trong refactor): Xích Mao không bật được.** `_common_actions()` đặt `S.A = 23` nhưng
   cuối `_native()` gọi `_publish()` ghi đè `S.A` về 1/2, nên A = 23 không bao giờ tới tick. Đã thử:
   `--map=1,1416,216 --set=eH=false;eT=true;I=300` + nhấn phím biến hình → A luôn = 1. Sửa ở M2 (combat) kèm diff test.

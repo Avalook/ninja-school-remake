@@ -1,0 +1,15 @@
+check m4_combat:      993 ticks, differing lines 0, script errors 0
+check m4_weapons:     1000 ticks, differing lines 0, script errors 0
+check m6_skills:     1125 ticks, differing lines 0, script errors 0
+check m5_fall_water:      997 ticks, differing lines 0, script errors 0
+check m3_bike:      987 ticks, differing lines 0, script errors 0
+check m4_death:      995 ticks, differing lines 0, script errors 0
+check m7_water_skills:      948 ticks, differing lines 0, script errors 0
+check m7_water_plain:      514 ticks, differing lines 0, script errors 0
+check m1_transform:      993 ticks, differing lines 0, script errors 0
+check m1_snails:     1000 ticks, differing lines 0, script errors 0
+check m9_classmates:     1000 ticks, differing lines 0, script errors 0
+check m4_boar:     1000 ticks, differing lines 0, script errors 0
+check m97_river:      392 ticks, differing lines 0, script errors 0
+check m95_golem:      699 ticks, differing lines 0, script errors 0
+exit 0

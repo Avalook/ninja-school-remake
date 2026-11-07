@@ -1,10 +1,18 @@
-# EnemyManager: every hostile thing of a map — monsters (20 kinds), rival students, the three bosses,
-# their projectiles, the shared shuriken system and the loot they drop.
+# EnemiesSim: the rules of every hostile thing of a map — monsters (20 kinds), rival students, the three
+# bosses, their projectiles, the shared shuriken system and the loot they drop. RefCounted: no Node, no
+# drawing (view/enemies_view.gd draws it and keeps the old EnemyManager API for main / world / player).
 #
 # Fidelity: all decisions run on the original fixed 25 Hz step (Game.tick25, the same tick that advances
 # S.w) with the original integer math and the original update order of run() (shurikens ~L9341,
 # darts O(), seeds P(), monsters al() ~L12112, students aa(), boar, river monster, golem ac(), coins W(),
-# potions ab(), scroll). Rendering interpolates between the last two 25 Hz states every display frame.
+# potions ab(), scroll). prev_x/prev_y (px/py) keep the previous 25 Hz state for the view to interpolate.
+#
+# Presentation is not called directly: fx / floating text / popup / hit flash are events
+# ({"t": "fx"|"text"|"popup"|"flash", ...}). With `on_event` set (the view) each event is delivered at the
+# moment it happens, so FX keep their exact order relative to the player's own FX (fx_layer seeds each FX
+# with randf() in call order); without it (headless tests) they collect in `events`.
+# Still coupled (later M1 items: World, Drops): `world` for flags_at, cam_pos, view_size, player.hurt and
+# companion.hurt; drops.gd (scripts/enemies) still holds its own draw().
 #
 # Contract (archive/docs/REMAKE_PLAN.md): setup(map), hit(area, damage, dir) -> index | -1, boss_state(),
 # spawn_projectile(x, y, vx, vy, strong), signal enemy_killed(type, pos); damages the player through
@@ -12,27 +20,26 @@
 # Player state is read from the original variables the player module publishes into S
 # (fh fi fp A fz fg; companion gq gr gu).
 @warning_ignore_start("integer_division")
-extends Node2D
+extends RefCounted
 
 signal enemy_killed(type: int, pos: Vector2)
 signal classmate_killed(kind: int, pos: Vector2)
 signal boss_killed(boss: String)          # "boar" | "river" | "golem"
 signal player_hit(damage: int, dir: int)  # every attack that reached the player (for tests/FX)
 
-const Enemy := preload("res://scripts/enemies/enemy.gd")
-const MT := preload("res://scripts/enemies/monster_types.gd")
-const SP := preload("res://scripts/enemies/sprites.gd")
+const Enemy := preload("res://sim/enemies/enemy.gd")
+const MT := preload("res://sim/enemies/monster_types.gd")
 const Drops := preload("res://scripts/enemies/drops.gd")
-const Shots := preload("res://scripts/enemies/projectiles.gd")
-const Classmates := preload("res://scripts/enemies/classmates.gd")
-const Boar := preload("res://scripts/enemies/boss_boar.gd")
-const River := preload("res://scripts/enemies/boss_river.gd")
-const Golem := preload("res://scripts/enemies/boss_golem.gd")
-const TICK := 0.04
+const Shots := preload("res://sim/enemies/projectiles.gd")
+const Classmates := preload("res://sim/enemies/classmates.gd")
+const Boar := preload("res://sim/enemies/boss_boar.gd")
+const River := preload("res://sim/enemies/boss_river.gd")
+const Golem := preload("res://sim/enemies/boss_golem.gd")
 
 var world = null              # World node (group "world"); null in headless tests
 var test_player = null        # tests: object with hurt(dmg, dir) used when there is no world
-var autotick := true          # false: the caller drives step() (tests)
+var events: Array = []        # presentation events (only when on_event is not set)
+var on_event: Callable        # view: receives each presentation event immediately
 
 var map := {}
 var map_w := 0
@@ -70,22 +77,6 @@ var q := 480
 var r := 270
 
 var _last_sync := {}
-var _time := 0.0
-
-func _ready() -> void:
-	if autotick and get_node_or_null("/root/Game"):
-		get_node("/root/Game").tick25.connect(step)
-	if world == null:
-		var ws := get_tree().get_nodes_in_group("world") if is_inside_tree() else []
-		if ws.size() > 0:
-			world = ws[0]
-
-func _process(dt: float) -> void:
-	_time += dt
-	for e in enemies:
-		e.flash = maxf(0.0, e.flash - dt)
-		e.squash = maxf(0.0, e.squash - dt * 2.5)
-	queue_redraw()
 
 # ============================================================== setup
 func setup(m: Dictionary) -> void:
@@ -265,7 +256,6 @@ func _respawn(e) -> void:
 	e.slot = i
 	e.state = Enemy.ACTIVE
 	e.hp = e.max_hp
-	e.fade = 1.0
 	MT.on_spawn(e, self)
 	e.snap()
 
@@ -436,9 +426,8 @@ func damage_monster(e, dmg: int, d: int) -> bool:
 		e.frame = 3
 	return false
 
-func on_damaged(e) -> void:      # presentation only
-	e.flash = 0.08
-	e.squash = 0.3
+func on_damaged(e) -> void:      # presentation only: white flash + squash in the view
+	flash("enemy", e.index, 0.3)
 
 # original L(n) ~L11672: EXP, loot (w % 20), quest scroll; quest kill counters are the story's job
 func kill(e) -> void:
@@ -484,52 +473,22 @@ func flags(x: int, y: int) -> int:     # original i(x, y): iU[y / jh * iP + x / 
 		return 0
 	return int(_flags[y / 24 * map_w + x / 24])
 
-func fx(kind: String, x: int, y: int, d := 1) -> void:
-	if world and world.has_method("spawn_fx"):
-		world.spawn_fx(kind, Vector2(x, y), d)
+# presentation events
+func _event(ev: Dictionary) -> void:
+	if on_event.is_valid():
+		on_event.call(ev)
+	else:
+		events.append(ev)
 
-const TEXT_COLORS := [Color(1, 0.3, 0.3), Color(1, 0.9, 0.3), Color(0.45, 0.75, 1)]
+func fx(kind: String, x: int, y: int, d := 1) -> void:
+	_event({"t": "fx", "kind": kind, "p": Vector2(x, y), "d": d})
 
 func text(s: String, x: int, y: int, color_index: int) -> void:
-	if world and world.has_method("float_text"):
-		world.float_text(s, Vector2(x, y), TEXT_COLORS[clampi(color_index, 0, 2)])
+	_event({"t": "text", "s": s, "p": Vector2(x, y), "c": color_index})
 
 func popup(s: String) -> void:
-	var ui = get_node_or_null("/root/UI")
-	if ui and ui.has_method("popup"):
-		ui.popup(s)
+	_event({"t": "popup", "s": s})
 
-# ============================================================== drawing
-func _alpha() -> float:
-	var g = get_node_or_null("/root/Game")
-	if g == null:
-		return 1.0
-	return clampf(float(g.acc) / TICK, 0.0, 1.0)
-
-func _draw() -> void:
-	var a := _alpha()
-	var dt := get_process_delta_time()
-	river.draw(self, a, dt)
-	drops.draw(self, a, _time)
-	boar.draw(self, a, w, dt)
-	golem.draw(self, a, dt)
-	for e in enemies:
-		if not e.visible():
-			continue
-		var faces: Array = sprite_sets[e.group] if e.group < sprite_sets.size() else []
-		if faces.is_empty():
-			continue
-		var path: String = faces[0 if e.dir >= 0 else 1][e.frame] if e.frame < faces[0].size() else ""
-		if path == "":
-			continue
-		var x := lerpf(e.prev_x, e.x, a)
-		var y := lerpf(e.prev_y, e.y, a)
-		var col := Color(3, 3, 3) if e.flash > 0.0 else Color.WHITE
-		if e.state == Enemy.DYING:
-			col.a = clampf(1.0 - (e.timer + 5) / 30.0, 0.25, 1.0)
-		SP.draw(self, path, x, y, 33, false, col, Rect2(), e.squash)
-		if e.bar_timer != 0:
-			SP.hp_bar(self, x, y - e.height - 7, e.width, e.hp, e.max_hp, Color8(0x00, 0x33, 0x11), Color8(0x00, 0xEE, 0x00), Color8(0x00, 0x44, 0x22))
-	if classmates:
-		classmates.draw(self, a, dt)
-	shots.draw(self, a, dt)
+# who: "enemy" (i = slot) | "classmate" (i = slot) | "boar" | "river" | "golem"; squash 0 = flash only
+func flash(who: String, i := -1, squash := 0.0) -> void:
+	_event({"t": "flash", "who": who, "i": i, "squash": squash})

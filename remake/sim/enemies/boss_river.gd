@@ -1,10 +1,8 @@
 # River monster boss (map 97 while !eI). Original globals hM hS hT ia ib ic id ie if hP hQ hN hO hR and
-# part offsets bJ..bO; setup j(n) ~L3931, AI run() ~L9872-9990, hit in u() ~L2174, draw ~L7594
-# (/mob/b10 body, b11 b12 b13 parts). ia == 5 (sunk after death) is what the story waits for.
+# part offsets bJ..bO; setup j(n) ~L3931, AI run() ~L9872-9990, hit in u() ~L2174, drawn by view/enemies_view.gd
+# (~L7594: /mob/b10 body, b11 b12 b13 parts). ia == 5 (sunk after death) is what the story waits for.
 @warning_ignore_start("integer_division")
 extends RefCounted
-
-const SP := preload("res://scripts/enemies/sprites.gd")
 
 const SINKING := 1   # ia
 const SWIM := 2
@@ -29,7 +27,6 @@ var dmg := 20        # hN
 var off := [-22, 18, -10, -19, -12, -26]   # bJ bK bL bM bN bO
 var parts := [0, 0, 0, 0, 0, 0]            # hU hY hX hZ hV hW
 var prev := []
-var flash := 0.0
 
 func setup(st: Dictionary) -> void:
 	active = bool(st.get("hM", false))
@@ -145,7 +142,7 @@ func melee(m, fh: int, fi: int, fp: int, n: int) -> bool:
 	if not (active and _abs(fi - (y - 40)) < 30 and _abs(fh + (fp << 4) - x) < 40):
 		return false
 	hp -= n
-	flash = 0.08
+	m.flash("river")
 	if hp <= 0:
 		hp = 0
 		timer = 0
@@ -158,20 +155,3 @@ func melee(m, fh: int, fi: int, fp: int, n: int) -> bool:
 	m.fx("hit", fh + ((x - fh) >> 1), fi - 12, fp)
 	m.text("-%d" % n, x, y - H, 0)
 	return true
-
-func draw(ci: CanvasItem, alpha: float, dt: float) -> void:
-	if not active:
-		return
-	flash = maxf(0.0, flash - dt)
-	var col := Color(3, 3, 3) if flash > 0.0 else Color.WHITE
-	var mirror := dir >= 0
-	var cur := [x, y] + parts
-	var p := []
-	for i in 8:
-		p.append(lerpf(prev[i], cur[i], alpha))
-	SP.draw(ci, "/mob/b10.png", p[0], p[1], 33, mirror, col)
-	SP.draw(ci, "/mob/b12.png", p[2], p[3], 33, mirror, col)
-	SP.draw(ci, "/mob/b13.png", p[4], p[5], 33, mirror, col)
-	SP.draw(ci, "/mob/b11.png", p[6], p[7], 33, mirror, col)
-	if bar != 0:
-		SP.hp_bar(ci, p[0], p[1] - H - 7, W, hp, max_hp, Color8(0x33, 0, 0x11), Color8(0xEE, 0, 0), Color8(0x44, 0, 0x22))

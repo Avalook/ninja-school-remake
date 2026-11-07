@@ -2,12 +2,12 @@
 # and its helpers N..U (~L13761-13923). One function per kind and state:
 #   <kind>_spawn   al() case 5 (respawn ranges)      <kind>_active  al() case 2
 #   <kind>_hurt    al() case 6 (hit reaction)        <kind>_attack  al() case 4
-# All arithmetic is the original integer math; `m` is the EnemyManager (it provides the 25 Hz
+# All arithmetic is the original integer math; `m` is the EnemiesSim (it provides the 25 Hz
 # counter m.w, the player position m.fh/m.fi/m.fp, map size, sensing J/K and attack/projectile hooks).
 @warning_ignore_start("integer_division")
 extends RefCounted
 
-const E := preload("res://scripts/enemies/enemy.gd")
+const E := preload("res://sim/enemies/enemy.gd")
 
 const KIND_NAMES := [
 	"one_eyed_ghost", "snail", "demon_bat", "one_legged_demon", "green_toad", "spider", "wasp",

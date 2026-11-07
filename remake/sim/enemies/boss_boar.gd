@@ -1,10 +1,8 @@
 # Wild boar boss (maps 4 and 5). Original globals gQ gS gT gU gV gW gX gY gZ ha hb hc hd he gR;
 # setup i(n) ~L3860, AI in run() ~L9772-9870, charge trigger N() ~L4581, damage c(int,int) ~L2932,
-# draw ~L7851. gV == 22 (fell off after death) is what the map-4 cutscene D(0) step 3 waits for.
+# drawn by view/enemies_view.gd (~L7851). gV == 22 (fell off after death) is what the map-4 cutscene D(0) step 3 waits for.
 @warning_ignore_start("integer_division")
 extends RefCounted
-
-const SP := preload("res://scripts/enemies/sprites.gd")
 
 const ROAM := 1       # gV: pause, then pick a new walk target
 const WALK := 2
@@ -30,8 +28,6 @@ var bar := 0          # he
 var contact_dmg := 30 # gR
 var prev_x := 0.0
 var prev_y := 0.0
-var flash := 0.0
-var squash := 0.0
 
 func setup(st: Dictionary) -> void:
 	active = bool(st.get("gQ", false))
@@ -143,8 +139,7 @@ func damage(m, dmg: int, d: int) -> bool:
 	if state != ROAM and state != WALK:
 		return false
 	hp -= dmg
-	flash = 0.08
-	squash = 0.25
+	m.flash("boar", -1, 0.25)
 	if hp <= 0:
 		hp = 0
 		timer = -5
@@ -164,28 +159,3 @@ func damage(m, dmg: int, d: int) -> bool:
 	frame = 0
 	target_x = 0 if dmg <= int(S.F) else 2 + m.w % 5
 	return false
-
-# draw ~L7851: ey[4] shadow under ey[gX]; ey[3] sweat drop while staggered; images face right
-func draw(ci: CanvasItem, alpha: float, wt: int, dt: float) -> void:
-	if not active or state == GONE:
-		return
-	flash = maxf(0.0, flash - dt)
-	squash = maxf(0.0, squash - dt * 2.0)
-	var px := lerpf(prev_x, x, alpha)
-	var py := lerpf(prev_y, y, alpha)
-	var col := Color(3, 3, 3) if flash > 0.0 else Color.WHITE
-	var mirror := dir != 1
-	var lift := 0
-	if frame == 0:
-		lift = -2
-		if state == ROAM and wt % 10 > 5:
-			lift = -1
-		SP.draw(ci, "/mob/b04.png", px, py + 1, 33, mirror)
-	SP.draw(ci, "/mob/b0%d.png" % frame, px, py + lift + 1, 33, mirror, col, Rect2(), squash)
-	if state == STAGGER:
-		if dir == 1:
-			SP.draw(ci, "/mob/b03.png", px + 10, py - 25 + 1, 0)
-		else:
-			SP.draw(ci, "/mob/b03.png", px - 10, py - 25 + 1, 24, true)
-	if bar != 0:
-		SP.hp_bar(ci, px, py - h - 7, w, hp, max_hp, Color8(0x33, 0, 0x11), Color8(0xEE, 0, 0), Color8(0x44, 0, 0x22))

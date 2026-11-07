@@ -112,7 +112,14 @@ và chỉ qua mốc khi chủ dự án đồng ý. Claude không tự đánh gi�
 ### M1 — Tách Sim / View trong remake/
 - [x] Tách `player.gd` (đang vừa là luật vừa là Node2D vẽ) thành `sim/player_sim.gd` và `view/player_view.gd`.
       _(2026-11-07, nhánh `m1-sim-view`. Bằng chứng: `remake/tests/player_trace.sh` 10 kịch bản khớp 100%, xem STATUS.md.)_
-- [ ] Làm tương tự cho enemies, story, world (va chạm), drops, projectiles.
+- [ ] Làm tương tự cho enemies, story, world (va chạm), drops, projectiles. _(Quá lớn cho một phiên, chia 5 mục con:)_
+  - [x] Enemies: quái thường, 3 boss, hội bạn cùng lớp, và projectiles (phi tiêu, ám khí, hạt) vì
+        projectiles trúng quái/boss/bạn học trong cùng một vòng lặp → `sim/enemies_sim.gd` + `view/enemies_view.gd`.
+        _(2026-11-07, nhánh `m1-enemies-split`. Trace 14 kịch bản + oracle 12 map + 16 ảnh khớp 100%, xem STATUS.md.)_
+  - [ ] Story: `story.gd`, `npc_quests.gd`, `cutscene_player.gd`, `menus.gd` (luật quest/cutscene tách khỏi UI).
+  - [ ] World (va chạm): `world.gd` (cờ ô `flags_at`, lối ra, camera mà luật đọc), `objects.gd`, `npcs.gd`.
+  - [ ] Drops: `drops.gd` (xu, bình, bí kíp; luật `w % 20` đã ở sim enemies, phần nhặt và vẽ còn trộn).
+  - [ ] Projectiles: phần còn lại sau mục Enemies (nếu có), ví dụ phi tiêu của bạn đồng hành `hf` (TODO trong code).
 - [ ] Viết `sim/sim.gd`: hàm `step(input) -> events`, kèm snapshot và restore (phục vụ save và test).
 - [ ] Viết `tests/sim_run.gd` chạy headless, đọc cùng định dạng script với `tools/diff_run.sh`.
 - [ ] Di chuyển native (state 1–4) chạy theo bước cố định 100 Hz (4 bước mỗi tick 25 Hz), không theo dt của frame.

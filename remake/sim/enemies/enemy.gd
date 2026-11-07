@@ -40,12 +40,9 @@ var slot := 0         # ki  spawn point index in km/kn[group]
 var coin := 0         # kj  coin value base
 var hit_companion := false  # kl  the attack targets the companion instead of the player
 
-# --- presentation only (never read by the AI) ---------------------------------------
+# --- previous 25 Hz position (the view interpolates; never read by the AI) ----------
 var prev_x := 0.0
 var prev_y := 0.0
-var flash := 0.0      # white tint seconds
-var squash := 0.0     # squash amount 0..1
-var fade := 1.0       # alpha while dying
 
 func load_from(st: Dictionary, n: int) -> void:
 	index = n
