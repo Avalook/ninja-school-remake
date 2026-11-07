@@ -175,6 +175,10 @@ Theo thứ tự, mỗi mục kèm diff test riêng:
       ngồi, bơi, leo, đào, Xích Mao, ẩn thân.
 - [ ] Các loại quái xuất hiện ở map 4, 1 NPC, chân dung hội thoại.
 - [ ] Map 4 hoàn chỉnh: parallax, tileset, decor động, sương, ánh sáng.
+- [ ] Bộ ghép địa hình (`view/world/terrain/`): từ map gốc phân loại ô (đất đặc, đứng một chiều, đất đào được,
+      nước, tường đá, đồ vật, trúc), vẽ địa hình bằng autotile từ `art_src/env/rung_truc/kit/`, đặt props theo
+      footprint, trúc theo cột ô trúc gốc. Không đổi va chạm.
+      Bằng chứng: ảnh map 4 trong game cạnh `APPROVED.png`.
 - [ ] HUD, hộp thoại và FX chém/bụi/tia lửa đúng style.
 - Qua mốc: xuất bản build chơi được map 4 trên laptop của chủ dự án và được duyệt.
   **Chưa qua mốc này thì không sản xuất hàng loạt.**
