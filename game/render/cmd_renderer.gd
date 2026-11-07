@@ -211,8 +211,26 @@ func draw_image_at(t: Texture2D, img: Dictionary, p: Vector2, an: int, tr: int, 
 # original bitmap fonts: fb.png (gold), fr.png (dark, bubbles), fs0..2 (small digits red/yellow/green)
 const STYLE_COL := {0: Color(1.0, 0.85, 0.05), 1: Color(0.0, 0.16, 0.0), 10: Color(1.0, 0.48, 0.48), 11: Color(1.0, 0.87, 0.18), 12: Color(0.16, 1.0, 0.32)}
 
+const DIGIT_ACTION := {"0": "weapon", "1": "jump_left", "2": "jump", "3": "jump_right", "4": "move_left", "5": "attack", "6": "move_right", "7": "transform", "8": "down", "9": "stealth"}
+var _re_key := RegEx.create_from_string("([Pp]hím)( số)? ([0-9])")
+
+# original tutorial texts name phone keys ("phím 5"); show the player's current PC binding instead
+func pc_keys(s: String) -> String:
+	if s.find("hím") < 0:
+		return s
+	var out := s
+	for m in _re_key.search_all(s):
+		var act: String = DIGIT_ACTION.get(m.get_string(3), "")
+		if act == "":
+			continue
+		var evs := InputMap.action_get_events(act)
+		if evs.is_empty() or not (evs[0] is InputEventKey):
+			continue
+		out = out.replace(m.get_string(0), m.get_string(1) + " " + OS.get_keycode_string(evs[0].physical_keycode))
+	return out
+
 func _text(c: Array) -> void:
-	var s: String = c[1]
+	var s: String = pc_keys(c[1])
 	if s.is_empty():
 		return
 	var off := world_offset(c)
@@ -233,10 +251,10 @@ func _text(c: Array) -> void:
 		var style: int = c[5]
 		col = STYLE_COL.get(style, Color.WHITE)
 		if style == 0:
-			target_w = core.M_a_s(s)
+			target_w = core.M_a_s(c[1])
 			size = 11.5
 		elif style == 1:
-			target_w = core.M_c_s(s)
+			target_w = core.M_c_s(c[1])
 			size = 11.0
 			outline = false
 		else:
@@ -247,6 +265,7 @@ func _text(c: Array) -> void:
 			s = "◀"
 		elif s == "/":
 			s = "▶"
+			x += 8
 	if c[0] == 6 and y >= core.aX - 15 and c[8] == 0:
 		if x < 40:
 			s = "[Esc] " + s

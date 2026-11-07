@@ -7,6 +7,7 @@ var core
 var main
 var font: Font
 var portrait: Texture2D
+var hero_title: Texture2D
 var t := 0.0
 var parts: Array = []
 var hp_shown := 1.0
@@ -21,6 +22,8 @@ func _ready() -> void:
 	var p := "res://art/ui/portrait.png"
 	if ResourceLoader.exists(p):
 		portrait = load(p)
+	if ResourceLoader.exists("res://art/ui/hero_title.png"):
+		hero_title = load("res://art/ui/hero_title.png")
 
 func _process(delta: float) -> void:
 	t += delta
@@ -111,6 +114,13 @@ func _draw() -> void:
 		draw_rect(Rect2(0, 0, vp.x, vs.y), Color.BLACK)
 		draw_rect(Rect2(vp.x + cw, 0, vs.x - vp.x - cw, vs.y), Color.BLACK)
 		_txt("F10: Cài đặt / đổi phím   ·   F11: Toàn màn hình", Vector2(20 * u, vs.y - 20 * u), 18 * u, Color(1, 1, 1, 0.5))
+	if core.d == 3 and hero_title:
+		# title screen: approved style master art beside the original logo/menu
+		var h := vs.y * 0.62
+		var w := h * hero_title.get_width() / hero_title.get_height()
+		var bob := sin(t * 1.6) * 6.0 * u
+		draw_texture_rect(hero_title, Rect2(vs.x - w - 40 * u, vs.y - h - 60 * u + bob, w, h), false)
+		_txt("PC Remake", Vector2(vs.x * 0.5 - 200 * u, vs.y * 0.36), 30 * u, Color(1, 0.9, 0.6), HORIZONTAL_ALIGNMENT_CENTER, 400 * u)
 	if debug:
 		_txt("d=%d v=%d A=%d B=%d fh=%d fi=%d fR=%d fS=%d fV=%s fW=%d fX=%d r=%d fU=%d aX=%d" % [core.d, core.v, core.A, core.B, core.fh, core.fi, core.fR, core.fS, str(core.fV), core.fW, core.fX, core.r, core.fU, core.aX], Vector2(20, vs.y - 60 * u), 22 * u, Color(0.6, 1, 1))
 

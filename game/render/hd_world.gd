@@ -187,7 +187,7 @@ func _draw_dialogue(rr, cmds: Array) -> void:
 			rr.draw_colored_polygon(pts, Color(1.0, 0.98, 0.92))
 			rr.draw_polyline(PackedVector2Array([pts[0], pts[2], pts[1]]), Color(0.55, 0.12, 0.1), 1.0)
 		elif c[0] == 6 and c[5] == 1:
-			rr.draw_text_fit(c[1], Vector2(c[2], c[3]), 2, rr.core.M_c_s(c[1]), 11.0, Color(0.16, 0.08, 0.05), false)
+			rr.draw_text_fit(rr.pc_keys(c[1]), Vector2(c[2], c[3]), 2, rr.core.M_c_s(c[1]), 11.0, Color(0.16, 0.08, 0.05), false)
 		else:
 			rr.draw_cmd(c)
 	if box.size.x > 0 and int(t * 2.0) % 2 == 0:
