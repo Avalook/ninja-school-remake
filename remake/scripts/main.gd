@@ -180,6 +180,14 @@ func _auto(delta: float) -> void:
 		hero_hist.append(player.pos.x)
 		if run_t > 0.6:
 			print("[f] %.4f %.3f %.3f %d %s %.2f %d" % [delta, world.camera.position.x, player.pos.x, S.A, player.anim.cur, Performance.get_monitor(Performance.TIME_PROCESS) * 1000, Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)])
+	if auto.has("warp") and not shots_done.has("warp"):
+		var wp := str(auto["warp"]).split(":")
+		if run_t >= float(wp[0]) and world.map_id == int(wp[1]):
+			shots_done["warp"] = true
+			var c := wp[2].split(",")
+			player.place(Vector2(int(c[0]), int(c[1])), 1)
+	if auto.has("log") and Engine.get_process_frames() % 30 == 0 and "gV" in S:
+		print("   [boss] gV=%d hc=%d gS=%d  hu=%d O=%d fF=%d mode=%s fV=%s" % [S.gV, S.hc, S.gS, S.hu, S.O, S.fF, Game.mode, str(S.fV)])
 	if auto.has("tour"):
 		_tour_step()
 	if auto.has("quit") and auto.has("ftlog") and run_t >= float(auto["quit"]):
