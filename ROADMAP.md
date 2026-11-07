@@ -115,12 +115,21 @@ và chỉ qua mốc khi chủ dự án đồng ý. Claude không tự đánh gi�
 - [ ] Làm tương tự cho enemies, story, world (va chạm), drops, projectiles.
 - [ ] Viết `sim/sim.gd`: hàm `step(input) -> events`, kèm snapshot và restore (phục vụ save và test).
 - [ ] Viết `tests/sim_run.gd` chạy headless, đọc cùng định dạng script với `tools/diff_run.sh`.
+- [ ] Di chuyển native (state 1–4) chạy theo bước cố định 100 Hz (4 bước mỗi tick 25 Hz), không theo dt của frame.
+      View nội suy giữa hai bước khi vẽ. Mục tiêu: kết quả như nhau ở 60/120/144 Hz.
+      Test: chạy cùng kịch bản ở `--fixed-fps 60` và `--fixed-fps 144` phải ra trace giống nhau
+      (`tests/player_trace.sh`). Đổi bước là đổi hành vi di chuyển nên phải ghi mốc trace mới, ghi rõ lý do.
 - Qua mốc: intro map99 → map4 và quest 0 có diff bằng 0 so với oracle trên các trường luật;
   view chạy giống trước khi tách.
 
 ### M2 — Hoàn thiện Sim game 1
 Theo thứ tự, mỗi mục kèm diff test riêng:
 - [ ] Combat: combo, phi tiêu, Xích Mao, ẩn thân, độn thổ, bị đánh, knockback, chết và hồi sinh.
+  - [ ] Sửa Xích Mao: `_common_actions()` đặt `S.A = 23` nhưng `_publish()` cuối `_native()` ghi đè về 1/2,
+        nên không bao giờ biến hình. Đối chiếu `T()` và khối input trong `a.java`, có diff test.
+  - [ ] Tìm cờ kỹ năng Xích Mao thật trong `a.java`, tách khỏi `eT` (cờ cốt truyện "Toniku thành sát thủ"
+        mà `story.gd` dùng).
+  - [ ] Bổ sung kịch bản `tests/player_trace.sh` phủ xe máy đứng/chạy (A = 18/19) và Xích Mao (A = 23).
 - [ ] Toàn bộ loại quái, AI, spawn và respawn, rơi đồ (luật `w % 20`).
 - [ ] Các boss (hiện có `boss_boar`, `boss_golem`, `boss_river`; đối chiếu với nguồn gốc xem đã đủ chưa)
       và hội bạn cùng lớp.

@@ -9,6 +9,8 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
 - **M1 mục 1 xong**: `player.gd` đã tách thành `remake/sim/player_sim.gd` + `remake/view/player_view.gd`
   (+ `hero_anim.gd` sang `remake/view/`). Hành vi không đổi: trace 10 kịch bản khớp 100% từng dòng.
 - Mục tiếp theo: M1 mục 2, tách enemies, story, world (va chạm), drops, projectiles.
+- Đã merge `m1-sim-view` vào `main` (2026-11-07). Việc phát hiện trong phiên đã thêm vào ROADMAP:
+  M1 (di chuyển native bước cố định 100 Hz), M2 Combat (sửa Xích Mao, cờ thật của Xích Mao, trace A = 18/19/23).
 - Codex đang vẽ trong `art_src/` trên nhánh `claude/project-directory-codex-c71a67`.
   Nhánh này **không tạo, không sửa** gì trong `art_src/`.
 
@@ -180,5 +182,8 @@ Chỉ đọc, không pull, không reset, không xoá gì:
 - Xe máy: trace có A = 20/21 nhưng chưa có 18/19 (đứng/chạy trên xe). Cần kịch bản leo xe chắc chắn hơn.
 - `remake/` trong worktree mới phải chạy `godot --headless --path remake --import` trước, nếu không mọi test
   in hàng trăm nghìn SCRIPT ERROR (texture null) dù luật vẫn chạy.
-- fm94: SCRIPT ERROR trong oracle `game/core/orig.gd:5452` (xem mục diff suite).
+- **Điều tra sau:** fm94 (`game/tests/scripts/fm94.txt`) làm oracle `game/` in 3 lần
+  `SCRIPT ERROR: Invalid access of index '7'` ở `game/core/orig.gd:5452` (`__g_o`). Trace vẫn khớp JAR
+  4253/4253 tick, nên có thể chỉ là nhánh vẽ hoặc truy cập mảng mà bản Java bắt exception. Chưa xác định;
+  `game/` là oracle nên không sửa khi chưa rõ.
 - Có nên giữ `game/art/*` (HD cho bản hybrid) khi `game/` chỉ còn là oracle không.
