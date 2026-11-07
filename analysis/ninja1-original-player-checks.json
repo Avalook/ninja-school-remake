@@ -1,0 +1,87 @@
+{
+  "status": "verified_headless_player_attack_slice",
+  "updated_at": 1794023497.2566972,
+  "project": "/Users/quangdang/Downloads/ninja/games/ninja1-original",
+  "source_evidence": {
+    "fresh_game_map_spawn": "analysis/NinjaSchool1/sources/Midlet.java:10519-10527; a.java:3470-3476,11380-11404,4157-4163",
+    "attack_input": "analysis/NinjaSchool1/sources/a.java:7441-7447",
+    "attack_state": "analysis/NinjaSchool1/sources/a.java:8859-8864,8969-8972",
+    "attack_animation": "analysis/NinjaSchool1/sources/a.java:5080-5388",
+    "tick": "analysis/NinjaSchool1/sources/a.java:42 (aa=40ms)",
+    "melee_hit_bounds": "analysis/NinjaSchool1/sources/a.java:2642-2655",
+    "melee_damage_formula": "analysis/NinjaSchool1/sources/a.java:2112-2144",
+    "enemy_hp_reaction": "analysis/NinjaSchool1/sources/a.java:11644-11670",
+    "map0_enemy_setup": "analysis/NinjaSchool1/sources/a.java:11696-11706,13443-13465; mob HP arrays 744-746",
+    "melee_notes": "analysis/ninja1-melee-source-notes.md"
+  },
+  "implementation": {
+    "map": 99,
+    "map_dimensions": [
+      70,
+      15
+    ],
+    "source_spawn": [
+      108,
+      312
+    ],
+    "facing": "left",
+    "controls": "A/D or arrows; W/Space jump; J or keypad 5 attack",
+    "attack_state": "15 updates at 25 Hz; hit resolves at tick 6; source bounds; damage formula uses E + local_source_tick%(E>>1), weapon index x and fA doubling; knockback -fp",
+    "provisional_visual": "slash indicator ticks 4-7; exact original damage frames/hit test unverified",
+    "enemy_integration": "Generic group target only; smoke fixture verifies in-range damage once and out-of-range immunity. Map99 ships without enemies."
+  },
+  "checks": {
+    "check_project": {
+      "ok": true,
+      "command": "Godot --headless --path games/ninja1-original --import",
+      "exit_code": 0
+    },
+    "smoke_test": {
+      "ok": true,
+      "command": "Godot --headless --path games/ninja1-original --script res://tests/smoke.gd",
+      "exit_code": 0,
+      "output": "SMOKE_PASS ORIGINAL_MAP99: spawn/facing, original grid/assets, movement/jump/ground/camera, J+KP5 melee range/damage/knockback/timing"
+    },
+    "run_game": {
+      "ok": true,
+      "command": "Godot --headless --path games/ninja1-original --quit-after 120",
+      "exit_code": 0
+    },
+    "attack_assertions": [
+      "physical J and keypad 5 are mapped",
+      "hit resolves once on tick 6",
+      "source-facing hit bounds include target",
+      "target outside bounds remains unharmed",
+      "base power/variance and knockback direction applied",
+      "visual window ends and attack returns to idle"
+    ],
+    "mac_export": {
+      "ok": true,
+      "path": "/Users/quangdang/Downloads/ninja/builds/ninja1-original/NinjaSchool1-Map99-Preview.app",
+      "target": "Universal 2",
+      "executable_architectures": [
+        "x86_64",
+        "arm64"
+      ],
+      "headless_runtime_exit_code": 0,
+      "headless_runtime_frames": 120,
+      "native_visual_reviewed": false
+    }
+  },
+  "files": {
+    "games/ninja1-original/player.gd": "c87c5d620df5cdbbb86a845d6e56d7a29b06a1fd921cd2a0c7adf267b6de0d6b",
+    "games/ninja1-original/original_map.gd": "994ad9f2e0f504733122d9db1fadcb9a45096e1512fafc468f8143750d22eb7d",
+    "games/ninja1-original/tests/smoke.gd": "81218bcfd469b1cca82785bd6c7f706ac62b9160a9b04c6a296f224f46fce85c",
+    "games/ninja1-original/project.godot": "e71778c19ca8acda9fa0d63013a51e249d5e2f244a63e12744de31237ddad802",
+    "games/ninja1-original/export_presets.cfg": "c87e1c18db393efdc1f56be27bfe946dba607842b48e915a3f18c3718b7ec6c0"
+  },
+  "not_yet_done": [
+    "authentic attack hit tests/damage/HP/death/enemy behavior",
+    "NPC/dialogue/quests/save/load/full content of Ninja School 1",
+    "Ninja School 2 and 3 gameplay",
+    "HD art",
+    "standalone native Mac app export for map99 project",
+    "Windows export/runtime and Acer verification",
+    "native visual QA"
+  ]
+}

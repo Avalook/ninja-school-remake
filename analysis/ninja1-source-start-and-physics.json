@@ -1,0 +1,49 @@
+{
+  "initial_state": {
+    "map_id": 99,
+    "spawn": {
+      "x": 108,
+      "y": 312
+    },
+    "facing": -1,
+    "flags": {
+      "eH": true,
+      "dz": true
+    },
+    "source_proofs": [
+      "Midlet.java:10519-10527 ba==0 calls a.x(99)",
+      "a.java:3470-3476 x(n) sets v=n",
+      "Midlet.java:483 calls a.n(a.v)",
+      "a.java:4157-4163 n(99) sets fh=108, fi=312, fp=-1"
+    ]
+  },
+  "map_dimensions": {
+    "width": 70,
+    "height": 15,
+    "source_proofs": [
+      "a.java:11380-11404 q(99) is 70x15",
+      "analysis/maps/ninja1/map-099.json decodes 70x15"
+    ]
+  },
+  "movement_semantics": {
+    "tick_rate_hz": 25,
+    "tick_interval_ms": 40,
+    "jump_velocity_initial": -8,
+    "jump_velocity_eL": -10,
+    "gravity_increment": 1,
+    "max_fall_velocity": 18,
+    "walk_speed": 5,
+    "diagonal_y_offset": 4,
+    "source_constants": [
+      "a.java:42 aa defaults 40",
+      "Midlet.java:494 P=5",
+      "a.java:8775-8855 aU[2] z=-8/-10, aU[4]/[6] y=±P, aU[1]/[3] y=∓4",
+      "a.java:4942-4980 A==3 z increment",
+      "a.java:4982-5010 A==4 z increment up to 18"
+    ],
+    "uncertainties": [
+      "Verification that the canvas loop (a.java:10943-10947) is the exclusive gameplay update loop",
+      "Exact collision resolution logic beyond ground check mask2"
+    ]
+  }
+}

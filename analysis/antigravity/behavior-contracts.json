@@ -1,0 +1,216 @@
+{
+  "game": "NinjaSchool1",
+  "version": "1.0.0-verified",
+  "systems": [
+    {
+      "id": "game_clock_and_loop",
+      "name": "Game Clock and Frame Loop",
+      "source_reference": "Midlet.java L395-L566 (run), a.java L8144-L10952 (run), L7555-L8122 (paint)",
+      "contract": {
+        "fixed_tick_ms": 40,
+        "target_fps": 25,
+        "tick_counter": "w (incremented every loop cycle)",
+        "subsystems_update_order": [
+          "Input processing (a.keyPressed, a.keyReleased)",
+          "Cutscene script interpreter (a.V() if fV==true, a.ad() if ih==true)",
+          "Player physics and state machine (a.R())",
+          "Entities & Monsters update (a.am(), a.an())",
+          "Projectiles & Particles update (a.O(), a.P())",
+          "Camera clamping and follow (fR, fS towards fL, fM clamped to [0, fT] and [0, fU])",
+          "Canvas redraw (a.paint(Graphics))"
+        ],
+        "cutscene_tick_semantic": "aB[][] specifies cumulative tick thresholds of gc from sequence start C(n), where gc is clamped at each milestone."
+      },
+      "test_scenarios": [
+        {
+          "name": "Tick advancement",
+          "given": "Game running for 100 ticks",
+          "expected": "w increases by exactly 100; timers modulated by w % N trigger at correct periodicities"
+        }
+      ]
+    },
+    {
+      "id": "player_movement_and_physics",
+      "name": "Player Physics & Movement State Machine",
+      "source_reference": "a.java L4855-L5160 (switch (A) in R()), L11409-L11462 (tile collision masks in q())",
+      "contract": {
+        "states": {
+          "1": "IDLE (B = C % 15 < 5 ? 0 : 1)",
+          "2": "RUN (fh += y; B = (C >> 1) + 2; slopes & 4 / & 8 handled)",
+          "3": "JUMP_UP (fi += z; ++z; peak at z==0 transitions to FALL)",
+          "4": "FALL (fi += z; if (z < 18) ++z; land check (i(fh, fi+3) & 2) == 2)",
+          "5": "MELEE_ATTACK (combo sequence fw: 0=swing 1, 1=cooldown, 2=swing 2; hit tick at C==6)",
+          "8": "HIGH_FALL_LANDING_STUN (triggered if landing with z > 12)"
+        },
+        "collision_masks": {
+          "solid_ground": "tile flag & 2 != 0",
+          "slope_right": "tile flag & 4 != 0",
+          "slope_left": "tile flag & 8 != 0",
+          "water": "tile flag & 0x10 != 0",
+          "vine_ladder": "tile flag & 0x1000 != 0",
+          "water_surface": "tile flag & 0x40 != 0"
+        },
+        "gravity": 1,
+        "terminal_fall_velocity": 18
+      },
+      "test_scenarios": [
+        {
+          "name": "Ground landing from normal jump",
+          "given": "Player falling with z = 8 onto solid ground tile",
+          "expected": "Player state transitions to A=1 (IDLE), fi clamped to surface tile top (a.I(fi+3))"
+        },
+        {
+          "name": "High fall landing stun",
+          "given": "Player falling with z = 14 onto solid ground tile",
+          "expected": "Player state transitions to A=8 (LANDING_STUN), z reset to 0, y reset to 0"
+        }
+      ]
+    },
+    {
+      "id": "combat_melee_and_damage",
+      "name": "Melee Combat, Hitbox & Damage Calculation",
+      "source_reference": "a.java L2112-L2228 (u()), L2642-L2655 (A()), L11644-L11690 (k() and L())",
+      "contract": {
+        "hitbox_definition": {
+          "facing_right": "X in [fh - 20, fh + 40], Y in [fi - fk - 15, fi + 5]",
+          "facing_left": "X in [fh - 40, fh + 20], Y in [fi - fk - 15, fi + 5]"
+        },
+        "damage_formula": "base = E + (w % (E >> 1)); total = base + ((base >> 1) * weapon_tier_x); if (buff_fA) total <<= 1;",
+        "on_hit_target": {
+          "monster_hp_subtraction": "kc[target] -= total",
+          "knockback": "jX = -5; jY = -(knockback_dir << 3);",
+          "pogo_bounce": "if player in air (z > 0) then z = -6 (upward rebound)",
+          "visual_effects": "slash particle at (jN, jO - jP/2); floating damage text '-' + total with vy = -2"
+        },
+        "on_target_death": {
+          "state_change": "jS[target] = 1 (DEAD)",
+          "exp_reward": "player EXP += aq[jM[target]]",
+          "quest_tracking": "if active quest O matches target mob lH[O], increment fF; alert text am[mob] + ': ' + fF + '#' + lI[O]"
+        }
+      },
+      "test_scenarios": [
+        {
+          "name": "Melee attack hit and damage calculation",
+          "given": "Player base attack E=25, weapon tier x=0, no buff; Monster with HP=140 in melee hitbox",
+          "expected": "Monster takes damage between 25 and 37; floating damage text generated; monster HP reduces accordingly"
+        },
+        {
+          "name": "Pogo bounce on airborne attack",
+          "given": "Player jumping/falling with z = 4 hits enemy in melee range",
+          "expected": "Enemy damaged; player vertical velocity immediately reverses to z = -6"
+        }
+      ]
+    },
+    {
+      "id": "map_system_and_warp",
+      "name": "Map Configurations and Exit Triggers",
+      "source_reference": "a.java L11134-L11469 (q(int n))",
+      "contract": {
+        "total_maps": 24,
+        "tile_size_px": 24,
+        "map_99_intro": {
+          "dimensions": [
+            70,
+            15
+          ],
+          "start_pos": [
+            108,
+            312
+          ],
+          "facing": -1,
+          "right_exit_target": {
+            "map": 4,
+            "entry_x": 48,
+            "entry_y": 120,
+            "facing": -1
+          }
+        },
+        "map_4_prologue": {
+          "dimensions": [
+            80,
+            15
+          ],
+          "start_pos": [
+            48,
+            120
+          ],
+          "story_trigger": "D(0) prologue boss quest",
+          "on_boss_defeat": "warps to Map 0 with eH=true"
+        },
+        "map_0_school": {
+          "dimensions": [
+            80,
+            19
+          ],
+          "real_game_start_pos": [
+            864,
+            336
+          ],
+          "facing": -1,
+          "story_trigger": "D(2) Okamesama entrance cutscene"
+        }
+      },
+      "test_scenarios": [
+        {
+          "name": "Map 99 right exit boundary",
+          "given": "Player on Map 99 at x = 1655",
+          "expected": "No transition. Moving to x >= 1656 triggers transition to Map 4 at (48, 120) facing left."
+        }
+      ]
+    },
+    {
+      "id": "save_and_load_persistence",
+      "name": "RMS RecordStore Persistence Schema",
+      "source_reference": "a.java L1492-L2018 (a() and b()), Midlet.java L1754",
+      "contract": {
+        "record_store_name": "ninjasave",
+        "record_array_size": 500,
+        "variable_layout": {
+          "0": "playtime_seconds (gO)",
+          "1": "current_map_id (v)",
+          "2": "tick_substate (w)",
+          "3": "prologue_flag (eH)",
+          "4": "coins_money (dg)",
+          "5": "quest_flag (dz)",
+          "9": "motor_flag (gn)",
+          "12": "level_hp (im)",
+          "13": "weapon_tier (x)",
+          "15..33": "skills_unlocked (W[0..18])",
+          "34..52": "item_inventory_counts (V[0..18])",
+          "70": "player_x (fh)",
+          "71": "player_y (fi)",
+          "72": "current_hp (y)",
+          "73": "max_hp (z)",
+          "74": "movement_state (A)",
+          "75": "animation_frame (B)",
+          "137": "active_quest_id (O)"
+        }
+      },
+      "test_scenarios": [
+        {
+          "name": "Lossless save and load roundtrip",
+          "given": "Saved game state with map=4, x=360, y=120, hp=1000, quest=0",
+          "expected": "Serialized 500 ints match exactly when read back through b(); restored state identical."
+        }
+      ]
+    },
+    {
+      "id": "cutscene_script_engine",
+      "name": "Cutscene Script Interpreter (V and ad)",
+      "source_reference": "a.java L4660-L4668 (C()), L5881-L6260 (V()), L6992-L7067 (ad())",
+      "contract": {
+        "dispatch": "D(n) sets ii=0, ig=n, ih=true. ad() evaluates av[ig][ii] condition to trigger C(aw[ig][ii]).",
+        "tick_model": "C(n) initializes gc=0, fW=n, fX=0, fV=true. Each frame V() executes: if (++gc >= aB[fW][fX]), gc = aB[fW][fX], executes opcode az[fW][fX], and advances ++fX.",
+        "milestone_definition": "aB values are cumulative tick milestones since sequence start, NOT individual step durations.",
+        "text_waiting": "When action 4 (dialogue) runs, gd=true and sequence pauses until user presses Key 5."
+      },
+      "test_scenarios": [
+        {
+          "name": "Cumulative tick milestone progression",
+          "given": "Sequence 0 triggered with aB[0] = [5, 26, 30, ...]",
+          "expected": "Action 0 triggers at gc=5, action 1 triggers 21 ticks later at gc=26, action 2 triggers 4 ticks later at gc=30."
+        }
+      ]
+    }
+  ]
+}

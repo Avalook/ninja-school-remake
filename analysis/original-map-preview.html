@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chẩn đoán bản đồ gốc</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:16px;background:#eef2f7;color:#12233b}
+h1{font-size:18px;margin:0 0 4px}
+.sub{font-size:13px;color:#334;margin:0 0 12px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+select,button{font-size:13px;padding:5px 8px;border:1px solid #9aa7b8;border-radius:6px;background:#fff}
+button{cursor:pointer}
+button.on{background:#12233b;color:#fff;border-color:#12233b}
+.info{font-size:13px;margin:6px 0}
+.warn{font-size:12px;color:#8a5a00;background:#fff4d6;border:1px solid #e6c877;border-radius:6px;padding:6px 8px;margin:8px 0}
+.err{font-size:13px;color:#fff;background:#b3261e;border-radius:6px;padding:8px;margin:8px 0;display:none}
+.wrap{overflow-x:auto;border:1px solid #9aa7b8;background:#cfe8ff;max-height:70vh}
+canvas{image-rendering:pixelated;display:block}
+</style>
+</head>
+<body>
+<h1>Bản xem trước tĩnh từ dữ liệu gốc — chưa chơi được, chưa nâng cấp HD</h1>
+<p class="sub">Chỉ vẽ tile tĩnh đã xác nhận trên nền trời sáng. Không nhân vật, kẻ địch hay cảnh.</p>
+<div class="bar">
+<label>Bản đồ:
+<select id="sel"></select>
+</label>
+<label>Phóng to:
+<select id="zoom">
+<option value="1">100%</option>
+<option value="2">200%</option>
+</select>
+</label>
+<button id="btn" class="on">Tải lại</button>
+</div>
+<div class="info" id="info">Đang chờ…</div>
+<div class="warn">Cảnh báo: các hiệu ứng hoạt ảnh / thay đổi lúc chạy không được khôi phục. Tile động chỉ dùng ảnh atlas gốc.</div>
+<div class="err" id="err"></div>
+<div class="wrap"><canvas id="cv"></canvas></div>
+<script>
+(function(){
+"use strict";
+var TILE=24, ATLAS_W=24, ATLAS_H=2880;
+var IDS=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,94,95,96,97,99];
+var sel=document.getElementById('sel'), zoom=document.getElementById('zoom'),
+    btn=document.getElementById('btn'), info=document.getElementById('info'),
+    err=document.getElementById('err'), cv=document.getElementById('cv'),
+    ctx=cv.getContext('2d');
+var atlas=null, atlasReady=false, requestSeq=0;
+
+IDS.forEach(function(id){
+  var o=document.createElement('option');
+  o.value=id; o.textContent='map-'+pad(id);
+  sel.appendChild(o);
+});
+sel.value='0';
+
+function pad(n){return String(n).padStart(3,'0');}
+function showErr(m){err.textContent=m;err.style.display='block';}
+function clearErr(){err.style.display='none';}
+
+function loadAtlas(){
+  if(atlasReady) return Promise.resolve();
+  return new Promise(function(res,rej){
+    var img=new Image();
+    img.onload=function(){
+      if(img.naturalWidth!==ATLAS_W||img.naturalHeight!==ATLAS_H){
+        rej('Atlas sai kích thước: '+img.naturalWidth+'x'+img.naturalHeight);
+      } else { atlas=img; atlasReady=true; res(); }
+    };
+    img.onerror=function(){rej('Không tải được ảnh atlas t.png');};
+    img.src='NinjaSchool1/resources/t/t.png';
+  });
+}
+
+function loadMap(id){
+  var url='maps/ninja1/map-'+pad(id)+'.json';
+  return fetch(url).then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  }).then(function(j){
+    if(!j || !Number.isInteger(j.columns) || !Number.isInteger(j.rows) ||
+       j.columns<1 || j.rows<1 || j.columns>4096 || j.rows>4096 ||
+       j.columns*TILE>8192 || j.rows*TILE>8192 ||
+       j.columns*j.rows*TILE*TILE>8388608 || !Array.isArray(j.cells) ||
+       j.cells.length!==j.rows || j.cells.some(function(row){
+         return !Array.isArray(row) || row.length!==j.columns;
+       })) throw new Error('Dữ liệu bản đồ không hợp lệ');
+    return j;
+  });
+}
+
+function render(map,mapId){
+  var z=parseInt(zoom.value,10);
+  var cols=map.columns, rows=map.rows, cells=map.cells;
+  cv.width=cols*TILE; cv.height=rows*TILE;
+  cv.style.width=(cols*TILE*z)+'px';
+  cv.style.height=(rows*TILE*z)+'px';
+  ctx.imageSmoothingEnabled=false;
+  ctx.clearRect(0,0,cv.width,cv.height);
+  var out=0, total=0;
+  for(var y=0;y<rows;y++){
+    for(var x=0;x<cols;x++){
+      var id=cells[y] && cells[y][x];
+      total++;
+      if(id===0) continue;
+      if(!Number.isInteger(id)||id<1||id>120){ out++; continue; }
+      var sy=(id-1)*TILE;
+      if(sy<0||sy+TILE>ATLAS_H){ out++; continue; }
+      ctx.drawImage(atlas,0,sy,TILE,TILE,x*TILE,y*TILE,TILE,TILE);
+    }
+  }
+  info.textContent='Bản đồ ID '+pad(mapId)+' — '+cols+'x'+rows+' ô ('+cols*TILE+'x'+rows*TILE+' px). '
+    +'Tile ngoài phạm vi: '+out+'/'+total+'. Tile động chỉ dùng ảnh atlas gốc.';
+}
+function idOf(){return parseInt(sel.value,10);}
+
+function run(){
+  var seq=++requestSeq, mapId=idOf();
+  clearErr();
+  info.textContent='Đang tải…';
+  loadAtlas().then(function(){
+    return loadMap(mapId);
+  }).then(function(map){
+    if(seq===requestSeq) render(map,mapId);
+  }).catch(function(e){
+    if(seq!==requestSeq) return;
+    showErr('Lỗi: '+(e&&e.message?e.message:e));
+    info.textContent='Không hiển thị được bản đồ.';
+  });
+}
+sel.addEventListener('change',run);
+zoom.addEventListener('change',run);
+btn.addEventListener('click',run);
+run();
+})();
+</script>
+</body>
+</html>

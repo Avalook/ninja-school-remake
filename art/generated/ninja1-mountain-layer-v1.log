@@ -1,0 +1,5 @@
+INFO: Using prompt from file: /Users/quangdang/Downloads/ninja/art/prompts/ninja1-mountain-layer-v1.txt
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:06<00:19,  6.41s/it] 50%|█████     | 2/4 [00:11<00:11,  5.87s/it] 75%|███████▌  | 3/4 [00:17<00:05,  5.69s/it]100%|██████████| 4/4 [00:22<00:00,  5.62s/it]100%|██████████| 4/4 [00:22<00:00,  5.72s/it]
+INFO: Image saved successfully at: /Users/quangdang/Downloads/ninja/art/generated/ninja1-mountain-layer-v1.png
+INFO: Metadata embedded successfully at: /Users/quangdang/Downloads/ninja/art/generated/ninja1-mountain-layer-v1.png
+Peak MLX memory: 3.88 GB

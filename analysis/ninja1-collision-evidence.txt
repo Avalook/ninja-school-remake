@@ -1,0 +1,324 @@
+11400:             InputStream inputStream = "".getClass().getResourceAsStream("/m/" + n);
+11401:             iT = new byte[iP * iQ];
+11402:             iU = new int[iP * iQ];
+11403:             int n2 = 0;
+11404:             while (n2 < iP * iQ) {
+11405:                 a.iT[n2] = (byte)inputStream.read();
+11406:                 if (iT[n2] != 0) {
+11407:                     a.iV[a.iT[n2] - 1] = true;
+11408:                 }
+11409:                 if (iT[n2] == 1 || iT[n2] == 2 || iT[n2] == 3 || iT[n2] == 4 || iT[n2] == 5 || iT[n2] == 6 || iT[n2] == 7 || iT[n2] == 36 || iT[n2] == 37 || iT[n2] == 54 || iT[n2] == 91 || iT[n2] == 92 || iT[n2] == 93 || iT[n2] == 94 || iT[n2] == 73 || iT[n2] == 74 || iT[n2] == 97 || iT[n2] == 98 || iT[n2] == 120) {
+11410:                     int n3 = n2;
+11411:                     iU[n3] = iU[n3] | 2;
+11412:                 }
+11413:                 if (iT[n2] == 2 || iT[n2] == 3 || iT[n2] == 4 || iT[n2] == 5 || iT[n2] == 6 || iT[n2] == 20 || iT[n2] == 21 || iT[n2] == 22 || iT[n2] == 23 || iT[n2] == 36 || iT[n2] == 37 || iT[n2] == 38 || iT[n2] == 39) {
+11414:                     int n4 = n2;
+11415:                     iU[n4] = iU[n4] | 0x2000;
+11416:                 }
+11417:                 if (iT[n2] == 8 || iT[n2] == 9 || iT[n2] == 10 || iT[n2] == 12 || iT[n2] == 13 || iT[n2] == 14 || iT[n2] == 30) {
+11418:                     int n5 = n2;
+11419:                     iU[n5] = iU[n5] | 0x10;
+11420:                 }
+11421:                 if (iT[n2] == 17) {
+11422:                     int n6 = n2;
+11423:                     iU[n6] = iU[n6] | 0x20;
+11424:                 }
+11425:                 if (iT[n2] == 18) {
+11426:                     int n7 = n2;
+11427:                     iU[n7] = iU[n7] | 0x80;
+11428:                 }
+11429:                 if (iT[n2] == 37 || iT[n2] == 38) {
+11430:                     int n8 = n2;
+11431:                     iU[n8] = iU[n8] | 4;
+11432:                 }
+11433:                 if (iT[n2] == 36 || iT[n2] == 39) {
+11434:                     int n9 = n2;
+11435:                     iU[n9] = iU[n9] | 8;
+11436:                 }
+11437:                 if (iT[n2] == 19) {
+11438:                     int n10 = n2;
+11439:                     iU[n10] = iU[n10] | 0x40;
+11440:                     if ((iU[n2 - iP] & 0x2000) == 8192) {
+11441:                         int n11 = n2;
+11442:                         iU[n11] = iU[n11] | 0x2000;
+11443:                     }
+11444:                 }
+11445:                 if (iT[n2] == 35) {
+11446:                     int n12 = n2;
+11447:                     iU[n12] = iU[n12] | 0x1000;
+11448:                 }
+11449:                 if (iT[n2] == 32) {
+11450:                     int n13 = n2;
+11451:                     iU[n13] = iU[n13] | 0x100;
+11452:                 }
+11453:                 if (iT[n2] == 7) {
+11454:                     int n14 = n2;
+11455:                     iU[n14] = iU[n14] | 0x800;
+11456:                 }
+11457:                 if (iT[n2] == 33 || iT[n2] == 34) {
+11458:                     int n15 = n2;
+11459:                     iU[n15] = iU[n15] | 0x200;
+11460:                 }
+11461:                 ++n2;
+11462:             }
+11463:         }
+11464:         catch (Exception exception) {
+11465:             Midlet.c.c();
+11466:         }
+11467:         a.ai();
+11468:     }
+11565:     private static int h(int n, int n2) {
+11566:         return iU[n2 * iP + n];
+11567:     }
+11568: 
+11569:     private static int i(int n, int n2) {
+11570:         return iU[n2 / jh * iP + n / jh];
+11571:     }
+11572: 
+11573:     private static boolean g(int n, int n2, int n3) {
+11574:         return (iU[n2 / jh * iP + n / jh] & n3) == n3;
+11575:     }
+11576: 
+11577:     private static void h(int n, int n2, int n3) {
+11578:         int n4 = n2 / jh * iP + n / jh;
+11579:         iU[n4] = iU[n4] | 0x400;
+11580:     }
+11581: 
+11582:     private static void i(int n, int n2, int n3) {
+11583:         a.iU[n2 * a.iP + 24] = 0;
+11584:     }
+11585: 
+11586:     private static void j(int n, int n2, int n3) {
+11587:         int n4 = n2 / jh * iP + n / jh;
+11588:         iU[n4] = iU[n4] & 0xFFFFFBFF;
+11589:     }
+11590: 
+9180:                             switch (a.ix[var3_2]) {
+9181:                                 case 2: {
+9182:                                     v3 = var3_2;
+9183:                                     a.iv[v3] = a.iv[v3] + a.iy[var3_2];
+9184:                                     if (a.iy[var3_2] > 0) {
+9185:                                         v4 = var3_2;
+9186:                                         a.iy[v4] = a.iy[v4] - 1;
+9187:                                     } else if (a.iy[var3_2] < 0) {
+9188:                                         v5 = var3_2;
+9189:                                         a.iy[v5] = a.iy[v5] + 1;
+9190:                                     } else {
+9191:                                         a.ix[var3_2] = 1;
+9192:                                     }
+9193:                                     if (!a.g(a.iv[var3_2] - 12, a.iw[var3_2] + 1, 2) && !a.g(a.iv[var3_2] + 12, a.iw[var3_2] + 1, 2)) {
+9194:                                         a.ix[var3_2] = 4;
+9195:                                         a.iz[var3_2] = 2;
+9196:                                     }
+9197:                                     if (!a.g(a.iv[var3_2] + 12, a.iw[var3_2] - 2, 4) && !a.g(a.iv[var3_2] - 12, a.iw[var3_2] - 2, 8)) break;
+9198:                                     a.iv[var3_2] = a.I(a.iv[var3_2]) + 12;
+9199:                                     break;
+9200:                                 }
+9201:                                 case 4: {
+9202:                                     v6 = var3_2;
+9203:                                     a.iw[v6] = a.iw[v6] + a.iz[var3_2];
+9204:                                     if (a.iz[var3_2] < 20) {
+9205:                                         v7 = var3_2;
+9206:                                         a.iz[v7] = a.iz[v7] + 1;
+9207:                                     }
+9208:                                     if (a.g(a.iv[var3_2] + 12, a.iw[var3_2], 2) || a.g(a.iv[var3_2] - 12, a.iw[var3_2], 2)) {
+9209:                                         a.iw[var3_2] = a.H(a.iw[var3_2]);
+9210:                                         a.iz[var3_2] = 0;
+9211:                                         a.ix[var3_2] = 1;
+9212:                                         break;
+9213:                                     }
+9214:                                     if (!a.g(a.iv[var3_2], a.iw[var3_2] - a.jh, 64)) break;
+9215:                                     a.iw[var3_2] = a.H(a.iw[var3_2]) + 1;
+9216:                                     a.g(a.iv[var3_2], a.iw[var3_2] - 13);
+9217:                                     a.g(a.iv[var3_2] + 1, a.iw[var3_2] - 10);
+9218:                                     a.iz[var3_2] = 1;
+9219:                                     a.iA[var3_2] = -1;
+9220:                                     a.iB[var3_2] = 1;
+9221:                                     a.ix[var3_2] = 11;
+9222:                                     break;
+9223:                                 }
+9224:                                 case 11: {
+9225:                                     if (a.w % 2 != 0) break;
+9226:                                     v8 = var3_2;
+9227:                                     a.iw[v8] = a.iw[v8] + a.iA[var3_2];
+9228:                                     v9 = var3_2;
+9229:                                     a.iz[v9] = a.iz[v9] + a.iA[var3_2];
+9230:                                     if (a.iz[var3_2] >= 1) {
+9231:                                         a.iA[var3_2] = -1;
+9232:                                     }
+9233:                                     if (a.iz[var3_2] <= -1) {
+9234:                                         a.iA[var3_2] = 1;
+9235:                                     }
+9236:                                     v10 = var3_2;
+9237:                                     a.iv[v10] = a.iv[v10] + a.iB[var3_2];
+9238:                                     if (var3_2 == a.iu) {
+9239:                                         a.fi = a.iw[a.iu] - 24;
+9240:                                         a.fh += a.iB[var3_2];
+9241:                                     }
+9242:                                     if (!a.g(a.iv[var3_2] + 12, a.iw[var3_2], 4) && !a.g(a.iv[var3_2] - 12, a.iw[var3_2], 8)) break;
+9243:                                     a.iB[var3_2] = -a.iB[var3_2];
+9244:                                 }
+9245:                             }
+9246:                             ++var3_2;
+9247:                         }
+9248:                         var3_2 = 0;
+9249:                         while (var3_2 < a.il) {
+9250:                             if (var3_2 == a.im) {
+9251:                                 a.iq[var3_2] = a.C > 1 ? 2 : (a.w % 8 > 3 ? 1 : 0);
+9252:                             }
+9253:                             if (a.ir[var3_2] == 1) {
+9254:                                 v11 = var3_2;
+9255:                                 a.io[v11] = a.io[v11] + a.is[var3_2];
+9256:                                 if (a.is[var3_2] < 20) {
+9257:                                     v12 = var3_2;
+9258:                                     a.is[v12] = a.is[v12] + 1;
+9259:                                 }
+9260:                                 if (a.io[var3_2] >= a.iS || a.g(a.in[var3_2], a.io[var3_2], 2)) {
+9261:                                     a.is[var3_2] = 0;
+9262:                                     a.ir[var3_2] = 0;
+9263:                                     a.io[var3_2] = a.H(a.io[var3_2]);
+9264:                                 }
+9265:                             }
+9266:                             ++var3_2;
+9267:                         }
+9268:                         var3_2 = 0;
+9269:                         while (var3_2 < 5) {
+9270:                             if (a.dW[var3_2] != -1) {
+9525:                         a.R();
+9526:                         if (a.gp == a.v) {
+9527:                             try {
+9528:                                 switch (a.gu) {
+9529:                                     case 1: {
+9530:                                         if (++a.gD > 30) {
+9531:                                             a.gD = 0;
+9532:                                         }
+9533:                                         a.gv = a.gD % 15 < 5 ? 0 : 1;
+9534:                                         if (a.gn && a.w % 6 == 0) {
+9535:                                             a.D();
+9536:                                         }
+9537:                                         if (a.w % 15 == 0) {
+9538:                                             a.E();
+9539:                                         }
+9540:                                         break;
+9541:                                     }
+9542:                                     case 2: {
+9543:                                         if (++a.gD >= 10) {
+9544:                                             a.gD = 0;
+9545:                                         }
+9546:                                         a.gv = (a.gD >> 1) + 2;
+9547:                                         if (a.gC == 1) {
+9548:                                             if (a.g(a.gq + a.gy, a.gr - a.gz, 4)) {
+9549:                                                 a.gs = 0;
+9550:                                                 a.gq = a.I(a.gq + a.gy) - a.gy;
+9551:                                             }
+9552:                                         } else if (a.g(a.gq - a.gy - 1, a.gr - a.gz, 8)) {
+9553:                                             a.gs = 0;
+9554:                                             a.gq = a.I(a.gq - a.gy - 1) + a.jh + a.gy;
+9555:                                         }
+9556:                                         if ((a.gq += a.gs) < 0) {
+9557:                                             a.gq = 0;
+9558:                                         }
+9559:                                         if (a.gq >= a.iR) {
+9560:                                             a.gq = a.iR - 1;
+9561:                                         }
+9562:                                         if (a.iu != -1) {
+9563:                                             if (a.a(a.gq - a.iv[a.iu]) >= 20) {
+9564:                                                 a.iu = -1;
+9565:                                                 if (a.g(a.gq, a.gr, 2)) {
+9566:                                                     a.gu = 1;
+9567:                                                 } else {
+9568:                                                     a.gu = 4;
+9569:                                                     a.gt = 2;
+9570:                                                     a.gs = 3 * a.gC;
+9571:                                                     a.gE = 0;
+9572:                                                 }
+9573:                                             }
+9574:                                         } else if ((a.i(a.gq + a.gC * a.gw, a.gr) & 2) != 2) {
+9575:                                             a.gu = 1;
+9576:                                             a.gv = 0;
+9577:                                             a.gs = 0;
+9578:                                             a.gD = 0;
+9579:                                             a.gE = 0;
+9580:                                         }
+9650:                                         }
+9651:                                         a.gv = 8;
+9652:                                         if (a.gr >= a.iS) {
+9653:                                             a.gr = a.iS - 1;
+9654:                                             a.gu = 3;
+9655:                                             a.gt = -20;
+9656:                                         }
+9657:                                         if (a.gt > 4 && (a.i(a.gq, a.gr) & 2) == 2) {
+9658:                                             a.gu = 1;
+9659:                                             a.gt = 0;
+9660:                                             a.gs = 0;
+9661:                                             a.gE = 0;
+9662:                                             a.gD = 0;
+9663:                                             a.gr = a.I(a.gr);
+9664:                                             a.e(-1, a.gq - -8, a.gr);
+9665:                                             a.e(1, a.gq - 8, a.gr);
+9666:                                         }
+9667:                                         if (a.g(a.gq, a.gr, 64) && a.g(a.gq, a.gr + 24, 4096) && a.gr % a.jh > 8) {
+9668:                                             a.g(a.gq, a.H(a.gr) + 8);
+9669:                                             a.gu = 3;
+9670:                                             a.gC = a.fh > a.gq ? 1 : -1;
+9671:                                             a.gs = a.gC << 2;
+9672:                                             a.gt = -11;
+9673:                                         }
+9674:                                         if (a.gt > 6) {
+9675:                                             a.gv = 6;
+9676:                                         }
+9677:                                         if (a.gF < 0) {
+9678:                                             ++a.gF;
+9679:                                         }
+9680:                                         break;
+9790:                                         if (a.w % 5 == 0) {
+9791:                                             a.N();
+9792:                                         }
+9793:                                     }
+9794:                                     a.gX = 0;
+9795:                                     if (a.w % 10 != 6) break;
+9796:                                     a.e(-a.gW, a.gS + a.gW * 28, a.gT - 5);
+9797:                                     break;
+9798:                                 }
+9799:                                 case 2: {
+9800:                                     if (a.w % 8 == 0) {
+9801:                                         a.N();
+9802:                                     }
+9803:                                     if (!a.g(a.gS + (a.gW << 4), a.gT + 1, 2)) {
+9804:                                         a.gV = 1;
+9805:                                         a.ha = 0;
+9806:                                         break;
+9807:                                     }
+9808:                                     if (a.a(a.gS - a.hb) < 8) {
+9809:                                         a.gV = 1;
+9810:                                         a.ha = 20;
+9811:                                     }
+9812:                                     if (a.w % 2 == 0) {
+9813:                                         a.gS += a.gU;
+9814:                                         a.gX = 0;
+9815:                                         break;
+9816:                                     }
+9817:                                     a.gX = 1;
+9818:                                     break;
+9819:                                 }
+9820:                                 case 5: {
+9821:                                     if (!a.g(a.gS + (a.gW << 4), a.gT + 1, 2)) {
+9822:                                         a.gV = 1;
+9823:                                         a.ha = 0;
+9824:                                         break;
+9825:                                     }
+9826:                                     if (a.a(a.gS - a.hb) < 4) {
+9827:                                         a.gV = 1;
+9828:                                         a.ha = 35;
+9829:                                     }
+9830:                                     if (a.a(a.fi - a.gT) < 18 && a.a(a.gS + (a.gW << 4) - a.fh) < 10) {
+9831:                                         a.a(a.gR, a.gW);
+9832:                                         a.gV = 1;
+9833:                                         a.ha = 45;
+9834:                                         if (a.hc < a.hd >> 1) {
+9835:                                             a.ha = 18;
+9836:                                         }
+9837:                                     }
+9838:                                     a.gS += a.gU;
+9839:                                     a.gX = a.w % 3;
+9840:                                     break;

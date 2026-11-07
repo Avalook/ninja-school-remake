@@ -1,0 +1,15 @@
+config_version=5
+[application]
+config/name="Ninja School 1 — New Game Map 99 restoration"
+run/main_scene="res://original_map.tscn"
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+[physics]
+common/physics_ticks_per_second=25
+[rendering]
+renderer/rendering_method="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+textures/default_filters/use_nearest_mipmap_filter=false
+textures/canvas_textures/default_texture_filter=0

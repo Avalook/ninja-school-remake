@@ -1,0 +1,18 @@
+{
+  "base_atlas": "t/t.png",
+  "image_size": [
+    24,
+    2880
+  ],
+  "tile_size": 24,
+  "atlas_slots": 120,
+  "base_formula": "(raw_id-1)*24",
+  "matching_draw_source_lines": [
+    11495,
+    11554,
+    11557
+  ],
+  "zero_skip_source_lines": [],
+  "animation_flags_verified": false,
+  "status": "static_base_mapping_only"
+}

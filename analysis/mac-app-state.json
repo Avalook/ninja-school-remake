@@ -1,0 +1,26 @@
+{
+  "status": "ready",
+  "app": "/Users/quangdang/Downloads/ninja/builds/ninja1-original/NinjaSchool1-Map99-Preview.app",
+  "version": "0.3.0-preview",
+  "target": "macOS Universal 2",
+  "project": "games/ninja1-original",
+  "technical_prototype": true,
+  "headless_verified": true,
+  "headless_frames": 120,
+  "native_visual_reviewed": false,
+  "verified_checks": [
+    "Godot import passes",
+    "Smoke checks map99 original grid/player movement, jump, ground, camera and source-based melee",
+    "Exported Universal 2 app executable launches from bundle and runs 120 frames headlessly",
+    "Dedicated transition test confirms map99 remains at x=1655, exits at x=1656 and arrives map4 at (48,120), facing left"
+  ],
+  "known_limits": [
+    "Only the first map4 D(0) title card is implemented; scripted inputs, dialogue gates and subsequent sequence commands remain incomplete",
+    "map99/map4 have no original enemy actors, drops or AI",
+    "map4 graphics have no runtime transform restoration and visual QA is outstanding",
+    "no full quests/save progression or complete game 1 content",
+    "games 2 and 3 are not playable",
+    "Windows export/runtime not verified"
+  ],
+  "updated_at": 1794025461.370811
+}

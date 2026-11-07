@@ -1,0 +1,6 @@
+{
+  "model": "qwen3.8-27b-mac:latest",
+  "error_http": 400,
+  "detail": "{\"error\":\"request (13161 tokens) exceeds the available context size (12288 tokens), try increasing it\"}",
+  "at": 1794024653.6246212
+}

@@ -1,0 +1,255 @@
+11085:             ja = 5;
+11086:             a.ah();
+11087:             a.b(0, 0, 5, 11);
+11088:             a.b(1, 1, 14, 12);
+11089:             a.b(2, 2, 33, 10);
+11090:             a.b(3, 1, 53, 10);
+11091:             a.b(4, 0, 59, 11);
+11092:         }
+11093:     }
+11094: 
+11095:     private static void b(int n, int n2, int n3, int n4) {
+11096:         a.jb[n] = n2;
+11097:         a.jc[n] = n3 * jh + 12;
+11098:         a.jd[n] = n4 * jh;
+11099:         a.je[n] = iZ[n2].getWidth() >> 1;
+11100:         a.jf[n] = iZ[n2].getHeight();
+11101:     }
+11102: 
+11103:     private static void ah() {
+11104:         jb = new int[ja];
+11105:         jc = new int[ja];
+11106:         jd = new int[ja];
+11107:         je = new int[ja];
+11108:         jf = new int[ja];
+11109:     }
+11110: 
+11111:     private static void ai() {
+11112:         try {
+11113:             if (iW == null) {
+11114:                 iW = Image.createImage((String)"/t/t.png");
+11115:             }
+11116:             if (iX == null) {
+11117:                 iX = Image.createImage((String)"/t/wtf.png");
+11118:             }
+11119:             if (iY == null) {
+11120:                 iY = Image.createImage((String)"/t/wts.png");
+11121:             }
+11122:             if (jg == null && !a) {
+11123:                 jg = Image.createImage((String)"/t/tb.png");
+11124:             }
+11125:             System.gc();
+11126:             return;
+11127:         }
+11128:         catch (Exception exception) {
+11129:             Midlet.c.c();
+11130:             return;
+11131:         }
+11132:     }
+11133: 
+11400:             InputStream inputStream = "".getClass().getResourceAsStream("/m/" + n);
+11401:             iT = new byte[iP * iQ];
+11402:             iU = new int[iP * iQ];
+11403:             int n2 = 0;
+11404:             while (n2 < iP * iQ) {
+11405:                 a.iT[n2] = (byte)inputStream.read();
+11406:                 if (iT[n2] != 0) {
+11407:                     a.iV[a.iT[n2] - 1] = true;
+11408:                 }
+11409:                 if (iT[n2] == 1 || iT[n2] == 2 || iT[n2] == 3 || iT[n2] == 4 || iT[n2] == 5 || iT[n2] == 6 || iT[n2] == 7 || iT[n2] == 36 || iT[n2] == 37 || iT[n2] == 54 || iT[n2] == 91 || iT[n2] == 92 || iT[n2] == 93 || iT[n2] == 94 || iT[n2] == 73 || iT[n2] == 74 || iT[n2] == 97 || iT[n2] == 98 || iT[n2] == 120) {
+11410:                     int n3 = n2;
+11411:                     iU[n3] = iU[n3] | 2;
+11412:                 }
+11413:                 if (iT[n2] == 2 || iT[n2] == 3 || iT[n2] == 4 || iT[n2] == 5 || iT[n2] == 6 || iT[n2] == 20 || iT[n2] == 21 || iT[n2] == 22 || iT[n2] == 23 || iT[n2] == 36 || iT[n2] == 37 || iT[n2] == 38 || iT[n2] == 39) {
+11414:                     int n4 = n2;
+11415:                     iU[n4] = iU[n4] | 0x2000;
+11416:                 }
+11417:                 if (iT[n2] == 8 || iT[n2] == 9 || iT[n2] == 10 || iT[n2] == 12 || iT[n2] == 13 || iT[n2] == 14 || iT[n2] == 30) {
+11418:                     int n5 = n2;
+11419:                     iU[n5] = iU[n5] | 0x10;
+11420:                 }
+11421:                 if (iT[n2] == 17) {
+11422:                     int n6 = n2;
+11423:                     iU[n6] = iU[n6] | 0x20;
+11424:                 }
+11425:                 if (iT[n2] == 18) {
+11426:                     int n7 = n2;
+11427:                     iU[n7] = iU[n7] | 0x80;
+11428:                 }
+11429:                 if (iT[n2] == 37 || iT[n2] == 38) {
+11430:                     int n8 = n2;
+11431:                     iU[n8] = iU[n8] | 4;
+11432:                 }
+11433:                 if (iT[n2] == 36 || iT[n2] == 39) {
+11434:                     int n9 = n2;
+11435:                     iU[n9] = iU[n9] | 8;
+11436:                 }
+11437:                 if (iT[n2] == 19) {
+11438:                     int n10 = n2;
+11439:                     iU[n10] = iU[n10] | 0x40;
+11440:                     if ((iU[n2 - iP] & 0x2000) == 8192) {
+11441:                         int n11 = n2;
+11442:                         iU[n11] = iU[n11] | 0x2000;
+11443:                     }
+11444:                 }
+11445:                 if (iT[n2] == 35) {
+11446:                     int n12 = n2;
+11447:                     iU[n12] = iU[n12] | 0x1000;
+11448:                 }
+11449:                 if (iT[n2] == 32) {
+11450:                     int n13 = n2;
+11451:                     iU[n13] = iU[n13] | 0x100;
+11452:                 }
+11453:                 if (iT[n2] == 7) {
+11454:                     int n14 = n2;
+11455:                     iU[n14] = iU[n14] | 0x800;
+11456:                 }
+11457:                 if (iT[n2] == 33 || iT[n2] == 34) {
+11458:                     int n15 = n2;
+11459:                     iU[n15] = iU[n15] | 0x200;
+11460:                 }
+11461:                 ++n2;
+11462:             }
+11463:         }
+11464:         catch (Exception exception) {
+11465:             Midlet.c.c();
+11466:         }
+11467:         a.ai();
+11468:     }
+11469: 
+11470:     private static void j(Graphics graphics) {
+11471:         int n = bz;
+11472:         while (n < bD) {
+11473:             int n2 = bA;
+11474:             while (n2 < bE) {
+11475:                 int n3 = iT[n2 * iP + n] - 1;
+11476:                 if (n3 != -1) {
+11477:                     graphics.drawRegion(iW, 0, n3 * jh, 24, 24, 0, n * jh, n2 * jh, 0);
+11478:                 }
+11479:                 if ((a.h(n, n2) & 0x20) == 32) {
+11480:                     graphics.drawRegion(iX, 0, 24 * (w % 4), 24, 24, 0, n * jh, n2 * jh, 0);
+11481:                 } else if ((a.h(n, n2) & 0x40) == 64) {
+11482:                     if ((a.h(n, n2 - 1) & 0x20) == 32) {
+11483:                         graphics.drawRegion(iX, 0, 24 * (w % 4), 24, 24, 0, n * jh, n2 * jh, 0);
+11484:                     } else if ((a.h(n, n2 - 1) & 0x2000) == 8192) {
+11485:                         graphics.drawRegion(iW, 0, 504, 24, 24, 0, n * jh, n2 * jh, 0);
+11486:                     }
+11487:                     graphics.drawRegion(iY, 0, (w % 8 >> 2) * 24, 24, 24, 0, n * jh, n2 * jh, 0);
+11488:                 }
+11489:                 if ((a.h(n, n2) & 0x1000) == 4096) {
+11490:                     if ((a.h(n, n2 - 1) & 0x20) == 32) {
+11491:                         graphics.drawRegion(iX, 0, 24 * (w % 4), 24, 24, 0, n * jh, n2 * jh, 0);
+11492:                     } else if ((a.h(n, n2 - 1) & 0x2000) == 8192) {
+11493:                         graphics.drawRegion(iW, 0, 504, 24, 24, 0, n * jh, n2 * jh, 0);
+11494:                     }
+11495:                     graphics.drawRegion(iW, 0, (iT[n2 * iP + n] - 1) * jh, 24, 24, 0, n * jh, n2 * jh, 0);
+11496:                 }
+11497:                 ++n2;
+11498:             }
+11499:             ++n;
+11500:         }
+11501:     }
+11502: 
+11503:     private static void k(Graphics graphics) {
+11504:         int n = bz;
+11505:         while (n < bD) {
+11506:             int n2 = bA;
+11507:             while (n2 < bE) {
+11508:                 int n3 = iT[n2 * iP + n] - 1;
+11509:                 if ((a.h(n, n2) & 0x10) == 16) {
+11510:                     ji = n * jh - fR;
+11511:                     jj = ji - bF;
+11512:                     jl = (jh - 2) * jj / jh;
+11513:                     jk = jl + bF;
+11514:                     graphics.drawRegion(iW, 0, n3 * jh, 24, 24, 0, jk + fR, n2 * jh, 0);
+11515:                 } else if ((a.h(n, n2) & 0x100) != 256 && (a.h(n, n2) & 0x200) != 512) {
+11516:                     if ((a.h(n, n2) & 0x20) == 32) {
+11517:                         graphics.drawRegion(iX, 0, 24 * (w % 4), 24, 24, 0, n * jh, n2 * jh, 0);
+11518:                     } else if ((a.h(n, n2) & 0x40) == 64 || (a.h(n, n2) & 0x1000) == 4096) {
+11519:                         if ((a.h(n, n2 - 1) & 0x20) == 32) {
+11520:                             graphics.drawRegion(iX, 0, 24 * (w % 4), 24, 24, 0, n * jh, n2 * jh, 0);
+11521:                         } else if ((a.h(n, n2 - 1) & 0x2000) == 8192) {
+11522:                             graphics.drawRegion(iW, 0, 504, 24, 24, 0, n * jh, n2 * jh, 0);
+11523:                         }
+11524:                     } else if ((a.h(n, n2) & 0x400) == 1024) {
+11525:                         graphics.drawRegion(iW, 0, n3 * jh, 24, 24, 0, n * jh, n2 * jh + 1, 0);
+11526:                     } else if (n3 != -1) {
+11527:                         graphics.drawRegion(iW, 0, n3 * jh, 24, 24, 0, n * jh, n2 * jh, 0);
+11528:                     }
+11529:                 }
+11530:                 ++n2;
+11531:             }
+11532:             ++n;
+11533:         }
+11534:     }
+11535: 
+11536:     private static void l(Graphics graphics) {
+11537:         if (a) {
+11538:             return;
+11539:         }
+11540:         int n = bz;
+11541:         while (n < bD) {
+11542:             int n2 = bA;
+11543:             while (n2 < bE) {
+11544:                 if ((a.h(n, n2) & 0x40) == 64) {
+11545:                     graphics.drawRegion(iY, 0, (w % 8 >> 2) * 24, 24, 24, 0, n * jh, n2 * jh, 0);
+11546:                 } else if ((a.h(n, n2) & 0x100) == 256) {
+11547:                     ji = n * jh - fR;
+11548:                     jj = ji - bF;
+11549:                     jl = (jh - 1) * jj / jh;
+11550:                     jk = jl + bF;
+11551:                     graphics.drawImage(jg, jk + fR - 2 + (n + n2) % 5, n2 * jh - 3 + n2 % 5, 0);
+11552:                 }
+11553:                 if ((a.h(n, n2) & 0x200) == 512) {
+11554:                     graphics.drawRegion(iW, 0, (iT[n2 * iP + n] - 1) * jh, 24, 24, 0, n * jh, n2 * jh + 2, 0);
+11555:                 }
+11556:                 if ((a.h(n, n2) & 0x1000) == 4096) {
+11557:                     graphics.drawRegion(iW, 0, (iT[n2 * iP + n] - 1) * jh, 24, 24, 0, n * jh, n2 * jh, 0);
+11558:                 }
+11559:                 ++n2;
+11560:             }
+11561:             ++n;
+11562:         }
+11563:     }
+11564: 
+11565:     private static int h(int n, int n2) {
+11566:         return iU[n2 * iP + n];
+11567:     }
+11568: 
+11569:     private static int i(int n, int n2) {
+11570:         return iU[n2 / jh * iP + n / jh];
+11571:     }
+11572: 
+11573:     private static boolean g(int n, int n2, int n3) {
+11574:         return (iU[n2 / jh * iP + n / jh] & n3) == n3;
+11575:     }
+11576: 
+11577:     private static void h(int n, int n2, int n3) {
+11578:         int n4 = n2 / jh * iP + n / jh;
+11579:         iU[n4] = iU[n4] | 0x400;
+11580:     }
+11581: 
+11582:     private static void i(int n, int n2, int n3) {
+11583:         a.iU[n2 * a.iP + 24] = 0;
+11584:     }
+11585: 
+11586:     private static void j(int n, int n2, int n3) {
+11587:         int n4 = n2 / jh * iP + n / jh;
+11588:         iU[n4] = iU[n4] & 0xFFFFFBFF;
+11589:     }
+11590: 
+11591:     private static int H(int n) {
+11592:         return n / jh * jh;
+11593:     }
+11594: 
+11595:     private static int I(int n) {
+11596:         return n / jh * jh;
+11597:     }
+11598: 
+11599:     private static void aj() {
+11600:         try {
+11601:             jF = Image.createImage((String)"/u/lg.png");
+11602:         }
+11603:         catch (Exception exception) {}
+11604:         jH = 0;
+11605:     }

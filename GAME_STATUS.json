@@ -1,0 +1,29 @@
+[
+  {
+    "game": "NinjaSchool1",
+    "java_files": 4,
+    "java_lines": 15854,
+    "original_pngs": 362,
+    "first_pass_noted_bytes": 123373,
+    "total_source_bytes": 610099,
+    "all_logic_verified": false
+  },
+  {
+    "game": "NinjaSchool2",
+    "java_files": 22,
+    "java_lines": 20951,
+    "original_pngs": 578,
+    "first_pass_noted_bytes": 0,
+    "total_source_bytes": 764133,
+    "all_logic_verified": false
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "java_files": 19,
+    "java_lines": 25307,
+    "original_pngs": 622,
+    "first_pass_noted_bytes": 0,
+    "total_source_bytes": 915976,
+    "all_logic_verified": false
+  }
+]

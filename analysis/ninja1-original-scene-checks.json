@@ -1,0 +1,45 @@
+{
+  "updated_at": 1794010696.740114,
+  "project": "games/ninja1-original",
+  "checks": {
+    "check_project": {
+      "ok": true,
+      "exit_code": 0,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n[   0% ] \u001b[90m\u001b[1mfirst_scan_filesystem\u001b[22m | Started Khởi tạo dự án (5 steps)\u001b[39m\u001b[0m\n[   0% ] \u001b[90m\u001b[1mfirst_scan_filesystem\u001b[22m | Đang quét các tệp tin...\u001b[39m\u001b[0m\n[  16% ] \u001b[90m\u001b[1mfirst_scan_filesystem\u001b[22m | Đang tải các tên lớp toàn cục (global class names)...\u001b[39m\u001b[0m\n[  33% ] \u001b[90m\u001b[1mfirst_scan_filesystem\u001b[22m | Đang xác thực các GDExtension...\u001b[39m\u001b[0m\n[  50% ] \u001b[90m\u001b[1mfirst_scan_filesystem\u001b[22m | Đang tạo các tập lệnh tự động tải (autoload scripts)...\u001b[39m\u001b[0m\n[  66% ] \u001b[90m\u001b[1mfirst_scan_filesystem\u001b[22m | Đang khởi tạo plugin...\u001b[39m\u001b[0m\n[  83% ] \u001b[90m\u001b[1mfirst_scan_filesystem\u001b[22m | Bắt đầu quét hệ thống tệp...\u001b[39m\u001b[0m\n\u001b[92m[ DONE ]\u001b[39m \u001b[1mfirst_scan_filesystem\u001b[22m\n\u001b[0m\n[   0% ] \u001b[90m\u001b[1mloading_editor_layout\u001b[22m | Started Đang tải editor (5 steps)\u001b[39m\u001b[0m\n[   0% ] \u001b[90m\u001b[1mloading_editor_layout\u001b[22m | Đang tải bố cục của editor...\u001b[39m\u001b[0m\n[  16% ] \u001b[90m\u001b[1mloading_editor_layout\u001b[22m | Đang tải các tab (docks)...\u001b[39m\u001b[0m\n\u001b[92m[ DONE ]\u001b[39m \u001b[1mloading_editor_layout\u001b[22m\n\u001b[0m\n\n",
+      "artifact": null
+    },
+    "smoke_test": {
+      "ok": true,
+      "exit_code": 0,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nSMOKE_PASS ORIGINAL_MAP: grid, atlas, tile bounds/count, camera pan and clamps\n\n",
+      "artifact": null
+    },
+    "run_game": {
+      "ok": true,
+      "exit_code": 0,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n\n",
+      "artifact": null
+    }
+  },
+  "playable": false,
+  "new_hd_art": false,
+  "native_visual_verified": true,
+  "native_keyboard_pan_verified": true,
+  "native_exit_verified": true,
+  "native_screenshots": [
+    "analysis/ninja1-original-godot-preview.png",
+    "analysis/ninja1-original-godot-pan.png"
+  ],
+  "asset_integrity": {
+    "tiles_sha256": "354908e4ff9e62e4d4d6a0e8b52a77ec0ae3f5c0e512ed0fee564c635848bf6e",
+    "map_sha256": "d1799365f39f5ff8ddaea41a43441050aeb0e247d217b972f1e188e39dc9b734",
+    "copies_match_original": true,
+    "all_three_jars_unchanged": true
+  },
+  "limits": [
+    "Map0 is a scene viewer, not confirmed start map",
+    "No original character, collision, gameplay or new HD art",
+    "Old prototype app preserved"
+  ],
+  "code_generation": "Ollama local qwen3.8-27b-mac:latest; one bounded exact-patch correction"
+}

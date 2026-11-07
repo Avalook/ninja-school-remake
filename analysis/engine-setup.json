@@ -1,0 +1,9 @@
+{
+  "status": "ready",
+  "version": "4.7.2.stable.official.ed1daf0bf",
+  "windows_templates": [
+    "windows_release_x86_64.exe",
+    "windows_debug_x86_64.exe"
+  ],
+  "updated_at": 1793990141.990043
+}

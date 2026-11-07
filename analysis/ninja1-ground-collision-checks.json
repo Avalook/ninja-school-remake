@@ -1,0 +1,125 @@
+{
+  "status": "original_mask2_static_terrain_only",
+  "source_masks": [
+    {
+      "mask": 2,
+      "meaning": "Solid ground / collision block",
+      "evidence_lines": [
+        "11409-11412",
+        "9193",
+        "9208",
+        "9260",
+        "9574",
+        "9657",
+        "9803"
+      ],
+      "confidence": "high"
+    },
+    {
+      "mask": 4,
+      "meaning": "Right-side directional block / wall",
+      "evidence_lines": [
+        "11429-11432",
+        "9197",
+        "9242",
+        "9548"
+      ],
+      "confidence": "high"
+    },
+    {
+      "mask": 8,
+      "meaning": "Left-side directional block / wall",
+      "evidence_lines": [
+        "11433-11436",
+        "9197",
+        "9242",
+        "9552"
+      ],
+      "confidence": "high"
+    },
+    {
+      "mask": 16,
+      "meaning": "Hazard / damage zone (spikes/lava)",
+      "evidence_lines": [
+        "11417-11420"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "mask": 32,
+      "meaning": "Ladder / climbable structure",
+      "evidence_lines": [
+        "11421-11424",
+        "9214"
+      ],
+      "confidence": "high"
+    },
+    {
+      "mask": 64,
+      "meaning": "Water / liquid surface",
+      "evidence_lines": [
+        "11437-11444",
+        "9667"
+      ],
+      "confidence": "high"
+    },
+    {
+      "mask": 128,
+      "meaning": "Unknown flag (tile 18)",
+      "evidence_lines": [
+        "11425-11428"
+      ],
+      "confidence": "low"
+    },
+    {
+      "mask": 256,
+      "meaning": "Unknown flag (tiles 33/34)",
+      "evidence_lines": [
+        "11457-11460"
+      ],
+      "confidence": "low"
+    },
+    {
+      "mask": 512,
+      "meaning": "Unknown flag (tile 32)",
+      "evidence_lines": [
+        "11449-11452"
+      ],
+      "confidence": "low"
+    },
+    {
+      "mask": 1024,
+      "meaning": "Unknown flag (tile 35)",
+      "evidence_lines": [
+        "11445-11448"
+      ],
+      "confidence": "low"
+    },
+    {
+      "mask": 2048,
+      "meaning": "Unknown flag (tiles 2-6, 20-23, 36-39, 19)",
+      "evidence_lines": [
+        "11413-11416",
+        "11440-11443"
+      ],
+      "confidence": "low"
+    },
+    {
+      "mask": 4096,
+      "meaning": "Unknown flag (tile 7)",
+      "evidence_lines": [
+        "11453-11456"
+      ],
+      "confidence": "low"
+    }
+  ],
+  "godot_smoke_log": "analysis/original-scene-check.log",
+  "native_screenshot": "analysis/ninja1-ground-collision-preview.png",
+  "unverified": [
+    "player body and movement collision",
+    "directional wall masks4/8 not yet implemented",
+    "hazard mask16 meaning medium confidence, not implemented",
+    "actual start map unknown",
+    "gameplay not restored"
+  ]
+}

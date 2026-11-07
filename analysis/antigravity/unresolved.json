@@ -1,0 +1,83 @@
+{
+  "updated_at": "2026-11-07T11:36:20+07:00",
+  "audit_status": "PROVISIONAL_SOURCE_ANALYSIS_UNVERIFIED_RUNTIME",
+  "scope": "Ninja School 1-3 reverse engineering integrity, CFR decompilation quirks, and runtime validation gap tracking",
+  "disclaimer": "All findings in analysis/antigravity/ represent static decompiled source analysis of CFR 0.152 exports. First-pass source reading must strictly be distinguished from verified runtime behavior on actual J2ME emulators or validated PC engine executions. No game completion or 100% runtime fidelity is claimed without running behavior contracts against engine test fixtures.",
+  "cfr_decompilation_quirks_and_errors": [
+    {
+      "file": "analysis/NinjaSchool1/sources/a.java",
+      "issue": "Obfuscated synthetic local variables in critical loops",
+      "locations": [
+        "paint(Graphics var1_1) at L7555: CFR introduced synthetic local name var1_1 and deeply nested ternaries for UI rendering.",
+        "run() at L8144: CFR introduced synthetic variables var3_3, var4_4 during byte array deserialization in save load branches."
+      ],
+      "impact": "Code flow is logically reconstructible but variable naming and stack operations require bytecode verification (javap -c) when fine-tuning frame-exact timing.",
+      "status": "flagged_for_bytecode_audit"
+    },
+    {
+      "file": "analysis/NinjaSchool1/sources/a.java",
+      "issue": "Inverse sprite naming convention in assets",
+      "locations": [
+        "L3253-L3270 (Image loader) vs L4361-L4376 (Player renderer)",
+        "as[0][0][2]=31 (highest offset) maps to er (loaded from /cp/ch*.png) -> HEAD",
+        "as[0][1][2]=8 (lowest offset) maps to et (loaded from /cp/cl*.png) -> LEGS",
+        "as[0][2][2]=14 (middle offset) maps to eg (loaded from /cp/cb*.png) -> BODY"
+      ],
+      "impact": "Naive English naming guesses (ch=legs, cb=head) lead to inverted sprites. Corrected in asset-usage.json to match exact loader, matrix offset Y, and render call.",
+      "status": "resolved_in_contract_pending_visual_qa"
+    },
+    {
+      "file": "analysis/NinjaSchool1/sources/a.java",
+      "issue": "Cutscene timing semantic misunderstanding in preliminary notes",
+      "locations": [
+        "L4660-L4668 (C(n)), L5881-L6260 (V())"
+      ],
+      "impact": "aB[fW][fX] was previously mislabeled as independent step duration in initial notes. Bytecode and source show gc accumulates from 0 on C(n) and clamps at each milestone; aB values are cumulative tick thresholds.",
+      "status": "resolved_in_contract"
+    }
+  ],
+  "unresolved_runtime_behavior_items": [
+    {
+      "id": "NS1-UNRES-01",
+      "topic": "Prologue Map4 Boss defeat trigger (gV == 22)",
+      "source_reference": "a.java L5920-L5946, L7025-L7029 (case 5 in ad()), L4143-L4156",
+      "description": "gV tracks boss state in Map 4. When gV == 22, cutscene D(0) step 3 triggers dialogue ('Chết đi, con quái vật hung hăng kia !!!') and warps to Map 0 with eH=true. Need to verify exact HP and attack sequence of the Map 4 prologue boss entity in live gameplay.",
+      "status": "pending_engine_test"
+    },
+    {
+      "id": "NS1-UNRES-02",
+      "topic": "Motorbike physics and license gating",
+      "source_reference": "a.java L4876-L4880, L5013-L5024, L6151-L6158, L6238-L6242",
+      "description": "Vehicles placed on map with coordinates in in[n], io[n]. Player mounts bike when colliding with vehicle coordinates if eP (license flag) is true. Bike speed go and acceleration mechanics require direct testing.",
+      "status": "pending_engine_test"
+    },
+    {
+      "id": "NS1-UNRES-03",
+      "topic": "Audio MIDI playback mappings",
+      "source_reference": "Midlet.java L82-L105 (b(int n)), a.java L7074-L7075",
+      "description": "Sound tracks loaded from /s/{n}.mid with loop count 1000. Volume set to 100. Specific music track IDs mapped per map must be matched with MIDI asset files.",
+      "status": "identified"
+    },
+    {
+      "id": "NS1-UNRES-04",
+      "topic": "SMS/WAP payment system bypass",
+      "source_reference": "b.java L14-L45, a.java L1476-L1478",
+      "description": "In-game activation and purchase routines invoke SMS background threads targeting sms://8722. In modern PC remakes, this entire branch must be bypassed or replaced with in-game currency purchase.",
+      "status": "marked_for_pc_bypass"
+    }
+  ],
+  "ninja_school_2_status": {
+    "status": "inventory_verified_sources_unreviewed",
+    "total_files": 22,
+    "total_lines": 20951,
+    "total_bytes": 764133,
+    "notes": "Sources exported by CFR 0.152 into analysis/NinjaSchool2/sources/. 578 original PNGs verified in analysis/NinjaSchool2/resources/. Full logic pass scheduled after NS1 documentation release."
+  },
+  "ninja_school_3_status": {
+    "status": "inventory_verified_sources_unreviewed",
+    "total_files": 19,
+    "total_lines": 25307,
+    "total_bytes": 915976,
+    "notes": "Sources exported by CFR 0.152 into analysis/NinjaSchool3_bypass/sources/. 622 original PNGs verified in analysis/NinjaSchool3_bypass/resources/. Full logic pass scheduled after NS2."
+  }
+}

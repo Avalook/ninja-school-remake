@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+MIDlet-Vendor: TeaM
+MIDlet-Version: 1.0.0
+MIDlet-1: Ninja School 3,/icon.png,Midlet
+MicroEdition-Configuration: CLDC-1.0
+MIDlet-Name: Ninja School 3
+MIDlet-Delete-Confirm: share by bisducko
+MIDlet-Info-URL: http://wapvn.mobi
+MicroEdition-Profile: MIDP-2.0
+

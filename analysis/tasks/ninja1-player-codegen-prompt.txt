@@ -1,0 +1,21 @@
+You are the LOCAL coding model for this repo. Output only a complete Godot 4.7 typed GDScript file named player.gd; no Markdown fences or prose. Use only the evidence and requirements here. Do not ask tools or browse.
+
+Evidence from original CFR source analysis/NinjaSchool1/sources/a.java:
+- frame array `as[B]` holds [assetIndex,xOffset,yOffset] in order head, legs, body. Renderer lines4357-4375 draws three assets at `fh + xOffset, fi - yOffset` for facing right. Facing left uses horizontal mirror with RIGHT|TOP anchor at `fh - xOffset, fi - yOffset`; thus with Sprite2D centered=false, left top-left is `-xOffset - texture_width`, y=-yOffset relative to foot position.
+- Exact source frames from lines846-867:
+0 [[0,-10,32],[1,-7,7],[1,-11,15]]
+1 [[0,-10,33],[1,-7,7],[1,-11,16]]
+2 [[1,-10,33],[2,-10,11],[2,-9,16]]
+3 [[1,-10,32],[3,-11,9],[3,-11,16]]
+4 [[1,-10,34],[4,-9,9],[4,-8,16]]
+5 [[1,-10,34],[5,-11,11],[5,-10,17]]
+6 [[1,-10,33],[6,-9,9],[6,-8,16]]
+- Image paths source loader: head index i `res://assets/cp/chi.png`, legs `cli.png`, body `cbi.png`. These original transparent PNGs are already copied or will be copied to project.
+- Source walking update case2 cycles frame `B=(C>>1)+2`, so frame2..6. Use frames0/1 as a clearly provisional idle pair; no claim exact idle state implementation.
+
+Implementation:
+- `extends CharacterBody2D`, sprite parts Head, Legs, Body children and CollisionShape2D. Character position is feet (temporary test spawn set by map). Rectangle collider size approx14x32 centered at (0,-16), `move_and_slide`; existing source-derived mask2 terrain is StaticBody2D in the same map.
+- Temporary controls: A/D and arrows move, W/Space jump. Use robust edge detection so holding jump does not auto-bounce. Temporary tuning speed150 px/s, gravity980 px/s2, jump -330 px/s. Mention in code comments these tunings/idle animation are temporary pending exact movement state verification. Don't add attack.
+- `FRAME_DATA` for these 7 frames exactly as above. Create sprites with centered=false; set textures and nearest filter. Draw order Head, Legs, Body. For right facing x=xOffset; left facing x=-xOffset-texture_width; y=-yOffset. Flip sprite horizontally when left. `CharacterBody2D` foot origin and sprites relative to that. Use animation frame2..6 while moving, frame0/1 as slow idle cycle. Clamp frame indices. Keep function names small.
+- Input action defaults may vary; combine direct `Input.is_key_pressed(KEY_A/D/W)` with `ui_left/ui_right` and `ui_accept` Space. Edge-detect combined jump press with a bool.
+- No dependencies, no other files. Ensure syntax valid for Godot 4.7 and conservative types.

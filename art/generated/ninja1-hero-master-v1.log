@@ -1,0 +1,5 @@
+INFO: Using prompt from file: /Users/quangdang/Downloads/ninja/art/prompts/ninja1-hero-master-v1.txt
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:08<00:24,  8.01s/it] 50%|█████     | 2/4 [00:11<00:10,  5.45s/it] 75%|███████▌  | 3/4 [00:15<00:04,  4.63s/it]100%|██████████| 4/4 [00:18<00:00,  4.25s/it]100%|██████████| 4/4 [00:18<00:00,  4.75s/it]
+INFO: Image saved successfully at: /Users/quangdang/Downloads/ninja/art/generated/ninja1-hero-master-v1.png
+INFO: Metadata embedded successfully at: /Users/quangdang/Downloads/ninja/art/generated/ninja1-hero-master-v1.png
+Peak MLX memory: 3.54 GB

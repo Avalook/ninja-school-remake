@@ -1,0 +1,2996 @@
+{
+  "game": "Ninja School 1",
+  "evidence_sources": [
+    "analysis/NinjaSchool1/sources/a.java: L987-L1485 (Script tables av..aH, Quests lD..lI, NPCs)",
+    "analysis/NinjaSchool1/sources/a.java: L4132-L4227 (Map entry event triggers and D(n) dispatch)",
+    "analysis/NinjaSchool1/sources/a.java: L4660-L4668, L5881-L6260, L6992-L7067 (Script interpreters ad() and V())",
+    "analysis/NinjaSchool1/sources/a.java: L11672-L11690 (Quest kill progress tracking in L(n))"
+  ],
+  "game_intro_and_synopsis": {
+    "setting": "Trường đạo tạo Ninja Hirosaki, Mùa thu 1937",
+    "prologue_arc": "Mở đầu tại Map 99 (sân tập trường Hirosaki), hiệu trưởng Okamesama giao nhiệm vụ đi diệt đại quái vật phá phách dân làng tại Rừng trúc. Chạy sang phải qua Map 4 (Rừng trúc Ura), người chơi được trải nghiệm bộ chỉ số cao cấp và vũ khí mạnh, hạ gục quái vật hung hăng. Sau khi tiêu diệt quái vật, câu chuyện chuyển về thực tại 6 tháng trước tại Map 0 (Trường Hirosaki): nhân vật bắt đầu từ tân sinh viên ninja Genin dưới sự dìu dắt của giáo viên chủ nhiệm thầy Takanashi, học các kỹ năng từ thầy Honda, thầy Hiroyaki và cô Ayumi, giải cứu em gái cô Ayumi, lật tẩy và trừng trị phản đồ Toniku, giải cứu bé Sakura và thi tốt nghiệp để chính thức trở thành Genin xuất sắc.",
+    "epilogue_arc": "Tại Ngôi đền Orochi (Map 18/95), người chơi hoàn thành thử thách cứu Sakura, tham dự hội đồng kỷ luật cảnh cáo Toniku tại Map 94, chính thức được thăng cấp Genin và hướng tới kỳ thi Genin kết khóa."
+  },
+  "cutscenes": {
+    "D(0)": {
+      "cutscene_id": 0,
+      "description": "Cutscene D(0)",
+      "steps": [
+        {
+          "step_index": 0,
+          "trigger_condition": "Immediate",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 0,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 1,
+              "title_text": "2 ngày sau, tại rừng trúc...",
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -1,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -1,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 48
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 0,
+              "dialogue": [
+                "Rừng trúc đây rồi!",
+                "Hôm nay ta phải hạ được con quái vật đó!",
+                "Nó chắc quanh quẩn đây thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 57
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 58
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 60
+            }
+          ]
+        },
+        {
+          "step_index": 1,
+          "trigger_condition": "PlayerX > ax",
+          "trigger_x": 360,
+          "trigger_y": 0,
+          "action_sequence_id": 1,
+          "actions": [
+            {
+              "cmd": "Set_ge_-1",
+              "raw_cmd": 6,
+              "arg": 0,
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 2,
+              "title_text": "Chỉ dẫn: Dùng phím 5 để tấn công.",
+              "cumulative_tick": 6
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 8
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 9
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -5,
+              "cumulative_tick": 18
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -5,
+              "cumulative_tick": 20
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -5,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -5,
+              "cumulative_tick": 32
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -5,
+              "cumulative_tick": 39
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -5,
+              "cumulative_tick": 40
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 1,
+              "dialogue": [
+                "Bọn quái vật nhãi nhép này làm gì được ta chứ!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 60
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 63
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 67
+            }
+          ]
+        },
+        {
+          "step_index": 2,
+          "trigger_condition": "PlayerX > ax",
+          "trigger_x": 1128,
+          "trigger_y": 0,
+          "action_sequence_id": 2,
+          "actions": [
+            {
+              "cmd": "Set_ge_-1",
+              "raw_cmd": 6,
+              "arg": 0,
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -5,
+              "cumulative_tick": 6
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -5,
+              "cumulative_tick": 7
+            },
+            {
+              "cmd": "CameraUnbindPlayer",
+              "raw_cmd": 8,
+              "arg": 0,
+              "cumulative_tick": 13
+            },
+            {
+              "cmd": "CameraPanToActor",
+              "raw_cmd": 11,
+              "arg": 0,
+              "cumulative_tick": 14
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 2,
+              "dialogue": [
+                "Con quái vật hung hăng kia rồi!",
+                "Ngươi phải đền tội vì những gì gây ra!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 19
+            },
+            {
+              "cmd": "CameraBindPlayer",
+              "raw_cmd": 7,
+              "arg": 0,
+              "cumulative_tick": 21
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": 55,
+              "cumulative_tick": 34
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": 55,
+              "cumulative_tick": 35
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 60
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 79
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 80
+            }
+          ]
+        },
+        {
+          "step_index": 3,
+          "trigger_condition": "gV == 22",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 5,
+          "actions": [
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 4,
+              "dialogue": [
+                "Chết đi, con quái vật hung hăng kia !!!",
+                "Hahahaha!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 10
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": 55,
+              "cumulative_tick": 12
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": 55,
+              "cumulative_tick": 13
+            },
+            {
+              "cmd": "MapWarp",
+              "raw_cmd": 17,
+              "arg": 0,
+              "cumulative_tick": 50
+            }
+          ]
+        },
+        {
+          "step_index": 4,
+          "trigger_condition": "EndCutsceneGroup",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 0,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 1,
+              "title_text": "2 ngày sau, tại rừng trúc...",
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -1,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -1,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 48
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 0,
+              "dialogue": [
+                "Rừng trúc đây rồi!",
+                "Hôm nay ta phải hạ được con quái vật đó!",
+                "Nó chắc quanh quẩn đây thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 57
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 58
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 60
+            }
+          ]
+        }
+      ]
+    },
+    "D(1)": {
+      "cutscene_id": 1,
+      "description": "Cutscene D(1)",
+      "steps": [
+        {
+          "step_index": 0,
+          "trigger_condition": "Immediate",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 3,
+          "actions": [
+            {
+              "cmd": "CameraUnbindPlayer",
+              "raw_cmd": 8,
+              "arg": 0,
+              "cumulative_tick": 1
+            },
+            {
+              "cmd": "CameraWarpToPoint",
+              "raw_cmd": 9,
+              "arg": 1,
+              "camera_target": [
+                816,
+                48
+              ],
+              "cumulative_tick": 2
+            },
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 0,
+              "title_text": "Trường đạo tạo Ninja Hirosaki, Mùa thu 1937",
+              "cumulative_tick": 3
+            },
+            {
+              "cmd": "CameraScrollDown",
+              "raw_cmd": 12,
+              "arg": 2,
+              "cumulative_tick": 20
+            },
+            {
+              "cmd": "CameraScrollLeft",
+              "raw_cmd": 14,
+              "arg": 3,
+              "cumulative_tick": 50
+            },
+            {
+              "cmd": "CameraPanToPoint",
+              "raw_cmd": 10,
+              "arg": 4,
+              "camera_target": [
+                144,
+                264
+              ],
+              "cumulative_tick": 80
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 3,
+              "dialogue": [
+                "Này các con, sau bao năm tháng tập luyện...",
+                "Đây là lúc các con thể hiện tài năng!",
+                "Gần đây, trong khu rừng trúc...",
+                "..xuất hiện 1 con quái vật to lớn..",
+                "Nó thường phá phách, đe dọa dân làng.",
+                "Các con biết phải làm gì rồi chứ?",
+                "Đây là lúc các con chứng minh khả năng của mình.. ",
+                "Đi đi. Và hãy cẩn thận đấy !!"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 85
+            },
+            {
+              "cmd": "Set_dA_dB",
+              "raw_cmd": 16,
+              "arg": 432,
+              "cumulative_tick": 90
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 92
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 93
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 95
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 0
+            }
+          ]
+        },
+        {
+          "step_index": 1,
+          "trigger_condition": "PlayerX > ScreenRight",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 4,
+          "actions": [
+            {
+              "cmd": "CameraBindPlayer",
+              "raw_cmd": 7,
+              "arg": 0,
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "MapWarp",
+              "raw_cmd": 17,
+              "arg": 4,
+              "cumulative_tick": 6
+            }
+          ]
+        },
+        {
+          "step_index": 2,
+          "trigger_condition": "EndCutsceneGroup",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 0,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 1,
+              "title_text": "2 ngày sau, tại rừng trúc...",
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -1,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -1,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 48
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 0,
+              "dialogue": [
+                "Rừng trúc đây rồi!",
+                "Hôm nay ta phải hạ được con quái vật đó!",
+                "Nó chắc quanh quẩn đây thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 57
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 58
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 60
+            }
+          ]
+        }
+      ]
+    },
+    "D(2)": {
+      "cutscene_id": 2,
+      "description": "Cutscene D(2)",
+      "steps": [
+        {
+          "step_index": 0,
+          "trigger_condition": "Immediate",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 6,
+          "actions": [
+            {
+              "cmd": "CameraUnbindPlayer",
+              "raw_cmd": 8,
+              "arg": 0,
+              "cumulative_tick": 1
+            },
+            {
+              "cmd": "CameraWarpToPoint",
+              "raw_cmd": 9,
+              "arg": 5,
+              "camera_target": [
+                1440,
+                96
+              ],
+              "cumulative_tick": 2
+            },
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 3,
+              "title_text": "6 tháng trước, tại trường Hirosaki...",
+              "cumulative_tick": 3
+            },
+            {
+              "cmd": "CameraScrollDown",
+              "raw_cmd": 12,
+              "arg": 6,
+              "cumulative_tick": 4
+            },
+            {
+              "cmd": "CameraScrollLeft",
+              "raw_cmd": 14,
+              "arg": 7,
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "CameraPanToPoint",
+              "raw_cmd": 10,
+              "arg": 8,
+              "camera_target": [
+                840,
+                312
+              ],
+              "cumulative_tick": 6
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 5,
+              "dialogue": [
+                "Chào mừng ngươi đến với trường đào tạo ninja Hirosaki.",
+                "Ta là Okamesama, hiệu trưởng trường này.",
+                "Tại đây chúng ta sẽ đào tạo các ngươi, trở thành những ninja chuyên nghiệp.",
+                "Giáo viên chủ nhiêm của ngươi là thầy Takanashi",
+                "Hãy đến gặp thầy để nhận bài tập.",
+                "Có vấn đề gì, ngươi có thể hỏi những đồng môn của mình.",
+                "Chúc ngươi sớm đạt được thành công nhé."
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 17
+            },
+            {
+              "cmd": "Action_V",
+              "raw_cmd": 18,
+              "arg": 2,
+              "cumulative_tick": 18
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 6,
+              "dialogue": [
+                "Vâng, thưa thầy!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 19
+            },
+            {
+              "cmd": "CameraBindPlayer",
+              "raw_cmd": 7,
+              "arg": 0,
+              "cumulative_tick": 20
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 21
+            }
+          ]
+        },
+        {
+          "step_index": 1,
+          "trigger_condition": "EndCutsceneGroup",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 0,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 1,
+              "title_text": "2 ngày sau, tại rừng trúc...",
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -1,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -1,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 48
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 0,
+              "dialogue": [
+                "Rừng trúc đây rồi!",
+                "Hôm nay ta phải hạ được con quái vật đó!",
+                "Nó chắc quanh quẩn đây thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 57
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 58
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 60
+            }
+          ]
+        }
+      ]
+    },
+    "D(3)": {
+      "cutscene_id": 3,
+      "description": "Cutscene D(3)",
+      "steps": [
+        {
+          "step_index": 0,
+          "trigger_condition": "Immediate",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 7,
+          "actions": [
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 10
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 7,
+              "dialogue": [
+                "Con đường hoa đào đây rồi.",
+                "Con bé ấy đâu rồi nhỉ?"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 20
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 32
+            }
+          ]
+        },
+        {
+          "step_index": 1,
+          "trigger_condition": "PlayerX > ax",
+          "trigger_x": 2784,
+          "trigger_y": 0,
+          "action_sequence_id": 8,
+          "actions": [
+            {
+              "cmd": "Set_ge_-1",
+              "raw_cmd": 6,
+              "arg": 0,
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 8,
+              "dialogue": [
+                "Chào bạn! Bạn có phải là em gái cô Ayumi không?",
+                "Thầy Takanashi bận nên nhờ mình đón bạn giúp.",
+                "Đi theo mình nhé, chúng ta sẽ về trường!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 10
+            },
+            {
+              "cmd": "StartMotorbike",
+              "raw_cmd": 19,
+              "arg": 0,
+              "cumulative_tick": 15
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 20
+            }
+          ]
+        },
+        {
+          "step_index": 2,
+          "trigger_condition": "EndCutsceneGroup",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 0,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 1,
+              "title_text": "2 ngày sau, tại rừng trúc...",
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -1,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -1,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 48
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 0,
+              "dialogue": [
+                "Rừng trúc đây rồi!",
+                "Hôm nay ta phải hạ được con quái vật đó!",
+                "Nó chắc quanh quẩn đây thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 57
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 58
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 60
+            }
+          ]
+        }
+      ]
+    },
+    "D(4)": {
+      "cutscene_id": 4,
+      "description": "Cutscene D(4)",
+      "steps": [
+        {
+          "step_index": 0,
+          "trigger_condition": "Player near (ax, ay)",
+          "trigger_x": 1248,
+          "trigger_y": 408,
+          "action_sequence_id": 9,
+          "actions": [
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 9,
+              "dialogue": [
+                "Tốt lắm, con đã đưa cô bé về an toàn!",
+                "Đây ta có món quà gì giá trị để tặng con..",
+                "Đây là tấm bằng lái xe có chữ ký của ta. Kể từ nay con có thể sử dụng những chiếc xe máy rồi!",
+                "Nhớ phải lái cẩn thận và đội mũ bảo hiểm, nếu không là CSGT phạt đó!"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 2,
+              "cumulative_tick": 10
+            },
+            {
+              "cmd": "StopMotorbike",
+              "raw_cmd": 20,
+              "arg": 0,
+              "cumulative_tick": 15
+            },
+            {
+              "cmd": "ReceiveMotorbikeLicense",
+              "raw_cmd": 21,
+              "arg": 0,
+              "cumulative_tick": 20
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 25
+            }
+          ]
+        },
+        {
+          "step_index": 1,
+          "trigger_condition": "EndCutsceneGroup",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 0,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 1,
+              "title_text": "2 ngày sau, tại rừng trúc...",
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -1,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -1,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 48
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 0,
+              "dialogue": [
+                "Rừng trúc đây rồi!",
+                "Hôm nay ta phải hạ được con quái vật đó!",
+                "Nó chắc quanh quẩn đây thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 57
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 58
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 60
+            }
+          ]
+        }
+      ]
+    },
+    "D(5)": {
+      "cutscene_id": 5,
+      "description": "Cutscene D(5)",
+      "steps": [
+        {
+          "step_index": 0,
+          "trigger_condition": "Immediate",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 10,
+          "actions": [
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 10,
+              "dialogue": [
+                "Thuỷ quái hạ nguồn sông Waramato, con quái trong truyền thuyết !",
+                "Một khi nó chưa bị tiêu diệt, ta sẽ không đi tiếp!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 20
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 25
+            }
+          ]
+        },
+        {
+          "step_index": 1,
+          "trigger_condition": "ia == 5",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 11,
+          "actions": [
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 11,
+              "dialogue": [
+                "Chết đi, con quái vật kia!",
+                "Từ nay con sông này sẽ trở lại thanh bình rồi!",
+                "Ta tiếp tục cuộc hành trình thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 10
+            },
+            {
+              "cmd": "Set_eI_true",
+              "raw_cmd": 22,
+              "arg": 0,
+              "cumulative_tick": 12
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 14
+            }
+          ]
+        },
+        {
+          "step_index": 2,
+          "trigger_condition": "EndCutsceneGroup",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 0,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 1,
+              "title_text": "2 ngày sau, tại rừng trúc...",
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -1,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -1,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 48
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 0,
+              "dialogue": [
+                "Rừng trúc đây rồi!",
+                "Hôm nay ta phải hạ được con quái vật đó!",
+                "Nó chắc quanh quẩn đây thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 57
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 58
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 60
+            }
+          ]
+        }
+      ]
+    },
+    "D(6)": {
+      "cutscene_id": 6,
+      "description": "Cutscene D(6)",
+      "steps": [
+        {
+          "step_index": 0,
+          "trigger_condition": "Immediate",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 12,
+          "actions": [
+            {
+              "cmd": "CameraFocusNPC",
+              "raw_cmd": 23,
+              "arg": 0,
+              "cumulative_tick": 15
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 12,
+              "dialogue": [
+                "Ngươi cũng lặn lội đến tận đây được à, khá đấy!",
+                "Hãy bỏ ngôi trường ấy đi, theo ta lập căn cứ, ngươi sẽ có tất cả.",
+                "Nếu không theo ta, ngươi sẽ hối hận đấy... HaHaHa!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 0,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "CameraBindPlayer",
+              "raw_cmd": 7,
+              "arg": 0,
+              "cumulative_tick": 35
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 13,
+              "dialogue": [
+                "Không đời nào, tên phản bội kia!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 45
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 55
+            }
+          ]
+        },
+        {
+          "step_index": 1,
+          "trigger_condition": "hj < 10",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 13,
+          "actions": [
+            {
+              "cmd": "CameraFocusNPC",
+              "raw_cmd": 23,
+              "arg": 0,
+              "cumulative_tick": 10
+            },
+            {
+              "cmd": "Set_hh_true",
+              "raw_cmd": 25,
+              "arg": 0,
+              "cumulative_tick": 12
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 14,
+              "dialogue": [
+                "Ngươi khá lắm! Hãy đợi đấy, ta sẽ nhớ mối thù này!",
+                "Hẹn gặp lại ngươi!!!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 0,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "CameraBindPlayer",
+              "raw_cmd": 7,
+              "arg": 0,
+              "cumulative_tick": 40
+            },
+            {
+              "cmd": "Set_dA_dB_alt",
+              "raw_cmd": 24,
+              "arg": 600,
+              "cumulative_tick": 45
+            },
+            {
+              "cmd": "Set_eJ_true",
+              "raw_cmd": 26,
+              "arg": 0,
+              "cumulative_tick": 50
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 75
+            }
+          ]
+        },
+        {
+          "step_index": 2,
+          "trigger_condition": "EndCutsceneGroup",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 0,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 1,
+              "title_text": "2 ngày sau, tại rừng trúc...",
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -1,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -1,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 48
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 0,
+              "dialogue": [
+                "Rừng trúc đây rồi!",
+                "Hôm nay ta phải hạ được con quái vật đó!",
+                "Nó chắc quanh quẩn đây thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 57
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 58
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 60
+            }
+          ]
+        }
+      ]
+    },
+    "D(7)": {
+      "cutscene_id": 7,
+      "description": "Cutscene D(7)",
+      "steps": [
+        {
+          "step_index": 0,
+          "trigger_condition": "Immediate",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 14,
+          "actions": [
+            {
+              "cmd": "CameraFocusBoss",
+              "raw_cmd": 27,
+              "arg": 0,
+              "cumulative_tick": 15
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 15,
+              "dialogue": [
+                "Chúng ta lại gặp nhau rồi!",
+                "Ta cho ngươi một cơ hội lần cuối. hãy theo ta, hoặc là chết!"
+              ],
+              "speaker_type": 3,
+              "speaker_target_id": 0,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "CameraBindPlayer",
+              "raw_cmd": 7,
+              "arg": 0,
+              "cumulative_tick": 35
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 16,
+              "dialogue": [
+                "Haha. Tên phản bội kia, ta sẽ cho mi biết sức mạnh một ninja thực thụ!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 45
+            },
+            {
+              "cmd": "Set_hu_1",
+              "raw_cmd": 28,
+              "arg": 0,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 55
+            }
+          ]
+        },
+        {
+          "step_index": 1,
+          "trigger_condition": "hu == 22",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 15,
+          "actions": [
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 17,
+              "dialogue": [
+                "Cuối cùng thì mi cũng đã phải dền tội!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 10
+            },
+            {
+              "cmd": "CameraFocusSpecialActor",
+              "raw_cmd": 31,
+              "arg": 0,
+              "cumulative_tick": 12
+            },
+            {
+              "cmd": "BossIntroSetup",
+              "raw_cmd": 32,
+              "arg": 0,
+              "cumulative_tick": 13
+            },
+            {
+              "cmd": "CameraBindPlayer",
+              "raw_cmd": 7,
+              "arg": 0,
+              "cumulative_tick": 40
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 55,
+              "dialogue": [
+                "Sakura, bạn có sao không!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 50
+            },
+            {
+              "cmd": "CameraFocusSpecialActor",
+              "raw_cmd": 31,
+              "arg": 0,
+              "cumulative_tick": 60
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 56,
+              "dialogue": [
+                "Mình không sao, bạn không bị thương chứ!"
+              ],
+              "speaker_type": 4,
+              "speaker_target_id": 0,
+              "cumulative_tick": 70
+            },
+            {
+              "cmd": "CameraBindPlayer",
+              "raw_cmd": 7,
+              "arg": 0,
+              "cumulative_tick": 80
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 57,
+              "dialogue": [
+                "Mình cũng không sao! Tên Toniku chắc cũng không chạy xa được đâu , hắn cũng sớm bị bắt thôi!",
+                "Chúng ta về thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 90
+            },
+            {
+              "cmd": "CameraUnbindPlayer",
+              "raw_cmd": 8,
+              "arg": 0,
+              "cumulative_tick": 95
+            },
+            {
+              "cmd": "MapWarp",
+              "raw_cmd": 17,
+              "arg": 94,
+              "cumulative_tick": 100
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 105
+            }
+          ]
+        },
+        {
+          "step_index": 2,
+          "trigger_condition": "EndCutsceneGroup",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 0,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 1,
+              "title_text": "2 ngày sau, tại rừng trúc...",
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -1,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -1,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 48
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 0,
+              "dialogue": [
+                "Rừng trúc đây rồi!",
+                "Hôm nay ta phải hạ được con quái vật đó!",
+                "Nó chắc quanh quẩn đây thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 57
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 58
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 60
+            }
+          ]
+        }
+      ]
+    },
+    "D(8)": {
+      "cutscene_id": 8,
+      "description": "Cutscene D(8)",
+      "steps": [
+        {
+          "step_index": 0,
+          "trigger_condition": "Immediate",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 16,
+          "actions": [
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 18,
+              "dialogue": [
+                "Các con hãy cho biết làm cách nào để di chuyển!"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 10
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 19,
+              "dialogue": [
+                "Sử dụng phím mũi tên hoặc phím 2,4,6,8!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 0,
+              "cumulative_tick": 11
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 20,
+              "dialogue": [
+                "Làm thế nào để tấn công?, Kunio"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 12
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 21,
+              "dialogue": [
+                "Sử dụng phím 5 hoặc phím chọn giữa!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 2,
+              "cumulative_tick": 13
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 22,
+              "dialogue": [
+                "Làm thế nào để trò chuyện với bạn bè hoặc thầy cô?,Lee"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 14
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 23,
+              "dialogue": [
+                "Đứng gần người đó rồi bấm Giao Tiếp!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 1,
+              "cumulative_tick": 15
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 24,
+              "dialogue": [
+                "Làm thế nào để biết mình đang ở đâu! Katashi"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 16
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 25,
+              "dialogue": [
+                "Chọn menu/Xem bản đồ!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 4,
+              "cumulative_tick": 17
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 26,
+              "dialogue": [
+                "Làm thế nào khi hết HP hoặc MP! Toniku"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 18
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 27,
+              "dialogue": [
+                "Chọn menu/Sử dụng Item, chọn một bình HP/MP để sử dụng!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 3,
+              "cumulative_tick": 19
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 28,
+              "dialogue": [
+                "Uhm..Nếu không còn bình HP/MP nào thì sao? Minori"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 20
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 29,
+              "dialogue": [
+                "Gặp ông bán hàng mua tại trường, ở gần ký túc xá!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 6,
+              "cumulative_tick": 21
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 30,
+              "dialogue": [
+                "Tốt. Làm thế nào để di chuyển nhanh từ khu vực này đến khu vực khác?"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 22
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 31,
+              "dialogue": [
+                "Mở bản đồ, chọn 1 địa điểm để di chuyển đến!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 2,
+              "cumulative_tick": 23
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 32,
+              "dialogue": [
+                "Đúng rồi, Làm sao để sử dụng phi tiêu?,Ryuu"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 24
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 33,
+              "dialogue": [
+                "Bấm phím 1 sẽ chuyển sang chế độ phi tiêu.",
+                "Bấm phím 1 lần nữa để quay lại đánh kiếm!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 5,
+              "cumulative_tick": 25
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 34,
+              "dialogue": [
+                "Tốt. Làm sao để sử dụng khinh công?"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 35,
+              "dialogue": [
+                "Học khinh công từ cô Ayumi. Bấm phím mũi tên lên hoặc phím 2 nhiều lần!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 4,
+              "cumulative_tick": 27
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 36,
+              "dialogue": [
+                "Uhm..Làm sao để độn thổ!"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 28
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 37,
+              "dialogue": [
+                "Học độn thổ từ thầy Honda. Bấm và giữ luôn phím xuống hoặc phím 8!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 1,
+              "cumulative_tick": 29
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 38,
+              "dialogue": [
+                "Khi nào mới có thể lái xe môtô?"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 39,
+              "dialogue": [
+                "Học lái xe từ thầy Takanashi, được cấp bằng lái",
+                "Sau đó có thể nhảy lên chạy bất kỳ chiếc mô tô nào !"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 3,
+              "cumulative_tick": 31
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 40,
+              "dialogue": [
+                "Làm sao để chạy trên mặt nước? huh ? Sadao"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 32
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 41,
+              "dialogue": [
+                "Học thuật chạy nước/ lặn nước từ thầy Honda! Sau đó có thể chạy trên mặt nước!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 0,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 42,
+              "dialogue": [
+                "Làm sao để biến hình!"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 34
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 43,
+              "dialogue": [
+                "Bấm phím 7. Sau khi đã học phép biến hình từ thầy Hiroyaki"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 5,
+              "cumulative_tick": 35
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 44,
+              "dialogue": [
+                "Làm sao để tàng hình!"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 36
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 45,
+              "dialogue": [
+                "Bấm phím 3. Sau khi đã học phép tàng hình từ thầy Honda"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 4,
+              "cumulative_tick": 37
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 46,
+              "dialogue": [
+                "Tốt! Cho ta biết ai phát triển game này!"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 38
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 47,
+              "dialogue": [
+                "Nhóm TeaMobile!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 3,
+              "cumulative_tick": 39
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 48,
+              "dialogue": [
+                "Cụ thể là ai?"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 40
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 49,
+              "dialogue": [
+                "...Con không biết..."
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 2,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 50,
+              "dialogue": [
+                "Hmm, có thể tìm thêm nhiều game hay khác ở đâu?"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 42
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 51,
+              "dialogue": [
+                "http://vechai321.xtgem.com"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 2,
+              "cumulative_tick": 43
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 52,
+              "dialogue": [
+                "Tốt, các con có thể giải tán !"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 44
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 53,
+              "dialogue": [
+                "Chúng con chào thầy !"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 1,
+              "cumulative_tick": 45
+            },
+            {
+              "cmd": "CleanupMemory",
+              "raw_cmd": 29,
+              "arg": 0,
+              "cumulative_tick": 46
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 47
+            }
+          ]
+        },
+        {
+          "step_index": 1,
+          "trigger_condition": "EndCutsceneGroup",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 0,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 1,
+              "title_text": "2 ngày sau, tại rừng trúc...",
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -1,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -1,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 48
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 0,
+              "dialogue": [
+                "Rừng trúc đây rồi!",
+                "Hôm nay ta phải hạ được con quái vật đó!",
+                "Nó chắc quanh quẩn đây thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 57
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 58
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 60
+            }
+          ]
+        }
+      ]
+    },
+    "D(9)": {
+      "cutscene_id": 9,
+      "description": "Cutscene D(9)",
+      "steps": [
+        {
+          "step_index": 0,
+          "trigger_condition": "PlayerX > ax",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 17,
+          "actions": [
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 54,
+              "dialogue": [
+                "Cảm ơn, mi thật tốt bụng. Hẹn gặp lại!",
+                "Quên mất, lúc nãy cô Ayumi dặn ta gặp cô ấy ngay.",
+                "Hihi, gặp lại mi sau!"
+              ],
+              "speaker_type": 4,
+              "speaker_target_id": 0,
+              "cumulative_tick": 10
+            },
+            {
+              "cmd": "MeetAyumiComplete",
+              "raw_cmd": 30,
+              "arg": 0,
+              "cumulative_tick": 12
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 14
+            }
+          ]
+        },
+        {
+          "step_index": 1,
+          "trigger_condition": "EndCutsceneGroup",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 0,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 1,
+              "title_text": "2 ngày sau, tại rừng trúc...",
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -1,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -1,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 48
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 0,
+              "dialogue": [
+                "Rừng trúc đây rồi!",
+                "Hôm nay ta phải hạ được con quái vật đó!",
+                "Nó chắc quanh quẩn đây thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 57
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 58
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 60
+            }
+          ]
+        }
+      ]
+    },
+    "D(10)": {
+      "cutscene_id": 10,
+      "description": "Cutscene D(10)",
+      "steps": [
+        {
+          "step_index": 0,
+          "trigger_condition": "Immediate",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 18,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 4,
+              "title_text": "2 ngày sau, tại trường Hirosaki...",
+              "cumulative_tick": 10
+            },
+            {
+              "cmd": "CameraFocusSpecialActor",
+              "raw_cmd": 31,
+              "arg": 0,
+              "cumulative_tick": 11
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 58,
+              "dialogue": [
+                "Toniku, ngươi đã biết tội chưa!"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 60
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 59,
+              "dialogue": [
+                "..vâng..con biết...."
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 3,
+              "cumulative_tick": 62
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 60,
+              "dialogue": [
+                "Theo nội quy của nhà trường. Ngươi phải rời khỏi ngôi trường này.",
+                "Vĩnh viễn không được trở lại nữa.."
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 63
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 61,
+              "dialogue": [
+                "......"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 3,
+              "cumulative_tick": 64
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 62,
+              "dialogue": [
+                "Thưa thầy...",
+                "Toniku vốn là học sinh giỏi của trường..",
+                " Chỉ vì nghe lời xúi giục của bọn xấu nên mới hành động như thế...",
+                "Đây là lần vi phạm đầu tiên, xin nhà trường tha thứ cho bạn ấy..."
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 65
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 63,
+              "dialogue": [
+                "......"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 0,
+              "cumulative_tick": 66
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 64,
+              "dialogue": [
+                "Xin các thầy hãy tha thứ cho bạn ấy ạ!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 2,
+              "cumulative_tick": 67
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 65,
+              "dialogue": [
+                "..thôi được rồi..",
+                "Tội Toniku rất nặng, đáng lẽ ra phải bị đuổi học.",
+                "Con đường để thành một nhẫn giả thật gian lao và chông gai..",
+                "..ngươi phải luyện tập bằng khả năng và sức lực của mình",
+                " sẽ không có con đường nào khác",
+                " ... các con đều biết chữ Nhẫn gồm chữ Đao và chữ Tâm.",
+                "..nếu Tâm không tịnh thì Đao sẽ bổ xuống!",
+                "Các con hãy lấy Toniku mà làm gương ...",
+                "Toniku, ngươi đã quá tham lam...",
+                "..nhưng ta cũng thây nơi con người ngươi có tố chất tiềm tàng!",
+                "Nên ta quyết định tha cho con lần này...",
+                "Sẽ không có lần sau, Toniku, ngươi nhớ đấy!!"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 1,
+              "cumulative_tick": 68
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 66,
+              "dialogue": [
+                "Vâng, con xin cảm ơn thầy!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 3,
+              "cumulative_tick": 69
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 67,
+              "dialogue": [
+                "Sẵn đây ta muốn nhắc nhở thêm các con..",
+                "Hai tháng nữa là đến kỳ thi kết khoá cho Genin. Các con phải cố gắng tập luyện hơn nữa..",
+                "..Mọi thứ chỉ mới bắt đầu thôi!"
+              ],
+              "speaker_type": 1,
+              "speaker_target_id": 2,
+              "cumulative_tick": 70
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 68,
+              "dialogue": [
+                "Vâng, chúng con xin nghe!"
+              ],
+              "speaker_type": 2,
+              "speaker_target_id": 2,
+              "cumulative_tick": 71
+            },
+            {
+              "cmd": "Set_fe_gn_true",
+              "raw_cmd": 33,
+              "arg": 0,
+              "cumulative_tick": 72
+            },
+            {
+              "cmd": "MapWarp",
+              "raw_cmd": 17,
+              "arg": 0,
+              "cumulative_tick": 73
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 74
+            }
+          ]
+        },
+        {
+          "step_index": 1,
+          "trigger_condition": "EndCutsceneGroup",
+          "trigger_x": 0,
+          "trigger_y": 0,
+          "action_sequence_id": 0,
+          "actions": [
+            {
+              "cmd": "ShowTitleCard",
+              "raw_cmd": 15,
+              "arg": 1,
+              "title_text": "2 ngày sau, tại rừng trúc...",
+              "cumulative_tick": 5
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 26
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -1,
+              "cumulative_tick": 30
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -1,
+              "cumulative_tick": 33
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 41
+            },
+            {
+              "cmd": "Action_F",
+              "raw_cmd": 1,
+              "arg": -4,
+              "cumulative_tick": 48
+            },
+            {
+              "cmd": "Action_G",
+              "raw_cmd": 2,
+              "arg": -4,
+              "cumulative_tick": 53
+            },
+            {
+              "cmd": "DialogueBubble",
+              "raw_cmd": 4,
+              "arg": 0,
+              "dialogue": [
+                "Rừng trúc đây rồi!",
+                "Hôm nay ta phải hạ được con quái vật đó!",
+                "Nó chắc quanh quẩn đây thôi!"
+              ],
+              "speaker_type": 0,
+              "speaker_target_id": 0,
+              "cumulative_tick": 57
+            },
+            {
+              "cmd": "SpawnActor",
+              "raw_cmd": 5,
+              "arg": 20000,
+              "cumulative_tick": 58
+            },
+            {
+              "cmd": "EndSequence_ReturnControl",
+              "raw_cmd": 3,
+              "arg": 0,
+              "cumulative_tick": 60
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "quests": [
+    {
+      "quest_id": 0,
+      "target_mob_id": 1,
+      "target_count": 10,
+      "target_description": "Kill 10x ốc sên (ID 1)",
+      "instruction": [
+        "Nhanh lên, hãy sang khu luyện tập và giết 10 con ốc sên."
+      ],
+      "completion_dialogue": [
+        "Thể lực con rất tốt, ta sẽ dạy khinh công cho con...",
+        "Hãy tập trung khí huyết, hít thở nhẹ, người con nhẹ dần, nhẹ dần tựa chiếc lá khô...",
+        "Chúc mừng con! Hãy thử nhảy lên xem kết quả thế nào.",
+        "à, suýt nữa ta quên, lúc nãy thầy Hiroyaki trên tầng 1 gọi con đấy."
+      ]
+    },
+    {
+      "quest_id": 1,
+      "target_mob_id": 7,
+      "target_count": 2,
+      "target_description": "Kill 2x Bù nhìn rơm (ID 7)",
+      "instruction": [
+        "Hãy đánh sập 2 bù nhìn rơm gần cổng trường. Nhanh lên!"
+      ],
+      "completion_dialogue": [
+        "Tốt. Đây là cách phóng shuriken, hãy nhớ kỹ:",
+        "Bấm phím 0 để chuyển sang phóng shuriken, bấm lần nữa để đánh kiếm.",
+        "Nếu chăm chỉ tập luyện, phi tiêu sẽ là vũ khí lợi hại nhất của ngươi.",
+        "Thầy Honda có việc cần gặp ngươi. Nhanh lại đó đi!"
+      ]
+    },
+    {
+      "quest_id": 2,
+      "target_mob_id": 100,
+      "target_count": 0,
+      "target_description": "Non-kill / Story objective",
+      "instruction": [
+        "Bọn quỷ một chân có mặt ở thác nước, bên kia khu luyện tập, mau giết chúng để tìm quyển bí kíp!"
+      ],
+      "completion_dialogue": [
+        "Giỏi lắm, đúng là quyển bí kíp này.",
+        "Cứ luyện tập theo quyển bí kíp này: hãy đến khu vực có đất..",
+        "Ngồi thấp xuống và tập trung, ngươi sẽ độn thổ được.",
+        "Hãy luyện tập đi, chú ý MP ngươi sẽ bị giảm khi độn thổ đó.",
+        "Còn chuyện này nữa, vừa nãy ta thấy thầy chủ nhiệm ngươi có vẻ mệt. Ngươi hãy nhanh ghé thăm!"
+      ]
+    },
+    {
+      "quest_id": 3,
+      "target_mob_id": 100,
+      "target_count": 0,
+      "target_description": "Non-kill / Story objective",
+      "instruction": [
+        "Hãy trở lại khi ngươi đã giết đủ 20 con ong."
+      ],
+      "completion_dialogue": [
+        "Ngươi giỏi lắm, ta sẽ đã thông kinh mạch cho...",
+        "úm ba la !! soda cacao cola!",
+        "Ngươi có cảm nhận được luồn chân khí trong người không",
+        "Đi đi, hãy dùng sức mạnh này để bảo vệ dân làng!"
+      ]
+    },
+    {
+      "quest_id": 4,
+      "target_mob_id": 6,
+      "target_count": 20,
+      "target_description": "Kill 20x Ong bò vẽ (ID 6)",
+      "instruction": [
+        "Con heo rừng rất nguy hiểm. Nhưng ta tin ngươi có thể giết được nó và cầm về cho ta quyển bí kíp. Đi đi!"
+      ],
+      "completion_dialogue": [
+        "Quyển bí kíp đây rồi, khá lắm cậu bé.",
+        "Ngươi đã có thể lặn nước được rồi. Hãy nhớ, tuy lặn được nhưng thanh trúc dùng để thở rất ngắn...",
+        "Vì thế, đừng lặn sâu quá đó.",
+        "Thầy Hiroyaki tìm ngươi. Hãy mau đến gặp đi."
+      ]
+    },
+    {
+      "quest_id": 5,
+      "target_mob_id": 100,
+      "target_count": 0,
+      "target_description": "Non-kill / Story objective",
+      "instruction": [
+        "Hãy đến khu nghĩa địa bên kia sông! Mang về quyển bí kíp. Nhanh lên!"
+      ],
+      "completion_dialogue": [
+        "Ngươi có thể vượt qua con sông ấy ư?",
+        "Ta sẽ giúp ngươi gọi được sức mạnh của dòng tộc mình: Xích Mao",
+        "Bất kỳ khi nào, hãy ấn phím số 7, ngươi sẽ có được sức mạnh từ gốc cội của dòng tộc mình",
+        "hãy thử xem, nhưng ngươi cần cẩn thận, vì thi triển thuật này,ngươi sẽ chóng mệt lắm đấy."
+      ]
+    },
+    {
+      "quest_id": 6,
+      "target_mob_id": 100,
+      "target_count": 0,
+      "target_description": "Non-kill / Story objective",
+      "instruction": [
+        "Nhanh lên, hãy giết 15 con dơi vàng ở những ngôi miếu phía nam!"
+      ],
+      "completion_dialogue": [
+        "Cảm ơn con nhiều lắm. Đây là phần thưởng cho con, 5000$",
+        "Tuy không bao nhiêu nhưng con có thể dùng nó để mua HP, MP.",
+        "À, trường ta đang có việc lớn đấy!",
+        "Con hãy gặp thầy chủ nhiệm để hỏi xem có giúp được gì hay không!"
+      ]
+    },
+    {
+      "quest_id": 7,
+      "target_mob_id": 13,
+      "target_count": 15,
+      "target_description": "Kill 15x Dơi vàng (ID 13)",
+      "instruction": [
+        "Hãy tìm tên Toniku, hắn trốn ở những ngôi miếu phía nam.",
+        "Tìm gặp hắn quay lại báo cáo với ta nhé!"
+      ],
+      "completion_dialogue": [
+        "Hắn bỏ trốn thoát rồi ư?",
+        "Ta thật đau lòng khi có một đứa học trò như nó!",
+        "Kể từ nay, ta cho phép con tấn công nó, không nương tay, bất kỳ khi nào gặp!"
+      ]
+    },
+    {
+      "quest_id": 8,
+      "target_mob_id": 100,
+      "target_count": 0,
+      "target_description": "Non-kill / Story objective",
+      "instruction": [
+        "Hãy giết 20 con quỷ khố ở khu rừng gỗ!",
+        "Xong việc ta sẽ giúp con cưa con bé em gái cô giáo Ayumi!"
+      ],
+      "completion_dialogue": [
+        "Ta biết chắc chắn thế nào con cũng giết được bọn quỷ khố hung hăng đó!",
+        "Lúc nãy, ta đã nói chuyện với cô Ayumi rồi.",
+        "Hãy lại bắt chuyện với cô bé ấy đi!"
+      ]
+    },
+    {
+      "quest_id": 9,
+      "target_mob_id": 15,
+      "target_count": 20,
+      "target_description": "Kill 20x Thổ dân (ID 15)",
+      "instruction": [
+        "Để ta dạy kinh công cấp 2 cho con, con phải chứng tỏ được khả năng hiện tại.",
+        "Hãy nhảy lên cao và chém được ít nhất 20 phát khi chưa chạm đất!",
+        "Khá khó, nhưng ta tin con sẽ khẳng định được mình!"
+      ],
+      "completion_dialogue": [
+        "Tốt lắm. Con đã chứng tỏ được mình.",
+        "Đây là kỹ năng khinh công cấp 2. Con đã có thể nhảy cao hơn trước rồi.",
+        "Tiếp theo, hãy gặp thầy Hiroyaki, ông ta sẽ dạy con những kỹ năng mới!"
+      ]
+    },
+    {
+      "quest_id": 10,
+      "target_mob_id": 100,
+      "target_count": 0,
+      "target_description": "Non-kill / Story objective",
+      "instruction": [
+        "Hãy đến rừng chông tre. Giết 70 quỷ hoa đỏ rồi về đây, ta cho ngươi shuriken cấp 2!"
+      ],
+      "completion_dialogue": [
+        "Tốt. Đây là kỹ năng shuriken cấp 2.",
+        "Sức tấn công từ shuriken của con đã tăng lên rất nhiều!",
+        "Con phải siêng năng tập luyện mới có thể giữ được sức mạnh này. Nhớ đấy!"
+      ]
+    },
+    {
+      "quest_id": 11,
+      "target_mob_id": 100,
+      "target_count": 0,
+      "target_description": "Non-kill / Story objective",
+      "instruction": [
+        "Con hãy đến vách đá Ito, giết 50 con bò cạp, mang đuôi về cho ta!"
+      ],
+      "completion_dialogue": [
+        "Khá lắm. Đây là phương thuốc chạy nhanh cho con!",
+        "Hãy chạy 1 đoạn ngắn, sau đó tốc độ của con sẽ tăng nhanh..",
+        "Hãy thử xem nào!"
+      ]
+    },
+    {
+      "quest_id": 12,
+      "target_mob_id": 18,
+      "target_count": 70,
+      "target_description": "Kill 70x Quỷ hoa (ID 18)",
+      "instruction": [
+        "Ta không muốn nói nhiều. Một phần thưởng đặt biệt cho ngươi..",
+        "..nếu ngươi có thể giết được 30 con cá đỏ!"
+      ],
+      "completion_dialogue": [
+        "Giỏi. Kể từ nay con sẽ không bao giờ bị chìm dưới nước nữa!",
+        "..đây là kỹ thuật đứng nước bí truyền của ninja. Ta chỉ dạy cho mình con đấy!"
+      ]
+    },
+    {
+      "quest_id": 13,
+      "target_mob_id": 17,
+      "target_count": 50,
+      "target_description": "Kill 50x Bò cạp (ID 17)",
+      "instruction": [
+        "Để học kỹ năng ẩn thân, hãy đi tìm 1 quyển bí kíp...",
+        "Cất giấu tại 1 thung lũng phía đông."
+      ],
+      "completion_dialogue": [
+        "Ngươi có thể tìm được nó ư?",
+        "Tốt lắm, từ nay con có thể sử dụng nó rồi đấy.",
+        "Hãy nhấn phím số 9 để có thể ẩn thân. Kỹ năng này rất lợi hại..",
+        "tuy nhiên nó sẽ tiêu thụ rất nhiều MP của con đấy!"
+      ]
+    },
+    {
+      "quest_id": 14,
+      "target_mob_id": 10,
+      "target_count": 30,
+      "target_description": "Kill 30x Cá cọp đỏ (ID 10)",
+      "instruction": [
+        "Nhanh lên, cô bé ấy đã bị bắt từ mấy hôm rồi!"
+      ],
+      "completion_dialogue": [
+        "Các con đều bình an vô sự, rất tốt!",
+        "Những gì đã là quá khứ thì ta cho qua, nhưng hãy nhớ và không tái phạm",
+        "Nào, ta cho các con nghỉ, điện thoại cũng có lúc phải nghì ngơi chứ, hehe. Nay , ta chúc mừng các con đã hoàn thành khóa học ninja sơ cấp: các con không còn là Chunin nữa !",
+        "Nay ta tuyên bố thăng cấp cho các con là Genin !"
+      ]
+    },
+    {
+      "quest_id": 15,
+      "target_mob_id": 100,
+      "target_count": 0,
+      "target_description": "Non-kill / Story objective",
+      "instruction": [],
+      "completion_dialogue": [
+        "Ta đang bận."
+      ]
+    },
+    {
+      "quest_id": 16,
+      "target_mob_id": 100,
+      "target_count": 0,
+      "target_description": "Non-kill / Story objective",
+      "instruction": [],
+      "completion_dialogue": [
+        "Ngươi đã học được chiêu shuriken cuối cùng, ta ko còn gì dạy ngươi nữa. Đi đi."
+      ]
+    },
+    {
+      "quest_id": 17,
+      "target_mob_id": 100,
+      "target_count": 0,
+      "target_description": "Non-kill / Story objective",
+      "instruction": [],
+      "completion_dialogue": []
+    }
+  ],
+  "monsters_inventory": [
+    {
+      "id": 0,
+      "name": "Ma một mắt",
+      "hp": 140,
+      "attack": 15,
+      "exp": 35,
+      "drop_coin": 20
+    },
+    {
+      "id": 1,
+      "name": "ốc sên",
+      "hp": 70,
+      "attack": 10,
+      "exp": 20,
+      "drop_coin": 10
+    },
+    {
+      "id": 2,
+      "name": "Dơi quỷ",
+      "hp": 150,
+      "attack": 30,
+      "exp": 55,
+      "drop_coin": 50
+    },
+    {
+      "id": 3,
+      "name": "Quỷ một chân",
+      "hp": 120,
+      "attack": 25,
+      "exp": 40,
+      "drop_coin": 25
+    },
+    {
+      "id": 4,
+      "name": "Cóc xanh",
+      "hp": 150,
+      "attack": 25,
+      "exp": 45,
+      "drop_coin": 30
+    },
+    {
+      "id": 5,
+      "name": "Nhện",
+      "hp": 150,
+      "attack": 25,
+      "exp": 50,
+      "drop_coin": 40
+    },
+    {
+      "id": 6,
+      "name": "Ong bò vẽ",
+      "hp": 60,
+      "attack": 5,
+      "exp": 30,
+      "drop_coin": 15
+    },
+    {
+      "id": 7,
+      "name": "Bù nhìn rơm",
+      "hp": 1000,
+      "attack": 10,
+      "exp": 130,
+      "drop_coin": 50
+    },
+    {
+      "id": 8,
+      "name": "Cá cọp",
+      "hp": 250,
+      "attack": 20,
+      "exp": 60,
+      "drop_coin": 60
+    },
+    {
+      "id": 9,
+      "name": "Ninja gió",
+      "hp": 500,
+      "attack": 40,
+      "exp": 65,
+      "drop_coin": 70
+    },
+    {
+      "id": 10,
+      "name": "Cá cọp đỏ",
+      "hp": 4000,
+      "attack": 30,
+      "exp": 70,
+      "drop_coin": 80
+    },
+    {
+      "id": 11,
+      "name": "Ma một mắt",
+      "hp": 500,
+      "attack": 40,
+      "exp": 75,
+      "drop_coin": 100
+    },
+    {
+      "id": 12,
+      "name": "Rết sa mạc",
+      "hp": 600,
+      "attack": 130,
+      "exp": 120,
+      "drop_coin": 120
+    },
+    {
+      "id": 13,
+      "name": "Dơi vàng",
+      "hp": 1000,
+      "attack": 30,
+      "exp": 85,
+      "drop_coin": 130
+    },
+    {
+      "id": 14,
+      "name": "Chuột",
+      "hp": 1500,
+      "attack": 40,
+      "exp": 100,
+      "drop_coin": 160
+    },
+    {
+      "id": 15,
+      "name": "Thổ dân",
+      "hp": 2000,
+      "attack": 100,
+      "exp": 120,
+      "drop_coin": 180
+    },
+    {
+      "id": 16,
+      "name": "Ong đỏ",
+      "hp": 1000,
+      "attack": 60,
+      "exp": 140,
+      "drop_coin": 170
+    },
+    {
+      "id": 17,
+      "name": "Bò cạp",
+      "hp": 3500,
+      "attack": 160,
+      "exp": 160,
+      "drop_coin": 210
+    },
+    {
+      "id": 18,
+      "name": "Quỷ hoa",
+      "hp": 1500,
+      "attack": 120,
+      "exp": 180,
+      "drop_coin": 190
+    },
+    {
+      "id": 19,
+      "name": "Quỷ tử hoa",
+      "hp": 5500,
+      "attack": 200,
+      "exp": 200,
+      "drop_coin": 220
+    }
+  ],
+  "teacher_idle_dialogues": [
+    [
+      "Ta đang bận, Con hãy đi tập luyện đi."
+    ],
+    [
+      "Các ngươi phải cố gắng tập luyện để trở thành những Ninja tốt"
+    ],
+    [
+      "Hằng ngày ngươi phải siêng năng tập thể lực, đó là nền tảng cho mọi hoạt động."
+    ],
+    [
+      "Cô Ayumi xinh thật. Con có thấy thế không?"
+    ],
+    [
+      "Ngươi biết không....à..à...mà ta định nói gì với ngươi nhỉ."
+    ],
+    [
+      "Ta không còn gì để dạy con nữa...",
+      "Nhưng con phải cố gắng tập luyện hàng ngày. Biết không!"
+    ],
+    [
+      "Con cần phải để mắt tới cô bé Sakura nhé..",
+      "Con bé ấy quậy lắm đấy!"
+    ],
+    [
+      "Dù sau này có đi đâu, ngươi cũng phải trở thành 1 ninja tốt nhé!"
+    ],
+    [
+      "Ta không còn gì để dạy con nữa!",
+      "Hãy rèn luyện sức khỏe hàng ngày, biết không!"
+    ],
+    [
+      "..à.. ừ.. ngươi muốn học phép à..",
+      ".. để ta nghĩ ra thêm vài phép mới..",
+      "..trước mắt hãy học những kỹ năng cũ đã nhé..."
+    ]
+  ],
+  "school_quiz_reference": {
+    "cutscene_source": "D(8)",
+    "content": "Toàn bộ bài giảng cơ chế điều khiển, di chuyển, chiến đấu, phím tắt 1, 3, 5, 7, 8, khinh công, độn thổ, lặn nước, biến hình Xích Mao, tàng hình và lái xe mô tô."
+  },
+  "cutscene_engine_specification": {
+    "engine_function": "a.V() in a.java L5881-L6260",
+    "sequence_trigger_function": "a.C(int n) in a.java L4660-L4668",
+    "group_evaluator_function": "a.ad() in a.java L6992-L7067",
+    "tick_semantic": "cumulative_tick: gc starts at 0 upon calling a.C(n) (L4661: gc = 0; fW = n; fX = 0; fV = true). In a.V(), if (++gc >= aB[fW][fX]), gc is clamped to aB[fW][fX] and action az[fW][fX] executes before ++fX. The values in aB are cumulative sequence milestones from sequence trigger, not per-step durations."
+  }
+}

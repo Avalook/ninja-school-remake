@@ -1,0 +1,24 @@
+{
+  "checked_at": 1794011135.566472,
+  "games": {
+    "NinjaSchool1": {
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3",
+      "png_count": 362,
+      "exact_matches": 362,
+      "mismatches": []
+    },
+    "NinjaSchool2": {
+      "jar_sha256": "5ac8d83a2f6f12c2eb41e233a0b9ab22de92cdd9f0f877885890c99cc89b4ac8",
+      "png_count": 578,
+      "exact_matches": 578,
+      "mismatches": []
+    },
+    "NinjaSchool3_bypass": {
+      "jar_sha256": "692def81e454aa89a129df3a621fb95ee61c614dbf66fecefb347320e68993c7",
+      "png_count": 622,
+      "exact_matches": 622,
+      "mismatches": []
+    }
+  },
+  "limits": "Validates every PNG stored in original JARs; does not prove composed character animations or new HD art"
+}

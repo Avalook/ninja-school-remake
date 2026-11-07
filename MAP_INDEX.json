@@ -1,0 +1,362 @@
+[
+  {
+    "game": "NinjaSchool1",
+    "id": 0,
+    "columns": 80,
+    "rows": 19,
+    "cell_count": 1520,
+    "decoded_grid": "analysis/maps/ninja1/map-000.json",
+    "source": {
+      "resource": "m/0",
+      "bytes": 1520,
+      "sha256": "62d8fb359b3e847e1980449da30f221b21fddef1863e49c9aa0ecfe1861d0189",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 1,
+    "columns": 60,
+    "rows": 14,
+    "cell_count": 840,
+    "decoded_grid": "analysis/maps/ninja1/map-001.json",
+    "source": {
+      "resource": "m/1",
+      "bytes": 840,
+      "sha256": "c21711395f1f046bc0aa87fe4938a3a0a474e9a5b41bd6d9c97f6cd722b96675",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 2,
+    "columns": 60,
+    "rows": 16,
+    "cell_count": 960,
+    "decoded_grid": "analysis/maps/ninja1/map-002.json",
+    "source": {
+      "resource": "m/2",
+      "bytes": 960,
+      "sha256": "3a6a59a27933c5d3f907d9bae9196aab7e9540401aa576f7289c054670e13867",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 3,
+    "columns": 120,
+    "rows": 12,
+    "cell_count": 1440,
+    "decoded_grid": "analysis/maps/ninja1/map-003.json",
+    "source": {
+      "resource": "m/3",
+      "bytes": 1440,
+      "sha256": "eaea43304ef066e46b45942a082f3c1dc08c5be1fe90efb438b355fdbc1a6759",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 4,
+    "columns": 80,
+    "rows": 15,
+    "cell_count": 1200,
+    "decoded_grid": "analysis/maps/ninja1/map-004.json",
+    "source": {
+      "resource": "m/4",
+      "bytes": 1200,
+      "sha256": "f5e5692a02468f5c6157eb37074c60ea7720462d2f45302468cb6ba985b94443",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 5,
+    "columns": 20,
+    "rows": 80,
+    "cell_count": 1600,
+    "decoded_grid": "analysis/maps/ninja1/map-005.json",
+    "source": {
+      "resource": "m/5",
+      "bytes": 1600,
+      "sha256": "1dda48defbcc2b8772e597bcb9b0d5b9f5372ec8eb44f88ae9a795b7b27ed426",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 6,
+    "columns": 250,
+    "rows": 12,
+    "cell_count": 3000,
+    "decoded_grid": "analysis/maps/ninja1/map-006.json",
+    "source": {
+      "resource": "m/6",
+      "bytes": 3000,
+      "sha256": "dcbdac9c38f3739f0895f7b3a75a54fb080173a17499933f9f38f553737367cc",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 7,
+    "columns": 80,
+    "rows": 14,
+    "cell_count": 1120,
+    "decoded_grid": "analysis/maps/ninja1/map-007.json",
+    "source": {
+      "resource": "m/7",
+      "bytes": 1120,
+      "sha256": "0cf86439045c974a7a9d6781349e6917f683237dd1ced1b177f1a3d7b0df1a67",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 8,
+    "columns": 80,
+    "rows": 14,
+    "cell_count": 1120,
+    "decoded_grid": "analysis/maps/ninja1/map-008.json",
+    "source": {
+      "resource": "m/8",
+      "bytes": 1120,
+      "sha256": "cee99969ebfaded1c573be4d8d1e5cbd866772ab506534f0f52453df420650c9",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 9,
+    "columns": 80,
+    "rows": 14,
+    "cell_count": 1120,
+    "decoded_grid": "analysis/maps/ninja1/map-009.json",
+    "source": {
+      "resource": "m/9",
+      "bytes": 1120,
+      "sha256": "0a7300c2638ab258122853d79c8e46dc61f0c07e4eeaa585604f70ec824a3634",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 10,
+    "columns": 40,
+    "rows": 40,
+    "cell_count": 1600,
+    "decoded_grid": "analysis/maps/ninja1/map-010.json",
+    "source": {
+      "resource": "m/10",
+      "bytes": 1600,
+      "sha256": "70290f02673e0569e8e5da839aa5671b51bd359afe9f2ed5e89e41c2d3dcc41d",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 11,
+    "columns": 90,
+    "rows": 14,
+    "cell_count": 1260,
+    "decoded_grid": "analysis/maps/ninja1/map-011.json",
+    "source": {
+      "resource": "m/11",
+      "bytes": 1260,
+      "sha256": "42a586a2412fb93b749df7216d6e787c3e96c06172617491c5dcb3ab1bfbbf09",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 12,
+    "columns": 40,
+    "rows": 25,
+    "cell_count": 1000,
+    "decoded_grid": "analysis/maps/ninja1/map-012.json",
+    "source": {
+      "resource": "m/12",
+      "bytes": 1000,
+      "sha256": "98ea58b0a6a4350f1b55646cdebf5db0f39813963023b4630e823b5b1614d227",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 13,
+    "columns": 80,
+    "rows": 14,
+    "cell_count": 1120,
+    "decoded_grid": "analysis/maps/ninja1/map-013.json",
+    "source": {
+      "resource": "m/13",
+      "bytes": 1120,
+      "sha256": "bf3b430482d60b787ce4f22a54b7b665de1896b7c1cfeb8ad4ce01feb49cb662",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 14,
+    "columns": 60,
+    "rows": 16,
+    "cell_count": 960,
+    "decoded_grid": "analysis/maps/ninja1/map-014.json",
+    "source": {
+      "resource": "m/14",
+      "bytes": 960,
+      "sha256": "2b240472456b3cc28b727a66da7af909e06934249c4d0bd278fb813d37f6208c",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 15,
+    "columns": 40,
+    "rows": 30,
+    "cell_count": 1200,
+    "decoded_grid": "analysis/maps/ninja1/map-015.json",
+    "source": {
+      "resource": "m/15",
+      "bytes": 1200,
+      "sha256": "f5af36b586d8cafff29c923c6ff47490ef00a94c19bc8d1ba34610052e7908de",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 16,
+    "columns": 70,
+    "rows": 15,
+    "cell_count": 1050,
+    "decoded_grid": "analysis/maps/ninja1/map-016.json",
+    "source": {
+      "resource": "m/16",
+      "bytes": 1050,
+      "sha256": "fbe897b3b7c1f505a283d8a64502ecfdaec83e02feddd68dc31feb312a2441aa",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 17,
+    "columns": 50,
+    "rows": 20,
+    "cell_count": 1000,
+    "decoded_grid": "analysis/maps/ninja1/map-017.json",
+    "source": {
+      "resource": "m/17",
+      "bytes": 1000,
+      "sha256": "9bdad683069556e957e9e2b6803c511c4be75ac6f01ace1f3f73de627daac19d",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 18,
+    "columns": 70,
+    "rows": 15,
+    "cell_count": 1050,
+    "decoded_grid": "analysis/maps/ninja1/map-018.json",
+    "source": {
+      "resource": "m/18",
+      "bytes": 1050,
+      "sha256": "8e236d15b21f2e9141c1daaca6ed21b515254170658d9ff784c66b6f8e41b0c7",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 94,
+    "columns": 24,
+    "rows": 14,
+    "cell_count": 336,
+    "decoded_grid": "analysis/maps/ninja1/map-094.json",
+    "source": {
+      "resource": "m/94",
+      "bytes": 336,
+      "sha256": "1b5b9e1c05709f33387f472a2139dfbd87836310f663febf53d2a280c358309d",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 95,
+    "columns": 25,
+    "rows": 14,
+    "cell_count": 350,
+    "decoded_grid": "analysis/maps/ninja1/map-095.json",
+    "source": {
+      "resource": "m/95",
+      "bytes": 350,
+      "sha256": "efdf810136e8d20b7ea0132bcdae9907960e092ff1f3d2966aec577abb159ee0",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 96,
+    "columns": 25,
+    "rows": 14,
+    "cell_count": 350,
+    "decoded_grid": "analysis/maps/ninja1/map-096.json",
+    "source": {
+      "resource": "m/96",
+      "bytes": 350,
+      "sha256": "f4d2402efb8c9c1b02b389881a66c8a02f3c6ebef58e4873ec8b8f65800bdbf4",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 97,
+    "columns": 25,
+    "rows": 13,
+    "cell_count": 325,
+    "decoded_grid": "analysis/maps/ninja1/map-097.json",
+    "source": {
+      "resource": "m/97",
+      "bytes": 325,
+      "sha256": "53a5bfa53ff122bf97bca987680680f01b2740156e005ecd8d44c8835e8f5f34",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  },
+  {
+    "game": "NinjaSchool1",
+    "id": 99,
+    "columns": 70,
+    "rows": 15,
+    "cell_count": 1050,
+    "decoded_grid": "analysis/maps/ninja1/map-099.json",
+    "source": {
+      "resource": "m/99",
+      "bytes": 1050,
+      "sha256": "c63fa1229743202a80db24719bba8023bd6cb89b0fe8ce4205b34f297801bb65",
+      "jar_sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+    },
+    "status": "raw grid decoded; full gameplay/object/event restoration incomplete"
+  }
+]

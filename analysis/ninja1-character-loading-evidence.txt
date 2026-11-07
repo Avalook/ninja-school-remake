@@ -1,0 +1,224 @@
+1985:                 while (n2 < iv.length) {
+1986:                     a.iv[n2] = object[n++];
+1987:                     ++n2;
+1988:                 }
+1989:                 n2 = 0;
+1990:                 while (n2 < iw.length) {
+1991:                     a.iw[n2] = object[n++];
+1992:                     ++n2;
+1993:                 }
+1994:             }
+1995:             catch (Exception exception) {}
+1996:         }
+1997:         if (fA) {
+1998:             if (es == null) {
+1999:                 es = new Image[4];
+2000:                 try {
+2001:                     a.es[0] = Image.createImage((String)"/cp/ch0x.png");
+2002:                     a.es[1] = Image.createImage((String)"/cp/ch1x.png");
+2003:                 }
+2004:                 catch (Exception exception) {}
+2005:                 a.es[2] = es[1];
+2006:                 a.es[3] = es[0];
+2007:             }
+2008:             n2 = 0;
+2009:             while (n2 < 4) {
+2010:                 object = er[n2];
+2011:                 a.er[n2] = es[n2];
+2012:                 a.es[n2] = (Image)object;
+2013:                 ++n2;
+2014:             }
+2015:         }
+2016:     }
+2017: 
+2018:     private static int[] a(byte[] byArray) {
+3240:         bE = bA + bC;
+3241:         if (bA < 0) {
+3242:             bA = 0;
+3243:         }
+3244:         if (bE > iQ - 1) {
+3245:             bE = iQ - 1;
+3246:         }
+3247:     }
+3248: 
+3249:     public static final void i() {
+3250:         ff = -1;
+3251:         if (eg == null) {
+3252:             try {
+3253:                 eg = new Image[20];
+3254:                 int n = 0;
+3255:                 while (n < 20) {
+3256:                     a.eg[n] = Image.createImage((String)("/cp/cb" + n + ".png"));
+3257:                     ++n;
+3258:                 }
+3259:                 er = new Image[11];
+3260:                 n = 0;
+3261:                 while (n < 11) {
+3262:                     a.er[n] = Image.createImage((String)("/cp/ch" + n + ".png"));
+3263:                     ++n;
+3264:                 }
+3265:                 et = new Image[10];
+3266:                 n = 0;
+3267:                 while (n < 10) {
+3268:                     a.et[n] = Image.createImage((String)("/cp/cl" + n + ".png"));
+3269:                     ++n;
+3270:                 }
+3271:             }
+3272:             catch (Exception exception) {}
+3273:         }
+3274:         a.H();
+3275:         fj = 22;
+3276:         fk = 32;
+3277:         fl = fj >> 1;
+3278:         fm = fk >> 1;
+3279:         fn = fj >> 2;
+3280:         fo = fk >> 2;
+3281:         fG = -1;
+3282:     }
+3283: 
+3284:     private static void H() {
+3475:         new Thread(Midlet.c).start();
+3476:     }
+3477: 
+3478:     public static final void f(int n) {
+3479:         if (gn) {
+3480:             gp = n;
+3481:         }
+3482:         if (gp != n) {
+3483:             return;
+3484:         }
+3485:         ij = -1;
+3486:         if (eo == null) {
+3487:             try {
+3488:                 eo = new Image[8];
+3489:                 n = 0;
+3490:                 while (n < 8) {
+3491:                     a.eo[n] = Image.createImage((String)("/cp/gb" + n + ".png"));
+3492:                     ++n;
+3493:                 }
+3494:                 ep = new Image[3];
+3495:                 n = 0;
+3496:                 while (n < 3) {
+3497:                     a.ep[n] = Image.createImage((String)("/cp/gh" + n + ".png"));
+3498:                     ++n;
+3499:                 }
+3500:                 eq = new Image[9];
+3501:                 n = 0;
+3502:                 while (n < 9) {
+3503:                     a.eq[n] = Image.createImage((String)("/cp/gl" + n + ".png"));
+3504:                     ++n;
+3505:                 }
+3506:             }
+3507:             catch (Exception exception) {}
+3508:         }
+3509:         gw = 22;
+3510:         gx = 32;
+3511:         gy = gw >> 1;
+3512:         gz = gx >> 1;
+3513:         gA = gw >> 2;
+3514:         gB = gx >> 2;
+3515:         if (gn) {
+3516:             gq = fh - fp * 10;
+3517:             gr = fi;
+3518:             gC = fp;
+3519:             gu = 4;
+3624:         dL = new int[dx];
+3625:         dN = new int[dx];
+3626:         dO = new int[dx];
+3627:         dP = new int[dx];
+3628:         dQ = new int[dx];
+3629:         dy = new String[dx][];
+3630:     }
+3631: 
+3632:     private static void y(int n) {
+3633:         if (ev == null) {
+3634:             ev = new Image[n][2];
+3635:             int n2 = 0;
+3636:             while (n2 < n) {
+3637:                 int n3 = 0;
+3638:                 while (n3 < 2) {
+3639:                     try {
+3640:                         a.ev[n2][n3] = Image.createImage((String)("/cp/f" + n2 + "h" + n3 + ".png"));
+3641:                     }
+3642:                     catch (Exception exception) {}
+3643:                     ++n3;
+3644:                 }
+3645:                 ++n2;
+3646:             }
+3647:         }
+3648:     }
+3649: 
+3650:     private static void a(int n, int n2, int n3, int n4, int n5, int n6, int n7, String[] stringArray) {
+3651:         a.dC[n] = n3 * 24 + (n << 2);
+3652:         a.dD[n] = n4 * 24;
+3653:         a.dE[n] = 0;
+3654:         a.dF[n] = 0;
+3655:         a.dG[n] = 1;
+3656:         a.dM[n] = -1;
+3971:         ch = new int[2];
+3972:         a.cf[1] = -1;
+3973:         a.cf[0] = -1;
+3974:     }
+3975: 
+3976:     public static void k(int n) {
+3977:         hl = false;
+3978:         if (n == 95 && !eK) {
+3979:             hl = true;
+3980:             eC = new Image[6];
+3981:             try {
+3982:                 a.eC[0] = Image.createImage((String)"/mob/b20.png");
+3983:                 a.eC[1] = Image.createImage((String)"/mob/b21.png");
+3984:                 a.eC[2] = Image.createImage((String)"/mob/b22.png");
+3985:                 a.eC[3] = eC[1];
+3986:                 a.eC[4] = Image.createImage((String)"/mob/b23.png");
+3987:                 a.eC[5] = Image.createImage((String)"/cp/f2h0.png");
+3988:             }
+3989:             catch (IOException iOException) {}
+3990:             hs = 192;
+3991:             ht = 264;
+3992:             hw = 120;
+3993:             hx = 504;
+3994:             hu = 0;
+3995:             hv = -1;
+3996:             hq = 90000;
+3997:             hp = 90000;
+3998:             hG = new int[6];
+3999:             hH = new int[6];
+4000:             hK = new int[6];
+4001:             hL = new int[6];
+4002:             int[] nArray = new int[6];
+4003:             nArray[0] = 20;
+5757:             a.j(fh - jh, fi + 1, 1024);
+5758:             a.j(fh - jh, fi - 2, 1024);
+5759:         }
+5760:         if (a.g(fh + jh, fi + 1, 1024)) {
+5761:             a.j(fh + jh, fi + 1, 1024);
+5762:             a.j(fh + jh, fi - 2, 1024);
+5763:         }
+5764:     }
+5765: 
+5766:     private static void T() {
+5767:         if (++C == 1) {
+5768:             a.f(fh, fi - 40);
+5769:             aM = 0;
+5770:             if (es == null) {
+5771:                 es = new Image[4];
+5772:                 try {
+5773:                     a.es[0] = Image.createImage((String)"/cp/ch0x.png");
+5774:                     a.es[1] = Image.createImage((String)"/cp/ch1x.png");
+5775:                 }
+5776:                 catch (Exception exception) {}
+5777:                 a.es[2] = es[1];
+5778:                 a.es[3] = es[0];
+5779:             }
+5780:         } else if (C >= 30) {
+5781:             A = 1;
+5782:             C = 0;
+5783:             if (I == 0) {
+5784:                 return;
+5785:             }
+5786:             int n = 0;
+5787:             while (n < 4) {
+5788:                 Image image = er[n];
+5789:                 a.er[n] = es[n];
+5790:                 a.es[n] = image;

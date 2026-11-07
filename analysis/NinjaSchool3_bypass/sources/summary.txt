@@ -1,0 +1,30 @@
+Summary for /Users/quangdang/Downloads/ninja/NinjaSchool3_bypass.jar
+Decompiled with CFR 0.152
+
+
+c
+----------------------------
+
+d()
+  Unable to fully structure code
+
+
+d
+----------------------------
+
+a()
+  Unable to fully structure code
+
+
+h
+----------------------------
+
+a()
+  Unable to fully structure code
+
+
+q
+----------------------------
+
+run()
+  Unable to fully structure code

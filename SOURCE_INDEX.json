@@ -1,0 +1,317 @@
+[
+  {
+    "game": "NinjaSchool1",
+    "path": "analysis/NinjaSchool1/sources/Midlet.java",
+    "bytes": 19782,
+    "lines": 572,
+    "sha256": "c5ca6637496078514450b4a232b6a1699580ffac95c6c834add736afd7a782c1"
+  },
+  {
+    "game": "NinjaSchool1",
+    "path": "analysis/NinjaSchool1/sources/a.java",
+    "bytes": 584726,
+    "lines": 15084,
+    "sha256": "200affe8afc8bafe893b5cf965d3cddc7682ed4a1d079f5299f9abae80f5683e"
+  },
+  {
+    "game": "NinjaSchool1",
+    "path": "analysis/NinjaSchool1/sources/b.java",
+    "bytes": 2751,
+    "lines": 100,
+    "sha256": "5e4196962765906dedd855509661605a61d1d8aac67975af80d4373251cac5c7"
+  },
+  {
+    "game": "NinjaSchool1",
+    "path": "analysis/NinjaSchool1/sources/javay/microedition/io/Connector.java",
+    "bytes": 2840,
+    "lines": 98,
+    "sha256": "4e773229dd706db76fa061c517a064c847831d29d514b4bb858c1d10615259c4"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/Midlet.java",
+    "bytes": 26435,
+    "lines": 793,
+    "sha256": "a7521c45d77d7481eba6bf892fb5b90c7a82b6ae563b49dd66cfd22f7e5a27e0"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/a.java",
+    "bytes": 102836,
+    "lines": 2885,
+    "sha256": "4bd8ed457119aebbd72228b5e0ae6d3f21f6e88ca146d255ad138bd91f8d4d4e"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/b.java",
+    "bytes": 22175,
+    "lines": 674,
+    "sha256": "0f4eb5ba8346f4e1db1abd9e7a9bff426c0e4ed7647dad020287eb1a8410bffb"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/c.java",
+    "bytes": 17603,
+    "lines": 530,
+    "sha256": "be0b124283da7885bafea0f6035801a88ad340a095a52a9f8a4b9b972a08c057"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/d.java",
+    "bytes": 315,
+    "lines": 18,
+    "sha256": "423fabd72b0b1421a3eeda22d745f29ab1f98916e72c8a35e6a65f86e05c6b86"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/e.java",
+    "bytes": 11465,
+    "lines": 400,
+    "sha256": "1b56cc262035088b3a40bf8d81e218a5afe316f437dcf940f6d7160a7626e25b"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/f.java",
+    "bytes": 3182,
+    "lines": 109,
+    "sha256": "89a3ac688a6751f7fc7f800a55f44a9a32a2bf7d037ef03b98a6d6834a31148c"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/g.java",
+    "bytes": 136665,
+    "lines": 3747,
+    "sha256": "2e7da3365343731e6d856f7f8dcd5f2f585a06742a62739e0c55fea43c75c378"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/h.java",
+    "bytes": 12098,
+    "lines": 415,
+    "sha256": "2eadd7ccc65718297ea8536230b6ff5855436d2b88bbad3de6927e6fde322db0"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/i.java",
+    "bytes": 1121,
+    "lines": 50,
+    "sha256": "4ef3c03fadcc148672e6f887bf60f60c5a5f1d4baca81ac7afad9b5f16bd83f0"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/j.java",
+    "bytes": 28374,
+    "lines": 1004,
+    "sha256": "50868ae21640f530933c971bc3437d6bae05e30cb447bdd41e9948f1eb6afb85"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/javay/microedition/io/Connector.java",
+    "bytes": 2844,
+    "lines": 98,
+    "sha256": "3353772cb2f6d27c0dc10c05dcb2b4b84a44a0caaee68d1a28de45524514ab7f"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/k.java",
+    "bytes": 422,
+    "lines": 23,
+    "sha256": "a41f46e7c9e316fee88371b08bac869286c9930699d71ee4d7b28b3bfe8f6240"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/l.java",
+    "bytes": 50326,
+    "lines": 25,
+    "sha256": "6e408e2d6de89e958e4e1ba4d0f211d3b0f71c238b13dc9a84f17464e4e38845"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/m.java",
+    "bytes": 9688,
+    "lines": 369,
+    "sha256": "3ed94e13f9e21a5784a425ac44ed68045744216d644642ebaf894ad97365b804"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/n.java",
+    "bytes": 26270,
+    "lines": 784,
+    "sha256": "1d1d5732ed0015d26bbca37a3e0606dbf2283bfd870ee6a7a8627241c963f1a9"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/o.java",
+    "bytes": 1236,
+    "lines": 65,
+    "sha256": "2b9954e3432ba06efee7a5ab3be602c646ae6905ec02c4e5e127a5cd130f193a"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/p.java",
+    "bytes": 2321,
+    "lines": 95,
+    "sha256": "09759bf1a24cda707187e8376c27c9e6ae8ef4c745c26e9678b7e5cad60247f1"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/q.java",
+    "bytes": 280060,
+    "lines": 8024,
+    "sha256": "bc8e275202f6ffd98f643f12cc56f6f09acd21f1ca333edff2f24188baa9d916"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/r.java",
+    "bytes": 681,
+    "lines": 34,
+    "sha256": "784f6ef0b1efb758b6d66c956d2f38364eab149bdc7ed53c7c470dce84bda266"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/s.java",
+    "bytes": 297,
+    "lines": 17,
+    "sha256": "225bb9f869b814ca9d3f645c9f3e6215e98dfa27ceedfeeb6f5628deed046990"
+  },
+  {
+    "game": "NinjaSchool2",
+    "path": "analysis/NinjaSchool2/sources/t.java",
+    "bytes": 27719,
+    "lines": 792,
+    "sha256": "643998a4037709ed71c2aece699e25fb7c678a7533da394d6cfcb9808eaff011"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/Midlet.java",
+    "bytes": 27041,
+    "lines": 816,
+    "sha256": "b9b8fab219e47b3858e429a8586ce48f288596cc5aa9782a88033c5d8e5525fb"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/MrQuyet.java",
+    "bytes": 2644,
+    "lines": 95,
+    "sha256": "448b998f389e907964929f0553b9685338a1c6d12270e9a9b6955a05b1ea69d9"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/a.java",
+    "bytes": 124107,
+    "lines": 3032,
+    "sha256": "48e557f225f4217ba8d4c024b2c2e78e685e82a3d1c1508847e56beb5deb733f"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/b.java",
+    "bytes": 20942,
+    "lines": 651,
+    "sha256": "5f02ed2c981f33120406592cdbc11755fea87f087164ffe6c9a974ab1d6fd32b"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/c.java",
+    "bytes": 12359,
+    "lines": 421,
+    "sha256": "cced7043bf66c62db4b4cd499290fd5d39071b0096e37ef7c8e5f8c388e152b3"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/d.java",
+    "bytes": 19642,
+    "lines": 561,
+    "sha256": "20f0009b390336837167f98f5dac6358f94529254fad5117e1b53bb48026b577"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/e.java",
+    "bytes": 6665,
+    "lines": 236,
+    "sha256": "0cbaaeb3d9d5baa52c91dacce2127b8e1283eca3d859cd09b175c535733e5b09"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/f.java",
+    "bytes": 25527,
+    "lines": 829,
+    "sha256": "7c8d76b113719480a26f8f1a0d944654ab7dc307d7f43e740bb313958f7bc73c"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/g.java",
+    "bytes": 6821,
+    "lines": 223,
+    "sha256": "9425544d792012ee8b09e9036e27a4dabe328086518522064ef8a3de7b7ec5bd"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/h.java",
+    "bytes": 141859,
+    "lines": 4056,
+    "sha256": "cfc36eb13a0b827d3749690b7d363b2b8249490504fc8ee3c6a6ea4326d23330"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/i.java",
+    "bytes": 73180,
+    "lines": 2274,
+    "sha256": "d1a4bc8fad521d064802ae967d48a6e91094a7b5bdc4ec406bef8c0f846071f3"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/j.java",
+    "bytes": 20836,
+    "lines": 696,
+    "sha256": "2d98441eb922031d408bd1a9ed2a8edf9376de3bab55c9656e96f28fe7ab61c5"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/k.java",
+    "bytes": 25753,
+    "lines": 849,
+    "sha256": "7642d3f73339fd4bcbfa658c121ccef10f689a2bc9d16a2af52b52a018f086f7"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/l.java",
+    "bytes": 4630,
+    "lines": 172,
+    "sha256": "2ec845f29e2a279f353dfbac1846a676e52f7b208cd49c131062897b5fb79015"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/m.java",
+    "bytes": 39236,
+    "lines": 33,
+    "sha256": "7c904232954954ca3c7305f537ea773b281cc28d0c3458e2a96dea3c13bfd0bd"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/n.java",
+    "bytes": 16013,
+    "lines": 484,
+    "sha256": "af298609a31a513b03f9f7765c6258f44287f011e7a68304e9236e9b546e25f8"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/o.java",
+    "bytes": 1609,
+    "lines": 84,
+    "sha256": "0c3edd11f05b23073186cfd72dd6482d221a4b5f60d73db34c4c52826e981363"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/p.java",
+    "bytes": 291,
+    "lines": 14,
+    "sha256": "effeccac3eaa287f73e2a58fdca17c7722322884d11493293445944d59af40e7"
+  },
+  {
+    "game": "NinjaSchool3_bypass",
+    "path": "analysis/NinjaSchool3_bypass/sources/q.java",
+    "bytes": 346821,
+    "lines": 9781,
+    "sha256": "60f9a56ea46f7773db03ebb8b6e450148524123459ebf07e211d79e2800352ef"
+  }
+]

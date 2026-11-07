@@ -1,0 +1,17 @@
+[
+  {
+    "file": "NinjaSchool1.jar",
+    "bytes": 298021,
+    "sha256": "8eac77fd4cfef3903d210db32792ef3fb34fceaaf77a700ed9a4873aea5e9cb3"
+  },
+  {
+    "file": "NinjaSchool2.jar",
+    "bytes": 441785,
+    "sha256": "5ac8d83a2f6f12c2eb41e233a0b9ab22de92cdd9f0f877885890c99cc89b4ac8"
+  },
+  {
+    "file": "NinjaSchool3_bypass.jar",
+    "bytes": 501187,
+    "sha256": "692def81e454aa89a129df3a621fb95ee61c614dbf66fecefb347320e68993c7"
+  }
+]

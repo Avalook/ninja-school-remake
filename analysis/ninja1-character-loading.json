@@ -1,0 +1,79 @@
+{
+  "image_fields": [
+    {
+      "symbol": "eg",
+      "role": "body",
+      "resource_pattern": "/cp/cb{n}.png",
+      "lines": [
+        3253,
+        3256
+      ]
+    },
+    {
+      "symbol": "er",
+      "role": "head",
+      "resource_pattern": "/cp/ch{n}.png",
+      "lines": [
+        3259,
+        3262
+      ]
+    },
+    {
+      "symbol": "et",
+      "role": "legs",
+      "resource_pattern": "/cp/cl{n}.png",
+      "lines": [
+        3265,
+        3268
+      ]
+    },
+    {
+      "symbol": "es",
+      "role": "head_variant",
+      "resource_pattern": "/cp/ch0x.png, /cp/ch1x.png",
+      "lines": [
+        1999,
+        2001,
+        2002,
+        5771,
+        5773,
+        5774
+      ]
+    }
+  ],
+  "related_fields": [
+    "fj",
+    "fk",
+    "fl",
+    "fm",
+    "fn",
+    "fo",
+    "gw",
+    "gx",
+    "gy",
+    "gz",
+    "gA",
+    "gB",
+    "gq",
+    "gr",
+    "gC",
+    "gu",
+    "gp",
+    "ij",
+    "ff",
+    "fG"
+  ],
+  "draw_helpers": [
+    "i()",
+    "H()",
+    "f(int)",
+    "T()"
+  ],
+  "unknown": [
+    "eo",
+    "ep",
+    "eq",
+    "ev",
+    "eC"
+  ]
+}

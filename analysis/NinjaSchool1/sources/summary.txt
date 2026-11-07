@@ -1,0 +1,11 @@
+Summary for /Users/quangdang/Downloads/ninja/NinjaSchool1.jar
+Decompiled with CFR 0.152
+
+
+a
+----------------------------
+
+paint(javax.microedition.lcdui.Graphics )
+  Unable to fully structure code
+run()
+  Unable to fully structure code

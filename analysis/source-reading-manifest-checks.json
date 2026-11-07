@@ -1,0 +1,11 @@
+{
+  "checked_at": 1794011830.12783,
+  "source_files": 45,
+  "source_lines": 62112,
+  "source_bytes": 2290208,
+  "chunks": 189,
+  "lossless_contiguous_ranges": true,
+  "long_lines_preserved": true,
+  "reader_sha256": "c86164896dba279c7994decc89be2e5d1775cafa4fc60212164dbba22dd3e8da",
+  "not_a_model_reading_result": true
+}

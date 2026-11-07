@@ -1,0 +1,61 @@
+{
+  "status": "passed",
+  "source_contract": {
+    "source": "analysis/NinjaSchool1/sources/a.java",
+    "map99_config_lines": "11388-11397",
+    "tile_size_line": 1425,
+    "exit_logic_lines": "8197-8217",
+    "destination_map": 4,
+    "destination_spawn": [
+      48,
+      120
+    ],
+    "facing": "left",
+    "right_exit_threshold": 1656,
+    "map4_new_game_sequence": "D(0), a.java:4147-4156"
+  },
+  "checks": [
+    {
+      "name": "Godot import",
+      "result": "passed",
+      "command": "Godot --headless --editor --path games/ninja1-original --quit"
+    },
+    {
+      "name": "map99 and map4 smoke",
+      "result": "passed",
+      "command": "Godot --headless --path games/ninja1-original --script res://tests/smoke.gd",
+      "output": "SMOKE_PASS ORIGINAL_MAP99_AND_MAP4"
+    },
+    {
+      "name": "map99 right-edge scene transition",
+      "result": "passed",
+      "command": "Godot --headless --path games/ninja1-original --script res://tests/map_transition.gd",
+      "output": "TRANSITION_PASS; remains on map99 at x=1655 and reaches map4 at x=1656, source entry (48,120), facing left",
+      "below_threshold_case": "passed at x=1655",
+      "entry_y_tolerance": "120..132 after transition frames"
+    },
+    {
+      "name": "macOS Universal 2 export",
+      "result": "passed",
+      "artifact": "builds/ninja1-original/NinjaSchool1-Map99-Preview.app",
+      "architectures": [
+        "x86_64",
+        "arm64"
+      ]
+    },
+    {
+      "name": "bundled executable startup",
+      "result": "passed",
+      "frames": 120,
+      "mode": "headless"
+    }
+  ],
+  "not_verified": [
+    "native GUI visual quality",
+    "map4 source cutscene D(0)",
+    "tile transforms on map4",
+    "original enemies and AI",
+    "Windows runtime"
+  ],
+  "checked_at": 1794024494.6105442
+}

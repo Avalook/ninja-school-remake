@@ -1,0 +1,7 @@
+.godot/
+__pycache__/
+*.pyc
+.DS_Store
+builds/
+.tools/
+*.blend1

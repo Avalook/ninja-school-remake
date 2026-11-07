@@ -1,0 +1,9 @@
+{
+  "stage": "samples_generated_pending_review",
+  "pid": null,
+  "model": "Runpod/FLUX.2-klein-4B-mflux-4bit",
+  "model_path": "/Users/quangdang/.cache/huggingface/hub/models--Runpod--FLUX.2-klein-4B-mflux-4bit/snapshots/7ee1b3aa8178a1240050490072196a57da2bf2a9",
+  "updated_at": 1794025568.227112,
+  "generated_assets": 2,
+  "current_job": null
+}

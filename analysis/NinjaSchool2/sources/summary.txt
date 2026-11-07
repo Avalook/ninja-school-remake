@@ -1,0 +1,32 @@
+Summary for /Users/quangdang/Downloads/ninja/NinjaSchool2.jar
+Decompiled with CFR 0.152
+
+
+a
+----------------------------
+
+b()
+  Unable to fully structure code
+
+
+g
+----------------------------
+
+a()
+  Unable to fully structure code
+i()
+  Unable to fully structure code
+
+
+t
+----------------------------
+
+b()
+  Unable to fully structure code
+
+
+q
+----------------------------
+
+run()
+  Unable to fully structure code

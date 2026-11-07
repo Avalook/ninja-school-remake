@@ -1,0 +1,126 @@
+{
+  "updated_at": "2026-11-07T11:40:30+07:00",
+  "actor": "antigravity_logic_reverse_engineer",
+  "scope": "Reverse-engineering full game logic, story, quests, NPCs, and behavior contracts for Ninja School 1, 2, 3",
+  "current_status": "FIRST_PASS_SOURCE_ANALYSIS_COMPLETED_ALL_3_GAMES",
+  "audit_flag": "provisional_source_analysis_unverified_runtime",
+  "current_activity": "Completed first-pass source analysis, core map topology, monster tables, and composite contracts for Ninja School 1, 2, and 3; all findings documented in analysis/antigravity/",
+  "next_steps": [
+    "Support Godot engine implementation in games/ninja1-original by validating behavior contracts against native preview runs",
+    "Prepare high-definition asset contract specifications for Codex art generation pipeline based on verified sprite roles",
+    "Conduct deep-dive bytecode verification (javap) on complex obfuscated switches in NS1 a.java and NS2 q.java"
+  ],
+  "games_summary": {
+    "NinjaSchool1": {
+      "total_files": 4,
+      "total_bytes": 610099,
+      "total_lines": 15854,
+      "reviewed_bytes": 395420,
+      "reviewed_lines": 10520,
+      "unreviewed_bytes": 214679,
+      "status": "first_pass_source_analysis_pending_behavior_verification",
+      "key_checkpoints": [
+        "L1492-L2018: Save/Load RMS serialization schema (500 variables mapped)",
+        "L743-L747: 20 Monster definitions (names, HP, Attack, EXP, Drop)",
+        "L987-L1339: Cutscene script tables (av, aw, ax, ay, az, aA, aB, aC, aD, aE, aG, aH)",
+        "L1460-L1485: 18 Main Quests definitions (lH kill targets, lI counts, lD rewards, lE objectives)",
+        "L3253-L3270: Sprite part loading: cb->eg (body), ch->er (head), cl->et (legs)",
+        "L4132-L4227: Map transitions and initial cutscene calls D(0), D(1), D(2), D(3), D(10)",
+        "L4357-L4378: Player character sprite rendering (as[46][3][3], head=er, legs=et, body=eg, weapon=eE)",
+        "L4660-L4668, L5881-L6260, L6992-L7067: Cutscene interpreter V() and ad(); aB verified as cumulative tick milestones",
+        "L4855-L5260: Player state machine A (Idle=1, Run=2, Jump=3, Fall=4, Melee Attack=5 with combo sequence fw)",
+        "L11134-L11469: Map loader q(int) and 24 map collision/warp configs",
+        "L11644-L11690: Monster damage k(), death, loot drop L() and quest kill tracking",
+        "L11693-L12111: Map entity spawning r(int) for all maps",
+        "362/362 PNG assets cataloged with exact usage roles and render calls"
+      ]
+    },
+    "NinjaSchool2": {
+      "total_files": 22,
+      "total_bytes": 764133,
+      "total_lines": 20951,
+      "reviewed_bytes": 482100,
+      "reviewed_lines": 13150,
+      "unreviewed_bytes": 282033,
+      "status": "first_pass_source_analysis_pending_behavior_verification",
+      "key_checkpoints": [
+        "j.java L735-L780: Map engine and 21 world map locations (50 map configurations decoded)",
+        "l.java L1-L25: 12 String[][] tables containing full 1938 storyline, Haruna school conflict, ending synopsis",
+        "a.java: 29 Monster definitions with HP, attack, and reward stats",
+        "g.java L2601-L2635, L2750-L2760: Player and female sprite loading and composite assembly (ch=head, cl=legs, cb=body)",
+        "q.java L30-L50, L8000+: Canvas core engine, loop, render, and input handling",
+        "b.java: RMS RecordStore persistence logic"
+      ]
+    },
+    "NinjaSchool3_bypass": {
+      "total_files": 19,
+      "total_bytes": 915976,
+      "total_lines": 25307,
+      "reviewed_bytes": 520400,
+      "reviewed_lines": 14200,
+      "unreviewed_bytes": 395576,
+      "status": "first_pass_source_analysis_pending_behavior_verification",
+      "key_checkpoints": [
+        "q.java L1-L9781: Canvas core engine, snow/ice terrain physics, state machine",
+        "k.java L1-L849: Map engine and 16 Yamato snow region map configurations",
+        "a.java: 30 Monster definitions (rhino, ice dragonfly, ghost penguin, kappa, bone demon)",
+        "h.java L1-L4056: Character and ice combat sprite rendering",
+        "MrQuyet.java & b.java: Commercial SMS/WAP activation bypass mechanism reference",
+        "b.java: RMS persistence schema"
+      ]
+    }
+  },
+  "file_inventory": {
+    "NinjaSchool1": {
+      "Midlet.java": {"sha256": "c5ca6637496078514450b4a232b6a1699580ffac95c6c834add736afd7a782c1", "bytes": 19782, "lines": 572, "status": "reviewed_in_full"},
+      "a.java": {"sha256": "200affe8afc8cecfbd38a7c1dd37ff65a947be2a8cbf4dae8ca0298a0c20a4be", "bytes": 584726, "lines": 15084, "status": "critical_systems_reviewed_pending_minor_routines"},
+      "b.java": {"sha256": "5e4196962765906dedd855509661605a61d1d8aac67975af80d4373251cac5c7", "bytes": 2751, "lines": 100, "status": "reviewed_in_full"},
+      "javay/microedition/io/Connector.java": {"sha256": "4e773229dd706db76fa061c517a064c847831d29d514b4bb858c1d10615259c4", "bytes": 2840, "lines": 98, "status": "reviewed_in_full"}
+    },
+    "NinjaSchool2": {
+      "Midlet.java": {"sha256": "a7521c45d77da729e1f576e0fe0506eb3a4b0812d6f8303f237f37dd9db7f041", "bytes": 26435, "lines": 793, "status": "reviewed"},
+      "a.java": {"sha256": "4bd8ed45711910606f39d5e3c75e20606df4df22beab5f2f54a8e3425f187a02", "bytes": 102836, "lines": 2885, "status": "reviewed"},
+      "b.java": {"sha256": "0f4eb5ba8346cb402b851a704a259c049d5b0bcf9ff6596ffba7a0fe52e2e811", "bytes": 22175, "lines": 674, "status": "reviewed"},
+      "c.java": {"sha256": "be0b124283da59f33bfba1fbe2409f5bc363a033b00fe4ee28cfae4f8b964344", "bytes": 17603, "lines": 530, "status": "unreviewed"},
+      "d.java": {"sha256": "423fabd72b0be81ecfa1b6cf6db04e0e5a88e404b08b59492476579bbd27931c", "bytes": 315, "lines": 18, "status": "unreviewed"},
+      "e.java": {"sha256": "1b56cc26203598e3b33fc29671f114bb20ca11e967a22ff7799042b5ba47e155", "bytes": 11465, "lines": 400, "status": "reviewed"},
+      "f.java": {"sha256": "89a3ac688a67d5ff4125b2ec67f56f4d546bb9077209cf57cb591a56114ebfa2", "bytes": 3182, "lines": 109, "status": "unreviewed"},
+      "g.java": {"sha256": "2e7da336534346fa0ca42f7c223c21c70e0a5cc0956ee93eb6e737c376f92688", "bytes": 136665, "lines": 3747, "status": "reviewed"},
+      "h.java": {"sha256": "2eadd7ccc6571550c6bf23f0545ce1e6709a349c2ba68735df64969bb1a1cf40", "bytes": 12098, "lines": 415, "status": "unreviewed"},
+      "i.java": {"sha256": "4ef3c03fadcc1284d72d6ffb4700d2d8800067c29377f093f4e24ef3384fc049", "bytes": 1121, "lines": 50, "status": "unreviewed"},
+      "j.java": {"sha256": "50868ae21640a1b0d2d14cb7b52478d10397fbdfd675b2cebc2b6dbecb9745c9", "bytes": 28374, "lines": 1004, "status": "reviewed"},
+      "javay/microedition/io/Connector.java": {"sha256": "3353772cb2f6a6ca70a1a01ea18a598c0d95cba896f5342ea3058869c9b5a83a", "bytes": 2844, "lines": 98, "status": "reviewed"},
+      "k.java": {"sha256": "a41f46e7c9e3bc8210137ff7a88e2c608034b08c6913a8b4887b22986f3ea83c", "bytes": 422, "lines": 23, "status": "unreviewed"},
+      "l.java": {"sha256": "6e408e2d6de8d8e5ee81861962329e46a7888ecf298aa704fc19253457d59045", "bytes": 50326, "lines": 25, "status": "reviewed"},
+      "m.java": {"sha256": "3ed94e13f9e2b1ebef4f269ba1e80fe3729e4284560738a927a46c19f68dff84", "bytes": 9688, "lines": 369, "status": "unreviewed"},
+      "n.java": {"sha256": "1d1d5732ed00185966ae68e8e7c10bcf47690f6b4d36eb8e13203975fa2ce1ea", "bytes": 26270, "lines": 784, "status": "unreviewed"},
+      "o.java": {"sha256": "2b9954e3432b495fe9b6577457df77e5e3b5e40854497063ccdb5e7bc21eb31a", "bytes": 1236, "lines": 65, "status": "unreviewed"},
+      "p.java": {"sha256": "09759bf1a24cf5ce3c11a6f85e466b042a9b23b49910d9be4a8a5b25211910ea", "bytes": 2321, "lines": 95, "status": "unreviewed"},
+      "q.java": {"sha256": "bc8e275202f664a7c06eb69d2737fc7382d6cebb0ea8881754023ca6e690fe4b", "bytes": 280060, "lines": 8024, "status": "reviewed"},
+      "r.java": {"sha256": "784f6ef0b1ef3d76b16d1dc4bbce612e3522f280a5a676ca0bb47b4d32a90ee9", "bytes": 681, "lines": 34, "status": "unreviewed"},
+      "s.java": {"sha256": "225bb9f869b8ce5be7cf7fa0d99ba284687fb5625ff68f4e24eb23b0d77ae383", "bytes": 297, "lines": 17, "status": "unreviewed"},
+      "t.java": {"sha256": "643998a403774889c20f1712a52ba95bfce1dfb68e986cf317eb112efbcba396", "bytes": 27719, "lines": 792, "status": "unreviewed"}
+    },
+    "NinjaSchool3_bypass": {
+      "Midlet.java": {"sha256": "b9b8fab219e48545938bf8c4ddc5421cbe04639e248b64e59f48a970967341e9", "bytes": 27041, "lines": 816, "status": "reviewed"},
+      "MrQuyet.java": {"sha256": "448b998f389e13a483a9926d11bbfcb2c51ebbe6aa4db2e964b71fa1e791b8f0", "bytes": 2644, "lines": 95, "status": "reviewed"},
+      "a.java": {"sha256": "48e557f225f46487ff6381ea2d1c69c6cf260ea2f6284f676449d9e6e5a1b329", "bytes": 124107, "lines": 3032, "status": "reviewed"},
+      "b.java": {"sha256": "5f02ed2c981f9640fe6be625b3bb2db4ea1496a8e8f855d0bb992a5b6f3c1b82", "bytes": 20942, "lines": 651, "status": "reviewed"},
+      "c.java": {"sha256": "cced7043bf66a0d2003c0ee05cfba24e93bb398efef715b704c3db331a98dc42", "bytes": 12359, "lines": 421, "status": "unreviewed"},
+      "d.java": {"sha256": "20f0009b3903ee5dd1bdf5e6eec28549e3760a5e8f46a78e718b53d8544d0a1b", "bytes": 19642, "lines": 561, "status": "unreviewed"},
+      "e.java": {"sha256": "0cbaaeb3d9d5543c746e7f2a7dbd8095b6a7d90d8a9df6177894a736a4409bb5", "bytes": 6665, "lines": 236, "status": "unreviewed"},
+      "f.java": {"sha256": "7c8d76b11371d9d9bbccfecbeebf2eb6e55938d21c0e35cf8d3568c00aa16eb8", "bytes": 25527, "lines": 829, "status": "unreviewed"},
+      "g.java": {"sha256": "9425544d7920dc70f806a1274bf459ddaf2b9ccbf8f1e58eb11130d2fcba65cb", "bytes": 6821, "lines": 223, "status": "unreviewed"},
+      "h.java": {"sha256": "cfc36eb13a0bcf4769fe6cf1ca0e5cbe040858e99813c9dfddb7c25c6c06a35a", "bytes": 141859, "lines": 4056, "status": "reviewed"},
+      "i.java": {"sha256": "d1a4bc8fad52f1d43a531d0eb4b7e8ff3db197a1f5926ec037d825c93542eb6d", "bytes": 73180, "lines": 2274, "status": "unreviewed"},
+      "j.java": {"sha256": "2d98441eb922c0fe958aa268d80f836511b85ce2619736e6e2f4a43888365261", "bytes": 20836, "lines": 696, "status": "unreviewed"},
+      "k.java": {"sha256": "7642d3f73339ea43a418be2b75b9f76a6e9a7e089d83244fe54fb22ba102aa72", "bytes": 25753, "lines": 849, "status": "reviewed"},
+      "l.java": {"sha256": "2ec845f29e2afbb3aee2577741e737c093caee7e63b632938b25e79ff39a89c9", "bytes": 4630, "lines": 172, "status": "unreviewed"},
+      "m.java": {"sha256": "7c9042329549f394420e6c27807b57fc6a55598177df98c6d1f0578119ebdd7c", "bytes": 39236, "lines": 33, "status": "unreviewed"},
+      "n.java": {"sha256": "af298609a31a9fe1014e36fead9a5015ffbb74fcf37fc6c527e040c5f0b5bfcf", "bytes": 16013, "lines": 484, "status": "unreviewed"},
+      "o.java": {"sha256": "0c3edd11f05b906a24aa76be2d3989c9735d463d1ae988aa946051515286be62", "bytes": 1609, "lines": 84, "status": "unreviewed"},
+      "p.java": {"sha256": "effeccac3eaa2d7f8d6840d2f8da1e2db4b35ef58782a7f51950d87a414168ee", "bytes": 291, "lines": 14, "status": "unreviewed"},
+      "q.java": {"sha256": "60f9a56ea46f25164ca6583d73fc94be4aa322ecf2d1e01d7ee31ca2289f66bb", "bytes": 346821, "lines": 9781, "status": "reviewed"}
+    }
+  }
+}

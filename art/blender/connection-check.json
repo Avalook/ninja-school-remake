@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "blender_version": "5.2.3 LTS",
+  "blend_saved": true,
+  "render_completed": true,
+  "render_size": [
+    1280,
+    720
+  ],
+  "inputs": [
+    "art/generated/ninja1-mountain-layer-v1.png",
+    "art/generated/ninja1-hero-cloud-v1.png"
+  ],
+  "scope": "CLI/Python harness connected; texture planes only, not rigged 3D characters"
+}

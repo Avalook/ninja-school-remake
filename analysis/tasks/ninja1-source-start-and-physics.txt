@@ -1,0 +1,12 @@
+Analyze this exact CFR evidence for Ninja School1. Return a compact JSON with: (1) fresh-game initial map id and spawn/facing, with source line proofs; (2) map dimensions; (3) movement/jump tick semantics, source constants, and what remains uncertain. Do not propose unsupported facts.
+
+Evidence:
+Midlet.java: 10519-10527 handles menu action: ba==0 calls a.x(99). a.java:3470-3476 x(n) sets v=n and starts game thread. Midlet.java:382-383 calls a.q(a.v), and line483 calls a.n(a.v).
+
+Map setup a.java q(int) lines11134-11150 and 11380-11404: q(0) is 80x19; q(99) is 70x15 and opens resource /m/99. The file analysis/maps/ninja1/map-099.json decodes 70x15 losslessly; tile at column4,row13 is raw ID2.
+
+Player init a.java n(int) lines4157-4163: if n==99: eH=true; dz=true; fh=108; fi=312; fp=-1; D(1).
+
+Idle/walk update a.java R() lines4854-4918: state A==1 increments C, wraps at >30; B=C%15<5?0:1. A==2 increments C, wraps at10; B=(C>>1)+2; horizontal coordinate updates by y; y decays one unit per update toward zero; ground check mask2. Keyboard processing lines8775-8855: aU[2] sets jump z=-8 normally or -10 if eL, A=3; direction aU[4]/[6] turns or sets y=-P/+P and A=2; diagonal aU[1]/[3] sets z=-8 and y=∓4. Midlet.java:494 sets fresh-game P=5; 495-497 other button settings. Jump update lines4942-4980: A==3 applies fi+=z and increments z each tick, then state transitions at z==0. A==4 fall lines4982-5010 applies z and increments up to18.
+
+Canvas loop a.java lines10943-10947 repaints then yields until elapsed >= aa; field aa defaults40 at a.java line42. This supports a nominal 25Hz update interval for this loop. Source decompile call path to confirm this is the gameplay loop may still need verification.

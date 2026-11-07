@@ -1,0 +1,14 @@
+Make one focused code change to the existing original Ninja School 1 Godot project `games/ninja1-original`. Keep all original JARs, old prototype, map, and sprites intact.
+
+SOURCE FACTS (verified from `analysis/NinjaSchool1/sources/a.java`; these facts are enough, do not call source tools again):
+- Lines 7441-7447: numeric input 5 sets both down/current action slots aU[5], aV[5].
+- Lines 8859-8864: when action aV[5] is pending in ordinary states, source sets character action A=5, animation fw=0, C=0, z=0, consumes aV[5].
+- Lines 8969-8972: pressing 5 during attack sets fy=true (queued combo).
+- Lines 5080-5388: attack action increments C, selects animation indices B=13..20; normal path runs fw=0 then fw=1 then fw=10 and returns to idle. Source update interval aa=40 ms at line42 (25 Hz).
+- PC bindings: J and keypad 5 are aliases for original numeric key 5. Preserve A/D + arrows and W/Space.
+
+Change requested: implement an attack action in `player.gd` with a 25 Hz source tick/counter and an attack signal/hitbox facing the player. Do not invent enemy damage or add a fake enemy to the shipped map; damage/target details are unverified. A one-hit-per-swing reusable Area2D may target nodes in group `enemies` that implement `take_damage`, but keep amount as a clearly named temporary constant. Add a small provisional slash indicator only while the active hit window is open. Make repeated press during an attack queue at most one combo if it can be done simply; otherwise explicitly leave combo queued as deferred because full state logic isn't yet ported.
+
+First call `read_code` for `player.gd` and `tests/smoke.gd` using those exact project-relative paths. Then use at most one `write_code` for each necessary file and immediately call `check_project`, `smoke_test`, `run_game`. Do not call `read_reference`; source evidence is above. Avoid all path prefixes like `games/ninja1-original/` in bridge tool arguments. Keep edits focused; no invented story or quest content.
+
+Smoke test must preserve existing map99, spawn, movement, jump, ground, and camera checks; add only deterministic assertions that a J/keypad-5 press activates the source attack state and that its hit window closes after source-derived duration. If a mock enemy test cannot be added cleanly without changing the game scene, omit it. Do not claim entire combat or full game is restored. Finish with brief Vietnamese note including exact changed files and check results.

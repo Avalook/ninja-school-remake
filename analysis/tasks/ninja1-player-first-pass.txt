@@ -1,0 +1,25 @@
+TÁC VỤ MÃ NGẮN, ĐÃ CÓ BẰNG CHỨNG ĐẦY ĐỦ Ở ĐÂY. Hãy GHI CODE NGAY trong `games/ninja1-original`; tuyệt đối KHÔNG gọi read_code/search_reference/read_reference (worker trước đã lặp đọc đến hết 16 bước mà không viết). Dùng `copy_asset`, `write_code`, `replace_code`, rồi `check_project`, `smoke_test`, `run_game`. Tối đa 6 tool rounds. Giữ nguyên JAR và `games/ninja1` prototype.
+
+Sprite data chép nguyên văn từ `analysis/NinjaSchool1/sources/a.java:846-867`; renderer `a.java:4357-4375`; chuyển động đi `a.java:4893-4912`:
+- `as[B]` là 3 bộ [assetIndex,xOffset,yOffset], thứ tự đầu/head, chân/legs, thân/body.
+- Frames 0-6 (mỗi frame là [head, legs, body]):
+0 [[0,-10,32],[1,-7,7],[1,-11,15]]
+1 [[0,-10,33],[1,-7,7],[1,-11,16]]
+2 [[1,-10,33],[2,-10,11],[2,-9,16]]
+3 [[1,-10,32],[3,-11,9],[3,-11,16]]
+4 [[1,-10,34],[4,-9,9],[4,-8,16]]
+5 [[1,-10,34],[5,-11,11],[5,-10,17]]
+6 [[1,-10,33],[6,-9,9],[6,-8,16]]
+- Loader: head index i -> `resources/cp/chi.png`; legs -> `cli.png`; body -> `cbi.png`. Thus copy only exact required 13 original assets: `cp/ch0.png`, `cp/cl1.png`..`cl6.png`, `cp/cb1.png`..`cb6.png` using copy_asset. Keep alpha.
+- Right-facing source draws head, legs, body at (fh+xOffset, fi-yOffset) top-left. Left-facing source draws horizontally mirrored, anchored RIGHT|TOP at (fh-xOffset, fi-yOffset); with Sprite2D centered=false left top-left should be `-xOffset-texture_width`, y `-yOffset` relative to origin. Draw order head, legs, body.
+- Source movement case2 lines4893-4912 cycles B=(C>>1)+2 => frames2..6. Frame0/1 are an approximate idle pair. Source movement collision masks4/8 are directional; masks ground2 are source-verified static map colliders already present. Do not implement combat/HP yet.
+- Existing original map is 80x19, tile24. The raw map has solid tile ID2 at cell (20,17), top y=408. Use provisional player foot position (492,408), above this floor. This is a visible map0 test spawn ONLY; actual story start map/spawn has not been proven. Temporary controls/tuning: A/D or arrows; W/Space jump; walking speed 150 px/s, jump -330, gravity980 are prototype tuning, not claimed original values.
+- Window stays1280x720, original tile atlas and nearest sampling. `TerrainCollision` child already has mask2 original grid colliders. CharacterBody2D should use a rectangle collider about14x32 with center y=-16 relative to foot point, floor snap/move_and_slide.
+
+Implement:
+1. Add focused `player.gd`: CharacterBody2D, original head+legs+body Sprite2D parts, frames above, idle0/1 and walk2..6 approximation, flip math above, provisional movement/jump. No block art. Do not add J combat yet.
+2. Integrate in `original_map.gd` using exact map0 temporary spawn, CharacterBody2D with existing terrain collision and camera follow/clamp. Stop arrows from only panning; arrows move character. HUD accurately says original sprite/player on reconstructed map, provisional spawn/physics and controls, combat/story not restored.
+3. Copy all 13 assets via tool. Modify existing `tests/smoke.gd` by exact `replace_code` anchor `assert(scene.camera.zoom == Vector2(1.5,1.5), "World zoom")` to append checks that player exists, has body/head/legs textures and has collision shape. Don't assert unverified start coordinates or original game fidelity.
+4. Run check_project, smoke_test, run_game. Fix only direct failures. Do not export Windows.
+
+IMPORTANT bridge cap: never send more than 8 tool calls in one assistant response. Copy first 8 assets in one response, remaining 5 in the next; then batch write_code and the two replace_code edits. No tool batch over 8. No additional research. If a tool fails, make at most one corrected attempt. End with brief Vietnamese factual status.

@@ -1,0 +1,94 @@
+{
+  "tile_image_path": "/t/t.png",
+  "tile_size": 24,
+  "draw_rules": {
+    "base": {
+      "ids": "1-120",
+      "source_y": "(id-1)*24",
+      "exclusions": "id==0"
+    },
+    "anim_0x20": {
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        36,
+        37,
+        54,
+        91,
+        92,
+        93,
+        94,
+        73,
+        74,
+        97,
+        98,
+        120
+      ],
+      "source_y": "24*(w%4)",
+      "img": "/t/wtf.png"
+    },
+    "anim_0x40": {
+      "ids": [
+        19,
+        35
+      ],
+      "source_y": "24*((w%8)>>2)",
+      "img": "/t/wts.png",
+      "pre_cond": "check_above(0x20|0x2000)"
+    },
+    "anim_0x1000": {
+      "ids": [
+        35
+      ],
+      "source_y": "(id-1)*24",
+      "img": "/t/t.png",
+      "pre_cond": "check_above(0x20|0x2000)"
+    },
+    "anim_0x10": {
+      "ids": [
+        8,
+        9,
+        10,
+        12,
+        13,
+        14,
+        30
+      ],
+      "transform": "x_offset_calc",
+      "source_y": "(id-1)*24"
+    },
+    "anim_0x100": {
+      "ids": [
+        32
+      ],
+      "transform": "x_offset_calc",
+      "source_y": "(id-1)*24",
+      "img": "/t/tb.png"
+    },
+    "anim_0x200": {
+      "ids": [
+        33,
+        34
+      ],
+      "source_y": "(id-1)*24",
+      "offset_y": "+2"
+    }
+  },
+  "runtime_tile_transforms": [
+    "x_offset: (jh-2)*jj/jh + bF (L11512)",
+    "x_offset: (jh-1)*jj/jh + bF (L11549)",
+    "y_offset: +1 (L11525)",
+    "y_offset: +2 (L11554)"
+  ],
+  "uncertainties": [
+    "jh value assumed 24 based on drawRegion dims",
+    "w variable source not provided",
+    "iP/iQ map dimensions not provided",
+    "Flag 0x400 (L11524) logic incomplete in snippet"
+  ]
+}

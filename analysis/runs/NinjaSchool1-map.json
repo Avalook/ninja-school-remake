@@ -1,0 +1,13 @@
+{
+  "status": "raw_grids_decoded",
+  "phase": "original_map_recovery",
+  "started_at": 1793994744.044477,
+  "updated_at": 1793995371.656526,
+  "model": "qwen3.8-27b-mac:latest",
+  "generated_tokens": 579,
+  "error": null,
+  "artifact": "analysis/maps/ninja1/index.json",
+  "map_count": 24,
+  "total_cells": 26571,
+  "warning": "Ollama /api/chat: timed out"
+}

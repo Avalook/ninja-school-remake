@@ -1,0 +1,171 @@
+{
+  "status": "raw_grids_decoded",
+  "game": "NinjaSchool1",
+  "map_count": 24,
+  "total_cells": 26571,
+  "maps": [
+    {
+      "id": 0,
+      "columns": 80,
+      "rows": 19,
+      "tile_pixels": 24
+    },
+    {
+      "id": 1,
+      "columns": 60,
+      "rows": 14,
+      "tile_pixels": 24
+    },
+    {
+      "id": 2,
+      "columns": 60,
+      "rows": 16,
+      "tile_pixels": 24
+    },
+    {
+      "id": 3,
+      "columns": 120,
+      "rows": 12,
+      "tile_pixels": 24
+    },
+    {
+      "id": 4,
+      "columns": 80,
+      "rows": 15,
+      "tile_pixels": 24
+    },
+    {
+      "id": 5,
+      "columns": 20,
+      "rows": 80,
+      "tile_pixels": 24
+    },
+    {
+      "id": 6,
+      "columns": 250,
+      "rows": 12,
+      "tile_pixels": 24
+    },
+    {
+      "id": 7,
+      "columns": 80,
+      "rows": 14,
+      "tile_pixels": 24
+    },
+    {
+      "id": 8,
+      "columns": 80,
+      "rows": 14,
+      "tile_pixels": 24
+    },
+    {
+      "id": 9,
+      "columns": 80,
+      "rows": 14,
+      "tile_pixels": 24
+    },
+    {
+      "id": 10,
+      "columns": 40,
+      "rows": 40,
+      "tile_pixels": 24
+    },
+    {
+      "id": 11,
+      "columns": 90,
+      "rows": 14,
+      "tile_pixels": 24
+    },
+    {
+      "id": 12,
+      "columns": 40,
+      "rows": 25,
+      "tile_pixels": 24
+    },
+    {
+      "id": 13,
+      "columns": 80,
+      "rows": 14,
+      "tile_pixels": 24
+    },
+    {
+      "id": 14,
+      "columns": 60,
+      "rows": 16,
+      "tile_pixels": 24
+    },
+    {
+      "id": 15,
+      "columns": 40,
+      "rows": 30,
+      "tile_pixels": 24
+    },
+    {
+      "id": 16,
+      "columns": 70,
+      "rows": 15,
+      "tile_pixels": 24
+    },
+    {
+      "id": 17,
+      "columns": 50,
+      "rows": 20,
+      "tile_pixels": 24
+    },
+    {
+      "id": 18,
+      "columns": 70,
+      "rows": 15,
+      "tile_pixels": 24
+    },
+    {
+      "id": 94,
+      "columns": 24,
+      "rows": 14,
+      "tile_pixels": 24
+    },
+    {
+      "id": 95,
+      "columns": 25,
+      "rows": 14,
+      "tile_pixels": 24
+    },
+    {
+      "id": 96,
+      "columns": 25,
+      "rows": 14,
+      "tile_pixels": 24
+    },
+    {
+      "id": 97,
+      "columns": 25,
+      "rows": 13,
+      "tile_pixels": 24
+    },
+    {
+      "id": 99,
+      "columns": 70,
+      "rows": 15,
+      "tile_pixels": 24
+    }
+  ],
+  "evidence": {
+    "loader_file": "sources/a.java",
+    "loader_line_range": [
+      11134,
+      11469
+    ],
+    "loader_sha256": "200affe8afc8bafe893b5cf965d3cddc7682ed4a1d079f5299f9abae80f5683e",
+    "dimension_table_independently_parsed": true,
+    "all_resource_lengths_checked": true,
+    "all_maps_losslessly_roundtripped": true,
+    "local_assessment": "analysis/ninja1-map-spec.json",
+    "format_confirmed_for_raw_decode": true
+  },
+  "limits": [
+    "Raw map data only; original graphics, collision meaning, map transitions and gameplay are not restored.",
+    "No shipped Mac or Windows executable was changed in this step."
+  ],
+  "updated_at": 1793995308.598507,
+  "model_warning": "One follow-up request for a full dimension table timed out. Dimensions were recovered by exact literal parsing and independently checked against every resource length; no retry loop was used."
+}

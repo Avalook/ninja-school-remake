@@ -1,0 +1,36 @@
+{
+  "patches": [
+    {
+      "find": "    get_viewport().clear_color = Color(0.6, 0.8, 1.0)",
+      "replace": "    RenderingServer.set_default_clear_color(Color(0.6, 0.8, 1.0))"
+    },
+    {
+      "find": "    var valid_grid: Dictionary = {}",
+      "replace": "    var valid_grid: Array = []"
+    },
+    {
+      "find": "        valid_grid[y] = row_ids\n    grid = valid_grid",
+      "replace": "        valid_grid.append(row_ids)\n    grid = {\"columns\": COLS, \"rows\": ROWS, \"cells\": valid_grid}"
+    },
+    {
+      "find": "    camera.make_current()\n    add_child(camera)",
+      "replace": "    add_child(camera)\n    camera.make_current()"
+    },
+    {
+      "find": "    if dir != Vector2.ZERO:\n        pan_camera(camera.position + dir * PAN_SPEED * delta)",
+      "replace": "    pan_camera(dir * PAN_SPEED * delta)"
+    },
+    {
+      "find": "    var target: Vector2 = delta",
+      "replace": "    var target: Vector2 = camera.position + delta"
+    },
+    {
+      "find": "    for y in range(ROWS):\n        if not grid.has(y):\n            continue\n        var row: Array = grid[y]",
+      "replace": "    var cells: Array = grid.get(\"cells\", [])\n    for y in range(ROWS):\n        if y >= cells.size():\n            continue\n        var row: Array = cells[y]"
+    },
+    {
+      "find": "            draw_texture_rect_region(atlas, src, dst)",
+      "replace": "            draw_texture_rect_region(atlas, dst, src)"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+Repair the EXISTING macOS technical prototype. Do not recreate it or investigate Java sources.
+
+Fresh verification: check_project PASSES. smoke_test currently prints:
+OK: player tồn tại
+OK: player đứng trên sàn (y=480.0)
+OK: player không rơi xuyên sàn
+OK: di chuyển phải (dx=73.3)
+OK: có 3 kẻ địch
+FAIL: tấn công làm giảm máu kẻ địch (60 -> 60)
+OK: restart khôi phục máu
+OK: restart khôi phục 3 kẻ địch
+SMOKE_FAIL (1 lỗi)
+
+Read player.gd, enemy.gd and tests/smoke.gd first (batch the three read_code calls, max120 lines each). Only read the relevant main.gd setup if needed. Determine why the actual melee attack does not damage the enemy placed in range. Preserve meaningful tests; do NOT remove the attack assertion or directly damage an enemy inside a test to fake an attack.
+
+Prefer the replace_code tool to make a small exact patch instead of rewriting whole files. Fix the actual collision/attack behavior and any real initialization issue. Keep the playable scene, UI, movement and restart intact. Do not add features or new reports.
+
+Run check_project, smoke_test and run_game after the patch. Fix any remaining failure using targeted reads and replacements. Stop only when all pass or when the bounded budget ends. No Windows export needed yet; user wants to play on Mac first. Finish with a short actual status.

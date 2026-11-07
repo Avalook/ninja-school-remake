@@ -1,0 +1,212 @@
+{
+  "project": "Ninja School 1–3 PC remake",
+  "workspace": "/Users/quangdang/Downloads/ninja",
+  "updated_at": 1794026135.401293,
+  "mode": "bounded_local_work",
+  "completed": [
+    "Three original JAR files preserved and inventoried with SHA-256",
+    "REA artifact inspections saved for all three games",
+    "CFR exported 4/22/19 Java files; runtime correctness unverified",
+    "Ninja School 1 local investigation and five-part report completed",
+    "Godot 4.7.2 and Windows x64 export templates installed and checksummed",
+    "Playable macOS technical training arena exported as .app; real native input and defeat3/gate win verified",
+    "Godot import + 15 gameplay assertions +120-frame startup passed; restart overlay, enemy-floor collision and pause fixed",
+    "Decoded all24 original NinjaSchool1 map byte grids (26,571 cells), with source-literal dimensions and lossless roundtrip checks; no graphics/collision restoration claimed",
+    "Original atlas base tile mapping checked against renderer expressions; static preview of24 original maps validated with fixtures and browser map0/map1/zoom; not playable or HD",
+    "Imported original map0 + exact atlas into separate games/ninja1-original Godot project; import, smoke assertions,120-frame startup and native render/keyboard camera/exit verified; scene viewer only",
+    "Decoded original map cell flag masks from source assignments and movement call sites; added Godot static ground colliders for verified mask2 tile IDs; headless smoke checks include exact solid-cell/collider count and PhysicsRayQuery hit; native Mac map render checked",
+    "Ninja School 1 original map0 now has original multipart player frames0-6, temporary A/D-arrow movement and W/Space jump, CharacterBody2D collision against source-derived map ground, and a following/clamped camera; Godot import, smoke assertions and headless startup pass.",
+    "Ninja School1 fresh New Game now starts on verified map99 at (108,312), facing left; source-tick movement and a provisional J/keypad-5 attack animation are smoke-tested on Godot.",
+    "Ninja School1 melee hit now follows source bounds, attack hit tick, base damage/weapon/buff formula and knockback through a generic test target; hit/death/loot and original enemy actors are not yet restored.",
+    "Exported current Ninja School1 map99 preview as a macOS Universal 2 .app; packaged executable passed a 120-frame headless run. Native visual QA and full gameplay remain unverified.",
+    "Restored the source-configured NinjaSchool1 map99 right-edge exit to original map4 at (48,120), facing left; smoke and dedicated transition test pass; rebuilt Mac Universal 2 preview and bundled executable ran 120 headless frames.",
+    "Map4 now displays exact source aH[1] opening title after 0.2 seconds; import, smoke, transition checks and Universal 2 app export passed. Other D(0) commands are not implemented."
+  ],
+  "current_milestone": "NinjaSchool1 Mac preview now moves from original map99 into original map4 through the verified right exit. Map4 D(0) story/cutscene, real enemies, gameplay systems and full content remain incomplete.",
+  "active_local_job": null,
+  "next_action": "Review/fix Antigravity logic outputs before adopting claims. User now has portable Claude parallel handoff and connected Blender texture-stage harness. Continue game1 source gameplay/story and source-anchored HD animation, then all games2/3; no full logic or complete game claim.",
+  "artifacts": {
+    "report": "analysis/runs/NinjaSchool1-report.md",
+    "design": "analysis/PC_REMAKE_PLAN.md",
+    "dashboard": "http://127.0.0.1:8765",
+    "windows_game_builds": [
+      "/Users/quangdang/Downloads/ninja/builds/ninja1/NinjaSchool1-Prototype.exe"
+    ],
+    "new_hd_art": [
+      "art/generated/ninja1-hero-master-v1.png",
+      "art/generated/ninja1-mountain-layer-v1.png",
+      "art/generated/ninja1-hero-cloud-v1.png"
+    ],
+    "mac_project": "games/ninja1-original",
+    "authored_files": [
+      "games/ninja1/main.tscn",
+      "games/ninja1/player.gd",
+      "games/ninja1/enemy.gd",
+      "games/ninja1/main.gd",
+      "games/ninja1/bg.gd",
+      "games/ninja1/project.godot",
+      "games/ninja1/tests/smoke.gd",
+      "games/ninja1/notes/evidence.md"
+    ],
+    "mac_app": "/Users/quangdang/Downloads/ninja/builds/ninja1-original/NinjaSchool1-Map99-Preview.app",
+    "mac_preview": "analysis/ninja1-mac-preview.png",
+    "game_checks": "analysis/ninja1-prototype-checks.json",
+    "windows_runtime_tested": false,
+    "original_map_manifest": "analysis/maps/ninja1/index.json",
+    "map_decoder": "scripts/map_data.py",
+    "map_decoder_tests": "tests/test_map_data.py",
+    "original_map_preview": "analysis/original-map-preview.html",
+    "original_map_screenshot": "analysis/ninja1-original-map-preview.png",
+    "tile_mapping_evidence": "analysis/ninja1-tile-checks.json",
+    "original_map_preview_tests": "tests/test_map_preview.js",
+    "original_scene_project": "games/ninja1-original",
+    "original_scene_checks": "analysis/ninja1-original-scene-checks.json",
+    "original_scene_screenshot": "analysis/ninja1-original-godot-preview.png",
+    "original_scene_dashboard_proof": "analysis/dashboard-godot-scene.png",
+    "png_inventory_validation": {
+      "NinjaSchool1": {
+        "original": 362,
+        "exact_extracted": 362
+      },
+      "NinjaSchool2": {
+        "original": 578,
+        "exact_extracted": 578
+      },
+      "NinjaSchool3_bypass": {
+        "original": 622,
+        "exact_extracted": 622
+      },
+      "new_hd_art_generated": false
+    },
+    "source_reading_progress": "analysis/source-reading-progress.json",
+    "source_reading_worker": "analysis/full_source_read_job.py",
+    "original_png_integrity": "analysis/png-assets-checks.json",
+    "character_image_fields": "analysis/ninja1-character-loading.json",
+    "source_manifest_checks": "analysis/source-reading-manifest-checks.json",
+    "source_reader_tests": "tests/test_source_reading.py",
+    "source_reading_dashboard_proof": "analysis/dashboard-source-reading.png",
+    "ground_collision_script": "games/ninja1-original/terrain_collision.gd",
+    "ground_collision_checks": "analysis/ninja1-ground-collision-checks.json",
+    "ground_collision_native_preview": "analysis/ninja1-ground-collision-preview.png",
+    "original_player_script": "games/ninja1-original/player.gd",
+    "original_player_project": "games/ninja1-original",
+    "original_player_checks": "analysis/ninja1-original-player-checks.json",
+    "original_player_code_response": "analysis/runs/ninja1-player-code-response.txt",
+    "original_character_assets": "games/ninja1-original/assets/cp/",
+    "mac_native_visual_reviewed": false,
+    "mac_headless_player_verified": true,
+    "melee_source_notes": "analysis/ninja1-melee-source-notes.md",
+    "legacy_mac_project": "games/ninja1",
+    "map99_mac_preview_app": "/Users/quangdang/Downloads/ninja/builds/ninja1-original/NinjaSchool1-Map99-Preview.app",
+    "map99_mac_app_state": "analysis/mac-app-state.json",
+    "mac_map4_scene": "games/ninja1-original/map004.tscn",
+    "map4_data": "games/ninja1-original/data/map-004.json",
+    "map_transition_test": "games/ninja1-original/tests/map_transition.gd",
+    "map99_map4_checks": "analysis/ninja1-map99-map4-checks.json",
+    "mac_app_state": "analysis/mac-app-state.json",
+    "art_manifest": "art/asset-manifest.json",
+    "art_catalog": "analysis/art-catalog.html",
+    "local_imagegen_state": "analysis/art-generation-state.json",
+    "antigravity_handoff": "analysis/ANTIGRAVITY_HANDOFF.md",
+    "blender_stage": "art/blender/ninja1-art-stage.blend",
+    "blender_connection_check": "art/blender/connection-check.json",
+    "claude_handoff": "handoff/claude-full/START_HERE_CLAUDE.md",
+    "claude_source_archive": "handoff/NinjaSchool-Claude-Source-2026-11-07.zip",
+    "claude_full_archive": "handoff/NinjaSchool-Claude-Full-2026-11-07.zip",
+    "project_knowledge": "handoff/claude-full/PROJECT_KNOWLEDGE.md",
+    "claude_review_flags": "handoff/claude-full/REVIEW_FLAGS.md"
+  },
+  "constraints": [
+    "AI source analysis and code drafting should run locally through Ollama; no cloud-model fallback",
+    "Use existing qwen3.8-27b-mac:latest; reject :cloud and remote model metadata",
+    "Only one local model job at a time; bounded steps, context, output and retries",
+    "Do not restart a job or model if it is already active",
+    "Original JAR files remain unchanged",
+    "No installer, purchase, publication or game completion may be claimed without verified output",
+    "Actual full-game acceptance is in analysis/PC_REMAKE_PLAN.md; reports and prototypes do not satisfy it"
+  ],
+  "last_failure": "Two bounded local-game bridge runs spent their steps rereading instead of writing (first also used incorrect reference paths); one direct local Qwen patch request timed out after 300 seconds. No code was written by those attempts. A focused source-grounded attack-state patch was then authored locally and verified with Godot.",
+  "requires_user": null,
+  "automation": {
+    "id": "ti-p-t-c-l-m-ninja-school-pc",
+    "status": "DELETED",
+    "cadence_hours": 4,
+    "per_run_work_minutes": 20,
+    "reason": "Previous goal was cleared and automation deletion confirmed in Codex app."
+  },
+  "target_order": [
+    "macOS playable prototype first",
+    "Windows 11 x64 after Mac checks",
+    "Full games 1, 2 and 3 with upgraded art/UI"
+  ],
+  "local_model_lessons": [
+    "The tool loop reread files and exhausted 16 steps without editing a small bug. For a small repair, supply all relevant generated files in one local request and ask for a bounded JSON exact-string patch, then verify it. Do not repeat the same read-only loop.",
+    "For full-source reading, preserve every UTF8 byte including long lines, validate exact file SHA+start/end and completed notes, reserve the entire numbered prompt plus output within context, and never count truncated replies. First-pass notes are not verified full-game understanding."
+  ],
+  "last_warning": "The updated Mac app is still a partial preview: map99 and map4 geometry render with original atlas IDs, but runtime tile transforms, map4 D(0) story/cutscene, real enemies, AI, damage/death/loot, quests/save, full games1-3, native visual QA and Windows/Acer runtime verification are still outstanding.",
+  "visual_feedback": {
+    "status": "placeholder_rejected",
+    "user_feedback": "Current block-figure arena looks silly and does not resemble requested Ninja School remake",
+    "priority": "Restore original map and character appearance before HD art expansion",
+    "provisional_preview_must_be_labeled": true
+  },
+  "requested_scope": {
+    "behavior": "Reconstruct original logic and full content/story for all3 games; no invented replacement quests",
+    "reuse": "Keep verified work and exact original assets; do not rebuild completed components",
+    "visuals": "Restore original character composition/animation first; new HD assets later with local image pipeline",
+    "latest_action": "Copied original map4 tile data, restored source map99 right exit at x>=1656 into map4 entry (48,120) facing left. Map99/map4 smoke and scene-transition tests pass, including no transition at x=1655. Mac Universal 2 preview 0.2.0 rebuilt; bundled executable ran 120 headless frames. No native visual QA; map4 D(0) intro remains unimplemented."
+  },
+  "implementation_next_action": "Implement map4 D(0) source opening sequence from exact source event/action tables, then spawn original map4/map0 actors from verified source coordinates and restore their behavior. Continue source-faithful Ninja School1, games2/3, visuals and Windows export.",
+  "last_reading_checkpoint": {
+    "status": "checkpoint",
+    "summary": {
+      "NinjaSchool1": {
+        "total_bytes": 610099,
+        "reviewed_bytes": 123373,
+        "total_chunks": 46,
+        "reviewed_chunks": 11
+      },
+      "NinjaSchool2": {
+        "total_bytes": 764133,
+        "reviewed_bytes": 0,
+        "total_chunks": 68,
+        "reviewed_chunks": 0
+      },
+      "NinjaSchool3_bypass": {
+        "total_bytes": 915976,
+        "reviewed_bytes": 0,
+        "total_chunks": 75,
+        "reviewed_chunks": 0
+      }
+    },
+    "first_entrypoint_notes": "First-pass notes only; not verified full-game understanding."
+  },
+  "source_reading_progress": "analysis/source-reading-progress.json",
+  "mac_headless_player_verified": true,
+  "mac_native_visual_reviewed": false,
+  "delegation": {
+    "tool": "Antigravity IDE",
+    "model_visible": "Gemini 3.8 Flash High",
+    "status": "dispatched_agent_working_observed",
+    "output_directory": "analysis/antigravity",
+    "handoff": "analysis/ANTIGRAVITY_HANDOFF.md",
+    "scope": "all three games original logic/story/quests, bytecode/runtime verification and asset usage; no writes to games/builds/art/original sources",
+    "authorized_by": "User explicitly asked to delegate to their running Antigravity IDE",
+    "review_status": "Antigravity outputs received but not accepted; source sprite role inversion and cumulative-tick semantic issues flagged; correction queued in UI"
+  },
+  "art_setup": {
+    "python_environment": ".tools/imagegen-venv",
+    "mflux_version": "0.24.0",
+    "original_pngs": 1562,
+    "unique_original_sha256": 1357,
+    "manually_reviewed_references": [
+      "ninja1 hero idle composed source frame 0",
+      "ninja1 day/night background layers"
+    ],
+    "new_art_generated": true,
+    "review_status": "inventory_complete; per-asset visual/source mapping incomplete",
+    "generated_samples": 3,
+    "approved_replacements": 0,
+    "blender": "5.2.3 LTS, background Python harness render passed"
+  }
+}

@@ -1,0 +1,128 @@
+extends CharacterBody2D
+
+const FRAME_DATA: Array = [
+	[[0, -10, 32], [1, -7, 7], [1, -11, 15]],
+	[[0, -10, 33], [1, -7, 7], [1, -11, 16]],
+	[[1, -10, 33], [2, -10, 11], [2, -9, 16]],
+	[[1, -10, 32], [3, -11, 9], [3, -11, 16]],
+	[[1, -10, 34], [4, -9, 9], [4, -8, 16]],
+	[[1, -10, 34], [5, -11, 11], [5, -10, 17]],
+	[[1, -10, 33], [6, -9, 9], [6, -8, 16]],
+]
+
+const HEAD_PATHS: Array = [
+	"res://assets/cp/chi0.png",
+	"res://assets/cp/chi1.png",
+	"res://assets/cp/chi2.png",
+	"res://assets/cp/chi3.png",
+	"res://assets/cp/chi4.png",
+	"res://assets/cp/chi5.png",
+	"res://assets/cp/chi6.png",
+]
+const LEGS_PATHS: Array = [
+	"res://assets/cp/cli0.png",
+	"res://assets/cp/cli1.png",
+	"res://assets/cp/cli2.png",
+	"res://assets/cp/cli3.png",
+	"res://assets/cp/cli4.png",
+	"res://assets/cp/cli5.png",
+	"res://assets/cp/cli6.png",
+]
+const BODY_PATHS: Array = [
+	"res://assets/cp/cbi0.png",
+	"res://assets/cp/cbi1.png",
+	"res://assets/cp/cbi2.png",
+	"res://assets/cp/cbi3.png",
+	"res://assets/cp/cbi4.png",
+	"res://assets/cp/cbi5.png",
+	"res://assets/cp/cbi6.png",
+]
+
+# Temporary tuning values pending exact movement state verification.
+const SPEED: float = 150.0
+const GRAVITY: float = 980.0
+const JUMP_VELOCITY: float = -330.0
+
+var head: Sprite2D
+var legs: Sprite2D
+var body: Sprite2D
+var facing_right: bool = true
+var frame_index: int = 0
+var anim_time: float = 0.0
+var jump_pressed: bool = false
+
+func _ready() -> void:
+	head = Sprite2D.new()
+	legs = Sprite2D.new()
+	body = Sprite2D.new()
+	head.centered = false
+	legs.centered = false
+	body.centered = false
+	head.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	legs.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	body.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	add_child(head)
+	add_child(legs)
+	add_child(body)
+	var shape := RectangleShape2D.new()
+	shape.size = Vector2(14.0, 32.0)
+	var col := CollisionShape2D.new()
+	col.shape = shape
+	col.position = Vector2(0.0, -16.0)
+	add_child(col)
+	_set_frame(0)
+
+func _physics_process(delta: float) -> void:
+	var input_dir: float = 0.0
+	if Input.is_key_pressed(KEY_A) or Input.is_action_pressed("ui_left"):
+		input_dir -= 1.0
+	if Input.is_key_pressed(KEY_D) or Input.is_action_pressed("ui_right"):
+		input_dir += 1.0
+	velocity.x = input_dir * SPEED
+	if input_dir != 0.0:
+		facing_right = input_dir > 0.0
+		_set_frame(frame_index)
+	if not is_on_floor():
+		velocity.y += GRAVITY * delta
+	var jump_now: bool = Input.is_key_pressed(KEY_W) or Input.is_action_pressed("ui_accept")
+	if jump_now and not jump_pressed and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+	jump_pressed = jump_now
+	move_and_slide()
+	_update_anim(delta, input_dir)
+
+func _update_anim(delta: float, input_dir: float) -> void:
+	if input_dir != 0.0:
+		anim_time += delta
+		if anim_time >= 0.12:
+			anim_time = 0.0
+			frame_index = 2 + (frame_index - 2 + 1) % 5
+	else:
+		anim_time += delta
+		if anim_time >= 0.35:
+			anim_time = 0.0
+			frame_index = 0 if frame_index == 0 else 1
+	_set_frame(frame_index)
+
+func _set_frame(idx: int) -> void:
+	idx = clampi(idx, 0, 6)
+	frame_index = idx
+	var frame: Array = FRAME_DATA[idx]
+	var head_data: Array = frame[0]
+	var legs_data: Array = frame[1]
+	var body_data: Array = frame[2]
+	head.texture = load(HEAD_PATHS[head_data[0]])
+	legs.texture = load(LEGS_PATHS[legs_data[0]])
+	body.texture = load(BODY_PATHS[body_data[0]])
+	_place(head, head_data)
+	_place(legs, legs_data)
+	_place(body, body_data)
+
+func _place(sprite: Sprite2D, data: Array) -> void:
+	var x_off: int = data[1]
+	var y_off: int = data[2]
+	sprite.flip_h = not facing_right
+	if facing_right:
+		sprite.position = Vector2(float(x_off), float(-y_off))
+	else:
+		sprite.position = Vector2(float(-x_off - sprite.texture.get_width()), float(-y_off))

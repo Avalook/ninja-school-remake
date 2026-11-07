@@ -1,0 +1,33 @@
+{
+  "local_only": true,
+  "model": "Runpod/FLUX.2-klein-4B-mflux-4bit",
+  "seed": 4211,
+  "steps": 4,
+  "status": "queued_after_model_download",
+  "jobs": [
+    {
+      "id": "ninja1-hero-master-v1",
+      "reference": "art/references/ninja1-hero-idle-reference.png",
+      "prompt": "art/prompts/ninja1-hero-master-v1.txt",
+      "output": "art/generated/ninja1-hero-master-v1.png",
+      "purpose": "identity concept; not a production animation or multipart replacement",
+      "size": [
+        512,
+        512
+      ],
+      "status": "generated_pending_review"
+    },
+    {
+      "id": "ninja1-mountain-layer-v1",
+      "reference": "art/references/ninja1-mountain-layer-original-reference.png",
+      "prompt": "art/prompts/ninja1-mountain-layer-v1.txt",
+      "output": "art/generated/ninja1-mountain-layer-v1.png",
+      "purpose": "background-layer sample; tiling/scale not yet verified",
+      "size": [
+        1024,
+        512
+      ],
+      "status": "generated_pending_review"
+    }
+  ]
+}

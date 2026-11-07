@@ -1,0 +1,10 @@
+{
+  "phase": "expected_red_before_scene_implementation",
+  "result": {
+    "ok": false,
+    "exit_code": 1,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: Cannot open file 'res://main.tscn'.\n   at: load (scene/resources/resource_format_text.cpp:1442)\n   GDScript backtrace (most recent call first):\n       [0] _run (res://tests/smoke.gd:13)\n       [1] _init (res://tests/smoke.gd:10)\nERROR: Failed loading resource: res://main.tscn.\n   at: _load (core/io/resource_loader.cpp:317)\n   GDScript backtrace (most recent call first):\n       [0] _run (res://tests/smoke.gd:13)\n       [1] _init (res://tests/smoke.gd:10)\nSMOKE_FAIL: Không tải được res://main.tscn\nSMOKE_FAIL total=1\n\nSCRIPT ERROR: error observed in output",
+    "artifact": null
+  },
+  "updated_at": 1793991678.29965
+}

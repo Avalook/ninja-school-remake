@@ -1,0 +1,138 @@
+extends Node2D
+
+@export var grid: Dictionary = {}
+@export var atlas: Texture2D
+@export var camera: Camera2D
+@export var tile_count: int = 0
+
+const TILE_SIZE: int = 24
+const COLS: int = 80
+const ROWS: int = 19
+const WORLD_W: float = float(COLS) * float(TILE_SIZE)
+const WORLD_H: float = float(ROWS) * float(TILE_SIZE)
+const PAN_SPEED: float = 350.0
+
+func _ready() -> void:
+    get_viewport().clear_color = Color(0.6, 0.8, 1.0)
+    texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+    atlas = load("res://assets/tiles.png") as Texture2D
+    if atlas == null:
+        push_error("Atlas load failed")
+        get_tree().quit(1)
+        return
+    var file: FileAccess = FileAccess.open("res://data/map-000.json", FileAccess.READ)
+    if file == null:
+        push_error("Map file open failed")
+        get_tree().quit(1)
+        return
+    var text: String = file.get_as_text()
+    file.close()
+    var parsed: Variant = JSON.parse_string(text)
+    if typeof(parsed) != TYPE_DICTIONARY:
+        push_error("JSON parse failed")
+        get_tree().quit(1)
+        return
+    var data: Dictionary = parsed
+    if not data.has("cells"):
+        push_error("Missing cells")
+        get_tree().quit(1)
+        return
+    var raw_cells: Variant = data["cells"]
+    if typeof(raw_cells) != TYPE_ARRAY:
+        push_error("Cells not array")
+        get_tree().quit(1)
+        return
+    var cells_arr: Array = raw_cells
+    if cells_arr.size() != ROWS:
+        push_error("Row count mismatch")
+        get_tree().quit(1)
+        return
+    var valid_grid: Dictionary = {}
+    for y in range(ROWS):
+        var row_raw: Variant = cells_arr[y]
+        if typeof(row_raw) != TYPE_ARRAY:
+            push_error("Row not array")
+            get_tree().quit(1)
+            return
+        var row_arr: Array = row_raw
+        if row_arr.size() != COLS:
+            push_error("Col count mismatch")
+            get_tree().quit(1)
+            return
+        var row_ids: Array = []
+        for x in range(COLS):
+            var cell_val: Variant = row_arr[x]
+            var id_int: int = int(cell_val)
+            if id_int < 0 or id_int > 120:
+                push_error("Invalid tile ID")
+                get_tree().quit(1)
+                return
+            if id_int != 0:
+                tile_count += 1
+            row_ids.append(id_int)
+        valid_grid[y] = row_ids
+    grid = valid_grid
+    camera = Camera2D.new()
+    camera.zoom = Vector2(1.5, 1.5)
+    camera.position = Vector2(WORLD_W / 2.0, WORLD_H / 2.0)
+    camera.make_current()
+    add_child(camera)
+    var layer: CanvasLayer = CanvasLayer.new()
+    add_child(layer)
+    var label: Label = Label.new()
+    label.position = Vector2(20, 20)
+    label.text = "Ninja School1 — Cảnh gốc đang khôi phục\nMap0 · Xem cảnh, chưa có nhân vật/va chạm/HD\nMũi tên: xem cảnh · Esc: thoát"
+    label.add_theme_font_size_override("font_size", 14)
+    layer.add_child(label)
+    queue_redraw()
+
+func _process(delta: float) -> void:
+    if Input.is_action_just_pressed("ui_cancel"):
+        get_tree().quit()
+        return
+    var dir: Vector2 = Vector2.ZERO
+    if Input.is_action_pressed("ui_left"):
+        dir.x -= 1.0
+    if Input.is_action_pressed("ui_right"):
+        dir.x += 1.0
+    if Input.is_action_pressed("ui_up"):
+        dir.y -= 1.0
+    if Input.is_action_pressed("ui_down"):
+        dir.y += 1.0
+    if dir != Vector2.ZERO:
+        pan_camera(camera.position + dir * PAN_SPEED * delta)
+
+func pan_camera(delta: Vector2) -> void:
+    if camera == null:
+        return
+    var vp_size: Vector2 = get_viewport().get_visible_rect().size / camera.zoom
+    var target: Vector2 = delta
+    if WORLD_W > vp_size.x:
+        target.x = clampf(target.x, vp_size.x / 2.0, WORLD_W - vp_size.x / 2.0)
+    else:
+        target.x = WORLD_W / 2.0
+    if WORLD_H > vp_size.y:
+        target.y = clampf(target.y, vp_size.y / 2.0, WORLD_H - vp_size.y / 2.0)
+    else:
+        target.y = WORLD_H / 2.0
+    camera.position = target
+
+func get_tile_rect(id: int) -> Rect2:
+    if id <= 0 or id > 120:
+        return Rect2()
+    return Rect2(0.0, float(id - 1) * float(TILE_SIZE), float(TILE_SIZE), float(TILE_SIZE))
+
+func _draw() -> void:
+    if atlas == null:
+        return
+    for y in range(ROWS):
+        if not grid.has(y):
+            continue
+        var row: Array = grid[y]
+        for x in range(COLS):
+            var id_int: int = int(row[x])
+            if id_int == 0:
+                continue
+            var src: Rect2 = get_tile_rect(id_int)
+            var dst: Rect2 = Rect2(float(x) * float(TILE_SIZE), float(y) * float(TILE_SIZE), float(TILE_SIZE), float(TILE_SIZE))
+            draw_texture_rect_region(atlas, src, dst)
