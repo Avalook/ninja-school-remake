@@ -1,6 +1,6 @@
 # STATUS — Ninja School PC remake
 
-Cập nhật: 2026-11-07, phiên M1 mục 2b story (nhánh `m1-story-split` tách từ `main` 46572ae).
+Cập nhật: 2026-11-07, phiên M1 mục 2c world (nhánh `m1-world-split` tách từ `main` dc96ae7, rebase lên 8451b32).
 Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. Phần nào chỉ lấy lại từ
 `analysis/claude/progress.json` mà chưa chạy lại thì có ghi chú rõ.
 
@@ -14,14 +14,84 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
 - **M1 mục 2b (story) xong**: `scripts/story/` tách thành `remake/sim/story_sim.gd` (+ `sim/story/`: cutscene,
   quests, items) và `remake/view/story_view.gd` (+ `view/story_menus.gd`). Hộp thoại không còn `await` trong luật.
   Hành vi không đổi: story oracle 77 check, trace 23 kịch bản khớp 100%. Kết quả ở bảng bên dưới.
+- **M1 mục 2c (world) xong**: `scripts/world/` tách thành `remake/sim/world_sim.gd` (+ `sim/world/objects.gd`: khối,
+  bè, xe máy) và `remake/view/world_view.gd` (+ `view/world/`: `objects_view.gd`, `npcs_view.gd`, `tile_layer.gd`,
+  `background.gd`). Hành vi không đổi: trace 27 kịch bản khớp 100%, story 77 check, oracle 12 map. Kết quả ở bảng bên dưới.
 - Mục M1 "làm tương tự cho enemies, story, world, drops, projectiles" đã chia 5 mục con trong ROADMAP.
-  Mục tiếp theo: M1 mục 2c, tách world (va chạm).
+  Mục tiếp theo: M1 mục 2d, tách drops.
+- **M3 việc nhỏ (2026-11-07, commit thẳng `main` 8451b32)**: `art_src/env/rung_truc/TILE_NEEDS.md` (32 tile id của map 4,
+  số lần, cờ theo ô), `tiles_orig_4x/` (tile gốc phóng 4×), `ref_map4.png` (toàn map 4 ghép từ tile gốc, 4×, không có
+  trời/nền xa, không phải ảnh chụp emulator). Sinh bằng `tools/art/tile_needs.py 4 rung_truc`. Không đụng `sim/`.
 - Đã thêm vào ROADMAP (chưa làm): M1 đồng hồ game cho mọi thứ chạy theo thời gian trong view; M2 Boss kịch bản
   trace trận golem đầy đủ có cutscene mở trận.
 - Đã merge `m1-sim-view` vào `main` (2026-11-07). Việc phát hiện trong phiên đã thêm vào ROADMAP:
   M1 (di chuyển native bước cố định 100 Hz), M2 Combat (sửa Xích Mao, cờ thật của Xích Mao, trace A = 18/19/23).
 - Codex đang vẽ trong `art_src/` trên nhánh `claude/project-directory-codex-c71a67`.
   Nhánh này **không tạo, không sửa** gì trong `art_src/`.
+
+## M1 mục 2c: kế hoạch tách world (viết trước khi sửa code, nhánh `m1-world-split` tách từ `main` dc96ae7)
+Nguồn: `remake/scripts/world/` — `world.gd` (Node2D, 308 dòng: nạp map, cờ ô, tấm ván lún 0x800/0x400, lối ra,
+camera, lớp vẽ, FX), `objects.gd` (Node2D: khối đẩy/bè it..iB, xe máy il..is, vừa luật 25 Hz vừa vẽ),
+`npcs.gd` (chỉ vẽ NPC và mũi tên mục tiêu, không có luật), `tile_layer.gd`, `background.gd` (chỉ vẽ).
+
+**`remake/sim/world_sim.gd`** (`git mv` từ `world.gd`; RefCounted, không Node, không vẽ, không `await`):
+- Luật: `load_map` (phần luật: Data map, `S.v/iP/iQ/iR/iS/W`, `_apply_map_state` + regex MAP_VAR, gọi
+  `objects.setup`, `player.place`, `enemies.setup`), `flags_at`, `flag_tile`, `tile_id`, `is_floor`, `world_size`,
+  `set_flag_tile`, `crumble_at`/`_mark`, và luật lối ra (`exit_check`: chọn lối jr/js/jt/ju, chặn map 95 khi
+  chưa có ẩn thân `S.fc` kèm đẩy lùi + popup, `take_exit`: đặt `S.fh/fi`, nạp map, `S.save_game()`).
+- `sim/world/objects.gd` (`git mv` từ `objects.gd`): luật khối/bè/xe (`setup`, `tick`, `block_at_side`, `push`,
+  `land_block`, `hit_blocks`, snapshot `prev_b/prev_v` của tick trước để view nội suy). Bỏ `_draw`/texture.
+- Thứ tự trong `load_map` giữ y nguyên. Chỗ cần view ở giữa (đặt lại camera sau `enemies.setup`, phát
+  `map_loaded` cuối cùng) thành event gửi **ngay lúc phát sinh** qua `sim.on_event` (như sim enemies/story):
+  `camera_reset`, `map_loaded`, `fx` (bè rơi xuống nước), `popup` (chặn map 95).
+- Sim không đọc `Game`/`UI`/viewport: view truyền `Game.mode == "play"` vào `objects.tick`, truyền trạng thái chết
+  của hình nhân vật vào `exit_check`, và ghi vào sim mỗi frame `cam_pos` (camera mượt), `cam_shown`
+  (`camera.position`, có rung) và kích thước khung nhìn. Đây là đúng giá trị luật đang đọc hôm nay.
+- Còn giữ (để mục `sim/sim.gd` xử lý): `world_sim.player` / `.enemies` vẫn là node view của player/enemies
+  (các view đó xả event ngay sau mỗi lần gọi, đổi sang sim trực tiếp sẽ đổi thứ tự FX); `world_sim.story` thay
+  `world.get_parent().story` trong `player_sim._u()`.
+
+**`remake/view/world_view.gd`** (Node2D, thay `World` trong `main.gd`, giữ API cũ cho main/test/view khác:
+`load_map`, `map_id`, `map`, `w`, `h`, `tiles`, `flags`, `exits`, `player`, `enemies`, `objects`, `camera`,
+`cam_pos`, `layer_actors`, `flags_at`, `flag_tile`, `tile_id`, `is_floor`, `view_size`, `camera_snap`,
+`camera_override`, `set_flag_tile`, `spawn_fx`, `float_text`, `screen_shake`, signal `map_loaded`, nhóm "world"):
+- Camera (lead, lò xo `_damp`, rung, override), lớp vẽ, nhà trang trí map 2/16, FX, chuyển map có fade (gọi
+  `exit_check` mỗi frame như cũ, fade, `take_exit`).
+- `view/world/objects_view.gd`: vẽ khối/bè/xe (code vẽ cũ), nối `Game.tick25` đúng chỗ cũ (trong `_ready` của
+  world) để thứ tự tick 25 Hz không đổi. `draw_bike` giữ trên node này cho `player_view`.
+- `git mv`: `npcs.gd` → `view/world/npcs_view.gd`, `tile_layer.gd`, `background.gd` → `view/world/` (không đổi code).
+- Các sim (`player_sim`, `enemies_sim`, `story_sim`) đọc `world_sim`; các view vẫn giữ node world view cho FX/vẽ.
+  World giả của test (`tests/story_stubs.gd`) không có `sim` nên vẫn dùng thẳng như cũ.
+
+**Test chứng minh không đổi hành vi** (ghi mốc bằng code trước refactor)
+1. `remake/tests/player_trace.sh`: dòng trace thêm `W=` (map_id, w, h, hash mảng cờ ô, khối it/iv/iw/ix/iy/iz/iA/iB/iu,
+   xe il/im/in/io/ip/iq/ir/is, `cam_pos`). Thêm kịch bản: map 1 đẩy khối, map 97 bè, map 2 có nhà trang trí, và
+   kịch bản đi qua lối ra. Mốc 23 kịch bản cũ ghi lại vì thêm trường; phần trường cũ phải giống mốc cũ từng dòng.
+2. `remake/tests/story_run_tests.sh` vẫn 77 check, 0 fail; `run_enemies_oracle.sh 500` 12 map như trước.
+3. Ảnh có cửa sổ (`enemies_shots.sh`, `story_shots.sh`, thêm `world_shots.sh`: khối map 1, xe map 3, nhà map 2)
+   trước/sau so từng pixel → `review/2026-11-07/m1_world_split/`.
+
+## M1 mục 2c: kết quả (chạy 2026-11-07)
+Mốc ghi **bằng code trước refactor** (main dc96ae7 + chỉ thêm trường trace `W=` và 4 kịch bản), rồi mới sửa code.
+| Kiểm tra | Trước refactor | Sau refactor |
+|---|---|---|
+| `remake/tests/player_trace.sh`: 23 kịch bản cũ, dòng trace thêm `W=` (map, hash cờ ô, khối/bè, xe, `cam_pos`) | ghi lại mốc; phần trường cũ giống mốc cũ 23/23, 0 dòng lệch | **23/23 khớp 100%** |
+| `remake/tests/player_trace.sh`: 4 kịch bản world mới (map 1 đẩy khối, map 1 ván lún, map 2 qua lối ra sang map 0, map 97 bè) | ghi mốc (khối 13 trạng thái, bè 391, ván 33 trạng thái cờ) | **4/4 khớp 100%, 0 SCRIPT ERROR** |
+| Độ nhạy | bè `S.w % 2` → `% 3`: w_m97_rafts lệch 1478 dòng; ván lún `0x800` → `0x400`: w_m1_planks lệch 1740 dòng | đã hoàn nguyên |
+| `remake/tests/story_run_tests.sh` | 77 check, 0 fail | **77 check, 0 fail** |
+| `remake/tests/run_enemies_oracle.sh 500` (12 map) | | **12 map 500/500 tick**, giống hệt lần chạy phiên story |
+| Ảnh có cửa sổ: `enemies_shots.sh` 16 + `story_shots.sh` 13 + `world_shots.sh` (mới) 14 | | **41/43 trùng từng pixel** lần đầu; chạy lại 2 lần: chỉ còn `map2_houses/shot_0.6` lệch đúng vùng NPC đứng thở (2 lần chạy code mới cũng lệch nhau ở đó) |
+
+Bằng chứng: `review/2026-11-07/m1_world_split/` (4 ảnh sau refactor, ảnh trước/sau + mặt nạ lệch map 2, `pixel_compare.txt`,
+`player_trace_check.txt`, `old_fields_vs_old_baseline.txt`, `enemies_oracle_after.txt`, `story_tests_after.txt`).
+
+Đã làm đúng kế hoạch. Ghi chú:
+- `world_sim.player` / `.enemies` vẫn là node view của player/enemies (view xả event ngay sau mỗi lần gọi). Bỏ khi làm `sim/sim.gd`.
+- `player_sim._u()` đọc `world.story` (main gán) thay cho `world.get_parent().story`; `_st_dead` đọc `world.cam_shown`
+  (đúng `camera.position` cũ, có rung).
+- Worktree mới chưa có `remake/.godot/` (bị ignore) thì texture/nhạc là null: trace vẫn khớp nhưng log có hàng trăm nghìn
+  SCRIPT ERROR ở hàm vẽ. Chạy `godot --headless --path remake --import` một lần trước khi chạy test.
+- Ảnh đầu tiên sau khi mở cửa sổ đôi khi là khung đen (gặp 1 lần ở map 97, chạy lại không lặp).
 
 ## M1 mục 2b: kế hoạch tách story (viết trước khi sửa code, nhánh `m1-story-split` tách từ `main` 46572ae)
 Nguồn: `remake/scripts/story/` — `story.gd` (Node, 551 dòng: map entry m/f/g/n, tick 25 Hz, dialog, warp, title
@@ -263,9 +333,8 @@ enemies/story (bảng trên). Diff remake trên đủ trường luật là việ
 ## Trạng thái remake/ (theo code hiện có)
 - Chơi được map 99 → map 4 native. Đã ghép story (cutscene, quest NPC, menu, bản đồ thế giới, shop)
   và enemies (24 map giống oracle theo commit `52a4a00`).
-- **Sim/View**: player đã tách (`sim/player_sim.gd`, `view/player_view.gd`), enemies đã tách
-  (`sim/enemies_sim.gd` + `sim/enemies/`, `view/enemies_view.gd`). Story, world, drops vẫn vừa luật vừa vẽ
-  (M1 mục 2b–2e). `drops.gd` còn ở `scripts/enemies/` (luật nhặt + `draw`), sim enemies gọi `tick`, view gọi `draw`.
+- **Sim/View**: player, enemies, story, world đã tách (`sim/*_sim.gd` + `view/*_view.gd`). Drops vẫn vừa luật
+  vừa vẽ (M1 mục 2d). `drops.gd` còn ở `scripts/enemies/` (luật nhặt + `draw`), sim enemies gọi `tick`, view gọi `draw`.
 - Art đang trộn 5 nguồn (Blender, Codex HD, Veo, Scale4x, FLUX). Từ M3 thống nhất theo pipeline Codex → rig.
 
 ## Đã làm trong M0
@@ -306,8 +375,7 @@ Chỉ đọc, không pull, không reset, không xoá gì:
 - File bị ignore: `.claude/` (chứa các worktree) và `.serena/project.local.yml`.
 - Kết luận: pull fast-forward lên `origin/main` an toàn, không mất gì.
 - Chủ dự án duyệt (2026-11-07): pull ff-only và thêm `.serena/` vào `.gitignore` (đã thêm).
-  Lệnh pull ở thư mục gốc **chưa chạy**: session worktree bị chặn chạy git ra ngoài worktree.
-  Chủ dự án tự chạy `git -C /Users/quangdang/Downloads/ninja-claude-parallel pull --ff-only`.
+  Lệnh pull: đã chạy, main local khớp GitHub.
 
 ## Chưa rõ
 - **Ảnh có cửa sổ không tất định giữa các lần chạy** (có từ trước, không phải do refactor): `world/background.gd`
@@ -316,6 +384,12 @@ Chỉ đọc, không pull, không reset, không xoá gì:
   thoại (`ui.gd:293`) và NPC đứng thở / dấu "!" (`world/npcs.gd:51,79`) chạy theo giờ thật (`Time.get_ticks_msec`), làm
   ảnh lệch ở các vùng đó.
   Nếu muốn ảnh review luôn so được: chuyển các chỗ này sang đồng hồ game (mục World / UI).
+- **Luật đọc camera mượt theo frame**: sim quái (`fR/fS` thức quái theo màn hình) và luật chết rơi (`_st_dead`)
+  đọc vị trí camera mà view tính bằng lò xo theo `delta` của frame (có rung `randf`). Bản gốc tính camera trong luật
+  25 Hz (`h()` ~L3185). Refactor giữ nguyên cách cũ; muốn kết quả như nhau ở mọi fps thì phải chuyển camera luật vào
+  sim (đổi hành vi, cần mốc trace mới), nên làm cùng mục M1 "di chuyển 100 Hz".
+- Comment cũ gọi cờ ô `0x1000` là "vines", nhưng luật dùng nó như vùng chìm (rơi vào A = 12, ngập đầu thì chết).
+  Game 1 không có trạng thái leo thang/dây.
 - Trace m95: golem đứng chờ (`hu = 0`) vì không có cutscene mở trận; trận golem có trong oracle (`ACT_95`, `hu = 1`).
 - Còn TODO trong sim enemies: phi tiêu và kiếm trúng bạn đồng hành đối thủ `hf` (dC/dD) chưa làm (mục 2e Projectiles).
 - **Lỗi sẵn có (không sửa trong refactor): Xích Mao không bật được.** `_common_actions()` đặt `S.A = 23` nhưng

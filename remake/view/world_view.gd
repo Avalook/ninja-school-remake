@@ -1,27 +1,50 @@
-# World: one map of the original game, drawn with HD art and simulated per frame.
-# Tile data/flags come from remake/data/maps (original q(int)); drawing rules follow the original
+# WorldView: draws one map with HD art (sim/world_sim.gd holds the rules). Drawing rules follow the original
 # j/k/l(Graphics) layers (back parallax tiles 0x10, main tiles, front bushes 0x100 / tiles 0x200 /
-# vines 0x1000, animated water 0x20 / 0x40).
+# vines 0x1000, animated water 0x20 / 0x40). Owns the camera (eased follow, look-ahead, shake, story
+# override), the FX layer and the fade on map transitions. No game rule lives here.
+# Keeps the old World API (load_map, map_id, map, w, h, tiles, flags, exits, flags_at, is_floor, camera_snap,
+# camera_override, spawn_fx, ...) for main / story / tests / the other views by forwarding to the sim.
 extends Node2D
 
 signal map_loaded(id: int)
 
+const WorldSim := preload("res://sim/world_sim.gd")
 const TILE := 24.0
 const VIEW := Vector2(480, 270)
 
-var map_id := -1
-var map := {}
-var w := 0
-var h := 0
-var tiles: Array = []
-var flags: Array = []
-var exits := {}
+var sim = WorldSim.new()
 
-var player
-var enemies
-var objects
+var map_id: int:
+	get: return sim.map_id
+var map: Dictionary:
+	get: return sim.map
+var w: int:
+	get: return sim.w
+var h: int:
+	get: return sim.h
+var tiles: Array:
+	get: return sim.tiles
+var flags: Array:
+	get: return sim.flags
+var exits: Dictionary:
+	get: return sim.exits
+var player = null:
+	set(v):
+		player = v
+		sim.player = v
+var enemies = null:
+	set(v):
+		enemies = v
+		sim.enemies = v
+var story = null:
+	set(v):
+		story = v
+		sim.story = v
+var objects                    # view/world/objects_view.gd (draws blocks / bikes; the rules are sim.objects)
 var camera: Camera2D
-var cam_pos := Vector2.ZERO
+var cam_pos: Vector2:
+	get: return sim.cam_pos
+	set(v): sim.cam_pos = v
 var cam_override_active := false
 var cam_override_target := Vector2.ZERO
 
@@ -38,21 +61,25 @@ var npc_tex := {}
 var fx: Array = []
 var texts: Array = []
 
+func _init() -> void:
+	sim.on_event = _on_event
+
 func _ready() -> void:
 	add_to_group("world")
 	Game.world = self
+	sim.data = Data
 	tex_tiles = load("res://art/tiles/t.png")
 	tex_wtf = load("res://art/tiles/wtf.png")
 	tex_wts = load("res://art/tiles/wts.png")
 	tex_tb = load("res://art/tiles/tb.png")
-	layer_bg = preload("res://scripts/world/background.gd").new()
+	layer_bg = preload("res://view/world/background.gd").new()
 	layer_bg.world = self
 	add_child(layer_bg)
 	layer_back = _layer("back")
 	layer_actors = Node2D.new()
 	layer_actors.name = "Actors"
 	add_child(layer_actors)
-	objects = preload("res://scripts/world/objects.gd").new()
+	objects = preload("res://view/world/objects_view.gd").new()
 	objects.world = self
 	layer_actors.add_child(objects)
 	layer_front = _layer("front")
@@ -70,7 +97,7 @@ func _ready() -> void:
 
 func _layer(which: String) -> Node2D:
 	var n := Node2D.new()
-	n.set_script(preload("res://scripts/world/tile_layer.gd"))
+	n.set_script(preload("res://view/world/tile_layer.gd"))
 	n.world = self
 	n.which = which
 	n.name = "Tiles_" + which
@@ -81,42 +108,60 @@ func _fit_camera() -> void:
 	var vs := get_viewport_rect().size
 	var z: float = vs.y / VIEW.y
 	camera.zoom = Vector2(z, z)
+	sim.view = view_size()
 
 func view_size() -> Vector2:
 	return get_viewport_rect().size / camera.zoom
 
-# ---------------- map ----------------
+func _set_camera(p: Vector2) -> void:
+	camera.position = p
+	sim.cam_shown = p
+
+# ---------------- map (rules in the sim) ----------------
 func load_map(id: int, spawn: Vector2, facing := 0) -> void:
-	map_id = id
-	map = Data.map(id)
-	w = int(map["w"])
-	h = int(map["h"])
-	tiles = map["tiles"]
-	flags = map["flags"].duplicate()
-	exits = map["exits"]
-	_apply_map_state(map.get("state", {}))
-	_decor_setup(id)
-	S.v = id
-	S.iP = w
-	S.iQ = h
-	S.iR = w * 24
-	S.iS = h * 24
-	if id < 19:
-		S.W[id] = true
-	if objects:
-		objects.setup(id)
-	if player:
-		player.place(spawn, facing)
-	if enemies:
-		enemies.setup(map)
-	if player:
-		lead = view_size().x / 6.0 * player.facing
-	lead_v[0] = 0.0
-	cam_vx[0] = 0.0
-	cam_vy[0] = 0.0
-	cam_pos = _camera_target(true)
-	camera.position = cam_pos
-	map_loaded.emit(id)
+	sim.view = view_size()
+	sim.load_map(id, spawn, facing)
+
+func flags_at(x: float, y: float) -> int:
+	return sim.flags_at(x, y)
+
+func flag_tile(tx: int, ty: int) -> int:
+	return sim.flag_tile(tx, ty)
+
+func tile_id(tx: int, ty: int) -> int:
+	return sim.tile_id(tx, ty)
+
+func is_floor(x: float, y: float) -> bool:
+	return sim.is_floor(x, y)
+
+func world_size() -> Vector2:
+	return sim.world_size()
+
+func set_flag_tile(tx: int, ty: int, f: int) -> void:
+	sim.set_flag_tile(tx, ty, f)
+
+func crumble_at(x: int, y: int) -> void:
+	sim.crumble_at(x, y)
+
+# events of the sim, handled at the moment they happen (same order as the old single-node World)
+func _on_event(ev: Dictionary) -> void:
+	match ev["type"]:
+		"decor":
+			_decor_setup(ev["id"])
+		"camera_reset":
+			if player:
+				lead = view_size().x / 6.0 * player.facing
+			lead_v[0] = 0.0
+			cam_vx[0] = 0.0
+			cam_vy[0] = 0.0
+			cam_pos = _camera_target(true)
+			_set_camera(cam_pos)
+		"map_loaded":
+			map_loaded.emit(ev["id"])
+		"fx":
+			spawn_fx(ev["kind"], ev["p"], ev["d"])
+		"popup":
+			UI.popup(ev["text"])
 
 # big decor houses (original p(n): only maps 2 and 16), [image, tile x, tile y]; drawn behind the tiles
 # with the 22/24 parallax, anchored bottom-centre at (tx*24+12, ty*24)
@@ -132,64 +177,6 @@ func _decor_setup(id: int) -> void:
 			tex_h.append(load("res://art/tiles/h%d.png" % i))
 	for d in DECOR.get(id, []):
 		decor.append({"img": d[0], "x": d[1] * 24 + 12, "y": d[2] * 24})
-
-# per-map variables of the original after loading this map (monsters j*/k*, objects i*, NPCs lx..lA,
-# boss g*/h*) - player / quest / progress variables are never taken from the dump
-const MAP_VAR := "^(j[A-Za-z]|k[a-p]|i[a-zA-Z]|l[x-zA]|g[Q-Z]|h[b-d])$"
-var _re: RegEx
-
-func _apply_map_state(st: Dictionary) -> void:
-	if _re == null:
-		_re = RegEx.create_from_string(MAP_VAR)
-	# keys missing from a map's dump hold their boot value: reset all map variables first
-	var merged: Dictionary = {}
-	for k in Data.static_data:
-		if _re.search(k) != null:
-			merged[k] = Data.static_data[k]
-	merged.merge(st, true)
-	for k in merged:
-		if k in ["iP", "iQ", "iU", "ii"] or _re.search(k) == null:
-			continue
-		if k in S:
-			var v = merged[k]
-			S.set(k, v.duplicate(true) if v is Array else (int(v) if v is float else v))
-
-# original S(): springy plank tiles (0x800) dip while stood on (0x400 marker, drawn +1 px)
-func crumble_at(x: int, y: int) -> void:
-	_mark(x - 24, y, false); _mark(x - 24, y - 3, false)
-	_mark(x + 24, y, false); _mark(x + 24, y - 3, false)
-	if flags_at(x, y) & 0x800:
-		_mark(x, y, true); _mark(x, y - 3, true)
-
-func _mark(x: int, y: int, on: bool) -> void:
-	var tx := int(floor(x / TILE)); var ty := int(floor(y / TILE))
-	if tx < 0 or ty < 0 or tx >= w or ty >= h:
-		return
-	var i := ty * w + tx
-	flags[i] = (int(flags[i]) | 0x400) if on else (int(flags[i]) & ~0x400)
-
-func flags_at(x: float, y: float) -> int:
-	var tx := int(floor(x / TILE))
-	var ty := int(floor(y / TILE))
-	if tx < 0 or ty < 0 or tx >= w or ty >= h:
-		return 0
-	return int(flags[ty * w + tx])
-
-func flag_tile(tx: int, ty: int) -> int:
-	if tx < 0 or ty < 0 or tx >= w or ty >= h:
-		return 0
-	return int(flags[ty * w + tx])
-
-func tile_id(tx: int, ty: int) -> int:
-	if tx < 0 or ty < 0 or tx >= w or ty >= h:
-		return 0
-	return int(tiles[ty * w + tx])
-
-func is_floor(x: float, y: float) -> bool:
-	return (flags_at(x, y) & 2) == 2
-
-func world_size() -> Vector2:
-	return Vector2(w * TILE, h * TILE)
 
 # ---------------- camera ----------------
 # original framing (h() ~L3185): target x = px - q/2 + bI*facing, y = py - 3r/4, clamped to
@@ -209,11 +196,7 @@ func camera_snap() -> void:
 	cam_pos = _camera_target(true)
 	cam_vx[0] = 0.0
 	cam_vy[0] = 0.0
-	camera.position = cam_pos
-
-func set_flag_tile(tx: int, ty: int, f: int) -> void:
-	if tx >= 0 and ty >= 0 and tx < w and ty < h:
-		flags[ty * w + tx] = f
+	_set_camera(cam_pos)
 
 func camera_override(target: Vector2, active: bool) -> void:
 	cam_override_active = active
@@ -222,6 +205,7 @@ func camera_override(target: Vector2, active: bool) -> void:
 func _process(delta: float) -> void:
 	if map_id < 0:
 		return
+	sim.view = view_size()
 	# look-ahead in the facing direction (original bI * fp), eased so turning never snaps
 	if player:
 		var want_lead: float = view_size().x / 6.0 * player.facing
@@ -238,7 +222,7 @@ func _process(delta: float) -> void:
 	if shake > 0.0:
 		shake = max(0.0, shake - delta)
 	var sh := Vector2(randf_range(-1, 1), randf_range(-1, 1)) * shake * 20.0
-	camera.position = cam_pos + sh
+	_set_camera(cam_pos + sh)
 	layer_back.queue_redraw()
 	layer_front.queue_redraw()
 	layer_bg.queue_redraw()
@@ -264,41 +248,21 @@ func _damp(cur: float, target: float, vel: Array, smooth: float, dt: float) -> f
 func screen_shake(amount := 0.12) -> void:
 	shake = max(shake, amount)
 
-# ---------------- exits (original run() ~L8187) ----------------
+# ---------------- exits: rule in sim.exit_check / take_exit, fade here ----------------
 var _transition := false
 
 func _check_exits() -> void:
-	if player == null or _transition or player.state in ["dead"]:
+	if player == null or _transition:
 		return
-	var p: Vector2 = player.pos
-	var target := -1
-	var spawn := Vector2.ZERO
-	if p.x < 0 and int(exits["jr"]) != -1:
-		target = int(exits["jr"])
-		spawn = Vector2(int(exits["jv"]) - 1, int(exits["jw"]))
-	elif p.x >= w * TILE - 24 and int(exits["js"]) != -1:
-		if not S.fc and int(exits["js"]) == 95:
-			player.pos.x = w * TILE - 60
-			UI.popup("Khu vực phía trước rất nguy hiểm! Chỉ những người có thể ẩn thân có thể vào!")
-			return
-		if int(exits["jt"]) != -1 and p.y > int(exits["jD"]):
-			target = int(exits["jt"])
-			spawn = Vector2(int(exits["jz"]), int(exits["jA"]))
-		else:
-			target = int(exits["js"])
-			spawn = Vector2(int(exits["jx"]), int(exits["jy"]))
-	elif p.y >= h * TILE - 4 and int(exits["ju"]) != -1:
-		target = int(exits["ju"])
-		spawn = Vector2(int(exits["jB"]), int(exits["jC"]))
-	if target != -1:
-		_transition = true
-		await UI.fade_out(0.25)
-		S.fh = int(spawn.x)
-		S.fi = int(spawn.y)
-		load_map(target, spawn)
-		S.save_game()       # original autosaves on map transitions (Midlet.f)
-		await UI.fade_in(0.25)
-		_transition = false
+	var ex: Dictionary = sim.exit_check(player.state in ["dead"])
+	if ex.is_empty():
+		return
+	_transition = true
+	await UI.fade_out(0.25)
+	sim.view = view_size()
+	sim.take_exit(ex["target"], ex["spawn"])
+	await UI.fade_in(0.25)
+	_transition = false
 
 # ---------------- fx helpers (contract) ----------------
 func spawn_fx(kind: String, pos: Vector2, dir := 1) -> void:

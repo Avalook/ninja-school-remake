@@ -35,6 +35,11 @@ SCEN=(
   "story_m9_q10|9,230,288|$SKILLS;O=10;gn=true|26|left,right,right,talk,attack,jump|50||--autoskip"
   "story_m0_ayumi|0,1044,408|eH=false;eL=false|28|talk|30||--autoskip"
   "story_m0_takanashi|0,1044,288|eH=false;eL=true;eM=true|29|talk|30||--autoskip"
+  # world (blocks / rafts, springy planks, exits, decor houses)
+  "w_m1_blocks|1,280,216|$SKILLS|31|left,right,right,jump,attack,attack|40"
+  "w_m1_planks|1,700,168|$SKILLS|32|left,right,jump,attack|40"
+  "w_m2_exit|2,700,312|$SKILLS|33|left,left,left,right,jump|40"
+  "w_m97_rafts|97,40,168|$SKILLS|34|right,right,attack,jump,left|40"
   "story_m3_q3|3,60,216|$SKILLS;O=3|27|left,right,right,right,jump,talk|50||--autoskip"
 )
 fail=0

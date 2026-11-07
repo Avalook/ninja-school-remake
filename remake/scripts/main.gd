@@ -1,4 +1,4 @@
-# Main: title screen -> world. Wires World, Player, Enemies (sim/enemies_sim.gd + view/enemies_view.gd), Story (sim/story_sim.gd + view/story_view.gd),
+# Main: title screen -> world. Wires World (sim/world_sim.gd + view/world_view.gd), Player, Enemies (sim/enemies_sim.gd + view/enemies_view.gd), Story (sim/story_sim.gd + view/story_view.gd),
 # music (original per-map track MF_t), pause menu and settings.
 extends Node2D
 
@@ -24,7 +24,7 @@ func _ready() -> void:
 	settings = preload("res://scripts/ui/settings.gd").new()
 	add_child(settings)
 	settings.closed.connect(func(): Game.paused = false)
-	world = preload("res://scripts/world/world.gd").new()
+	world = preload("res://view/world_view.gd").new()
 	add_child(world)
 	world.visible = false
 	player = preload("res://view/player_view.gd").new()
@@ -32,7 +32,7 @@ func _ready() -> void:
 	player.world = world
 	world.player = player
 	world.layer_actors.add_child(player)
-	npcs = preload("res://scripts/world/npcs.gd").new()
+	npcs = preload("res://view/world/npcs_view.gd").new()
 	npcs.world = world
 	world.layer_actors.add_child(npcs)
 	world.layer_actors.move_child(npcs, 0)
@@ -54,6 +54,7 @@ func _ready() -> void:
 		if "world" in story:
 			story.world = world
 		add_child(story)
+		world.story = story       # player_sim._u() quest-11 air-hit counter (was world.get_parent().story)
 		if story.has_signal("return_to_title"):
 			story.return_to_title.connect(_back_to_title)
 		if story.has_signal("quit_to_title"):
@@ -168,6 +169,10 @@ func _trace_tick() -> void:
 		for d in enemies.drops.coins + enemies.drops.items:
 			dr.append("%d,%d,%d" % [d.age, d.x, d.y])
 		l += " D=" + ";".join(dr) + " K=%d,%d" % [enemies.drops.scroll_state, enemies.drops.scroll_y]
+	# world rule state: map size, tile flags (springy planks 0x400), blocks / rafts, motorbikes, camera
+	l += " W=%d,%d,%d,%d|%d,%s,%s,%s,%s,%s,%s,%s,%d|%d,%d,%s,%s,%s,%s,%s,%s|%.4f,%.4f" % [world.map_id, world.w, world.h,
+		world.flags.hash(), S.it, S.iv, S.iw, S.ix, S.iy, S.iz, S.iA, S.iB, S.iu,
+		S.il, S.im, S.in_, S.io, S.ip, S.iq, S.ir, S.is_, world.cam_pos.x, world.cam_pos.y]
 	if story:
 		# story rule state (cutscene interpreter, camera emulation, quest, marker, girl) + new story log lines
 		l += " ST=%s,%d,%d,%d,%d,%d,%s,%s,%s,%d|%s,%d,%d,%d,%d,%s|%d,%d,%d,%d|%s,%d,%d,%d,%s,%d,%d|%d,%d,%d,%d|%s,%d,%d,%d,%d,%d|%s%s%s%s%s%s,%s,%s,%d,%d,%d,%d,%d,%d,%s" % [

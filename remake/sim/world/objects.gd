@@ -1,27 +1,18 @@
 # Map objects of the original: push blocks / rafts (it, iv, iw, ix, iy, iz, iA, iB; a.java d(n) G() c(),
 # update in run() ~L9160) and motorbikes (il, in, io, ip, iq, ir, is; c(n) F() b(), update ~L9250).
-# Stepped on the 25 Hz clock (original integer rules), drawn interpolated.
-extends Node2D
+# Rules only, stepped on the 25 Hz clock (original integer rules). Drawn by view/world/objects_view.gd, which
+# interpolates between prev_b / prev_v (positions of the tick before) and the current positions.
+extends RefCounted
 
 const BLOCKS := {1: [[21, 9], [13, 8]], 11: [[33, 7], [44, 10]], 5: [[5, 46], [15, 46]], 97: [[3, 6], [7, 4], [12, 3], [22, 6]]}
 const BIKES := {2: [18, 12], 3: [2, 9], 6: [12, 9], 8: [3, 12], 9: [2, 11], 10: [3, 12], 11: [5, 6], 12: [4, 8],
 	13: [16, 11], 14: [18, 7], 15: [1, 11], 16: [7, 11], 17: [14, 12]}
 
-var world
-var tex_b: Texture2D
-var tex_v: Array = []
+var world                     # sim/world_sim.gd
 var prev_b: Array = []
 var prev_v: Array = []
-var alpha := 0.0
 
-func _ready() -> void:
-	z_index = 4
-	tex_b = load("res://art/obj/b.png")
-	for i in 3:
-		tex_v.append(load("res://art/obj/v%d.png" % i))
-	Game.tick25.connect(_tick)
-
-# called by World.load_map (original d(n) then c(n))
+# called by WorldSim.load_map (original d(n) then c(n))
 func setup(id: int) -> void:
 	var bl: Array = BLOCKS.get(id, [])
 	S.it = bl.size()
@@ -74,8 +65,9 @@ func _snap() -> void:
 func g(x: int, y: int, f: int) -> bool:
 	return (world.flags_at(x, y) & f) == f
 
-func _tick() -> void:
-	if world == null or world.map_id < 0 or Game.mode != "play":
+# one 25 Hz tick; play = Game.mode == "play" (given by the view)
+func tick(play: bool) -> void:
+	if world == null or world.map_id < 0 or not play:
 		return
 	_snap()
 	for n in int(S.it):
@@ -99,7 +91,7 @@ func _tick() -> void:
 					S.ix[n] = 1
 				elif g(S.iv[n], S.iw[n] - 24, 64):
 					S.iw[n] = int(S.iw[n] / 24) * 24 + 1
-					world.spawn_fx("splash", Vector2(S.iv[n], S.iw[n] - 13), 1)
+					world._emit({"type": "fx", "kind": "splash", "p": Vector2(S.iv[n], S.iw[n] - 13), "d": 1})
 					S.iz[n] = 1
 					S.iA[n] = -1
 					S.iB[n] = 1
@@ -151,33 +143,5 @@ func hit_blocks(px: int, py: int, dir: int) -> void:
 		if abs(py - 16 - S.iw[n]) < 20 and abs(px + (dir << 4) - S.iv[n]) < 24:
 			S.ix[n] = 2
 			S.iy[n] = dir << 3
-			world.spawn_fx("hit", Vector2(S.iv[n], S.iw[n] - 12), dir)
+			world._emit({"type": "fx", "kind": "hit", "p": Vector2(S.iv[n], S.iw[n] - 12), "d": dir})
 			return
-
-func _process(_d: float) -> void:
-	alpha = clampf(Game.acc / 0.04, 0.0, 1.0)
-	queue_redraw()
-
-func _draw() -> void:
-	for n in int(S.it):
-		var p := Vector2(S.iv[n], S.iw[n])
-		if n < prev_b.size():
-			p = prev_b[n].lerp(p, alpha)
-		draw_texture_rect(tex_b, Rect2(p.x - 12, p.y - 24, 24, 24), false)
-	for n in int(S.il):
-		if n == int(S.im):
-			continue            # the ridden bike is drawn with the player
-		var p := Vector2(bx()[n], S.io[n])
-		if n < prev_v.size():
-			p = prev_v[n].lerp(p, alpha)
-		draw_bike(self, p, int(S.ip[n]), int(S.iq[n]))
-
-func draw_bike(ci: CanvasItem, p: Vector2, dir: int, frame: int) -> void:
-	var t: Texture2D = tex_v[clampi(frame, 0, 2)]
-	var sz := Vector2(t.get_width(), t.get_height()) / 4.0
-	if dir == 1:
-		ci.draw_texture_rect(t, Rect2(p.x - sz.x * 0.5, p.y - sz.y, sz.x, sz.y), false)
-	else:
-		ci.draw_set_transform(Vector2(p.x + sz.x * 0.5, p.y - sz.y), 0.0, Vector2(-1, 1))
-		ci.draw_texture_rect(t, Rect2(Vector2.ZERO, sz), false)
-		ci.draw_set_transform(Vector2.ZERO)

@@ -33,9 +33,10 @@ var _menu_open := false
 var st:
 	get: return sim.st
 	set(v): sim.st = v
-var world:
-	get: return sim.world
-	set(v): sim.world = v
+var world:                     # view/world_view.gd (warps, camera); the sim reads its world_sim
+	set(v):
+		world = v
+		sim.world = v.sim if v != null and "sim" in v else v
 var player:
 	get: return sim.player
 	set(v): sim.player = v

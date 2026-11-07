@@ -29,7 +29,7 @@ var autotick := true          # false: the caller drives step() (main, tests)
 var world = null:             # World node (group "world"); null in headless tests
 	set(v):
 		world = v
-		sim.world = v
+		sim.world = v.sim if v != null and "sim" in v else v
 var test_player = null:
 	set(v):
 		test_player = v

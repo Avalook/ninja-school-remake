@@ -1,0 +1,52 @@
+shots_enemies/map4_boar/shot_1.2.png          identical
+shots_enemies/map4_boar/shot_1.8.png          identical
+shots_enemies/map4_boar/shot_2.6.png          identical
+shots_enemies/map4_boar/shot_3.2.png          identical
+shots_enemies/map6_monsters/shot_1.8.png      identical
+shots_enemies/map6_monsters/shot_2.4.png      identical
+shots_enemies/map6_monsters/shot_3.0.png      identical
+shots_enemies/map6_monsters/shot_3.6.png      identical
+shots_enemies/map97_river/shot_1.2.png        identical
+shots_enemies/map97_river/shot_2.0.png        identical
+shots_enemies/map97_river/shot_3.0.png        identical
+shots_enemies/map97_river/shot_4.0.png        identical
+shots_enemies/map9_classmates/shot_1.4.png    identical
+shots_enemies/map9_classmates/shot_2.0.png    identical
+shots_enemies/map9_classmates/shot_2.8.png    identical
+shots_enemies/map9_classmates/shot_3.6.png    identical
+shots_story/intro_m99/shot_1.0.png            identical
+shots_story/intro_m99/shot_2.5.png            identical
+shots_story/intro_m99/shot_4.0.png            identical
+shots_story/intro_m99/shot_6.5.png            identical
+shots_story/intro_m99/shot_9.0.png            identical
+shots_story/m0_ayumi/shot_0.8.png             identical
+shots_story/m0_ayumi/shot_1.6.png             identical
+shots_story/m0_ayumi/shot_3.0.png             identical
+shots_story/m0_ayumi/shot_5.0.png             identical
+shots_story/m97_cutscene/shot_1.0.png         identical
+shots_story/m97_cutscene/shot_2.2.png         identical
+shots_story/m97_cutscene/shot_3.4.png         identical
+shots_story/m97_cutscene/shot_4.6.png         identical
+shots_world/map1_blocks/shot_0.8.png          identical
+shots_world/map1_blocks/shot_1.6.png          identical
+shots_world/map1_blocks/shot_2.6.png          identical
+shots_world/map1_blocks/shot_3.4.png          identical
+shots_world/map2_houses/shot_0.6.png          1435710 px differ, bbox (0, 0, 1600, 900)
+shots_world/map2_houses/shot_1.8.png          identical
+shots_world/map2_houses/shot_3.0.png          identical
+shots_world/map3_bike/shot_0.4.png            identical
+shots_world/map3_bike/shot_1.2.png            identical
+shots_world/map3_bike/shot_2.0.png            identical
+shots_world/map97_rafts/shot_0.8.png          1436755 px differ, bbox (0, 0, 1600, 900)
+shots_world/map97_rafts/shot_2.0.png          identical
+shots_world/map97_rafts/shot_3.2.png          identical
+shots_world/map97_rafts/shot_4.4.png          identical
+identical 41/43
+
+Chạy lại world_shots.sh 2 lần trên code sau refactor (so với ảnh trước refactor):
+- map97_rafts/shot_0.8: 2/2 lần trùng từng pixel (lần đầu là khung đen lúc khởi động cửa sổ, không lặp lại).
+- map2_houses/shot_0.6: lệch 2823-3058 px chỉ trong bbox (574,522)-(650,661) = NPC đứng thở (npcs_view.gd chạy theo Time.get_ticks_msec).
+  Hai lần chạy code mới cũng lệch nhau đúng vùng đó: bbox (575,522)-(650,658).
+- 12 ảnh world còn lại: 2/2 lần trùng từng pixel.
+
+Độ nhạy: objects.gd bè nhấp nhô S.w % 2 -> % 3: w_m97_rafts lệch 1478 dòng; world_sim crumble_at 0x800 -> 0x400: w_m1_planks lệch 1740 dòng. Đã hoàn nguyên.

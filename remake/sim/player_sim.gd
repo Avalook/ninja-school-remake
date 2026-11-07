@@ -668,7 +668,7 @@ func _st_attack() -> void:
 
 # original u(): damage roll and the hit (sword) or the shuriken throw
 func _u() -> void:
-	var st = world.get_parent().story if world.get_parent() and "story" in world.get_parent() else null
+	var st = world.story if "story" in world else null
 	if st:
 		st.on_player_attack(S.z != 0)     # quest 11 air-hit counter (story module, original u() start)
 	var n: int = S.E + S.w % max(1, S.E >> 1)
@@ -707,7 +707,7 @@ func _st_dead() -> void:
 	S.z += 1
 	S.fi += S.z
 	var vs: Vector2 = world.view_size()
-	if S.fi < world.h * 24 and S.fi <= world.camera.position.y + vs.y + FK and not g(S.fh, S.fi - FK, 4096):
+	if S.fi < world.h * 24 and S.fi <= world.cam_shown.y + vs.y + FK and not g(S.fh, S.fi - FK, 4096):
 		return
 	S.fh = S.fs
 	S.fi = S.ft

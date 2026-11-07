@@ -12,9 +12,10 @@ var state := "idle"            # animation state name (story reads it)
 var anim
 var external_tick := false     # main drives the order: projectiles -> player -> monsters (original run())
 
-var world:
-	get: return sim.world
-	set(v): sim.world = v
+var world:                     # view/world_view.gd (FX, bike drawing); the sim reads its world_sim
+	set(v):
+		world = v
+		sim.world = v.sim if v != null and "sim" in v else v
 var pos: Vector2:
 	get: return sim.pos
 	set(v): sim.pos = v

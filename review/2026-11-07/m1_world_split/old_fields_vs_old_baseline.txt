@@ -1,0 +1,24 @@
+m1_snails: 1000 lines, old fields differing 0
+m1_transform: 993 lines, old fields differing 0
+m3_bike: 987 lines, old fields differing 0
+m4_boar: 1000 lines, old fields differing 0
+m4_combat: 993 lines, old fields differing 0
+m4_death: 995 lines, old fields differing 0
+m4_weapons: 1000 lines, old fields differing 0
+m5_fall_water: 997 lines, old fields differing 0
+m6_skills: 1125 lines, old fields differing 0
+m7_water_plain: 514 lines, old fields differing 0
+m7_water_skills: 948 lines, old fields differing 0
+m95_golem: 699 lines, old fields differing 0
+m97_river: 392 lines, old fields differing 0
+m9_classmates: 1000 lines, old fields differing 0
+story_intro: 3000 lines, old fields differing 0
+story_m0_ayumi: 750 lines, old fields differing 0
+story_m0_late: 1750 lines, old fields differing 0
+story_m0_mid: 1444 lines, old fields differing 0
+story_m0_start: 1750 lines, old fields differing 0
+story_m0_takanashi: 750 lines, old fields differing 0
+story_m3_q3: 1250 lines, old fields differing 0
+story_m97_cut: 1224 lines, old fields differing 0
+story_m9_q10: 1248 lines, old fields differing 0
+total differing 0
