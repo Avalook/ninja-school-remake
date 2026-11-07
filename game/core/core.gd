@@ -36,9 +36,14 @@ func _ctor_host() -> void:
 	lT = aY - (_hx_sw(lU, lR[1]) >> 1)
 
 func key_down(k: int) -> void:
+	# PC convenience: popups (d==7) only react to the left soft key (-6 "OK"); let Enter/J confirm too
+	if auto_prompts and d == 7 and k == -5:
+		k = -6
 	keyPressed_i(k)
 
 func key_up(k: int) -> void:
+	if auto_prompts and d == 7 and k == -5:
+		k = -6
 	keyReleased_i(k)
 
 var prev_cam := Vector2.ZERO

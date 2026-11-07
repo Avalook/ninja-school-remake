@@ -1,0 +1,6336 @@
+{
+ "generated": "2026-11-07T06:37:50+00:00",
+ "scale": 4,
+ "count": 164,
+ "methods": {
+  "blender": 50,
+  "cutout": 0,
+  "fallback_upscale": 114
+ },
+ "all_exact_4x": true,
+ "all_bbox_ok": true,
+ "files": [
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b00.png",
+   "hd": "game/hd_art/mob/b00.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     55,
+     35
+    ],
+    "hd": [
+     220,
+     140
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     55,
+     35
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     55.0,
+     35.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b01.png",
+   "hd": "game/hd_art/mob/b01.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     57,
+     37
+    ],
+    "hd": [
+     228,
+     148
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     57,
+     37
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     57.0,
+     37.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b02.png",
+   "hd": "game/hd_art/mob/b02.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     55,
+     37
+    ],
+    "hd": [
+     220,
+     148
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     55,
+     37
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     55.0,
+     37.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b03.png",
+   "hd": "game/hd_art/mob/b03.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     18,
+     22
+    ],
+    "hd": [
+     72,
+     88
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     18,
+     22
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     18.0,
+     22.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b04.png",
+   "hd": "game/hd_art/mob/b04.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     55,
+     4
+    ],
+    "hd": [
+     220,
+     16
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     6,
+     0,
+     38,
+     4
+    ],
+    "hd_scaled": [
+     6.0,
+     0.0,
+     38.0,
+     4.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b10.png",
+   "hd": "game/hd_art/mob/b10.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     42,
+     55
+    ],
+    "hd": [
+     168,
+     220
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     42,
+     55
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     42.0,
+     55.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b11.png",
+   "hd": "game/hd_art/mob/b11.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     6,
+     7
+    ],
+    "hd": [
+     24,
+     28
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     6,
+     7
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     6.0,
+     7.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b12.png",
+   "hd": "game/hd_art/mob/b12.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     11,
+     9
+    ],
+    "hd": [
+     44,
+     36
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     11,
+     9
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     11.0,
+     9.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b13.png",
+   "hd": "game/hd_art/mob/b13.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     12,
+     20
+    ],
+    "hd": [
+     48,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     12,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     12.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b20.png",
+   "hd": "game/hd_art/mob/b20.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     30,
+     24
+    ],
+    "hd": [
+     120,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     30,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     30.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b21.png",
+   "hd": "game/hd_art/mob/b21.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     28,
+     18
+    ],
+    "hd": [
+     112,
+     72
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     28,
+     18
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     28.0,
+     18.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b22.png",
+   "hd": "game/hd_art/mob/b22.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     45,
+     39
+    ],
+    "hd": [
+     180,
+     156
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     45,
+     39
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     45.0,
+     39.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/b23.png",
+   "hd": "game/hd_art/mob/b23.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     30,
+     24
+    ],
+    "hd": [
+     120,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     30,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     30.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m000.png",
+   "hd": "game/hd_art/mob/m000.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     18,
+     27
+    ],
+    "hd": [
+     72,
+     108
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     18,
+     27
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     18.0,
+     27.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m001.png",
+   "hd": "game/hd_art/mob/m001.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     16,
+     26
+    ],
+    "hd": [
+     64,
+     104
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     26
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     26.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m002.png",
+   "hd": "game/hd_art/mob/m002.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     25,
+     32
+    ],
+    "hd": [
+     100,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     25,
+     32
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     25.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m003.png",
+   "hd": "game/hd_art/mob/m003.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     23,
+     26
+    ],
+    "hd": [
+     92,
+     104
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     23,
+     26
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     23.0,
+     26.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m010.png",
+   "hd": "game/hd_art/mob/m010.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m000 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     18,
+     27
+    ],
+    "hd": [
+     72,
+     108
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     18,
+     27
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     18.0,
+     27.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m011.png",
+   "hd": "game/hd_art/mob/m011.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m001 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     16,
+     26
+    ],
+    "hd": [
+     64,
+     104
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     26
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     26.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m012.png",
+   "hd": "game/hd_art/mob/m012.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m002 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     25,
+     32
+    ],
+    "hd": [
+     100,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     25,
+     32
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     25.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m013.png",
+   "hd": "game/hd_art/mob/m013.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m003 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     23,
+     26
+    ],
+    "hd": [
+     92,
+     104
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     23,
+     26
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     23.0,
+     26.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m100.png",
+   "hd": "game/hd_art/mob/m100.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 1.006,
+   "size": {
+    "orig": [
+     16,
+     15
+    ],
+    "hd": [
+     64,
+     60
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     15
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     15.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1000.png",
+   "hd": "game/hd_art/mob/m1000.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 1.015,
+   "size": {
+    "orig": [
+     15,
+     12
+    ],
+    "hd": [
+     60,
+     48
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     15,
+     12
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     15.0,
+     12.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1001.png",
+   "hd": "game/hd_art/mob/m1001.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.891,
+   "size": {
+    "orig": [
+     16,
+     12
+    ],
+    "hd": [
+     64,
+     48
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     12
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     12.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1002.png",
+   "hd": "game/hd_art/mob/m1002.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 1.051,
+   "size": {
+    "orig": [
+     12,
+     16
+    ],
+    "hd": [
+     48,
+     64
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     12,
+     16
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     12.0,
+     16.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1003.png",
+   "hd": "game/hd_art/mob/m1003.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.985,
+   "size": {
+    "orig": [
+     12,
+     15
+    ],
+    "hd": [
+     48,
+     60
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     12,
+     15
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     12.0,
+     15.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m101.png",
+   "hd": "game/hd_art/mob/m101.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 1.049,
+   "size": {
+    "orig": [
+     16,
+     15
+    ],
+    "hd": [
+     64,
+     60
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     15
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     15.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1010.png",
+   "hd": "game/hd_art/mob/m1010.png",
+   "method": "blender",
+   "note": "horizontal mirror of m1000 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     15,
+     12
+    ],
+    "hd": [
+     60,
+     48
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     15,
+     12
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     15.0,
+     12.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1011.png",
+   "hd": "game/hd_art/mob/m1011.png",
+   "method": "blender",
+   "note": "horizontal mirror of m1001 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     16,
+     12
+    ],
+    "hd": [
+     64,
+     48
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     12
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     12.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m102.png",
+   "hd": "game/hd_art/mob/m102.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 1.138,
+   "note": "3D body + original hit-gag layer (goggle eyes/debris) via fallback upscale",
+   "size": {
+    "orig": [
+     27,
+     19
+    ],
+    "hd": [
+     108,
+     76
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     27,
+     19
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     27.0,
+     19.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m110.png",
+   "hd": "game/hd_art/mob/m110.png",
+   "method": "blender",
+   "note": "horizontal mirror of m100 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     16,
+     15
+    ],
+    "hd": [
+     64,
+     60
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     15
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     15.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1100.png",
+   "hd": "game/hd_art/mob/m1100.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     27,
+     14
+    ],
+    "hd": [
+     108,
+     56
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     27,
+     14
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     27.0,
+     14.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1101.png",
+   "hd": "game/hd_art/mob/m1101.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     27,
+     14
+    ],
+    "hd": [
+     108,
+     56
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     27,
+     14
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     27.0,
+     14.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1102.png",
+   "hd": "game/hd_art/mob/m1102.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     21,
+     22
+    ],
+    "hd": [
+     84,
+     88
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     22
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     22.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1103.png",
+   "hd": "game/hd_art/mob/m1103.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     31,
+     16
+    ],
+    "hd": [
+     124,
+     64
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     31,
+     16
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     31.0,
+     16.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m111.png",
+   "hd": "game/hd_art/mob/m111.png",
+   "method": "blender",
+   "note": "horizontal mirror of m101 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     16,
+     15
+    ],
+    "hd": [
+     64,
+     60
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     15
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     15.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1110.png",
+   "hd": "game/hd_art/mob/m1110.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1100 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     27,
+     14
+    ],
+    "hd": [
+     108,
+     56
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     27,
+     14
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     27.0,
+     14.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1111.png",
+   "hd": "game/hd_art/mob/m1111.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1101 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     27,
+     14
+    ],
+    "hd": [
+     108,
+     56
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     27,
+     14
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     27.0,
+     14.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1112.png",
+   "hd": "game/hd_art/mob/m1112.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1102 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     21,
+     22
+    ],
+    "hd": [
+     84,
+     88
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     22
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     22.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1113.png",
+   "hd": "game/hd_art/mob/m1113.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1103 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     31,
+     16
+    ],
+    "hd": [
+     124,
+     64
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     31,
+     16
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     31.0,
+     16.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m112.png",
+   "hd": "game/hd_art/mob/m112.png",
+   "method": "blender",
+   "note": "horizontal mirror of m102 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     27,
+     19
+    ],
+    "hd": [
+     108,
+     76
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     27,
+     19
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     27.0,
+     19.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1200.png",
+   "hd": "game/hd_art/mob/m1200.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     28,
+     11
+    ],
+    "hd": [
+     112,
+     44
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     28,
+     11
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     28.0,
+     11.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1201.png",
+   "hd": "game/hd_art/mob/m1201.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     28,
+     11
+    ],
+    "hd": [
+     112,
+     44
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     28,
+     11
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     28.0,
+     11.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1202.png",
+   "hd": "game/hd_art/mob/m1202.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     22,
+     23
+    ],
+    "hd": [
+     88,
+     92
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     22,
+     23
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     22.0,
+     23.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1210.png",
+   "hd": "game/hd_art/mob/m1210.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1200 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     28,
+     11
+    ],
+    "hd": [
+     112,
+     44
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     28,
+     11
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     28.0,
+     11.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1211.png",
+   "hd": "game/hd_art/mob/m1211.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1201 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     28,
+     11
+    ],
+    "hd": [
+     112,
+     44
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     28,
+     11
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     28.0,
+     11.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1212.png",
+   "hd": "game/hd_art/mob/m1212.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1202 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     22,
+     23
+    ],
+    "hd": [
+     88,
+     92
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     22,
+     23
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     22.0,
+     23.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1300.png",
+   "hd": "game/hd_art/mob/m1300.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     14,
+     18
+    ],
+    "hd": [
+     56,
+     72
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     14,
+     18
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     14.0,
+     18.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1301.png",
+   "hd": "game/hd_art/mob/m1301.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     15,
+     20
+    ],
+    "hd": [
+     60,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     15,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     15.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1302.png",
+   "hd": "game/hd_art/mob/m1302.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     19,
+     21
+    ],
+    "hd": [
+     76,
+     84
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     19,
+     21
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     19.0,
+     21.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1310.png",
+   "hd": "game/hd_art/mob/m1310.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1300 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     14,
+     18
+    ],
+    "hd": [
+     56,
+     72
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     14,
+     18
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     14.0,
+     18.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1311.png",
+   "hd": "game/hd_art/mob/m1311.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1301 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     15,
+     20
+    ],
+    "hd": [
+     60,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     15,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     15.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1312.png",
+   "hd": "game/hd_art/mob/m1312.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1302 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     19,
+     21
+    ],
+    "hd": [
+     76,
+     84
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     19,
+     21
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     19.0,
+     21.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1400.png",
+   "hd": "game/hd_art/mob/m1400.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 1.076,
+   "size": {
+    "orig": [
+     25,
+     9
+    ],
+    "hd": [
+     100,
+     36
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     25,
+     9
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     25.0,
+     9.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1401.png",
+   "hd": "game/hd_art/mob/m1401.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 1.073,
+   "size": {
+    "orig": [
+     26,
+     9
+    ],
+    "hd": [
+     104,
+     36
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     26,
+     9
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     26.0,
+     9.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1402.png",
+   "hd": "game/hd_art/mob/m1402.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.863,
+   "note": "3D body + original hit-gag layer (goggle eyes/debris) via fallback upscale",
+   "size": {
+    "orig": [
+     22,
+     18
+    ],
+    "hd": [
+     88,
+     72
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     22,
+     18
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     22.0,
+     18.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1410.png",
+   "hd": "game/hd_art/mob/m1410.png",
+   "method": "blender",
+   "note": "horizontal mirror of m1400 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     25,
+     9
+    ],
+    "hd": [
+     100,
+     36
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     25,
+     9
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     25.0,
+     9.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1411.png",
+   "hd": "game/hd_art/mob/m1411.png",
+   "method": "blender",
+   "note": "horizontal mirror of m1401 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     26,
+     9
+    ],
+    "hd": [
+     104,
+     36
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     26,
+     9
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     26.0,
+     9.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1412.png",
+   "hd": "game/hd_art/mob/m1412.png",
+   "method": "blender",
+   "note": "horizontal mirror of m1402 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     22,
+     18
+    ],
+    "hd": [
+     88,
+     72
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     22,
+     18
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     22.0,
+     18.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1500.png",
+   "hd": "game/hd_art/mob/m1500.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     29,
+     32
+    ],
+    "hd": [
+     116,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     29,
+     32
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     29.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1501.png",
+   "hd": "game/hd_art/mob/m1501.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     29,
+     38
+    ],
+    "hd": [
+     116,
+     152
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     29,
+     38
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     29.0,
+     38.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1502.png",
+   "hd": "game/hd_art/mob/m1502.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     29,
+     36
+    ],
+    "hd": [
+     116,
+     144
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     29,
+     36
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     29.0,
+     36.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1503.png",
+   "hd": "game/hd_art/mob/m1503.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     36,
+     32
+    ],
+    "hd": [
+     144,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     36,
+     32
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     36.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1510.png",
+   "hd": "game/hd_art/mob/m1510.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1500 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     29,
+     32
+    ],
+    "hd": [
+     116,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     29,
+     32
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     29.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1511.png",
+   "hd": "game/hd_art/mob/m1511.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1501 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     29,
+     38
+    ],
+    "hd": [
+     116,
+     152
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     29,
+     38
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     29.0,
+     38.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1512.png",
+   "hd": "game/hd_art/mob/m1512.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1502 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     29,
+     36
+    ],
+    "hd": [
+     116,
+     144
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     29,
+     36
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     29.0,
+     36.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1513.png",
+   "hd": "game/hd_art/mob/m1513.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1503 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     36,
+     32
+    ],
+    "hd": [
+     144,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     36,
+     32
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     36.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1600.png",
+   "hd": "game/hd_art/mob/m1600.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     24,
+     19
+    ],
+    "hd": [
+     96,
+     76
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     19
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     19.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1601.png",
+   "hd": "game/hd_art/mob/m1601.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     24,
+     19
+    ],
+    "hd": [
+     96,
+     76
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     19
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     19.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1610.png",
+   "hd": "game/hd_art/mob/m1610.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1600 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     24,
+     19
+    ],
+    "hd": [
+     96,
+     76
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     19
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     19.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1611.png",
+   "hd": "game/hd_art/mob/m1611.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1601 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     24,
+     19
+    ],
+    "hd": [
+     96,
+     76
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     19
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     19.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1700.png",
+   "hd": "game/hd_art/mob/m1700.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     24,
+     23
+    ],
+    "hd": [
+     96,
+     92
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     23
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     23.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1701.png",
+   "hd": "game/hd_art/mob/m1701.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     23,
+     22
+    ],
+    "hd": [
+     92,
+     88
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     23,
+     22
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     23.0,
+     22.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1702.png",
+   "hd": "game/hd_art/mob/m1702.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     24,
+     24
+    ],
+    "hd": [
+     96,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1703.png",
+   "hd": "game/hd_art/mob/m1703.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     24,
+     21
+    ],
+    "hd": [
+     96,
+     84
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     21
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     21.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1710.png",
+   "hd": "game/hd_art/mob/m1710.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1700 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     24,
+     23
+    ],
+    "hd": [
+     96,
+     92
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     23
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     23.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1711.png",
+   "hd": "game/hd_art/mob/m1711.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1701 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     23,
+     22
+    ],
+    "hd": [
+     92,
+     88
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     23,
+     22
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     23.0,
+     22.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1712.png",
+   "hd": "game/hd_art/mob/m1712.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1702 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     24,
+     24
+    ],
+    "hd": [
+     96,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1713.png",
+   "hd": "game/hd_art/mob/m1713.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1703 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     24,
+     21
+    ],
+    "hd": [
+     96,
+     84
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     21
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     21.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1800.png",
+   "hd": "game/hd_art/mob/m1800.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.945,
+   "size": {
+    "orig": [
+     21,
+     24
+    ],
+    "hd": [
+     84,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1801.png",
+   "hd": "game/hd_art/mob/m1801.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.921,
+   "size": {
+    "orig": [
+     21,
+     23
+    ],
+    "hd": [
+     84,
+     92
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     23
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     23.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1802.png",
+   "hd": "game/hd_art/mob/m1802.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     24,
+     24
+    ],
+    "hd": [
+     96,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1803.png",
+   "hd": "game/hd_art/mob/m1803.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.889,
+   "size": {
+    "orig": [
+     24,
+     24
+    ],
+    "hd": [
+     96,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1810.png",
+   "hd": "game/hd_art/mob/m1810.png",
+   "method": "blender",
+   "note": "horizontal mirror of m1800 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     21,
+     24
+    ],
+    "hd": [
+     84,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1811.png",
+   "hd": "game/hd_art/mob/m1811.png",
+   "method": "blender",
+   "note": "horizontal mirror of m1801 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     21,
+     23
+    ],
+    "hd": [
+     84,
+     92
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     23
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     23.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1812.png",
+   "hd": "game/hd_art/mob/m1812.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m1802 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     24,
+     24
+    ],
+    "hd": [
+     96,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1813.png",
+   "hd": "game/hd_art/mob/m1813.png",
+   "method": "blender",
+   "note": "horizontal mirror of m1803 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     24,
+     24
+    ],
+    "hd": [
+     96,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     24,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     24.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1900.png",
+   "hd": "game/hd_art/mob/m1900.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 1.13,
+   "size": {
+    "orig": [
+     20,
+     20
+    ],
+    "hd": [
+     80,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     20,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     20.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1901.png",
+   "hd": "game/hd_art/mob/m1901.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 1.131,
+   "size": {
+    "orig": [
+     20,
+     18
+    ],
+    "hd": [
+     80,
+     72
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     20,
+     18
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     20.0,
+     18.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1902.png",
+   "hd": "game/hd_art/mob/m1902.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.943,
+   "note": "3D body + original hit-gag layer (goggle eyes/debris) via fallback upscale",
+   "size": {
+    "orig": [
+     21,
+     24
+    ],
+    "hd": [
+     84,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1903.png",
+   "hd": "game/hd_art/mob/m1903.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.994,
+   "size": {
+    "orig": [
+     21,
+     23
+    ],
+    "hd": [
+     84,
+     92
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     23
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     23.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m1912.png",
+   "hd": "game/hd_art/mob/m1912.png",
+   "method": "blender",
+   "note": "horizontal mirror of m1902 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     21,
+     24
+    ],
+    "hd": [
+     84,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m200.png",
+   "hd": "game/hd_art/mob/m200.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.95,
+   "size": {
+    "orig": [
+     16,
+     14
+    ],
+    "hd": [
+     64,
+     56
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     14
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     14.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m201.png",
+   "hd": "game/hd_art/mob/m201.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.993,
+   "size": {
+    "orig": [
+     32,
+     14
+    ],
+    "hd": [
+     128,
+     56
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     32,
+     14
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     32.0,
+     14.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m202.png",
+   "hd": "game/hd_art/mob/m202.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.927,
+   "note": "3D body + original hit-gag layer (goggle eyes/debris) via fallback upscale",
+   "size": {
+    "orig": [
+     25,
+     20
+    ],
+    "hd": [
+     100,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     25,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     25.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m300.png",
+   "hd": "game/hd_art/mob/m300.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     18,
+     28
+    ],
+    "hd": [
+     72,
+     112
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     18,
+     28
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     18.0,
+     28.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m301.png",
+   "hd": "game/hd_art/mob/m301.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     16,
+     33
+    ],
+    "hd": [
+     64,
+     132
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     33
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     33.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m302.png",
+   "hd": "game/hd_art/mob/m302.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     25,
+     30
+    ],
+    "hd": [
+     100,
+     120
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     25,
+     30
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     25.0,
+     30.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m303.png",
+   "hd": "game/hd_art/mob/m303.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     20,
+     31
+    ],
+    "hd": [
+     80,
+     124
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     20,
+     31
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     20.0,
+     31.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m310.png",
+   "hd": "game/hd_art/mob/m310.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m300 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     18,
+     28
+    ],
+    "hd": [
+     72,
+     112
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     18,
+     28
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     18.0,
+     28.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m311.png",
+   "hd": "game/hd_art/mob/m311.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m301 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     16,
+     33
+    ],
+    "hd": [
+     64,
+     132
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     33
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     33.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m312.png",
+   "hd": "game/hd_art/mob/m312.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m302 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     25,
+     30
+    ],
+    "hd": [
+     100,
+     120
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     25,
+     30
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     25.0,
+     30.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m313.png",
+   "hd": "game/hd_art/mob/m313.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m303 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     20,
+     31
+    ],
+    "hd": [
+     80,
+     124
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     20,
+     31
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     20.0,
+     31.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m400.png",
+   "hd": "game/hd_art/mob/m400.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 1.032,
+   "size": {
+    "orig": [
+     18,
+     14
+    ],
+    "hd": [
+     72,
+     56
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     18,
+     14
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     18.0,
+     14.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m401.png",
+   "hd": "game/hd_art/mob/m401.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.948,
+   "size": {
+    "orig": [
+     21,
+     20
+    ],
+    "hd": [
+     84,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m402.png",
+   "hd": "game/hd_art/mob/m402.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.904,
+   "note": "3D body + original hit-gag layer (goggle eyes/debris) via fallback upscale",
+   "size": {
+    "orig": [
+     21,
+     23
+    ],
+    "hd": [
+     84,
+     92
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     23
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     23.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m410.png",
+   "hd": "game/hd_art/mob/m410.png",
+   "method": "blender",
+   "note": "horizontal mirror of m400 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     18,
+     14
+    ],
+    "hd": [
+     72,
+     56
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     18,
+     14
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     18.0,
+     14.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m411.png",
+   "hd": "game/hd_art/mob/m411.png",
+   "method": "blender",
+   "note": "horizontal mirror of m401 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     21,
+     20
+    ],
+    "hd": [
+     84,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m412.png",
+   "hd": "game/hd_art/mob/m412.png",
+   "method": "blender",
+   "note": "horizontal mirror of m402 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     21,
+     23
+    ],
+    "hd": [
+     84,
+     92
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     23
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     23.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m500.png",
+   "hd": "game/hd_art/mob/m500.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.96,
+   "size": {
+    "orig": [
+     16,
+     14
+    ],
+    "hd": [
+     64,
+     56
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     14
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     14.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m501.png",
+   "hd": "game/hd_art/mob/m501.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.866,
+   "size": {
+    "orig": [
+     16,
+     14
+    ],
+    "hd": [
+     64,
+     56
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     14
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     14.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m502.png",
+   "hd": "game/hd_art/mob/m502.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 1.097,
+   "note": "3D body + original hit-gag layer (goggle eyes/debris) via fallback upscale",
+   "size": {
+    "orig": [
+     21,
+     18
+    ],
+    "hd": [
+     84,
+     72
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     18
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     18.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m600.png",
+   "hd": "game/hd_art/mob/m600.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.923,
+   "size": {
+    "orig": [
+     17,
+     19
+    ],
+    "hd": [
+     68,
+     76
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     17,
+     19
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     17.0,
+     19.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m601.png",
+   "hd": "game/hd_art/mob/m601.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.926,
+   "size": {
+    "orig": [
+     17,
+     19
+    ],
+    "hd": [
+     68,
+     76
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     2,
+     17,
+     19
+    ],
+    "hd_scaled": [
+     0.0,
+     2.0,
+     17.0,
+     19.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m602.png",
+   "hd": "game/hd_art/mob/m602.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.923,
+   "note": "3D body + original hit-gag layer (goggle eyes/debris) via fallback upscale",
+   "size": {
+    "orig": [
+     20,
+     19
+    ],
+    "hd": [
+     80,
+     76
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     20,
+     19
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     20.0,
+     19.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m610.png",
+   "hd": "game/hd_art/mob/m610.png",
+   "method": "blender",
+   "note": "horizontal mirror of m600 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     17,
+     19
+    ],
+    "hd": [
+     68,
+     76
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     17,
+     19
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     17.0,
+     19.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m611.png",
+   "hd": "game/hd_art/mob/m611.png",
+   "method": "blender",
+   "note": "horizontal mirror of m601 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     17,
+     19
+    ],
+    "hd": [
+     68,
+     76
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     2,
+     17,
+     19
+    ],
+    "hd_scaled": [
+     0.0,
+     2.0,
+     17.0,
+     19.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m700.png",
+   "hd": "game/hd_art/mob/m700.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     26,
+     32
+    ],
+    "hd": [
+     104,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     3,
+     0,
+     24,
+     32
+    ],
+    "hd_scaled": [
+     3.0,
+     0.0,
+     24.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m702.png",
+   "hd": "game/hd_art/mob/m702.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     26,
+     32
+    ],
+    "hd": [
+     104,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     21,
+     32
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     21.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m712.png",
+   "hd": "game/hd_art/mob/m712.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     26,
+     32
+    ],
+    "hd": [
+     104,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     5,
+     1,
+     26,
+     32
+    ],
+    "hd_scaled": [
+     5.0,
+     1.0,
+     26.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m800.png",
+   "hd": "game/hd_art/mob/m800.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 1.015,
+   "size": {
+    "orig": [
+     16,
+     12
+    ],
+    "hd": [
+     64,
+     48
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     1,
+     0,
+     16,
+     12
+    ],
+    "hd_scaled": [
+     1.0,
+     0.0,
+     16.0,
+     12.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m801.png",
+   "hd": "game/hd_art/mob/m801.png",
+   "method": "blender",
+   "render_aspect_vs_orig": 0.891,
+   "size": {
+    "orig": [
+     16,
+     12
+    ],
+    "hd": [
+     64,
+     48
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     12
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     12.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m810.png",
+   "hd": "game/hd_art/mob/m810.png",
+   "method": "blender",
+   "note": "horizontal mirror of m800 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     16,
+     12
+    ],
+    "hd": [
+     64,
+     48
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     15,
+     12
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     15.0,
+     12.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m811.png",
+   "hd": "game/hd_art/mob/m811.png",
+   "method": "blender",
+   "note": "horizontal mirror of m801 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     16,
+     12
+    ],
+    "hd": [
+     64,
+     48
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     16,
+     12
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     16.0,
+     12.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m900.png",
+   "hd": "game/hd_art/mob/m900.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     26,
+     34
+    ],
+    "hd": [
+     104,
+     136
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     1,
+     2,
+     25,
+     34
+    ],
+    "hd_scaled": [
+     1.0,
+     2.0,
+     25.0,
+     34.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m901.png",
+   "hd": "game/hd_art/mob/m901.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     26,
+     34
+    ],
+    "hd": [
+     104,
+     136
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     1,
+     24,
+     34
+    ],
+    "hd_scaled": [
+     0.0,
+     1.0,
+     24.0,
+     34.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m902.png",
+   "hd": "game/hd_art/mob/m902.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     26,
+     34
+    ],
+    "hd": [
+     104,
+     136
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     26,
+     34
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     26.0,
+     34.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m903.png",
+   "hd": "game/hd_art/mob/m903.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     30,
+     32
+    ],
+    "hd": [
+     120,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     30,
+     32
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     30.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m910.png",
+   "hd": "game/hd_art/mob/m910.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m900 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     26,
+     34
+    ],
+    "hd": [
+     104,
+     136
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     1,
+     2,
+     25,
+     34
+    ],
+    "hd_scaled": [
+     1.0,
+     2.0,
+     25.0,
+     34.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m911.png",
+   "hd": "game/hd_art/mob/m911.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m901 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     26,
+     34
+    ],
+    "hd": [
+     104,
+     136
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     2,
+     1,
+     26,
+     34
+    ],
+    "hd_scaled": [
+     2.0,
+     1.0,
+     26.0,
+     34.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m912.png",
+   "hd": "game/hd_art/mob/m912.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m902 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     26,
+     34
+    ],
+    "hd": [
+     104,
+     136
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     26,
+     34
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     26.0,
+     34.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/m913.png",
+   "hd": "game/hd_art/mob/m913.png",
+   "method": "fallback_upscale",
+   "note": "horizontal mirror of m903 (original is a mirror, colour diff <= 16)",
+   "size": {
+    "orig": [
+     30,
+     32
+    ],
+    "hd": [
+     120,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     30,
+     32
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     30.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/x0.png",
+   "hd": "game/hd_art/mob/x0.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     20,
+     9
+    ],
+    "hd": [
+     80,
+     36
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     20,
+     9
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     20.0,
+     9.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/x1.png",
+   "hd": "game/hd_art/mob/x1.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     23,
+     9
+    ],
+    "hd": [
+     92,
+     36
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     23,
+     9
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     23.0,
+     9.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/x2.png",
+   "hd": "game/hd_art/mob/x2.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     26,
+     17
+    ],
+    "hd": [
+     104,
+     68
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     26,
+     17
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     26.0,
+     17.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/x3.png",
+   "hd": "game/hd_art/mob/x3.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     26,
+     15
+    ],
+    "hd": [
+     104,
+     60
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     26,
+     15
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     26.0,
+     15.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y00.png",
+   "hd": "game/hd_art/mob/y00.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     26,
+     26
+    ],
+    "hd": [
+     104,
+     104
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     26,
+     26
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     26.0,
+     26.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y01.png",
+   "hd": "game/hd_art/mob/y01.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     26,
+     29
+    ],
+    "hd": [
+     104,
+     116
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     26,
+     29
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     26.0,
+     29.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y10.png",
+   "hd": "game/hd_art/mob/y10.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     28,
+     24
+    ],
+    "hd": [
+     112,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     28,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     28.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y11.png",
+   "hd": "game/hd_art/mob/y11.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     18,
+     20
+    ],
+    "hd": [
+     72,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     18,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     18.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y20.png",
+   "hd": "game/hd_art/mob/y20.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     22,
+     26
+    ],
+    "hd": [
+     88,
+     104
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     22,
+     26
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     22.0,
+     26.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y21.png",
+   "hd": "game/hd_art/mob/y21.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     28,
+     20
+    ],
+    "hd": [
+     112,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     28,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     28.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y30.png",
+   "hd": "game/hd_art/mob/y30.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     37,
+     25
+    ],
+    "hd": [
+     148,
+     100
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     37,
+     25
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     37.0,
+     25.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y31.png",
+   "hd": "game/hd_art/mob/y31.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     40,
+     20
+    ],
+    "hd": [
+     160,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     40,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     40.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y40.png",
+   "hd": "game/hd_art/mob/y40.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     26,
+     26
+    ],
+    "hd": [
+     104,
+     104
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     26,
+     26
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     26.0,
+     26.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y41.png",
+   "hd": "game/hd_art/mob/y41.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     26,
+     29
+    ],
+    "hd": [
+     104,
+     116
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     26,
+     29
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     26.0,
+     29.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y50.png",
+   "hd": "game/hd_art/mob/y50.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     28,
+     24
+    ],
+    "hd": [
+     112,
+     96
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     28,
+     24
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     28.0,
+     24.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y51.png",
+   "hd": "game/hd_art/mob/y51.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     18,
+     20
+    ],
+    "hd": [
+     72,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     18,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     18.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y60.png",
+   "hd": "game/hd_art/mob/y60.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     22,
+     26
+    ],
+    "hd": [
+     88,
+     104
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     22,
+     26
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     22.0,
+     26.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/mob/y61.png",
+   "hd": "game/hd_art/mob/y61.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     28,
+     20
+    ],
+    "hd": [
+     112,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     28,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     28.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/00.png",
+   "hd": "game/hd_art/npc/00.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     22,
+     25
+    ],
+    "hd": [
+     88,
+     100
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     22,
+     25
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     22.0,
+     25.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/01.png",
+   "hd": "game/hd_art/npc/01.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     22,
+     7
+    ],
+    "hd": [
+     88,
+     28
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     22,
+     7
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     22.0,
+     7.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/10.png",
+   "hd": "game/hd_art/npc/10.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     18,
+     26
+    ],
+    "hd": [
+     72,
+     104
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     18,
+     26
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     18.0,
+     26.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/11.png",
+   "hd": "game/hd_art/npc/11.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     14,
+     6
+    ],
+    "hd": [
+     56,
+     24
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     14,
+     6
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     14.0,
+     6.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/20.png",
+   "hd": "game/hd_art/npc/20.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     20,
+     27
+    ],
+    "hd": [
+     80,
+     108
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     20,
+     27
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     20.0,
+     27.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/21.png",
+   "hd": "game/hd_art/npc/21.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     19,
+     8
+    ],
+    "hd": [
+     76,
+     32
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     19,
+     8
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     19.0,
+     8.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/30.png",
+   "hd": "game/hd_art/npc/30.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     19,
+     27
+    ],
+    "hd": [
+     76,
+     108
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     19,
+     27
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     19.0,
+     27.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/31.png",
+   "hd": "game/hd_art/npc/31.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     19,
+     8
+    ],
+    "hd": [
+     76,
+     32
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     3,
+     0,
+     18,
+     8
+    ],
+    "hd_scaled": [
+     3.0,
+     0.0,
+     18.0,
+     8.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/40.png",
+   "hd": "game/hd_art/npc/40.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     20,
+     32
+    ],
+    "hd": [
+     80,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     0,
+     20,
+     32
+    ],
+    "hd_scaled": [
+     0.0,
+     0.0,
+     20.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/41.png",
+   "hd": "game/hd_art/npc/41.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     20,
+     6
+    ],
+    "hd": [
+     80,
+     24
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     5,
+     0,
+     16,
+     6
+    ],
+    "hd_scaled": [
+     5.0,
+     0.0,
+     16.0,
+     6.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/50.png",
+   "hd": "game/hd_art/npc/50.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     20,
+     32
+    ],
+    "hd": [
+     80,
+     128
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     5,
+     20,
+     32
+    ],
+    "hd_scaled": [
+     0.0,
+     5.0,
+     20.0,
+     32.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/51.png",
+   "hd": "game/hd_art/npc/51.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     20,
+     6
+    ],
+    "hd": [
+     80,
+     24
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     2,
+     0,
+     17,
+     6
+    ],
+    "hd_scaled": [
+     2.0,
+     0.0,
+     17.0,
+     6.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/d0.png",
+   "hd": "game/hd_art/npc/d0.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     29,
+     20
+    ],
+    "hd": [
+     116,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     0,
+     1,
+     29,
+     20
+    ],
+    "hd_scaled": [
+     0.0,
+     1.0,
+     29.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  },
+  {
+   "source": "analysis/NinjaSchool1/resources/npc/d1.png",
+   "hd": "game/hd_art/npc/d1.png",
+   "method": "fallback_upscale",
+   "size": {
+    "orig": [
+     29,
+     20
+    ],
+    "hd": [
+     116,
+     80
+    ],
+    "exact_4x": true
+   },
+   "bbox_check": {
+    "orig": [
+     2,
+     0,
+     29,
+     20
+    ],
+    "hd_scaled": [
+     2.0,
+     0.0,
+     29.0,
+     20.0
+    ],
+    "delta": {
+     "left": 0.0,
+     "top": 0.0,
+     "right": 0.0,
+     "bottom": 0.0,
+     "centre_x": 0.0
+    },
+    "ok": true
+   }
+  }
+ ]
+}

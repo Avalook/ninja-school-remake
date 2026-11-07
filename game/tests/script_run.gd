@@ -13,6 +13,36 @@ func step(n: int) -> void:
 				var val = g.get(fname)
 				s += " %s=%s" % [fname, str(val).replace(" ", "")]
 			trace.store_line(s)
+var stuck := 0
+var lastx := 0
+func dismiss() -> void:
+	# popups (d==7) and dialogue bubbles block the bot: confirm them like a player would
+	var guard := 0
+	while (g.d == 7 or (g.d == 1 and g.gd)) and guard < 60:
+		var kk := -6 if g.d == 7 else -5
+		g.key_down(kk); step(2); g.key_up(kk); step(4)
+		guard += 1
+
+func bot_goto(target: Callable, ticks: int, near := 14) -> void:
+	for k in ticks:
+		dismiss()
+		var dx: int = int(target.call()) - g.fh
+		if abs(dx) <= near:
+			break
+		var want := -4 if dx > 0 else -3
+		g.key_up(-3 if want == -4 else -4)
+		g.key_down(want)
+		if g.fh == lastx:
+			stuck += 1
+		else:
+			stuck = 0
+		lastx = g.fh
+		if stuck > 4:
+			g.key_down(-1); step(3); g.key_up(-1)
+			stuck = 0
+		step(1)
+	g.key_up(-3); g.key_up(-4)
+
 func _init():
 	var args := OS.get_cmdline_user_args()
 	# clean save storage for deterministic tests
@@ -55,6 +85,48 @@ func _init():
 					s += "%s=%s " % [t[k], str(g.get(t[k]))]
 				print("[vars] ", s)
 			"texts": print("[texts] ", g.get("aG"))
+			"bot_npc":
+				# walk to NPC t[1] (ly/lz), then press talk (-7) and advance dialogue
+				bot_goto(func(): return g.ly[int(t[1])], int(t[2]))
+				step(15)
+				print("[bot] near npc o=", g.o, " A=", g.A, " fh=", g.fh)
+				g.key_down(-7); step(2); g.key_up(-7); step(4)
+				for k in 40:
+					g.key_down(-5); step(2); g.key_up(-5); step(6)
+			"bot_kill":
+				# hunt living monsters of type t[1] for t[2] ticks
+				var mt := int(t[1])
+				var n := int(t[2])
+				var k := 0
+				while k < n:
+					dismiss()
+					var best := -1
+					var bd := 99999
+					for i in g.jK:
+						if g.jM[i] == mt and g.jS[i] != 1 and g.jS[i] != 0 and g.jS[i] != 5:
+							var dd: int = abs(g.jN[i] - g.fh) + 2 * abs(g.jO[i] - g.fi)
+							if dd < bd:
+								bd = dd
+								best = i
+					if best < 0:
+						step(10); k += 10
+						continue
+					var tx: int = g.jN[best]
+					if g.jO[best] < g.fi - 20 and k % 80 < 40:
+						g.key_down(-1); step(2); g.key_up(-1)
+					bot_goto(func(): return tx, 30, 26)
+					if (tx > g.fh) != (g.fp > 0):
+						var w := -4 if tx > g.fh else -3
+						g.key_down(w); step(1); g.key_up(w)
+					g.key_down(-5); step(2); g.key_up(-5); step(4)
+					k += 40
+			"bot_walk":
+				var target_x := int(t[1])
+				var v0: int = g.v
+				for kk in int(t[2]) / 10:
+					bot_goto(func(): return target_x, 10, 4)
+					if g.v != v0:
+						break
 			"bot_boss":
 				# simple test bot: walk to the boss (hs,ht), face it and attack; advances dialogue with OK
 				for k in int(t[1]):

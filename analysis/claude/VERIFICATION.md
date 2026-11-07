@@ -47,6 +47,11 @@ expression (`(by = ...).length()`) was dropped.
 
 ## Other runtime checks
 
+- Quest 0 end-to-end in the port with a test bot (`tests/script_run.gd` bot_npc/bot_walk/bot_kill):
+  after the prologue, talk to Ayumi in map0 → quest O=0 accepted → walk to map1, snail kills
+  increment fF (0→2 observed by the bot) → (counter then set to 10 to save time) → walk back, talk →
+  reward granted: eL=true (khinh công), O=-1. Script: /tmp scripts reproduced in tests (see q1c in session log).
+
 - Save/load across two separate processes (`tests/script_run.gd`, menu → "Lưu và thoát", relaunch →
   "Tiếp tục"): position/HP/MP/potions restored.
 - Ending chain executes without script errors and matches the JAR (table above).

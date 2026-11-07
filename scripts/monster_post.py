@@ -15,8 +15,10 @@ from scipy import ndimage as ndi
 
 S = 4
 # colours shared by every mob's hit frame (goggle eyes, ring, nose, mouth, sparks)
-EFFECT_RGB = {(0xd8, 0xd8, 0xd8), (0xdb, 0xdb, 0xdb), (0x98, 0x98, 0xb8), (0x50, 0x50, 0x78),
+# (0xdbdbdb is the wasp's wing colour, deliberately NOT included)
+EFFECT_RGB = {(0xd8, 0xd8, 0xd8), (0x98, 0x98, 0xb8), (0x50, 0x50, 0x78),
               (0x80, 0x20, 0x18), (0xc8, 0x38, 0x20)}
+ANCHOR_RGB = {(0x98, 0x98, 0xb8), (0x50, 0x50, 0x78), (0x80, 0x20, 0x18), (0xc8, 0x38, 0x20)}
 
 
 def load(path):
@@ -75,21 +77,28 @@ def bbox(alpha_mask):
     return [int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1]
 
 
-def effect_mask(a):
-    """original-res mask of hit-gag pixels (effect colours + dark pixels touching them +
-    small detached debris)."""
+def effect_mask(a, extra=(), anchors=()):
+    """original-res mask of hit-gag pixels: connected groups of effect colours that contain a
+    goggle-ring / mouth colour (or `anchors`), tiny sparks, the dark pupils/outline touching
+    them, and small detached debris."""
     rgb = a[..., :3]
     op = a[..., 3] >= 128
     eff = np.zeros(op.shape, bool)
-    for c in EFFECT_RGB:
+    anc = np.zeros(op.shape, bool)
+    for c in set(EFFECT_RGB) | set(extra):
         eff |= op & np.all(rgb == c, axis=-1)
-    if not eff.any():
-        return eff
+    for c in set(ANCHOR_RGB) | set(anchors):
+        anc |= op & np.all(rgb == c, axis=-1)
+    keep = np.zeros(op.shape, bool)
+    lab, n = ndi.label(eff, np.ones((3, 3)))
+    for i in range(1, n + 1):
+        m = lab == i
+        if (m & anc).any() or m.sum() <= 8:
+            keep |= m
     dark = op & (rgb.astype(int).sum(-1) < 120)
-    # pupils/outline of goggle eyes: dark pixels adjacent to effect pixels, inside their hull
-    grown = ndi.binary_dilation(eff, np.ones((3, 3)))
-    eff2 = eff | (grown & dark)
-    eff2 = ndi.binary_fill_holes(eff2) & op
+    grown = ndi.binary_dilation(keep, np.ones((3, 3)))
+    eff2 = keep | (grown & dark)
+    eff2 = (ndi.binary_fill_holes(eff2) & op) if keep.any() else eff2
     lab, n = ndi.label(op & ~eff2, np.ones((3, 3)))
     if n:
         sizes = ndi.sum(np.ones_like(lab), lab, range(1, n + 1))
