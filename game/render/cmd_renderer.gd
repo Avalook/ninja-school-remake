@@ -17,6 +17,7 @@ var hd_root := "res://hd_res"
 var cam := Vector2.ZERO        # interpolated camera (world px)
 var smooth_cam := Vector2.ZERO
 var pixel_snap := false
+var life := 0.0
 var cam_delta := Vector2.ZERO  # current tick camera - interpolated camera
 var _prev_index: Dictionary = {}
 var _runs: Array = []          # [tag, start, end]
@@ -174,7 +175,13 @@ func _img(c: Array, ord) -> void:
 	if t == null:
 		return
 	var p := interp_pos(c, ord)
+	var path: String = img["p"]
+	life = 0.0
+	if c[11] != 0 and (path.begins_with("/mob/") or path.begins_with("/npc/")):
+		# procedural "breathing" between the original's few animation frames (presentation only)
+		life = sin(Time.get_ticks_msec() * 0.006 + float(c[2] - c[11]) * 0.05)
 	draw_image_at(t, img, p, c[4], c[5], Rect2(c[6], c[7], c[8], c[9]), Rect2(c[10]), Color.WHITE)
+	life = 0.0
 
 func draw_image_at(t: Texture2D, img: Dictionary, p: Vector2, an: int, tr: int, region: Rect2, clip: Rect2, mod: Color) -> void:
 	var sw := region.size.x
@@ -192,6 +199,17 @@ func draw_image_at(t: Texture2D, img: Dictionary, p: Vector2, an: int, tr: int, 
 	elif an & 32:
 		y -= dh
 	var dst := Rect2(x, y, dw, dh)
+	if life != 0.0 and tr in [0, 2]:
+		var sy := 1.0 + 0.035 * life
+		var sx := 1.0 - 0.02 * life
+		var nd := Rect2(dst.position.x + dst.size.x * (1.0 - sx) * 0.5, dst.position.y + dst.size.y * (1.0 - sy), dst.size.x * sx, dst.size.y * sy)
+		if tr == 0:
+			draw_texture_rect_region(t, nd, Rect2(region.position * (float(t.get_width()) / float(img["w"])), region.size * (float(t.get_width()) / float(img["w"]))), mod)
+		else:
+			draw_set_transform(Vector2(nd.position.x + nd.size.x, nd.position.y), 0.0, Vector2(-1, 1))
+			draw_texture_rect_region(t, Rect2(Vector2.ZERO, nd.size), Rect2(region.position * (float(t.get_width()) / float(img["w"])), region.size * (float(t.get_width()) / float(img["w"]))), mod)
+			draw_set_transform(Vector2.ZERO)
+		return
 	var vis := dst.intersection(clip)
 	if vis.size.x <= 0 or vis.size.y <= 0:
 		return

@@ -9,6 +9,8 @@ var hero_tex: Texture2D
 var hero_meta := {}
 var rig
 var veo
+var vis_x := 0.0
+var vis_v := 0.0
 var use_rig := true
 var tween_tex: Texture2D
 var tween_meta := {}
@@ -126,10 +128,23 @@ func _draw_player(rr, cmds: Array) -> void:
 	if use_rig and rig != null and rig.ok and core.d == 1:
 		var wpos: Vector2 = core.prev_player.lerp(core.cur_player, alpha)
 		var dtr := get_process_delta_time()
+		# visual inertia: the drawn body eases into speed changes (accelerate / glide to a stop)
+		# instead of the original's instant start/stop. Max offset from the logic position is a few px.
+		if absf(wpos.x - vis_x) > 40.0 or dtr <= 0.0:
+			vis_x = wpos.x
+			vis_v = 0.0
+		else:
+			var w := 38.0
+			vis_v += ((wpos.x - vis_x) * w * w - 2.0 * 0.85 * w * vis_v) * dtr
+			vis_x += vis_v * dtr
+			vis_x = clampf(vis_x, wpos.x - 6.0, wpos.x + 6.0)
+		wpos.x = vis_x
 		rig.update(core, cur_B, prev_B, alpha, wpos.x, dtr)
 		if veo != null and veo.ok():
 			veo.update(core, cur_B, wpos.x, dtr)
 		var gp: Vector2 = wpos - rr.cam
+		if OS.get_cmdline_user_args().has("--motionlog"):
+			print("[mot] f=%d cam=%.3f,%.3f hero_scr=%.3f,%.3f hero_w=%.3f fR=%d fh=%d a=%.3f" % [Engine.get_process_frames(), rr.cam.x, rr.cam.y, gp.x, gp.y, wpos.x, core.fR, core.fh, alpha])
 		if core.A in [1, 2, 5, 8, 22]:
 			rr.draw_set_transform(gp + Vector2(0, -1), 0.0, Vector2(1.0, 0.28))
 			rr.draw_circle(Vector2.ZERO, 11.0, Color(0, 0, 0, 0.28))

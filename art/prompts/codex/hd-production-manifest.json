@@ -16,7 +16,21 @@
       "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nSubject: an old bald kung-fu master, long white beard and moustache, round red-framed goggles with green lenses, purple robe with white collar, slightly hunched, holding a small wooden cane, cheerful wise expression. Render ONE complete old master. In image2 the old master is npc/00 in the upper left; ignore all other characters and all labels. Image1 is STYLE reference only, do not copy the hero's hairstyle or costume. Follow the written purple robe design even where original colors differ. Keep cane separate from torso silhouette with a visible gap, hand may grip it. Neutral animation-ready stance. Generous safe margin around the silhouette; no clipped head, cane or feet. Transparent alpha must surround every external contour.",
       "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/npc0_old_master.png",
-      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-55fcbe24-7c38-4da0-a064-deea2d2a7687.png"
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-55fcbe24-7c38-4da0-a064-deea2d2a7687.png",
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc0_old_master.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "npc0_old_master_parts",
@@ -47,7 +61,21 @@
         ],
         "sha256": "4c8e540ba9cd8430a9f83fc985bcc707e6f208ee6f1fbd941c096e8eddbdba2a"
       },
-      "generated_at": 1794036031.555994
+      "generated_at": 1794036031.555994,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc0_old_master_parts.png",
+        "operation": "sizing and alpha padding only",
+        "joint_overlap_and_parts_count": "requires rig integration verification",
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "npc1_ayumi",
@@ -78,7 +106,21 @@
         ],
         "sha256": "c0f26d7fbce1ffdd268b38069354c4f9ec2af2cfffcd42d3a182a4684d8bc9bd"
       },
-      "generated_at": 1794036075.716067
+      "generated_at": 1794036075.716067,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc1_ayumi.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "npc1_ayumi_parts",
@@ -109,7 +151,21 @@
         ],
         "sha256": "b2aaea041399adab63dfe624b98fa7e24a0e2f7bced5a34421cd1da69e6e915b"
       },
-      "generated_at": 1794036110.5071518
+      "generated_at": 1794036110.5071518,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc1_ayumi_parts.png",
+        "operation": "sizing and alpha padding only",
+        "joint_overlap_and_parts_count": "requires rig integration verification",
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "npc2_hiroyaki",
@@ -140,7 +196,21 @@
         ],
         "sha256": "4f29db7370ff1c61f8a3dc300a5af04f3c9a739950695a29785b81ea58f6e728"
       },
-      "generated_at": 1794036149.646444
+      "generated_at": 1794036149.646444,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc2_hiroyaki.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "npc2_hiroyaki_parts",
@@ -171,7 +241,21 @@
         ],
         "sha256": "5b8762782b5e824cb17af82c7c0857f974d9da925a39818d064dade2bae106cb"
       },
-      "generated_at": 1794036196.08728
+      "generated_at": 1794036196.08728,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc2_hiroyaki_parts.png",
+        "operation": "sizing and alpha padding only",
+        "joint_overlap_and_parts_count": "requires rig integration verification",
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "npc3_honda",
@@ -202,7 +286,21 @@
         ],
         "sha256": "5841e5eb4683d714012de8411a3cc61adda1cbdfd6c4a5915e664724f87dd4ca"
       },
-      "generated_at": 1794036234.0507991
+      "generated_at": 1794036234.0507991,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc3_honda.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "npc3_honda_parts",
@@ -233,7 +331,21 @@
         ],
         "sha256": "9fc4cf50c87d7ca4c169e8d9c4f7accd78c0391583d0f59c989da2ac6e307c93"
       },
-      "generated_at": 1794036262.911105
+      "generated_at": 1794036262.911105,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc3_honda_parts.png",
+        "operation": "sizing and alpha padding only",
+        "joint_overlap_and_parts_count": "requires rig integration verification",
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "npc4_principal",
@@ -264,7 +376,21 @@
         ],
         "sha256": "b0236ba0834e3ca4107762bd4b4c89ff39be4aa7d7a1e9d179fe796a78789c51"
       },
-      "generated_at": 1794036303.054322
+      "generated_at": 1794036303.054322,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc4_principal.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "npc4_principal_parts",
@@ -273,9 +399,43 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/npc_parts.png",
       "kind": "parts",
       "parent": "npc4_principal",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\na strict ninja school principal Okamesama, black ninja robes and a black cloak with red lining, grey headband, sharp stern eyes, short black hair. Commanding presence, but hands in neutral rig-ready pose instead of hidden behind his back; original npc/40\nDELIVERABLE OVERRIDE: Generate ONLY a RIG PARTS SHEET, not an assembled full body, on a square1254x1254 real-alpha canvas. Use the attached generated full-body character as exact identity and color authority. Separate exactly TEN body pieces with ample transparent gaps: head with hair/accessories; torso with belt; left upper arm, right upper arm; left forearm+hand, right forearm+hand; left thigh, right thigh; left shin+foot, right shin+foot. Same relative pixel scale and orientation as the full-body design, front and rear limbs correctly distinguished. All parts complete; extend each beneath joint overlaps so rotation creates no gaps. Spread across a clean grid with NO gridlines, NO labels, NO assembled figure, NO duplicate head, NO backdrop. Include any held cane/sword as an extra separate prop, not baked across other parts.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/npc4_principal_parts.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/npc4_principal_parts.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-78e70162-c855-434c-88af-fb97dd471708.png",
+      "qc": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "solid_alpha_bbox": [
+          175,
+          8,
+          1074,
+          1241
+        ],
+        "sha256": "002c5b93477ac772f2fef88b78add1d5c14ce3dbac74106be2c33fb5c6495adc"
+      },
+      "generated_at": 1794036587.265188,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc4_principal_parts.png",
+        "operation": "sizing and alpha padding only",
+        "joint_overlap_and_parts_count": "requires rig integration verification",
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "npc5_takanashi",
@@ -284,9 +444,43 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/npc_parts.png",
       "kind": "full",
       "parent": null,
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\na tough ninja homeroom teacher Takanashi, silver headband, dark navy gi with light blue trim, scar on the cheek, holding a wooden practice sword, confident grin; original npc/50\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/npc5_takanashi.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/npc5_takanashi.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-f6e8b378-84c2-461e-9c8d-4a712190c2ff.png",
+      "qc": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "solid_alpha_bbox": [
+          306,
+          8,
+          990,
+          1249
+        ],
+        "sha256": "692f02c85650c999376e3f0c99a71574aebedaf396598a0c9698d48112085e0e"
+      },
+      "generated_at": 1794036587.385398,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc5_takanashi.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "npc5_takanashi_parts",
@@ -295,9 +489,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/npc_parts.png",
       "kind": "parts",
       "parent": "npc5_takanashi",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\na tough ninja homeroom teacher Takanashi, silver headband, dark navy gi with light blue trim, scar on the cheek, holding a wooden practice sword, confident grin; original npc/50\nDELIVERABLE OVERRIDE: Generate ONLY a RIG PARTS SHEET, not an assembled full body, on a square1254x1254 real-alpha canvas. Use the attached generated full-body character as exact identity and color authority. Separate exactly TEN body pieces with ample transparent gaps: head with hair/accessories; torso with belt; left upper arm, right upper arm; left forearm+hand, right forearm+hand; left thigh, right thigh; left shin+foot, right shin+foot. Same relative pixel scale and orientation as the full-body design, front and rear limbs correctly distinguished. All parts complete; extend each beneath joint overlaps so rotation creates no gaps. Spread across a clean grid with NO gridlines, NO labels, NO assembled figure, NO duplicate head, NO backdrop. Include any held cane/sword as an extra separate prop, not baked across other parts.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/npc5_takanashi_parts.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/npc5_takanashi_parts.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-501d1ecd-55c0-441e-a6c2-86f2ab045bba.png",
+      "generated_at": 1794036799.856791,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc5_takanashi_parts.png",
+        "operation": "sizing and alpha padding only",
+        "joint_overlap_and_parts_count": "requires rig integration verification",
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "b167b3fdbcb27abb1739b2fdd9393fdcec3450c5bcb2fc57595904b67fe38a22"
     },
     {
       "id": "npc_dog",
@@ -306,9 +517,43 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/npc_parts.png",
       "kind": "full",
       "parent": null,
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\na grey and white wolf-dog, husky-like, blue eyes, fluffy tail, standing calmly, all four paws grounded; original npc/d0-d1\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/npc_dog.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/npc_dog.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-90390f8a-8430-43e9-830d-ddf5dce3e5b6.png",
+      "qc": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "solid_alpha_bbox": [
+          159,
+          73,
+          1006,
+          1152
+        ],
+        "sha256": "2c87abc9df0d69c4638cf9eeef187b7c484181e0e65ab592d6253b9fb198daca"
+      },
+      "generated_at": 1794036587.5021398,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc_dog.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "npc_dog_walk",
@@ -317,9 +562,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/npc_parts.png",
       "kind": "pose",
       "parent": "npc_dog",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\nthe same grey and white wolf-dog, blue eyes and fluffy tail, a natural rightward walking step, one forepaw lifted, coherent four-legged anatomy\nACTION OVERRIDE: Use the specified action pose instead of the neutral stance, preserve exact design from the generated neutral reference. One pose only, 1254x1254 alpha.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/npc_dog_walk.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/npc_dog_walk.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-ca69c34f-404e-468d-bd50-c6914e8c2156.png",
+      "generated_at": 1794036841.666434,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/npc_dog_walk.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "e0ff179bd8be2076388dd1148863e04344fee347665bbe79a76611a5c37d1f71"
     },
     {
       "id": "stu0_beanie",
@@ -328,9 +590,43 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/student_heads.png",
       "kind": "full",
       "parent": null,
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\na mischievous boy student in a turquoise knitted beanie, red eyes, cheeky face; original f0h. Same blue ninja gi with golden yellow edging and yellow belt as hero; only head/hair/accessories differ. Preserve the specified student identity, do not copy hero hair.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu0_beanie.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu0_beanie.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-01311a13-3dfb-495d-8deb-5b9610bac6c3.png",
+      "qc": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "solid_alpha_bbox": [
+          391,
+          17,
+          856,
+          1229
+        ],
+        "sha256": "d94e1fb823ddeea7e5ff77a781080299f5b899762f8830d3b4f0a8cdbd17d497"
+      },
+      "generated_at": 1794036587.6180239,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/stu0_beanie.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "stu0_beanie_parts",
@@ -339,9 +635,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/student_heads.png",
       "kind": "parts",
       "parent": "stu0_beanie",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\na mischievous boy student in a turquoise knitted beanie, red eyes, cheeky face; original f0h. Same blue ninja gi with golden yellow edging and yellow belt as hero; only head/hair/accessories differ. Preserve the specified student identity, do not copy hero hair.\nDELIVERABLE OVERRIDE: Generate ONLY a RIG PARTS SHEET, not an assembled full body, on a square1254x1254 real-alpha canvas. Use the attached generated full-body character as exact identity and color authority. Separate exactly TEN body pieces with ample transparent gaps: head with hair/accessories; torso with belt; left upper arm, right upper arm; left forearm+hand, right forearm+hand; left thigh, right thigh; left shin+foot, right shin+foot. Same relative pixel scale and orientation as the full-body design, front and rear limbs correctly distinguished. All parts complete; extend each beneath joint overlaps so rotation creates no gaps. Spread across a clean grid with NO gridlines, NO labels, NO assembled figure, NO duplicate head, NO backdrop. Include any held cane/sword as an extra separate prop, not baked across other parts.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu0_beanie_parts.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu0_beanie_parts.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-62e33bf5-b199-4046-9ea6-276191224725.png",
+      "generated_at": 1794036893.521739,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/stu0_beanie_parts.png",
+        "operation": "sizing and alpha padding only",
+        "joint_overlap_and_parts_count": "requires rig integration verification",
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "451a8995a1c6fb7f95df568d909ddcb5e31d715dabe7d58012cd290e8d93f993"
     },
     {
       "id": "stu1_bald",
@@ -350,9 +663,43 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/student_heads.png",
       "kind": "full",
       "parent": null,
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\na shaved bald boy student with a gentle face and plump cheeks; original f1h. Same blue ninja gi with golden yellow edging and yellow belt as hero; only head/hair/accessories differ. Preserve the specified student identity, do not copy hero hair.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu1_bald.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu1_bald.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-8565cb86-06d6-4f05-b9a2-433beab145b4.png",
+      "qc": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "solid_alpha_bbox": [
+          379,
+          99,
+          859,
+          1209
+        ],
+        "sha256": "4ea4d05516c33ab3fb2b4a372aaa66112326c2ae890760e6e53a592ca5ea14b3"
+      },
+      "generated_at": 1794036587.735382,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/stu1_bald.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "stu1_bald_parts",
@@ -361,9 +708,26 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/student_heads.png",
       "kind": "parts",
       "parent": "stu1_bald",
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\na shaved bald boy student with a gentle face and plump cheeks; original f1h. Same blue ninja gi with golden yellow edging and yellow belt as hero; only head/hair/accessories differ. Preserve the specified student identity, do not copy hero hair.\nDELIVERABLE OVERRIDE: Generate ONLY a RIG PARTS SHEET, not an assembled full body, on a square1254x1254 real-alpha canvas. Use the attached generated full-body character as exact identity and color authority. Separate exactly TEN body pieces with ample transparent gaps: head with hair/accessories; torso with belt; left upper arm, right upper arm; left forearm+hand, right forearm+hand; left thigh, right thigh; left shin+foot, right shin+foot. Same relative pixel scale and orientation as the full-body design, front and rear limbs correctly distinguished. All parts complete; extend each beneath joint overlaps so rotation creates no gaps. Spread across a clean grid with NO gridlines, NO labels, NO assembled figure, NO duplicate head, NO backdrop. Include any held cane/sword as an extra separate prop, not baked across other parts.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu1_bald_parts.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu1_bald_parts.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-b54dbfbd-e55e-4361-8a75-b7f249109400.png",
+      "generated_at": 1794036935.542868,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/stu1_bald_parts.png",
+        "operation": "sizing and alpha padding only",
+        "joint_overlap_and_parts_count": "requires rig integration verification",
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      },
+      "final_sha256": "32ab2c75a927365cfdaf32f38769ed919ce711392da665891275aa0b92b872fe"
     },
     {
       "id": "stu2_redspike",
@@ -372,9 +736,43 @@
       "reference": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/prompts/codex/refs/student_heads.png",
       "kind": "full",
       "parent": null,
-      "status": "pending",
+      "status": "generated_pending_visual_qc",
       "prompt": "Character concept art for a 2D side-scrolling ninja game, same art style as the attached reference hero image (crisp anime cel shading, clean dark 2-4 px outlines, saturated but soft colours, chibi proportions about 2.8 heads tall). Full body, standing in a neutral relaxed pose, strict side 3/4 view facing RIGHT, arms slightly away from the body (so they can be cut out and rigged), legs slightly apart, feet flat on the ground. Transparent background (real alpha PNG), no shadow, no ground, no text, no frame. 1254x1254 canvas, character centered, head near the top, feet at 97% of the height.\na hot-tempered boy student with vivid red spiky hair and red eyes; original f2h. Same blue ninja gi with golden yellow edging and yellow belt as hero; only head/hair/accessories differ. Preserve the specified student identity, do not copy hero hair.\nImage1 is HERO STYLE reference only. The original sprite reference (when supplied) is not an instruction to reproduce labels or multiple characters. Written redesign approved by user takes priority over old sprite color differences. No text or watermark.",
-      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu2_redspike.png"
+      "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/stu2_redspike.png",
+      "generated_source": "/Users/quangdang/.codex/generated_images/01a1b207-2e9c-7e20-a90e-51b1f0c9a8be/exec-bcdbe8cb-605c-46a5-bd02-8dc5dab945a9.png",
+      "qc": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "solid_alpha_bbox": [
+          371,
+          10,
+          919,
+          1228
+        ],
+        "sha256": "6d907ef2debbbaf7977b360eb24b0d8f0f0645d67a4883391e7a8d84fcdd5a43"
+      },
+      "generated_at": 1794036587.852109,
+      "normalization": {
+        "raw": "art/generated/codex_hd/raw/stu2_redspike.png",
+        "operation": "sizing and alpha padding only",
+        "baseline_y": 1216,
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ]
+      }
     },
     {
       "id": "stu2_redspike_parts",
@@ -1268,5 +1666,6 @@
       "path": "/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/generated/codex_hd/prop_wood_crate.png"
     }
   ],
-  "generated_count": 9
+  "generated_count": 19,
+  "normalization_authorization": "User explicitly approved Python normalization of game images."
 }

@@ -89,6 +89,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		var w := get_window()
 		w.mode = Window.MODE_WINDOWED if w.mode == Window.MODE_FULLSCREEN else Window.MODE_FULLSCREEN
 
+func _tick_now() -> void:
+	acc = 0.0
+	core.tick()
+	renderer.on_tick()
+	hd.on_tick()
+	fxl.on_tick()
+
 func _release_all() -> void:
 	for a in held_keys.keys():
 		core.key_up(int(held_keys[a]))
@@ -103,6 +110,10 @@ func _press(action: String, down: bool) -> void:
 			return
 		held_keys[action] = code
 		core.key_down(code)
+		# low latency: if the next original tick is more than ~10 ms away, run it now
+		# (same tick sequence and rules, only its phase moves earlier)
+		if acc > 0.010 and core.d == 1:
+			_tick_now()
 	else:
 		var c = held_keys.get(action, code)
 		held_keys.erase(action)
