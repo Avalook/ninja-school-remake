@@ -112,7 +112,7 @@ và chỉ qua mốc khi chủ dự án đồng ý. Claude không tự đánh gi�
 ### M1 — Tách Sim / View trong remake/
 - [x] Tách `player.gd` (đang vừa là luật vừa là Node2D vẽ) thành `sim/player_sim.gd` và `view/player_view.gd`.
       _(2026-11-07, nhánh `m1-sim-view`. Bằng chứng: `remake/tests/player_trace.sh` 10 kịch bản khớp 100%, xem STATUS.md.)_
-- [ ] Làm tương tự cho enemies, story, world (va chạm), drops, projectiles. _(Quá lớn cho một phiên, chia 5 mục con:)_
+- [x] Làm tương tự cho enemies, story, world (va chạm), drops, projectiles. _(Quá lớn cho một phiên, chia 5 mục con:)_
   - [x] Enemies: quái thường, 3 boss, hội bạn cùng lớp, và projectiles (phi tiêu, ám khí, hạt) vì
         projectiles trúng quái/boss/bạn học trong cùng một vòng lặp → `sim/enemies_sim.gd` + `view/enemies_view.gd`.
         _(2026-11-07, nhánh `m1-enemies-split`. Trace 14 kịch bản + oracle 12 map + 16 ảnh khớp 100%, xem STATUS.md.)_
@@ -122,7 +122,9 @@ và chỉ qua mốc khi chủ dự án đồng ý. Claude không tự đánh gi�
         _(2026-11-07, nhánh `m1-world-split`. Trace 27 kịch bản (4 kịch bản world mới) + story 77 check + oracle 12 map khớp 100%, 41/43 ảnh trùng từng pixel, xem STATUS.md.)_
   - [x] Drops: `drops.gd` (xu, bình, bí kíp; luật `w % 20` đã ở sim enemies, phần nhặt và vẽ còn trộn).
         _(2026-11-07, nhánh `m1-drops-split`. `drops_trace` mới (phủ nhặt) + trace 27 kịch bản + story 77 + oracle 7 map khớp 100%, 28/29 ảnh trùng từng pixel, xem STATUS.md.)_
-  - [ ] Projectiles: phần còn lại sau mục Enemies (nếu có), ví dụ phi tiêu của bạn đồng hành `hf` (TODO trong code).
+  - [x] Projectiles: phần còn lại sau mục Enemies (nếu có), ví dụ phi tiêu của bạn đồng hành `hf` (TODO trong code).
+        _(2026-11-07, nhánh `m1-projectiles-split`. Rà lại: không còn gì để tách, luật projectiles đã nằm hết trong `sim/` từ mục
+        Enemies. Hai TODO `hf` là luật gốc **chưa từng làm** (đối thủ map 96, AI bạn đồng hành gái), chuyển sang M2 Boss. Xem STATUS.md.)_
 - [ ] Viết `sim/sim.gd`: hàm `step(input) -> events`, kèm snapshot và restore (phục vụ save và test).
 - [ ] Viết `tests/sim_run.gd` chạy headless, đọc cùng định dạng script với `tools/diff_run.sh`.
 - [ ] Di chuyển native (state 1–4) chạy theo bước cố định 100 Hz (4 bước mỗi tick 25 Hz), không theo dt của frame.
@@ -149,6 +151,14 @@ Theo thứ tự, mỗi mục kèm diff test riêng:
       và hội bạn cùng lớp.
   - [ ] Thêm kịch bản trace trận golem đầy đủ (có cutscene mở trận, `hu = 1`), không chỉ golem đứng chờ
         như kịch bản m95 hiện tại. Đối chiếu oracle (`ACT_95`).
+  - [ ] Đối thủ `hf` ở map 96 (chưa có trong remake): `l(n)` ~L4085 bật khi vào map 96 và `!eJ` (HP `hj = hk = 15000`,
+        `dG[0]` = state AI, `dM[0]` = hướng); AI trong `run()` ~L9991; kiếm người chơi trúng `d(n, fp)` trong `u()` ~L2196;
+        phi tiêu: dội lại khi `dG[0]` = 1/5 và bay ngược hướng, không thì `d(F, -dM[0])` ~L9456; thanh máu khi `hg` ~L7971;
+        hết trận qua opcode cutscene 25 (`hh`) / 26 (`eJ`). Hai chỗ `TODO(companion hf)` trong `sim/enemies_sim.gd`,
+        `sim/enemies/projectiles.gd` là điểm cắm. Cần kịch bản trace/oracle map 96.
+  - [ ] AI bạn đồng hành gái (`gq gr gu gC ik`; remake chưa có cả đi theo lẫn tấn công): `D()` ~L2681 chọn mục tiêu (quái, bạn học, hoặc theo người chơi
+        đang chém, `ik = 1`), `v()` ~L2228 ném phi tiêu mạnh `a(..., true)` hoặc chém. Remake hiện chỉ có chỗ đặt `gq/gr/gu`
+        trong story và bị quái đánh (`hurt_companion`); chưa ai gọi `spawn_projectile(..., strong = true)`.
 - [ ] NPC, thoại, 18 quest, cutscene `D(n)`, title card.
 - [ ] Vật phẩm, shop, bình HP/MP, kỹ năng, lên cấp.
 - [ ] Bơi, thang/dây leo, đất đào được, xe, vật thể, lối ra của cả 24 map.

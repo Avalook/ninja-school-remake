@@ -1,6 +1,6 @@
 # STATUS — Ninja School PC remake
 
-Cập nhật: 2026-11-07, phiên M1 mục 2d drops (nhánh `m1-drops-split` tách từ `main` 88c85d0).
+Cập nhật: 2026-11-07, phiên M1 mục 2e projectiles (nhánh `m1-projectiles-split` tách từ `main` c103c7c).
 Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. Phần nào chỉ lấy lại từ
 `analysis/claude/progress.json` mà chưa chạy lại thì có ghi chú rõ.
 
@@ -20,8 +20,10 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
 - **M1 mục 2d (drops) xong**: `scripts/enemies/drops.gd` → `remake/sim/enemies/drops.gd` (chỉ luật) +
   `remake/view/drops_view.gd` (vẽ). Hành vi không đổi: `drops_trace` mới (phủ nhặt xu/bình/bí kíp) khớp 100%,
   trace 27 kịch bản, story 77 check, oracle 7 map, 28/29 ảnh trùng từng pixel. Kết quả ở bảng bên dưới.
-- Mục M1 "làm tương tự cho enemies, story, world, drops, projectiles" đã chia 5 mục con trong ROADMAP.
-  Mục tiếp theo: M1 mục 2e, projectiles (phi tiêu/kiếm trúng bạn đồng hành `hf`).
+- **M1 mục 2e (projectiles) xong, không sửa code**: rà lại thì không còn gì để tách. Mục M1 "làm tương tự cho
+  enemies, story, world, drops, projectiles" đã tick đủ 5 mục con. Hai TODO `hf` hoá ra là luật gốc chưa từng làm,
+  đã chuyển thành 2 mục con mới trong M2 Boss. Chi tiết ở "M1 mục 2e" bên dưới.
+- Mục M1 tiếp theo: `sim/sim.gd` (`step(input) -> events`, snapshot/restore).
 - **M3 việc nhỏ (2026-11-07, commit thẳng `main` 8451b32)**: `art_src/env/rung_truc/TILE_NEEDS.md` (32 tile id của map 4,
   số lần, cờ theo ô), `tiles_orig_4x/` (tile gốc phóng 4×), `ref_map4.png` (toàn map 4 ghép từ tile gốc, 4×, không có
   trời/nền xa, không phải ảnh chụp emulator). Sinh bằng `tools/art/tile_needs.py 4 rung_truc`. Không đụng `sim/`.
@@ -31,6 +33,19 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
   M1 (di chuyển native bước cố định 100 Hz), M2 Combat (sửa Xích Mao, cờ thật của Xích Mao, trace A = 18/19/23).
 - Codex đang vẽ trong `art_src/` trên nhánh `claude/project-directory-codex-c71a67`.
   Nhánh này **không tạo, không sửa** gì trong `art_src/`.
+
+## M1 mục 2e: projectiles, rà soát (2026-11-07, nhánh `m1-projectiles-split`)
+Không sửa `sim/` hay `view/`, nên không có diff test hay ảnh mới. Cách rà (chạy grep trên `remake/`, đọc `a.java` của NinjaSchool1):
+- Mọi luật projectiles đã ở `sim/enemies/projectiles.gd` (sinh, bay, trúng quái/bạn học/người chơi/boar/quái sông) từ mục 2a.
+  Mọi lời gọi `spawn_projectile`/`shoot_dart`/`lob_seed` đều từ `sim/` (player_sim, classmates, monster_types, 3 boss).
+  `view/enemies_view.gd` chỉ chuyển tiếp API cũ và vẽ (xoay phi tiêu `shuriken_spin` là hình). `scripts/` không còn gì về projectiles.
+- `TODO(companion hf)` (`sim/enemies_sim.gd:400`, `sim/enemies/projectiles.gd:187`) **không phải phần tách sót**: `hf` là cờ
+  trận đấu với đối thủ ở map 96 (`l(n)` ~L4085: `hf = true` khi vào map 96 và chưa xong `eJ`, HP 15000, AI `dG[0]` ~L9991,
+  thanh máu ~L7971, kết thúc qua opcode cutscene 25/26). Remake chưa có trận này (chỉ có `S.hf` trong lúc chết hồi máu đối thủ).
+- Thấy thêm: AI bạn đồng hành gái (`D()` ~L2681, `v()` ~L2228: đi theo, chọn mục tiêu, ném phi tiêu mạnh `strong = true`) cũng
+  chưa có. Trong remake không chỗ nào gọi `spawn_projectile(..., true)`, nhánh `strong` trong projectiles hiện là code chết.
+- Cả hai đã thêm vào ROADMAP M2 (mục Boss) kèm số dòng `a.java`. Đây là luật mới, cần oracle/trace riêng, không làm trong M1.
+- Còn ghép nối (để mục `sim/sim.gd`): `player_sim` gọi `world.enemies` = `EnemiesView` (Node) rồi view chuyển tiếp sang sim.
 
 ## M1 mục 2d: kế hoạch tách drops (viết trước khi sửa code, nhánh `m1-drops-split` tách từ `main` 88c85d0)
 Nguồn: `remake/scripts/enemies/drops.gd` (RefCounted, 155 dòng). Luật đã gần như thuần: rơi xu `W()`, bình `ab()`,
