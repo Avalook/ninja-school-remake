@@ -11,6 +11,7 @@
   "Player.stop",
   "TextBox.addCommand",
   "TextBox.setCommandListener",
-  "Thread.start"
+  "Thread.start",
+  "VolumeControl.setLevel"
  ]
 }

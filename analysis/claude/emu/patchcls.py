@@ -6,6 +6,7 @@ REDIRECTS=[  # (owner,name,old_opcode) -> (new owner, name, descriptor)
  ('java/lang/Class','getResourceAsStream',0xb6,'harness/R','g','(Ljava/lang/Class;Ljava/lang/String;)Ljava/io/InputStream;'),
  ('java/lang/System','currentTimeMillis',0xb8,'harness/R','now','()J'),
  ('javax/microedition/lcdui/Canvas','repaint',0xb6,'harness/R','repaint','(Ljavax/microedition/lcdui/Canvas;)V'),
+ ('java/lang/Thread','start',0xb6,'harness/R','start','(Ljava/lang/Thread;)V'),
 ]
 def patch(src,dst):
     b=open(src,'rb').read(); n=struct.unpack('>H',b[8:10])[0]; i=10; cp=[None]; k=1

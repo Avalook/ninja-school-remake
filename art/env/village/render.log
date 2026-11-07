@@ -1,0 +1,15 @@
+00:03.366  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/village/day/layer0.png'
+00:10.255  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/village/day/layer1.png'
+00:15.946  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/village/day/layer2.png'
+00:17.188  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/village/day/layer3.png'
+00:20.626  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/village/night/layer0.png'
+00:27.615  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/village/night/layer1.png'
+00:33.057  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/village/night/layer2.png'
+00:34.260  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/village/night/layer3.png'
+[env] built village/day in 0.2s (53 objects, 4 wrap dups)
+[env] rendered village/day {"layer0": [2.87, true], "layer1": [6.88, true], "layer2": [5.66, true], "layer3": [1.21, true]}
+[env] built village/night in 0.2s (189 objects, 4 wrap dups)
+[env] rendered village/night {"layer0": [3.26, true], "layer1": [6.98, true], "layer2": [5.41, true], "layer3": [1.17, true]}
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit

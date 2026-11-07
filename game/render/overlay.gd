@@ -45,7 +45,7 @@ func _update_particles(delta: float) -> void:
 	if core.d != 1 or main == null:
 		parts.clear()
 		return
-	var hint: String = main.hd.PARTICLE_HINT.get(main.hd.biome(), "leaves")
+	var hint: String = main.hd.particle_hint()
 	var vs := get_viewport_rect().size
 	var want := 26 if hint != "mist" else 10
 	while parts.size() < want:
@@ -96,13 +96,6 @@ func _draw() -> void:
 	var u: float = vs.y / 1080.0
 	if core.d == 1 or core.d == 7:
 		_draw_particles()
-		# soft vignette + colour grade (night = cooler)
-		var night: bool = main.hd.is_night()
-		var vg := Color(0.02, 0.03, 0.10, 0.28) if night else Color(0.10, 0.05, 0.0, 0.16)
-		for i in 6:
-			var k := float(i) / 6.0
-			draw_rect(Rect2(0, 0, vs.x * 0.06 * (1.0 - k), vs.y), Color(vg, vg.a * (1.0 - k)))
-			draw_rect(Rect2(vs.x - vs.x * 0.06 * (1.0 - k), 0, vs.x * 0.06 * (1.0 - k), vs.y), Color(vg, vg.a * (1.0 - k)))
 		if flash > 0:
 			draw_rect(Rect2(Vector2.ZERO, vs), Color(0.8, 0.0, 0.0, flash * 0.35))
 	if core.d == 1 and not core.fV:

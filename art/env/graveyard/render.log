@@ -1,0 +1,15 @@
+00:03.479  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/graveyard/day/layer0.png'
+00:10.236  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/graveyard/day/layer1.png'
+00:16.406  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/graveyard/day/layer2.png'
+00:17.900  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/graveyard/day/layer3.png'
+00:21.252  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/graveyard/night/layer0.png'
+00:27.248  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/graveyard/night/layer1.png'
+00:33.737  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/graveyard/night/layer2.png'
+00:35.129  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/graveyard/night/layer3.png'
+[env] built graveyard/day in 0.2s (93 objects, 6 wrap dups)
+[env] rendered graveyard/day {"layer0": [2.99, true], "layer1": [6.74, true], "layer2": [6.13, true], "layer3": [1.46, true]}
+[env] built graveyard/night in 0.1s (230 objects, 8 wrap dups)
+[env] rendered graveyard/night {"layer0": [3.18, true], "layer1": [5.98, true], "layer2": [6.46, true], "layer3": [1.36, true]}
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit

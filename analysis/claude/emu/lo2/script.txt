@@ -1,0 +1,33 @@
+wait 2500
+wait 3000
+tap -5
+wait 6000
+tap -5 16
+wait 800
+tap -5 16
+wait 2000
+vars v d A fh fi fV
+press -4
+tap -1
+wait 600
+tap -1
+wait 1500
+vars v d A fh fi fV
+tap -1
+wait 1500
+tap -1
+wait 1500
+vars v d A fh fi fV
+tap -1
+wait 1500
+tap -1
+wait 1500
+vars v d A fh fi fV
+tap -1
+wait 1500
+tap -1
+wait 1500
+vars v d A fh fi fV
+release -4
+wait 4000
+vars v d A fh fi fV fW fX

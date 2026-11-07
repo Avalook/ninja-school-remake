@@ -6,6 +6,7 @@ extends "res://core/orig_run.gd"
 const TICK_MS := 40
 
 var booted := false
+var auto_prompts := true   # PC: skip sound/quality prompts (tests set false to mirror the original exactly)
 var ticks := 0
 
 func boot(w: int = 480, h: int = 270) -> void:
@@ -49,7 +50,7 @@ var prev_gq: Array = []
 func tick() -> void:
 	frame_ended = false
 	# PC: answer the two startup prompts (sound on, high quality) — see PC_DEVIATIONS
-	if d == 10 and not lo:
+	if auto_prompts and d == 10 and not lo:
 		aV[12] = true
 	prev_cam = cur_cam
 	prev_player = cur_player
@@ -57,9 +58,16 @@ func tick() -> void:
 	# The original keeps aW/aX in sync with the canvas each frame in some states.
 	run_tick()
 	ticks += 1
+	vclock += 40
 	# the original repaints once per loop iteration: record this frame's draw commands
 	_gq_begin()
 	paint_o(null)
+	cur_cam = Vector2(fR, fS)
+	cur_player = Vector2(fh, fi)
+	if (cur_cam - prev_cam).length() > 64:
+		prev_cam = cur_cam
+	if (cur_player - prev_player).length() > 48:
+		prev_player = cur_player
 	# Licensing screen (d==13, Y==0) is bypassed: behave like choosing "1. Tiếp tục".
 	if d == 13 and Y == 0:
 		d = 4

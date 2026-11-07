@@ -1,0 +1,15 @@
+00:03.701  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/sakura/day/layer0.png'
+00:11.185  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/sakura/day/layer1.png'
+00:17.636  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/sakura/day/layer2.png'
+00:19.443  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/sakura/day/layer3.png'
+00:22.924  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/sakura/night/layer0.png'
+00:29.412  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/sakura/night/layer1.png'
+00:35.538  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/sakura/night/layer2.png'
+00:37.334  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/sakura/night/layer3.png'
+[env] built sakura/day in 0.2s (56 objects, 3 wrap dups)
+[env] rendered sakura/day {"layer0": [3.14, true], "layer1": [7.47, true], "layer2": [6.42, true], "layer3": [1.77, true]}
+[env] built sakura/night in 0.2s (193 objects, 2 wrap dups)
+[env] rendered sakura/night {"layer0": [3.29, true], "layer1": [6.48, true], "layer2": [6.09, true], "layer3": [1.76, true]}
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit

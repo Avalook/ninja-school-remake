@@ -1,0 +1,90 @@
+{
+  "biome": "village",
+  "lighting": "night",
+  "generator": "scripts/blender_env_backgrounds.py",
+  "blender": "5.2.3 LTS",
+  "engine": "BLENDER_EEVEE",
+  "samples": 48,
+  "res_scale": 1.0,
+  "layers": [
+    {
+      "file": "layer0.png",
+      "parallax": 0.05,
+      "size": [
+        1024,
+        576
+      ],
+      "transparent": false,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00126,
+        "local_max": 0.00226,
+        "ok": true
+      },
+      "render_seconds": 3.26
+    },
+    {
+      "file": "layer1.png",
+      "parallax": 0.15,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00071,
+        "local_max": 0.00077,
+        "ok": true
+      },
+      "render_seconds": 6.98
+    },
+    {
+      "file": "layer2.png",
+      "parallax": 0.35,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00263,
+        "local_max": 0.00421,
+        "ok": true
+      },
+      "render_seconds": 5.41
+    },
+    {
+      "file": "layer3.png",
+      "parallax": 0.6,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.0,
+        "local_max": 0.0,
+        "ok": true
+      },
+      "render_seconds": 1.17
+    }
+  ],
+  "fog_colors": {
+    "L0": "#323c68",
+    "L1": "#283666",
+    "L2": "#24305a",
+    "L3": "#1e284c"
+  },
+  "tint": "#24305a",
+  "sky": {
+    "horizon": "#323c68",
+    "zenith": "#060a20"
+  },
+  "ambient_particles": "fireflies",
+  "calm_bottom_fraction": 0.25,
+  "build_seconds": 0.15,
+  "notes": "thatched minka with persimmon trees"
+}

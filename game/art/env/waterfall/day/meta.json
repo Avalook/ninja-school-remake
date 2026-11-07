@@ -1,0 +1,90 @@
+{
+  "biome": "waterfall",
+  "lighting": "day",
+  "generator": "scripts/blender_env_backgrounds.py",
+  "blender": "5.2.3 LTS",
+  "engine": "BLENDER_EEVEE",
+  "samples": 48,
+  "res_scale": 1.0,
+  "layers": [
+    {
+      "file": "layer0.png",
+      "parallax": 0.05,
+      "size": [
+        1024,
+        576
+      ],
+      "transparent": false,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00114,
+        "local_max": 0.00122,
+        "ok": true
+      },
+      "render_seconds": 2.99
+    },
+    {
+      "file": "layer1.png",
+      "parallax": 0.15,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00226,
+        "local_max": 0.00229,
+        "ok": true
+      },
+      "render_seconds": 8.39
+    },
+    {
+      "file": "layer2.png",
+      "parallax": 0.35,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00047,
+        "local_max": 0.0005,
+        "ok": true
+      },
+      "render_seconds": 6.71
+    },
+    {
+      "file": "layer3.png",
+      "parallax": 0.6,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00056,
+        "local_max": 0.00064,
+        "ok": true
+      },
+      "render_seconds": 1.43
+    }
+  ],
+  "fog_colors": {
+    "L0": "#eaf4f0",
+    "L1": "#d2e4ee",
+    "L2": "#e0eef2",
+    "L3": "#e6f0f0"
+  },
+  "tint": "#e0eef2",
+  "sky": {
+    "horizon": "#eaf4f0",
+    "zenith": "#5ea4e0"
+  },
+  "ambient_particles": "mist",
+  "calm_bottom_fraction": 0.25,
+  "build_seconds": 0.12,
+  "notes": "falls are animated-ready cards (static here); spray = radial mist cards"
+}

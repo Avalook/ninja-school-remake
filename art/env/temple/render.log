@@ -1,0 +1,15 @@
+00:03.427  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/temple/day/layer0.png'
+00:10.671  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/temple/day/layer1.png'
+00:16.204  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/temple/day/layer2.png'
+00:17.835  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/temple/day/layer3.png'
+00:21.218  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/temple/night/layer0.png'
+00:27.127  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/temple/night/layer1.png'
+00:32.602  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/temple/night/layer2.png'
+00:34.357  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/temple/night/layer3.png'
+[env] built temple/day in 0.1s (56 objects, 5 wrap dups)
+[env] rendered temple/day {"layer0": [3.0, true], "layer1": [7.23, true], "layer2": [5.5, true], "layer3": [1.59, true]}
+[env] built temple/night in 0.1s (192 objects, 3 wrap dups)
+[env] rendered temple/night {"layer0": [3.26, true], "layer1": [5.9, true], "layer2": [5.44, true], "layer3": [1.72, true]}
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit

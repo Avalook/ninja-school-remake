@@ -3,20 +3,29 @@
 extends SceneTree
 var g
 var trace: FileAccess
+const TF = ["d","v","A","B","fh","fi","fR","fS","fV","fX","gc","G","I","N","M","dg","O","fF","w","jN","jO","kc","jS"]
 func step(n: int) -> void:
 	for i in n:
 		g.tick()
 		if trace:
-			trace.store_line("%d d=%d v=%d A=%d B=%d fh=%d fi=%d fR=%d fS=%d fV=%s fX=%d gc=%d" % [g.ticks, g.d, g.v, g.A, g.B, g.fh, g.fi, g.fR, g.fS, str(g.fV), g.fX, g.gc])
+			var s := str(g.ticks)
+			for fname in TF:
+				var val = g.get(fname)
+				s += " %s=%s" % [fname, str(val).replace(" ", "")]
+			trace.store_line(s)
 func _init():
 	var args := OS.get_cmdline_user_args()
 	# clean save storage for deterministic tests
-	var dir := DirAccess.open("user://rms")
+	var rd := OS.get_environment("NINJA_RMS") if OS.get_environment("NINJA_RMS") != "" else "user://rms"
+	var dir := DirAccess.open(rd)
 	if dir:
 		for f in dir.get_files():
 			dir.remove(f)
 	var C = load("res://core/core.gd")
 	g = C.new()
+	if OS.get_environment("DIFF") != "":
+		g.auto_prompts = false
+		g.virtual_clock = true
 	g.boot(int(OS.get_environment("NW")) if OS.get_environment("NW") != "" else 480, int(OS.get_environment("NH")) if OS.get_environment("NH") != "" else 270)
 	if args.size() > 1:
 		trace = FileAccess.open(args[1], FileAccess.WRITE)

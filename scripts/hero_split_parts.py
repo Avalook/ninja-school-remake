@@ -7,7 +7,7 @@ Inputs : art/generated/ninja1-hero-cloud-v1.png (read-only)
 Outputs: art/hero/parts/<part>.png  (cropped RGBA, colour-bled under alpha)
          art/hero/parts/parts.json  (crop offsets, pivots, z order, sole points;
                                      all coordinates in SOURCE pixels, y down)
-         art/hero/parts/debug_ownership.png (with --debug)
+         art/hero/build/debug_ownership.png (with --debug)
 
 Method
   * Every opaque source pixel is owned by exactly one part (priority order +
@@ -46,7 +46,7 @@ PRIORITY = ["head", "front_fore", "front_upper", "back_fore", "back_upper", "tor
 POLY = {
     "head": [(230, 0), (1020, 0), (1020, 470), (800, 470), (770, 515), (725, 548),
              (660, 552), (600, 528), (565, 520), (540, 545), (230, 545)],
-    "torso": [(430, 470), (820, 470), (820, 640), (790, 760), (765, 852), (690, 885),
+    "torso": [(430, 545), (560, 522), (610, 516), (700, 548), (790, 538), (820, 640), (790, 760), (765, 852), (690, 885),
               (655, 899), (560, 866), (500, 830), (470, 760), (430, 640)],
     "back_upper": [(450, 545), (510, 548), (540, 580), (546, 640), (540, 700), (515, 728),
                    (398, 728), (405, 690), (432, 630)],
@@ -68,13 +68,32 @@ POLY = {
 # Joint caps: (cx, cy, r, clip_part) - circle filled with the part's own colours,
 # clipped to the (dilated) silhouette of the part that covers that joint.
 CAPS = {
-    "torso": [(615, 500, 60, "head")],
-    "back_upper": [(495, 585, 50, "torso"), (470, 742, 42, "back_fore")],
-    "front_upper": [(765, 752, 30, "front_fore")],
-    "back_thigh": [(530, 865, 75, "torso")],
-    "front_thigh": [(690, 872, 75, "torso")],
-    "back_shin": [(505, 1005, 70, "back_thigh")],
-    "front_shin": [(695, 1015, 70, "front_thigh")],
+    "torso": [(625, 540, 62, "head")],
+    "back_upper": [(495, 600, 46, "torso"), (472, 728, 40, "back_fore")],
+    "front_upper": [(768, 744, 30, "front_fore")],
+    "back_thigh": [(530, 890, 76, None)],
+    "front_thigh": [(685, 895, 76, None)],
+    "back_shin": [(505, 1012, 66, None)],
+    "front_shin": [(695, 1025, 66, None)],
+}
+
+# Joint-top crop: own pixels above the pivot are kept only inside the pivot disk,
+# so the part's top outline is a circle about the joint and never pokes out when
+# the joint rotates. (pivot name, radius)
+TOPCROP = {"back_thigh": ("back_hip", 76), "front_thigh": ("front_hip", 76),
+           "back_shin": ("back_knee", 66), "front_shin": ("front_knee", 66),
+           "back_upper": ("back_shoulder", 46)}
+# Caps are centred on the rig pivots, so they are rotation invariant (no shards).
+
+# Polygon fill is only taken from occluders that do NOT move with the joint
+# (e.g. torso under the front arm, back thigh under the front leg / back fist).
+FILL_FROM = {
+    "torso": ["front_upper", "front_fore"],
+    "back_thigh": ["front_thigh", "front_shin", "back_fore", "back_upper"],
+    "back_shin": ["front_shin", "front_thigh"],
+    "front_thigh": ["back_fore", "front_fore"],
+    "front_shin": [],
+    "back_upper": [], "back_fore": [], "front_upper": [], "front_fore": [], "head": [],
 }
 
 # Interior erosion (px) for fill colour sources, so fills never copy outline ink.
@@ -129,11 +148,15 @@ def build(debug=False):
     polys = {k: poly_mask(v, (h, w)) for k, v in POLY.items()}
     r, g, b = (rgb[..., i].astype(int) for i in range(3))
     gold = ((b < 22) & (r > 80) & (r - b > 70)) | ((b < 55) & (g > 140) & (r > 200))
+    blue = (b > r + 50) & (b > 110)
     for idx, name in enumerate(PRIORITY):
         m = polys[name] & opaque & (owner < 0)
         if name == "back_upper":
             # gold arm-hole trim stays on the torso (covers the shoulder joint)
             m &= ~(gold & (np.arange(h)[:, None] < 700))
+        if name in ("back_fore", "front_fore", "front_upper"):
+            # gi / pants blue that leaks into the arm polygons belongs to the body
+            m &= ~blue
         owner[m] = idx
     left = opaque & (owner < 0)
     # pixels outside every polygon: give them to the nearest owned part
@@ -151,14 +174,28 @@ def build(debug=False):
 
     for name in PRIORITY:
         mine = own[name]
+        if name in TOPCROP:
+            pv, rad = TOPCROP[name]
+            px, py = PIVOTS[pv]
+            yy, xx = np.ogrid[:h, :w]
+            keep = (yy >= py) | ((xx - px) ** 2 + (yy - py) ** 2 <= rad * rad)
+            mine = mine & keep
         front = np.zeros((h, w), bool)
-        for other in PRIORITY:
-            if other != name and Z[other] > Z[name]:
+        for other in FILL_FROM[name]:
+            if Z[other] > Z[name]:
                 front |= own[other]
         fill = polys[name] & front
+        if fill.any():
+            # only close notches in the part's own silhouette; never invent protrusions
+            yy, xx = np.ogrid[-24:25, -24:25]
+            disk = xx * xx + yy * yy <= 24 * 24
+            closed = ndimage.binary_closing(np.pad(mine, 30), structure=disk)[30:-30, 30:-30]
+            fill &= closed
         for cx, cy, rad, clip in CAPS.get(name, []):
-            clipm = ndimage.binary_dilation(own[clip], iterations=3)
-            fill |= circle_mask(cx, cy, rad, (h, w)) & clipm
+            disk = circle_mask(cx, cy, rad, (h, w))
+            if clip is not None:
+                disk &= ndimage.binary_dilation(own[clip], iterations=3)
+            fill |= disk
         fill &= ~mine
         solid = ndimage.binary_erosion(mine & (alpha > 200), iterations=ERODE.get(name, 8))
         if solid.sum() < 200:
@@ -186,7 +223,9 @@ def build(debug=False):
             dbg[own[PRIORITY[i]]] = pal[i]
         mix = (0.55 * dbg + 0.45 * rgb).astype(np.uint8)
         mix[~opaque] = 40
-        Image.fromarray(mix).save(OUT / "debug_ownership.png")
+        dbg_dir = ROOT / "art/hero/build"
+        dbg_dir.mkdir(parents=True, exist_ok=True)
+        Image.fromarray(mix).save(dbg_dir / "debug_ownership.png")
     print("parts written to", OUT)
 
 
@@ -238,32 +277,36 @@ def head_variants(rgb, alpha, own, meta):
 
 
 def eyes(rgb, alpha, meta):
-    """Eyes-only parts for the stealth frames 25 (open) and 26 (half closed)."""
+    """Eyes-only parts for the stealth frames 25 (open) and 26 (half closed).
+
+    The original draws two equal round cartoon eyes, so both eyes are made from the
+    near (viewer-left) eye of the master; the rig scales them up for those frames."""
     h, w = alpha.shape
-    src = Image.fromarray(np.dstack([rgb, alpha]).astype(np.uint8), "RGBA")
-    specs = [((660, 425), (44, 38)), ((758, 430), (22, 34))]
+    src = np.dstack([rgb, alpha]).astype(np.uint8)
+    (cx, cy), (rx, ry) = (660, 425), (44, 38)
+    er, eg, eb = (src[..., i].astype(int) for i in range(3))
+    skin = (er > 170) & (eg > 110) & (eb < 150) & (er - eb > 60)
+    eye_src = src.copy()
+    eye_src[skin] = (248, 248, 244, 255)
+    eye_src[..., 3] = 255
+    eye_img = Image.fromarray(eye_src, "RGBA")
     for name, half in (("eyes_open", False), ("eyes_half", True)):
         canvas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-        for (cx, cy), (rx, ry) in specs:
-            box_o = (cx - rx - 6, cy - ry - 6, cx + rx + 6, cy + ry + 6)
-            box_i = (cx - rx, cy - ry, cx + rx, cy + ry)
+        for dx in (-56, 56):                       # two eyes centred on the face (x 660+-56)
+            ox = cx + dx
             outline = Image.new("L", (w, h), 0)
-            ImageDraw.Draw(outline).ellipse(box_o, fill=255)
             inner = Image.new("L", (w, h), 0)
-            ImageDraw.Draw(inner).ellipse(box_i, fill=255)
+            ImageDraw.Draw(outline).ellipse((ox - rx - 7, cy - ry - 7, ox + rx + 7, cy + ry + 7), fill=255)
+            ImageDraw.Draw(inner).ellipse((ox - rx, cy - ry, ox + rx, cy + ry), fill=255)
             if half:
-                lid = cy - int(ry * 0.05)
-                ImageDraw.Draw(outline).rectangle((0, 0, w, lid - 7), fill=0)
-                ImageDraw.Draw(outline).rectangle((cx - rx - 8, lid - 7, cx + rx + 8, lid + 3), fill=255)
+                lid = cy + 2
+                ImageDraw.Draw(outline).rectangle((0, 0, w, lid - 8), fill=0)
+                ImageDraw.Draw(outline).rectangle((ox - rx - 9, lid - 8, ox + rx + 9, lid + 3), fill=255)
                 ImageDraw.Draw(inner).rectangle((0, 0, w, lid + 3), fill=0)
-            ink = Image.new("RGBA", (w, h), (22, 18, 30, 255))
-            canvas.paste(ink, (0, 0), outline)
-            eye = np.array(src).copy()
-            er, eg, eb = (eye[..., i].astype(int) for i in range(3))
-            skin = (er > 170) & (eg > 110) & (eb < 150) & (er - eb > 60)
-            eye[skin] = (248, 248, 244, 255)
-            eye[..., 3] = 255
-            canvas.paste(Image.fromarray(eye, "RGBA"), (0, 0), inner)
+            canvas.paste(Image.new("RGBA", (w, h), (22, 18, 30, 255)), (0, 0), outline)
+            shifted = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+            shifted.paste(eye_img, (dx, 0))
+            canvas.paste(shifted, (0, 0), inner)
         arr = np.array(canvas)
         save_part(name, arr[..., :3], arr[..., 3].astype(np.float32), meta)
 

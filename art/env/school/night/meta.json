@@ -1,0 +1,90 @@
+{
+  "biome": "school",
+  "lighting": "night",
+  "generator": "scripts/blender_env_backgrounds.py",
+  "blender": "5.2.3 LTS",
+  "engine": "BLENDER_EEVEE",
+  "samples": 48,
+  "res_scale": 1.0,
+  "layers": [
+    {
+      "file": "layer0.png",
+      "parallax": 0.05,
+      "size": [
+        1024,
+        576
+      ],
+      "transparent": false,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00117,
+        "local_max": 0.00266,
+        "ok": true
+      },
+      "render_seconds": 3.29
+    },
+    {
+      "file": "layer1.png",
+      "parallax": 0.15,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00113,
+        "local_max": 0.00156,
+        "ok": true
+      },
+      "render_seconds": 7.64
+    },
+    {
+      "file": "layer2.png",
+      "parallax": 0.35,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00077,
+        "local_max": 0.00169,
+        "ok": true
+      },
+      "render_seconds": 6.1
+    },
+    {
+      "file": "layer3.png",
+      "parallax": 0.6,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00116,
+        "local_max": 0.00137,
+        "ok": true
+      },
+      "render_seconds": 1.69
+    }
+  ],
+  "fog_colors": {
+    "L0": "#2c3f6e",
+    "L1": "#2a3a68",
+    "L2": "#22305a",
+    "L3": "#1b2548"
+  },
+  "tint": "#22305a",
+  "sky": {
+    "horizon": "#2c3f6e",
+    "zenith": "#070c22"
+  },
+  "ambient_particles": "fireflies",
+  "calm_bottom_fraction": 0.25,
+  "build_seconds": 0.2,
+  "notes": ""
+}

@@ -1,0 +1,15 @@
+00:03.723  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/woods/day/layer0.png'
+00:10.440  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/woods/day/layer1.png'
+00:19.186  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/woods/day/layer2.png'
+00:22.521  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/woods/day/layer3.png'
+00:26.333  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/woods/night/layer0.png'
+00:33.921  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/woods/night/layer1.png'
+00:42.389  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/woods/night/layer2.png'
+00:45.758  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/woods/night/layer3.png'
+[env] built woods/day in 0.2s (83 objects, 9 wrap dups)
+[env] rendered woods/day {"layer0": [3.18, true], "layer1": [6.71, true], "layer2": [8.71, true], "layer3": [3.3, true]}
+[env] built woods/night in 0.2s (213 objects, 7 wrap dups)
+[env] rendered woods/night {"layer0": [3.58, true], "layer1": [7.58, true], "layer2": [8.43, true], "layer3": [3.33, true]}
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit

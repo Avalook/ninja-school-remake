@@ -116,7 +116,7 @@ func interp_pos(c: Array, ord) -> Vector2:
 	var p := Vector2(c[2], c[3])
 	if c[11] == 0 and c[12] == 0:
 		return p
-	var world := Vector2(c[2], c[3]) + core.cur_cam
+	var world: Vector2 = Vector2(c[2], c[3]) + core.cur_cam
 	if ord != null:
 		var k := _key(c, ord)
 		if _prev_index.has(k):

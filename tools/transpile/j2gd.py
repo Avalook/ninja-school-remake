@@ -269,6 +269,19 @@ class Transpiler:
 
     def _expr(self, e):
         """returns (code, type). may append to self.pre for hoisted side effects"""
+        if isinstance(e, (T.BinaryOperation, T.TernaryExpression, T.Cast, T.Assignment, T.ArrayCreator, T.ClassCreator)) and getattr(e, 'prefix_operators', None):
+            ops = list(e.prefix_operators)
+            e.prefix_operators = []
+            try:
+                c, t = self._expr(e)
+            finally:
+                e.prefix_operators = ops
+            for op in reversed(ops):
+                if op == '!': c = '(not %s)' % c; t = ('boolean',0)
+                elif op == '-': c = '(-%s)' % c
+                elif op == '~': c = '(~%s)' % c
+                elif op in ('++','--'): self.errors.append('prefix %s on compound' % op)
+            return c, t
         if isinstance(e, T.Literal):
             c, t = self.lit(e.value)
             c, t = self.apply_selectors(c, t, e.selectors)
@@ -353,7 +366,13 @@ class Transpiler:
                 a = (self.as_str(a), t); b = (self.as_str(b), t)
             return '(%s if %s else %s)' % (a[0], c[0], b[0]), t
         if isinstance(e, T.Assignment):
-            return self.assign(e, as_expr=True)
+            c, t = self.assign(e, as_expr=True)
+            return self.apply_selectors(c, t, getattr(e, 'selectors', None))
+        if isinstance(e, T.Cast) and getattr(e, 'selectors', None):
+            sels = e.selectors; e.selectors = []
+            try: c, t = self._expr(e)
+            finally: e.selectors = sels
+            return self.apply_selectors(c, t, sels)
         if isinstance(e, T.Cast):
             c, t = self._expr(e.expression)
             tn = e.type.name; dims = len(e.type.dimensions or [])

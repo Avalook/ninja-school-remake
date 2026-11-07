@@ -1,0 +1,90 @@
+{
+  "biome": "cliffs",
+  "lighting": "day",
+  "generator": "scripts/blender_env_backgrounds.py",
+  "blender": "5.2.3 LTS",
+  "engine": "BLENDER_EEVEE",
+  "samples": 48,
+  "res_scale": 1.0,
+  "layers": [
+    {
+      "file": "layer0.png",
+      "parallax": 0.05,
+      "size": [
+        1024,
+        576
+      ],
+      "transparent": false,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00116,
+        "local_max": 0.00121,
+        "ok": true
+      },
+      "render_seconds": 4.09
+    },
+    {
+      "file": "layer1.png",
+      "parallax": 0.15,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00089,
+        "local_max": 0.0031,
+        "ok": true
+      },
+      "render_seconds": 8.35
+    },
+    {
+      "file": "layer2.png",
+      "parallax": 0.35,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00425,
+        "local_max": 0.0185,
+        "ok": true
+      },
+      "render_seconds": 6.29
+    },
+    {
+      "file": "layer3.png",
+      "parallax": 0.6,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00313,
+        "local_max": 0.00529,
+        "ok": true
+      },
+      "render_seconds": 1.75
+    }
+  ],
+  "fog_colors": {
+    "L0": "#f6e8d0",
+    "L1": "#e2d6cc",
+    "L2": "#e6dace",
+    "L3": "#e6d8c8"
+  },
+  "tint": "#e6dace",
+  "sky": {
+    "horizon": "#f6e8d0",
+    "zenith": "#5e9ede"
+  },
+  "ambient_particles": "mist",
+  "calm_bottom_fraction": 0.25,
+  "build_seconds": 0.15,
+  "notes": "mesa/pillar crests with striation displacement for rock faces"
+}

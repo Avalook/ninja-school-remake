@@ -17,6 +17,7 @@ var prev_hp := -1
 var font: Font
 
 # original map id -> background biome (art/env/<biome>)
+const HERO_SCALE := 0.21   # 201px rendered height -> ~42 logical px (original sprite ~36px, hitbox 22x32 unchanged)
 const BIOME := {
 	99: "school", 0: "school", 1: "school", 2: "village", 94: "school",
 	3: "sakura", 4: "bamboo", 5: "waterfall", 6: "fields", 7: "river", 97: "river",
@@ -31,7 +32,7 @@ func setup(core_, renderer) -> void:
 	core = core_
 	r = renderer
 	font = ThemeDB.fallback_font
-	var p := "res://art/hero/hero_sheet.png"
+	var p := "res://art/hero/hero_sheet.png"  # Blender cutout rig output (scripts/run_hero_pipeline.py)
 	if ResourceLoader.exists(p):
 		hero_tex = load(p)
 		var mf := FileAccess.open("res://art/hero/hero_sheet.json", FileAccess.READ)
@@ -41,6 +42,10 @@ func setup(core_, renderer) -> void:
 	r.replacers["b_o"] = Callable(self, "_draw_player")
 	r.hidden_tags["d_o"] = true      # original bottom HUD strip (redrawn as overlay)
 	r.hidden_tags["c_o"] = true
+
+func particle_hint() -> String:
+	var e = env_layers(biome(), is_night())
+	return str(e[1].get("ambient_particles", PARTICLE_HINT.get(biome(), "leaves")))
 
 func biome() -> String:
 	return BIOME.get(int(core.v), "school")
@@ -54,7 +59,7 @@ func env_layers(b: String, night: bool) -> Array:
 		return env_cache[key]
 	var out := []
 	for i in 4:
-		var p := "res://art/env/%s/layer%d.png" % [key, i]
+		var p := "res://art/env/%s/layer%d.webp" % [key, i]
 		if ResourceLoader.exists(p):
 			out.append(load(p))
 	var meta := {}
@@ -73,7 +78,11 @@ func _draw_sky(rr, cmds: Array) -> void:
 			rr.draw_cmd(c)
 		return
 	var meta: Dictionary = e[1]
-	var factors: Array = meta.get("parallax", [0.05, 0.15, 0.35, 0.6])
+	var factors: Array = [0.05, 0.15, 0.35, 0.6]
+	if meta.has("layers"):
+		factors = []
+		for L in meta["layers"]:
+			factors.append(float(L.get("parallax", 0.3)))
 	var vw := 480.0
 	var vh := 270.0
 	var world_h: float = core.iS
@@ -89,7 +98,7 @@ func _draw_sky(rr, cmds: Array) -> void:
 		var oy := -(h - vh) * clampf(cam.y / max_scroll, 0.0, 1.0) * (0.3 + f)
 		var x := ox
 		while x < vw:
-			rr.draw_texture_rect(tx, Rect2(x, oy, w, h), false)
+			rr.draw_texture_rect(tx, Rect2(x, oy, w, h), false, Color(1, 1, 1, 0.8 if i == 3 else 1.0))
 			x += w
 
 # ---------- player ----------
@@ -106,7 +115,9 @@ func _draw_player(rr, cmds: Array) -> void:
 	var anc: Array = hero_meta.get("anchor", [128, 240])
 	var cols: int = hero_meta.get("cols", 8)
 	var pos: Vector2 = core.prev_player.lerp(core.cur_player, alpha) - rr.cam
-	var scale := 0.62
+	if OS.get_cmdline_user_args().has("--debug") and Engine.get_process_frames() % 120 == 0:
+		print("hero B=", B, " pos=", pos, " fp=", core.fp, " cell=", cell)
+	var scale := HERO_SCALE
 	var src := Rect2((B % cols) * cell[0], (B / cols) * cell[1], cell[0], cell[1])
 	var facing: int = core.fp
 	# shadow on ground
@@ -119,6 +130,9 @@ func _draw_player(rr, cmds: Array) -> void:
 		mod = Color(1.25, 0.8, 0.75)
 	if core.fz:
 		mod.a = 0.6
+	var yoff: Array = hero_meta.get("frame_y_offset", [])
+	if B < yoff.size():
+		pos.y += float(yoff[B]) * scale
 	var dst_size := Vector2(cell[0], cell[1]) * scale
 	var origin := pos - Vector2(anc[0], anc[1]) * scale
 	if facing == 1:
@@ -127,11 +141,22 @@ func _draw_player(rr, cmds: Array) -> void:
 		rr.draw_set_transform(Vector2(pos.x + anc[0] * scale, origin.y), 0.0, Vector2(-1, 1))
 		rr.draw_texture_rect_region(hero_tex, Rect2(Vector2.ZERO, dst_size), src, mod)
 		rr.draw_set_transform(Vector2.ZERO)
-	# weapon slash effect images of the original (eE) stay as drawn by the original routine
-	var ord := {}
-	for c in cmds:
-		if c[0] == 4 and str(c[1]["p"]).begins_with("/c/w"):
-			rr.draw_cmd(c, ord)
+	# original weapon overlay eE[ff]: 0/3/4 = small held blade (the HD hero holds a katana) -> skipped;
+	# slash arcs and the bamboo breathing tube are kept, arcs drawn with a glow
+	var ff: int = core.ff
+	if ff in [1, 2, 5, 6, 9, 10]:
+		var ord := {}
+		for c in cmds:
+			if c[0] == 4 and str(c[1]["p"]).begins_with("/c/w"):
+				var tx2: Texture2D = rr.tex(c[1]["p"])
+				var p2: Vector2 = rr.interp_pos(c, ord)
+				rr.draw_image_at(tx2, c[1], p2 + Vector2(-1, -1), c[4], c[5], Rect2(c[6], c[7], c[8], c[9]), Rect2(c[10]), Color(0.6, 0.85, 1.0, 0.45))
+				rr.draw_image_at(tx2, c[1], p2, c[4], c[5], Rect2(c[6], c[7], c[8], c[9]), Rect2(c[10]), Color(1.0, 1.0, 1.0, 0.95))
+	elif ff in [7, 8]:
+		var ord2 := {}
+		for c in cmds:
+			if c[0] == 4 and str(c[1]["p"]).begins_with("/c/w"):
+				rr.draw_cmd(c, ord2)
 
 func on_tick() -> void:
 	pass

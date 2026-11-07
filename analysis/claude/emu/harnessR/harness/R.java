@@ -9,9 +9,11 @@ public class R {
   public static void repaint(javax.microedition.lcdui.Canvas c){
     if(!lockstep){ c.repaint(); return; }
     Emu.service(c); frames++; vt+=40;
-    try{ if("2".equals(String.valueOf(Emu.val("d")))) Thread.sleep(30); }catch(Exception e){}
     if(trace!=null) trace.println(Emu.traceLine(frames));
     done.release(); go.acquireUninterruptibly();
   }
+  // lockstep: loader threads (new Thread(Midlet.c)) run synchronously like the Godot host; the game thread (started from main) starts normally
+  public static void start(Thread t){ if(!lockstep || Thread.currentThread().getName().equals("main")){ t.start(); return; }
+    try{ java.lang.reflect.Field sf=Class.forName("a").getDeclaredField("S"); sf.setAccessible(true); sf.setInt(null,100); java.lang.reflect.Field f=Class.forName("Midlet").getDeclaredField("c"); f.setAccessible(true); ((Runnable)f.get(null)).run(); }catch(Exception e){ throw new RuntimeException(e);} }
   public static void step(int n){ for(int i=0;i<n;i++){ go.release(); done.acquireUninterruptibly(); } }
 }

@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "started_at": "2026-11-07T05:51:57+00:00",
+  "finished_at": "2026-11-07T05:52:17+00:00",
+  "steps": [
+    {
+      "name": "split",
+      "status": "passed",
+      "started_at": "2026-11-07T05:51:57+00:00",
+      "timeout_s": 180,
+      "log_tail": [
+        "parts written to /Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/hero/parts"
+      ],
+      "seconds": 6.43
+    },
+    {
+      "name": "blender_rig_render",
+      "status": "passed",
+      "started_at": "2026-11-07T05:52:03+00:00",
+      "timeout_s": 900,
+      "log_tail": [
+        "HERO_RIG_DONE {\"engine\": \"BLENDER_EEVEE\", \"build_seconds\": 0.12, \"render_seconds\": 8.09}",
+        "Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)",
+        "",
+        "Blender quit"
+      ],
+      "seconds": 8.9
+    },
+    {
+      "name": "assemble",
+      "status": "passed",
+      "started_at": "2026-11-07T05:52:12+00:00",
+      "timeout_s": 180,
+      "log_tail": [
+        "HERO_ASSEMBLE_DONE sole rows [240] overflow {} y_offsets {44: -3, 45: -28}"
+      ],
+      "seconds": 4.55
+    }
+  ],
+  "checks": {
+    "grounded_sole_rows": [
+      240
+    ],
+    "overflow_frames": {}
+  }
+}

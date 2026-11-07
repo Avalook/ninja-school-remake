@@ -1,0 +1,90 @@
+{
+  "biome": "spikes",
+  "lighting": "night",
+  "generator": "scripts/blender_env_backgrounds.py",
+  "blender": "5.2.3 LTS",
+  "engine": "BLENDER_EEVEE",
+  "samples": 48,
+  "res_scale": 1.0,
+  "layers": [
+    {
+      "file": "layer0.png",
+      "parallax": 0.05,
+      "size": [
+        1024,
+        576
+      ],
+      "transparent": false,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00142,
+        "local_max": 0.00145,
+        "ok": true
+      },
+      "render_seconds": 3.22
+    },
+    {
+      "file": "layer1.png",
+      "parallax": 0.15,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00234,
+        "local_max": 0.00334,
+        "ok": true
+      },
+      "render_seconds": 7.07
+    },
+    {
+      "file": "layer2.png",
+      "parallax": 0.35,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.03784,
+        "local_max": 0.03157,
+        "ok": true
+      },
+      "render_seconds": 6.32
+    },
+    {
+      "file": "layer3.png",
+      "parallax": 0.6,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00589,
+        "local_max": 0.00819,
+        "ok": true
+      },
+      "render_seconds": 1.71
+    }
+  ],
+  "fog_colors": {
+    "L0": "#3a2a4a",
+    "L1": "#2e2844",
+    "L2": "#2a2640",
+    "L3": "#221e36"
+  },
+  "tint": "#2a2640",
+  "sky": {
+    "horizon": "#3a2a4a",
+    "zenith": "#07071a"
+  },
+  "ambient_particles": "leaves",
+  "calm_bottom_fraction": 0.25,
+  "build_seconds": 0.12,
+  "notes": "dusk-tinted day for tension; takeyari stake fences"
+}

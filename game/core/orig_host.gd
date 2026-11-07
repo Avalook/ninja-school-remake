@@ -12,7 +12,7 @@ const PC_DEVIATIONS := [
 
 var _constructed := false
 var _img_sizes: Dictionary = {}
-var _rms_dir := "user://rms"
+var _rms_dir := "user://rms" if OS.get_environment("NINJA_RMS") == "" else OS.get_environment("NINJA_RMS")
 var logical_w := 480
 var logical_h := 270
 var frame_ended := false
@@ -100,8 +100,11 @@ func _hx_self():
 		call("_ctor_host")
 	return self
 
+var virtual_clock := false   # tests: deterministic time like the lockstep emulator
+var vclock := 1000040  # aligned with the lockstep emulator clock (it counts from its first repaint)
+
 func _hx_now() -> int:
-	return Time.get_ticks_msec()
+	return vclock if virtual_clock else Time.get_ticks_msec()
 
 func _hx_prop(_k) -> String:
 	return "PC"
@@ -129,7 +132,7 @@ func _hx_cmdlabel(_c) -> String:
 func _hx_img(path, _a = null, _b = null, _c = null, _d = null, _e = null):
 	var p := str(path)
 	if not _img_sizes.has(p):
-		push_warning("orig: missing image " + p)
+		pass  # the original also tolerates a few missing images (IOException caught)
 		return null
 	var s: Array = _img_sizes[p]
 	return {"p": p, "w": int(s[0]), "h": int(s[1])}
@@ -253,6 +256,7 @@ func M_startApp_() -> void:
 # new Thread(Midlet.c).start(): the original map/asset loader thread (Midlet.run) — run synchronously.
 func _hx_start_loader() -> void:
 	loader_requests += 1
+	set("S", 100)  # loading-bar counter: loader runs synchronously, so the bar is complete
 	call("M_run_")
 
 # ---------- Graphics shim: the original paint code records draw commands ----------

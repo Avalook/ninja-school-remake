@@ -1,0 +1,413 @@
+{
+  "status": "passed",
+  "started": "2026-11-07T12:57:32",
+  "generator": "scripts/blender_env_backgrounds.py",
+  "biomes": {
+    "school": {
+      "status": "passed",
+      "seconds": 39.3,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 19.15
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 18.72
+        }
+      },
+      "error": null,
+      "log": "art/env/school/render.log"
+    },
+    "sakura": {
+      "status": "passed",
+      "seconds": 37.8,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 18.8
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 17.62
+        }
+      },
+      "error": null,
+      "log": "art/env/sakura/render.log"
+    },
+    "bamboo": {
+      "status": "passed",
+      "seconds": 42.2,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 20.72
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 20.240000000000002
+        }
+      },
+      "error": null,
+      "log": "art/env/bamboo/render.log"
+    },
+    "waterfall": {
+      "status": "passed",
+      "seconds": 40.7,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 19.52
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 19.97
+        }
+      },
+      "error": null,
+      "log": "art/env/waterfall/render.log"
+    },
+    "fields": {
+      "status": "passed",
+      "seconds": 34.7,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 17.5
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 15.969999999999999
+        }
+      },
+      "error": null,
+      "log": "art/env/fields/render.log"
+    },
+    "river": {
+      "status": "passed",
+      "seconds": 33.2,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 16.14
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 15.85
+        }
+      },
+      "error": null,
+      "log": "art/env/river/render.log"
+    },
+    "graveyard": {
+      "status": "passed",
+      "seconds": 35.5,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 17.32
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 16.98
+        }
+      },
+      "error": null,
+      "log": "art/env/graveyard/render.log"
+    },
+    "temple": {
+      "status": "passed",
+      "seconds": 34.7,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 17.32
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 16.32
+        }
+      },
+      "error": null,
+      "log": "art/env/temple/render.log"
+    },
+    "woods": {
+      "status": "passed",
+      "seconds": 46.2,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 21.900000000000002
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 22.92
+        }
+      },
+      "error": null,
+      "log": "art/env/woods/render.log"
+    },
+    "spikes": {
+      "status": "passed",
+      "seconds": 37.8,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 18.24
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 18.32
+        }
+      },
+      "error": null,
+      "log": "art/env/spikes/render.log"
+    },
+    "cliffs": {
+      "status": "passed",
+      "seconds": 40.5,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 20.48
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 18.82
+        }
+      },
+      "error": null,
+      "log": "art/env/cliffs/render.log"
+    },
+    "valley": {
+      "status": "passed",
+      "seconds": 38.1,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 17.87
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 18.93
+        }
+      },
+      "error": null,
+      "log": "art/env/valley/render.log"
+    },
+    "village": {
+      "status": "passed",
+      "seconds": 34.7,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 16.62
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 16.82
+        }
+      },
+      "error": null,
+      "log": "art/env/village/render.log"
+    },
+    "orochi": {
+      "status": "passed",
+      "seconds": 33.0,
+      "lightings": {
+        "day": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 16.97
+        },
+        "night": {
+          "ok": true,
+          "seams_ok": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "render_seconds": 14.89
+        }
+      },
+      "error": null,
+      "log": "art/env/orochi/render.log"
+    }
+  },
+  "blender": "/opt/homebrew/bin/blender",
+  "samples": 48,
+  "scale": 1.0,
+  "jobs": 3,
+  "timeout": 600,
+  "blend": {
+    "path": "art/blender/env_backgrounds.blend",
+    "ok": true,
+    "seconds": 2.8,
+    "mb": 26.96
+  },
+  "preview": "art/env/preview.png",
+  "total_seconds": 188.4,
+  "finished": "2026-11-07T13:00:41"
+}

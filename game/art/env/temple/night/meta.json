@@ -1,0 +1,90 @@
+{
+  "biome": "temple",
+  "lighting": "night",
+  "generator": "scripts/blender_env_backgrounds.py",
+  "blender": "5.2.3 LTS",
+  "engine": "BLENDER_EEVEE",
+  "samples": 48,
+  "res_scale": 1.0,
+  "layers": [
+    {
+      "file": "layer0.png",
+      "parallax": 0.05,
+      "size": [
+        1024,
+        576
+      ],
+      "transparent": false,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00135,
+        "local_max": 0.00439,
+        "ok": true
+      },
+      "render_seconds": 3.26
+    },
+    {
+      "file": "layer1.png",
+      "parallax": 0.15,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00133,
+        "local_max": 0.00159,
+        "ok": true
+      },
+      "render_seconds": 5.9
+    },
+    {
+      "file": "layer2.png",
+      "parallax": 0.35,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.00372,
+        "local_max": 0.00512,
+        "ok": true
+      },
+      "render_seconds": 5.44
+    },
+    {
+      "file": "layer3.png",
+      "parallax": 0.6,
+      "size": [
+        2048,
+        1152
+      ],
+      "transparent": true,
+      "tileable_x": true,
+      "seam_check": {
+        "edge": 0.0,
+        "local_max": 0.0,
+        "ok": true
+      },
+      "render_seconds": 1.72
+    }
+  ],
+  "fog_colors": {
+    "L0": "#2e3c6a",
+    "L1": "#283868",
+    "L2": "#22305a",
+    "L3": "#1c264a"
+  },
+  "tint": "#22305a",
+  "sky": {
+    "horizon": "#2e3c6a",
+    "zenith": "#070a20"
+  },
+  "ambient_particles": "fireflies",
+  "calm_bottom_fraction": 0.25,
+  "build_seconds": 0.09,
+  "notes": "stairs + 3 torii climbing the shrine hill"
+}

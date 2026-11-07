@@ -1,0 +1,15 @@
+00:03.425  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/river/day/layer0.png'
+00:09.896  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/river/day/layer1.png'
+00:14.712  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/river/day/layer2.png'
+00:16.690  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/river/day/layer3.png'
+00:20.131  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/river/night/layer0.png'
+00:26.217  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/river/night/layer1.png'
+00:30.956  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/river/night/layer2.png'
+00:32.793  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/river/night/layer3.png'
+[env] built river/day in 0.1s (58 objects, 6 wrap dups)
+[env] rendered river/day {"layer0": [2.96, true], "layer1": [6.46, true], "layer2": [4.78, true], "layer3": [1.94, true]}
+[env] built river/night in 0.1s (190 objects, 5 wrap dups)
+[env] rendered river/night {"layer0": [3.28, true], "layer1": [6.07, true], "layer2": [4.7, true], "layer3": [1.8, true]}
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit

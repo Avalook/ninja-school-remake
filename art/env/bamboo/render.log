@@ -1,0 +1,15 @@
+00:03.842  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/bamboo/day/layer0.png'
+00:11.887  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/bamboo/day/layer1.png'
+00:19.301  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/bamboo/day/layer2.png'
+00:21.346  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/bamboo/day/layer3.png'
+00:24.781  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/bamboo/night/layer0.png'
+00:32.229  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/bamboo/night/layer1.png'
+00:39.701  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/bamboo/night/layer2.png'
+00:41.829  render           | Saved: '/Users/quangdang/Downloads/ninja-claude-parallel/.claude/worktrees/ninja-pc-game-dev-f010c2/art/env/bamboo/night/layer3.png'
+[env] built bamboo/day in 0.1s (74 objects, 7 wrap dups)
+[env] rendered bamboo/day {"layer0": [3.31, true], "layer1": [8.03, true], "layer2": [7.38, true], "layer3": [2.0, true]}
+[env] built bamboo/night in 0.1s (207 objects, 8 wrap dups)
+[env] rendered bamboo/night {"layer0": [3.28, true], "layer1": [7.44, true], "layer2": [7.44, true], "layer3": [2.08, true]}
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit

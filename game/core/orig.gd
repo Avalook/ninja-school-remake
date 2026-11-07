@@ -3039,15 +3039,15 @@ func a_iii(_n, _n2, _n3):
         cK[_n] = _n3
         cB[_n] = 0
         cC[_n] = 0
-        cD[_n] = (_n3 << 3)
+        cD[_n] = (-(_n3 << 3))
         cE[_n] = (-6)
         cI[_n] = 0
         ct[_n] = 0
         cH[_n] = 1
         u_i(ae[cG[_n]])
-        a_iiiii(cx[_n], cy[_n], (cK[_n] << 2), (-4), (ac[cG[_n]] + _hx_mod(w, 10)))
+        a_iiiii(cx[_n], cy[_n], (-(cK[_n] << 2)), (-4), (ac[cG[_n]] + _hx_mod(w, 10)))
         if (_hx_mod(w, 20) > 5):
-            a_iiiiii(cx[_n], cy[_n], (cK[_n] << 3), (-5), (ad[cG[_n]] << 2), _hx_mod((w + 1), 2))
+            a_iiiiii(cx[_n], cy[_n], (-(cK[_n] << 3)), (-5), (ad[cG[_n]] << 2), _hx_mod((w + 1), 2))
         return true
     cI[_n] = 0
     cK[_n] = _n3
@@ -3085,15 +3085,15 @@ func __a_o(_graphics):
     if (b and (not a)):
         _gx_setColor(i)
         _gx_fillRect(0, 0, q, p)
-        _n = _hx_mod((fR >> 1), 24)
+        _n = (-_hx_mod((fR >> 1), 24))
         while (_n < q):
             _gx_drawImage(s[0], _n, j, 0)
             _n += 24
-        _n = _hx_mod((fR >> 2), 24)
+        _n = (-_hx_mod((fR >> 2), 24))
         while (_n < q):
             _gx_drawImage(s[1], _n, k, 0)
             _n += 24
-        _n = _hx_mod((fR >> 4), 64)
+        _n = (-_hx_mod((fR >> 4), 64))
         while (_n < q):
             _gx_drawImage(s[3], _n, m, 0)
             _n += 64
@@ -3102,7 +3102,7 @@ func __a_o(_graphics):
         while (_n < 2):
             _gx_drawImage(t, e[_n], f[_n], 3)
             _n += 1
-        _n = _hx_mod((fR >> 3), 192)
+        _n = (-_hx_mod((fR >> 3), 192))
         while (_n < q):
             _gx_drawImage(s[2], _n, l, 0)
             _n += 192
@@ -4416,7 +4416,7 @@ func c_ii(_n, _n2):
         if (hc <= 0):
             hc = 0
             ha = (-5)
-            gU = (_n2 << 3)
+            gU = (-(_n2 << 3))
             he = 0
             gV = 6
             a_iiiii(gS, gT, 4, (-6), 50)
@@ -4896,7 +4896,7 @@ func A_i(_n):
         if (kc[_n5] <= 0):
             kc[_n5] = 0
             jX[_n5] = (-5)
-            jY[_n5] = (_n3 << 3)
+            jY[_n5] = (-(_n3 << 3))
             jZ[_n5] = 0
             jR[_n5] = 0
             jS[_n5] = 1
@@ -6107,7 +6107,7 @@ func k_iii(_n, _n2, _n3):
         if (kc[_n] <= 0):
             kc[_n] = 0
             jX[_n] = (-5)
-            jY[_n] = (_n3 << 3)
+            jY[_n] = (-(_n3 << 3))
             jZ[_n] = 0
             jR[_n] = 0
             jS[_n] = 1
@@ -6744,7 +6744,7 @@ func K_():
     if M_b_():
         ba = 1
     _string = _hx_prop("microedition.platform")
-    if (_string or _string.ends_with("wtk")):
+    if (_string.ends_with("JAVASDK") or _string.ends_with("wtk")):
         MF_a = true
     _hx_start_loader()
 
@@ -6812,13 +6812,13 @@ func L_i(_n):
     u_i(aq[jM[_n]])
     _n2 = _hx_mod(w, 20)
     if (_n2 > 15):
-        a_iiiiii(jN[_n], jO[_n], (kb[_n] << 3), (-5), (ke[_n] << 2), _hx_mod((w + 1), 2))
+        a_iiiiii(jN[_n], jO[_n], (-(kb[_n] << 3)), (-5), (ke[_n] << 2), _hx_mod((w + 1), 2))
     elif (_n2 == 15):
-        a_iiiii(jN[_n], jO[_n], (kb[_n] << 2), (-4), ((kj[_n] << 3) + _hx_mod(w, 10)))
+        a_iiiii(jN[_n], jO[_n], (-(kb[_n] << 2)), (-4), ((kj[_n] << 3) + _hx_mod(w, 10)))
     else:
         _n2 = ((_hx_div((jM[_n] << 2), 10) + 1) * 10)
-        a_iiiii(jN[_n], jO[_n], (kb[_n] << 1), (-6), _n2)
-        a_iiiii(jN[_n], jO[_n], (kb[_n] << 4), (-3), _n2)
+        a_iiiii(jN[_n], jO[_n], (-(kb[_n] << 1)), (-6), _n2)
+        a_iiiii(jN[_n], jO[_n], (-(kb[_n] << 4)), (-3), _n2)
     if ((O != (-1)) and (lH[O] == jM[_n])):
         fF += 1
         c_s(((((am[lH[O]] + ": ") + str(fF)) + "#") + str(lI[O])))
@@ -7979,11 +7979,11 @@ func P_i(_n):
     _n3 = _n
     jO[_n3] = (jO[_n3] + jW[_n])
     if ((jN[_n] - jT[_n]) > 40):
-        jV[_n] = (_hx_mod(w, 2) + 1)
+        jV[_n] = (-(_hx_mod(w, 2) + 1))
     if ((jN[_n] - jT[_n]) < (-40)):
         jV[_n] = (_hx_mod(w, 2) + 1)
     if ((jO[_n] - jU[_n]) > 40):
-        jW[_n] = (_hx_mod(w, 2) + 1)
+        jW[_n] = (-(_hx_mod(w, 2) + 1))
     if ((jO[_n] - jU[_n]) < (-40)):
         jW[_n] = (_hx_mod(w, 2) + 1)
     if (_hx_mod(w, 15) == 0):
@@ -8235,7 +8235,7 @@ func R_():
             w_()
             if ((((not gQ) or (z < 4)) or (a_i((fh - gS)) >= 30)) or (a_i((fi - (gT - 25))) >= 5)):
                 break
-            z = (z >> 1)
+            z = (-(z >> 1))
             y = (fp << 3)
             C = 0
             break
@@ -8553,7 +8553,7 @@ func R_():
             elif (not aU[8]):
                 A = 1
             D += 1
-            if ((((D <= 6) or (not g_iii((fh + fl), (fi + 2), 8192))) or (not g_iii((fh - fl), (fi + 2), 8192))) or (eO and (I > 0))):
+            if ((((D <= 6) or (not g_iii((fh + fl), (fi + 2), 8192))) or (not g_iii((fh - fl), (fi + 2), 8192))) or (not (eO and (I > 0)))):
                 break
             A = 13
             break
@@ -8752,7 +8752,7 @@ func R_():
                     fi = I_i(fi)
                 else:
                     A = 21
-                    z = _hx_div(z, 3)
+                    z = (-_hx_div(z, 3))
                     fi = I_i(fi)
             if (g_iii(fh, fi, 64) and (_hx_mod(fi, jh) > 8)):
                 g_ii(fh, (H_i(fi) + 8))
@@ -9380,7 +9380,7 @@ func W_():
             elif ((dm[_n] > 2) and ((i_ii(di[_n], dj[_n]) & 2) == 2)):
                 dj[_n] = H_i(dj[_n])
                 if (dm[_n] > 2):
-                    dm[_n] = (dm[_n] >> 1)
+                    dm[_n] = (-(dm[_n] >> 1))
                 else:
                     dl[_n] = 0
                     dm[_n] = 0
@@ -9901,7 +9901,7 @@ func ab_():
             elif ((cV[_n] > 2) and ((i_ii(cR[_n], cS[_n]) & 2) == 2)):
                 cS[_n] = H_i(cS[_n])
                 if (cV[_n] > 2):
-                    cV[_n] = (cV[_n] >> 1)
+                    cV[_n] = (-(cV[_n] >> 1))
                 else:
                     cU[_n] = 0
                     cV[_n] = 0
@@ -10037,7 +10037,7 @@ func ac_():
             hK = hE[_n]
             hL = hF[_n]
             hs += (hv << 3)
-            if ((((((hs > hz) and (hv > 0)) or ((hs < hz) and (hv < 0))) or (hs > hx)) or (hs < hw)) and (hy <= 100)):
+            if ((not (((((hs > hz) and (hv > 0)) or ((hs < hz) and (hv < 0))) or (hs > hx)) or (hs < hw))) and (hy <= 100)):
                 break
             hy = 0
             hu = 5
@@ -10381,7 +10381,7 @@ func keyPressed_i(_n):
     _t311 = ((_n >= 48) and (_n <= 57))
     if _t311:
         by = (by + char((_n & 65535)))
-        _t311 = (by > 10)
+        _t311 = (by.length() > 10)
     if _t311:
         by = ""
     if aT:
@@ -10773,11 +10773,11 @@ func al_():
                     _n10 = _n4
                     jO[_n10] = (jO[_n10] + jW[_n4])
                     if ((jN[_n4] - jT[_n4]) > 40):
-                        jV[_n4] = (_hx_mod(w, 3) + 1)
+                        jV[_n4] = (-(_hx_mod(w, 3) + 1))
                     if ((jN[_n4] - jT[_n4]) < (-40)):
                         jV[_n4] = (_hx_mod(w, 3) + 1)
                     if ((jO[_n4] - jU[_n4]) > 40):
-                        jW[_n4] = (_hx_mod(w, 3) + 1)
+                        jW[_n4] = (-(_hx_mod(w, 3) + 1))
                     if ((jO[_n4] - jU[_n4]) < (-40)):
                         jW[_n4] = (_hx_mod(w, 3) + 1)
                     if (_hx_mod(w, 15) == 0):
@@ -10934,7 +10934,7 @@ func al_():
                         jV[_n4] = (kb[_n4] * (_hx_mod(w, 4) + 1))
                         _n34 = _n4
                         jN[_n34] = (jN[_n34] + (kb[_n4] << 2))
-                    jW[_n4] = ((_hx_mod(w, 4) + 1) if ((jO[_n4] - jU[_n4]) > 20) else ((_hx_mod(w, 4) + 1) if ((jO[_n4] - jU[_n4]) < (-20)) else 0))
+                    jW[_n4] = ((-(_hx_mod(w, 4) + 1)) if ((jO[_n4] - jU[_n4]) > 20) else ((_hx_mod(w, 4) + 1) if ((jO[_n4] - jU[_n4]) < (-20)) else 0))
                     _n35 = _n4
                     jO[_n35] = (jO[_n35] + jW[_n4])
                     if (_hx_mod(w, 2) == 0):
@@ -11336,7 +11336,7 @@ func al_():
                         if (jN[_n4] < fh):
                             jV[_n4] = (3 + _hx_mod(w, 4))
                         elif (jN[_n4] > fh):
-                            jV[_n4] = (3 + _hx_mod(w, 4))
+                            jV[_n4] = (-(3 + _hx_mod(w, 4)))
                         if (jO[_n4] < fi):
                             jW[_n4] = _hx_mod(w, 3)
                         elif (jO[_n4] > fi):
@@ -11552,11 +11552,11 @@ func al_():
                         if (jN[_n4] < fh):
                             jV[_n4] = (4 + _hx_mod(w, 6))
                         elif (jN[_n4] > fh):
-                            jV[_n4] = (4 + _hx_mod(w, 6))
+                            jV[_n4] = (-(4 + _hx_mod(w, 6)))
                         if (jO[_n4] < fi):
                             jW[_n4] = (2 + _hx_mod(w, 4))
                         elif (jO[_n4] > fi):
-                            jW[_n4] = (2 + _hx_mod(w, 4))
+                            jW[_n4] = (-(2 + _hx_mod(w, 4)))
                         _n110 = _n4
                         jN[_n110] = (jN[_n110] + jV[_n4])
                         _n111 = _n4
