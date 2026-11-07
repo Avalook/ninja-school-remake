@@ -17,3 +17,6 @@ game/.godot/
 analysis/claude/emu/d_*/
 art/monsters/raw/
 art/veo_build/
+.serena/
+# video review chỉ giữ local, ảnh chụp review vẫn commit
+review/**/*.mp4

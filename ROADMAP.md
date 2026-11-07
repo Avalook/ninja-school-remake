@@ -104,8 +104,9 @@ và chỉ qua mốc khi chủ dự án đồng ý. Claude không tự đánh gi�
       `analysis/PC_REMAKE_PLAN.md`, `remake/REMAKE_PLAN.md` vào `archive/docs/` (giữ lịch sử, không xoá).
 - [x] Tạo `STATUS.md` từ `analysis/claude/progress.json` và kiểm tra thực tế.
 - [x] Bỏ đường dẫn tuyệt đối `/Users/quangdang/...` khỏi `export_presets.cfg`.
-- [ ] Đưa file lớn (blend, mp4, png nguồn) sang Git LFS hoặc vào `.gitignore` nếu sinh lại được.
-      _(Đã đề xuất trong `STATUS.md`, chờ chủ dự án duyệt.)_
+- [x] Đưa file lớn (blend, mp4, png nguồn) sang Git LFS hoặc vào `.gitignore` nếu sinh lại được.
+      _(Chủ dự án chốt 2026-11-07: KHÔNG dùng LFS, không viết lại lịch sử. `review/**/*.mp4` vào
+      `.gitignore`: video review chỉ giữ local, ảnh chụp review vẫn commit.)_
 - Qua mốc: `godot --path remake` chạy được, `game/` vẫn chạy làm oracle, test cũ vẫn xanh.
 
 ### M1 — Tách Sim / View trong remake/
