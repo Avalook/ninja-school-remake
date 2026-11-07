@@ -11,6 +11,7 @@ var view: Node2D
 var renderer
 var hd
 var overlay
+var fxl
 var settings
 var music: AudioStreamPlayer
 var music_track := -2
@@ -31,6 +32,10 @@ func _ready() -> void:
 	renderer = load("res://render/cmd_renderer.gd").new()
 	renderer.core = core
 	view.add_child(renderer)
+	fxl = load("res://render/fx_layer.gd").new()
+	fxl.core = core
+	fxl.r = renderer
+	view.add_child(fxl)
 	hd = load("res://render/hd_world.gd").new()
 	add_child(hd)
 	hd.setup(core, renderer)
@@ -99,7 +104,23 @@ func _press(action: String, down: bool) -> void:
 		held_keys.erase(action)
 		core.key_up(int(c))
 
+var _perf_t := 0.0
+var _perf_frames := 0
+var _perf_worst := 0.0
+
+func _perf(delta: float) -> void:
+	_perf_t += delta
+	_perf_frames += 1
+	_perf_worst = max(_perf_worst, delta)
+	if _perf_t >= 5.0:
+		print("[perf] fps=%.1f worst_frame_ms=%.1f window=%s" % [_perf_frames / _perf_t, _perf_worst * 1000.0, str(get_viewport_rect().size)])
+		_perf_t = 0.0
+		_perf_frames = 0
+		_perf_worst = 0.0
+
 func _process(delta: float) -> void:
+	if overlay.debug:
+		_perf(delta)
 	if settings.visible:
 		return
 	acc += min(delta, 0.25)
@@ -123,6 +144,7 @@ func _process(delta: float) -> void:
 	if stepped:
 		renderer.on_tick()
 		hd.on_tick()
+		fxl.on_tick()
 	renderer.queue_redraw()
 
 func _auto_step() -> void:

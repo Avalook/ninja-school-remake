@@ -29,7 +29,9 @@ func tex(path: String) -> Texture2D:
 	if tex_cache.has(path):
 		return tex_cache[path]
 	var t: Texture2D = null
-	if hd_root != "" and ResourceLoader.exists(hd_root + path):
+	if ResourceLoader.exists("res://hd_art" + path):   # bespoke HD art (exact 4x, same registration)
+		t = load("res://hd_art" + path)
+	elif hd_root != "" and ResourceLoader.exists(hd_root + path):
 		t = load(hd_root + path)
 	if t == null:
 		t = load("res://orig_res" + path)

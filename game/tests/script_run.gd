@@ -3,7 +3,7 @@
 extends SceneTree
 var g
 var trace: FileAccess
-const TF = ["d","v","A","B","fh","fi","fR","fS","fV","fX","gc","G","I","N","M","dg","O","fF","w","jN","jO","kc","jS"]
+const TF = ["d","v","A","B","fh","fi","fR","fS","fV","fX","gc","G","I","N","M","dg","O","fF","w","jN","jO","kc","jS","hu","hP","hS","hT"]
 func step(n: int) -> void:
 	for i in n:
 		g.tick()
@@ -55,4 +55,27 @@ func _init():
 					s += "%s=%s " % [t[k], str(g.get(t[k]))]
 				print("[vars] ", s)
 			"texts": print("[texts] ", g.get("aG"))
+			"bot_boss":
+				# simple test bot: walk to the boss (hs,ht), face it and attack; advances dialogue with OK
+				for k in int(t[1]):
+					var dx: int = g.hs - g.fh
+					var want := -4 if dx > 0 else -3
+					var other := -3 if want == -4 else -4
+					g.key_up(other)
+					if abs(dx) > 18:
+						g.key_down(want)
+					else:
+						g.key_up(want)
+						if (dx > 0) != (g.fp > 0):
+							g.key_down(want); step(1); g.key_up(want)
+					if k % 4 == 0:
+						g.key_down(-5)
+					elif k % 4 == 2:
+						g.key_up(-5)
+					if k % 16 == 0 and abs(dx) < 40:
+						g.key_down(-1)
+					if k % 16 == 3:
+						g.key_up(-1)
+					step(1)
+				g.key_up(-3); g.key_up(-4); g.key_up(-5)
 	quit()

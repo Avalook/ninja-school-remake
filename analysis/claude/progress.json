@@ -1,7 +1,7 @@
 {
  "updated_at": "2026-11-07",
  "owner": "claude (Opus 5.5) session in worktree claude/ninja-pc-game-dev-f010c2",
- "status": "in_progress",
+ "status": "playable_mac_build; windows_exported_unverified; art_pass_in_progress(monsters)",
  "artifacts": {
   "j2me_emulator": {
    "path": "analysis/claude/emu",
@@ -22,14 +22,36 @@
   "hd_upscale": {
    "path": "tools/art/upscale_scale4x.py -> game/hd_res",
    "what": "Scale4x of all 362 original PNG (crisp base for tiles/NPC/monsters)"
+  },
+  "mac_app": {
+   "path": "builds/mac/Ninja School 1.app (zip: builds/mac/NinjaSchool1.zip)",
+   "status": "launched + scripted play OK on Mac M4 Pro, 120fps @1080p"
+  },
+  "windows_exe": {
+   "path": "builds/windows/NinjaSchool1.exe",
+   "status": "exported only; NOT run on Windows"
+  },
+  "hero_hd": {
+   "path": "art/hero (Blender rig art/blender/hero_rig.blend; scripts/run_hero_pipeline.py)",
+   "status": "46/46 frames integrated in game"
+  },
+  "backgrounds_hd": {
+   "path": "art/env (Blender art/blender/env_backgrounds.blend; scripts/run_env_pipeline.py)",
+   "status": "14 biomes x day/night integrated"
+  },
+  "music": {
+   "path": "game/audio/music0-4.mp3 (tools/midi/Mid2Wav.java)",
+   "status": "integrated"
+  },
+  "verification": {
+   "path": "analysis/claude/VERIFICATION.md",
+   "status": "~50k ticks identical to original JAR incl. all maps, boss, ending chain; save/load roundtrip"
   }
  },
  "next": [
-  "play map99->map4 boss, all maps",
-  "menus/shop/inventory UI reskin",
-  "save/load UI",
-  "Mac export",
-  "full playthrough verification"
+  "integrate monster HD set",
+  "Windows real-hardware test (needs user's Acer)",
+  "optional: HD tile redraw, human full playthrough"
  ],
  "verified_runtime": [
   "emulator lockstep trace compare (analysis/claude/emu/cmp_trace.py)",
@@ -37,8 +59,6 @@
   "Godot windowed screenshots of intro"
  ],
  "in_progress": [
-  "Blender hero cutout rig 46 frames (subagent) -> art/hero",
-  "Blender parallax biomes (subagent) -> art/env",
-  "camera vertical offset bug in renderer (investigating)"
+  "HD monsters/NPC sprites via Blender (subagent) -> game/hd_art/{mob,npc}"
  ]
 }

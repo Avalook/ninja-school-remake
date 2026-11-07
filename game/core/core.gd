@@ -72,3 +72,13 @@ func tick() -> void:
 	if d == 13 and Y == 0:
 		d = 4
 		aj_()
+
+# ---- presentation hooks (logic unchanged: record an event, then run the original routine) ----
+var fx_events: Array = []
+
+# a.f(x, y, dir): original hit/slash spark spawn
+func f_iii(_n, _n2, _n3):
+	if fx_events.size() > 64:
+		fx_events.clear()
+	fx_events.append(["hit", _n, _n2, _n3])
+	super(_n, _n2, _n3)

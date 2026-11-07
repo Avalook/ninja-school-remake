@@ -41,7 +41,7 @@ public class Emu {
     if(R.trace!=null) R.trace.flush(); System.exit(0);
   }
   static void pause(long ms) throws Exception { if(R.lockstep) R.step((int)(ms/40)); else Thread.sleep(ms); }
-  static String[] TF={"d","v","A","B","fh","fi","fR","fS","fV","fX","gc","G","I","N","M","dg","O","fF","w","jN","jO","kc","jS"};
+  static String[] TF={"d","v","A","B","fh","fi","fR","fS","fV","fX","gc","G","I","N","M","dg","O","fF","w","jN","jO","kc","jS","hu","hP","hS","hT"};
   public static String traceLine(int f){ StringBuilder b=new StringBuilder(); b.append(f); for(String n:TF){ b.append(' ').append(n).append('=').append(val(n)); } return b.toString(); }
   static Class<?>[] intArgs(int n){ Class<?>[] c=new Class<?>[n]; Arrays.fill(c,int.class); return c; }
   static void key(int k,boolean d){ if(current instanceof javax.microedition.lcdui.Canvas) ((javax.microedition.lcdui.Canvas)current)._key(k,d); }
