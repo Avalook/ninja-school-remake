@@ -126,6 +126,10 @@ và chỉ qua mốc khi chủ dự án đồng ý. Claude không tự đánh gi�
       View nội suy giữa hai bước khi vẽ. Mục tiêu: kết quả như nhau ở 60/120/144 Hz.
       Test: chạy cùng kịch bản ở `--fixed-fps 60` và `--fixed-fps 144` phải ra trace giống nhau
       (`tests/player_trace.sh`). Đổi bước là đổi hành vi di chuyển nên phải ghi mốc trace mới, ghi rõ lý do.
+- [ ] Mọi thứ chạy theo thời gian trong view (mũi tên "tiếp" hộp thoại nhấp nháy, hiệu ứng, ngày/đêm, seed FX)
+      dùng đồng hồ của game (tick/frame của game) thay vì giờ thật (`Time.get_ticks_msec`, `randf()` không seed),
+      để ảnh test lặp lại được 100%. Test: chạy `tests/enemies_shots.sh` hai lần không cần bước cố định bộ đếm
+      ngày/đêm, ảnh phải trùng từng pixel.
 - Qua mốc: intro map99 → map4 và quest 0 có diff bằng 0 so với oracle trên các trường luật;
   view chạy giống trước khi tách.
 
@@ -140,6 +144,8 @@ Theo thứ tự, mỗi mục kèm diff test riêng:
 - [ ] Toàn bộ loại quái, AI, spawn và respawn, rơi đồ (luật `w % 20`).
 - [ ] Các boss (hiện có `boss_boar`, `boss_golem`, `boss_river`; đối chiếu với nguồn gốc xem đã đủ chưa)
       và hội bạn cùng lớp.
+  - [ ] Thêm kịch bản trace trận golem đầy đủ (có cutscene mở trận, `hu = 1`), không chỉ golem đứng chờ
+        như kịch bản m95 hiện tại. Đối chiếu oracle (`ACT_95`).
 - [ ] NPC, thoại, 18 quest, cutscene `D(n)`, title card.
 - [ ] Vật phẩm, shop, bình HP/MP, kỹ năng, lên cấp.
 - [ ] Bơi, thang/dây leo, đất đào được, xe, vật thể, lối ra của cả 24 map.
