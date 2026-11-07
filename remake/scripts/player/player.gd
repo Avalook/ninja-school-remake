@@ -104,8 +104,11 @@ func place(p: Vector2, f := 0) -> void:
 	S.C = 0
 	S.D = 0
 	S.fq = 0
+	S.iu = -1
 	grounded = world.is_floor(p.x, p.y)
-	if not grounded:
+	if int(S.im) != -1:
+		S.A = 18 if grounded else 20      # arriving on the motorbike
+	elif not grounded:
 		S.A = 4
 		S.z = 1
 	prev_tick_pos = p
@@ -185,6 +188,8 @@ func _native(dt: float) -> void:
 
 	# ground actions (original input block, state 1/2)
 	if grounded or coyote > 0.0:
+		if buffer > 0.0 and grounded and S.eP and _mount_bike():
+			return
 		if buffer > 0.0:
 			_jump(-10 if S.eL else -8)
 		elif take("jump_left") or take("jump_right"):
@@ -221,9 +226,27 @@ func _native(dt: float) -> void:
 	elif vel.x < 0.0 and (world.flags_at(nx - HALF_W - 1.0, pos.y - BODY_H) & 8) == 8:
 		nx = floor((nx - HALF_W - 1.0) / 24.0) * 24.0 + 24.0 + HALF_W
 		vel.x = 0.0
+	var ob = world.objects
+	if ob and grounded and vel.x != 0.0:
+		var bn: int = ob.block_at_side(nx, pos.y, facing)
+		if bn != -1 and int(S.iu) != bn:
+			nx = S.iv[bn] - 20 if pos.x < S.iv[bn] else S.iv[bn] + 20
+			vel.x = 0.0
+			ob.push(bn, facing << 2)
 	pos.x = nx
 
-	if grounded and not world.is_floor(pos.x, pos.y):
+	# standing on a block / raft (original iu): supported while within 20 px of its centre
+	if grounded and int(S.iu) != -1:
+		var b: int = S.iu
+		if b < int(S.it) and abs(pos.x - S.iv[b]) < 20 and int(S.ix[b]) != 4:
+			pos.y = S.iw[b] - 24
+		else:
+			S.iu = -1
+			if not world.is_floor(pos.x, pos.y):
+				grounded = false
+				coyote = COYOTE
+				vel.y = 0.0
+	elif grounded and not world.is_floor(pos.x, pos.y):
 		grounded = false
 		coyote = COYOTE
 		vel.y = 0.0
@@ -236,7 +259,13 @@ func _native(dt: float) -> void:
 		if ny < 0.0:
 			ny = 0.0
 			vel.y = 0.0
-		if vel.y > 0.0:
+		if vel.y > 0.0 and ob:
+			var lb: int = ob.land_block(pos.x, pos.y, ny)
+			if lb != -1:
+				ny = S.iw[lb] - 24
+				S.iu = lb
+				_land()
+		if vel.y > 0.0 and not grounded:
 			var t0 := int(ceil(pos.y / 24.0))
 			var t1 := int(floor(ny / 24.0))
 			for ty in range(t0, t1 + 1):
@@ -272,6 +301,27 @@ func _native(dt: float) -> void:
 	land_t = max(0.0, land_t - dt)
 	_publish()
 
+func _mount_bike() -> bool:
+	for n in int(S.il):
+		if int(S.fi) == int(S.io[n]) and abs(S.fh - int(S.in_[n])) < 20:
+			_start_tick_state(18)
+			S.fh = S.in_[n]
+			S.im = n
+			S.ip[n] = S.fp
+			S.iq[n] = 0
+			buffer = 0.0
+			_sync_tick_pos()
+			return true
+	return false
+
+func carry(d: Vector2, y: float) -> void:
+	if is_native():
+		pos += d
+		pos.y = y
+	else:
+		S.fh += int(d.x)
+		S.fi = int(y)
+
 func _jump(z0: int) -> void:
 	var h := 0.0
 	for k in range(1, abs(z0) + 1):
@@ -287,6 +337,8 @@ func _jump(z0: int) -> void:
 
 func _land() -> void:
 	var hard := vel.y > 12.0 * HZ
+	if S.eP and _mount_bike():
+		return
 	grounded = true
 	air_jumps = 0
 	land_t = 0.18 if vel.y > 300.0 else 0.0
@@ -468,6 +520,7 @@ func _step_original() -> void:
 			S.z = -10
 			S.A = 3
 		16, 17: _st_underwater(A)
+		18, 19, 20, 21: _st_bike(A)
 		23: _st_transform()
 		_:
 			S.A = 4
@@ -638,8 +691,8 @@ func _u() -> void:
 		Game.hitstop(0.05)
 		if S.fA:
 			world.screen_shake(0.12)
-	if world.has_method("push_block"):
-		world.push_block(S.fh + (S.fp << 4), S.fi - 16, S.fp)
+	if world.objects:
+		world.objects.hit_blocks(S.fh, S.fi, S.fp)
 
 # ---- A = 6: death -> respawn at the map entry, HP/MP 1/3, half EXP (original) ----
 func _st_dead() -> void:
@@ -836,6 +889,138 @@ func _st_transform() -> void:
 		S.changed.emit()
 	S.B = 0 if S.C % 2 > 0 else 1
 
+# ---- A = 18 parked on the bike, 19 riding, 20 airborne, 21 jump (original R() cases 18-21 + input) ----
+func _bike_dust() -> void:
+	if S.w % 8 > 3:
+		S.B = 43
+	else:
+		S.B = 44
+		world.spawn_fx("dust", Vector2(S.fh - (S.fp << 4), S.fi - 5), -S.fp)
+
+func _bike_walls() -> void:
+	if S.fp == 1:
+		if g(S.fh + 11, S.fi - 16, 4):
+			S.y = 0
+			S.fh = I_(S.fh + 11) - 11
+	elif g(S.fh - 12, S.fi - 16, 8):
+		S.y = 0
+		S.fh = I_(S.fh - 12) + 24 + 11
+
+func _bike_turn(n: int) -> bool:
+	if held("left"):
+		if S.fp == 1:
+			S.fp = -1
+			S.ip[n] = -1
+			return true
+		S.y = -S.Q
+	elif held("right"):
+		if S.fp == -1:
+			S.fp = 1
+			S.ip[n] = 1
+			return true
+		S.y = S.Q
+	return false
+
+func _st_bike(A: int) -> void:
+	var n: int = S.im
+	if n < 0 or n >= int(S.il):
+		S.A = 4
+		S.im = -1
+		return
+	# input block (original lbl573 cases 18 / 19 / 20 / 21)
+	match A:
+		18:
+			if held("jump"):
+				S.z = -10; S.A = 21; S.C = 10; S.iu = -1
+			elif held("left") or held("right"):
+				var d := -1 if held("left") else 1
+				if S.fp != d:
+					S.fp = d
+					S.ip[n] = d
+				else:
+					S.A = 19; S.C = 10; S.y = S.Q * d
+			elif held("down"):
+				S.A = 1
+				S.im = -1
+				return
+		19:
+			if held("jump"):
+				S.z = -10; S.A = 21; S.iu = -1; S.C = 10
+			else:
+				_bike_turn(n)
+		20, 21:
+			_bike_turn(n)
+	A = int(S.A)
+	match A:
+		18:
+			_bike_dust()
+			S.C = 0
+		19:
+			_bike_dust()
+			if S.C > 0:
+				S.C -= 1
+				S.B = 45
+			_bike_walls()
+			S.fh += (S.y >> 1) if g(S.fh, S.fi - 1, 0x40) else S.y
+			S.in_[n] = S.fh
+			S.io[n] = S.fi
+			if S.y > 0: S.y -= 1
+			elif S.y < 0: S.y += 1
+			else:
+				S.A = 18
+				S.fr = 0
+			if (fl(S.fh, S.fi) & 2) != 2:
+				S.A = 20
+				S.y = 3 * S.fp
+				S.D = 0
+			# running monsters over: 2 damage (original A() + k(n, 2, -fp))
+			if world.enemies and world.enemies.has_method("ram"):
+				world.enemies.ram(attack_box(), 2, -S.fp)
+		20:
+			if S.fp == 1:
+				if fl(S.fh + 11, S.fi - 16) & 4: S.y = 0
+			elif fl(S.fh - 11, S.fi - 16) & 8: S.y = 0
+			S.ff = -1
+			S.fh += S.y
+			S.fi += S.z
+			if S.z < 20: S.z += 1
+			if S.y > 0: S.y -= 1
+			_bike_dust()
+			if S.z > 4 and (fl(S.fh, S.fi) & 2) == 2:
+				if S.z < 8:
+					S.A = 18
+					S.z = 0; S.y = 0; S.D = 0; S.C = 0
+					S.fi = I_(S.fi)
+				else:
+					S.A = 21
+					S.z = -(S.z / 3)
+					S.fi = I_(S.fi)
+			S.in_[n] = S.fh
+			S.io[n] = S.fi
+			if g(S.fh, S.fi, 4096) or S.fi >= world.h * 24:
+				S.ir[n] = 1
+				S.im = -1
+				S.A = 12
+		21:
+			if S.fp == 1:
+				if fl(S.fh + 11, S.fi - 16) & 4: S.y = 0
+			elif fl(S.fh - 11, S.fi - 16) & 8: S.y = 0
+			S.fh += S.y
+			S.fi += S.z
+			S.in_[n] = S.fh
+			S.io[n] = S.fi
+			if S.y > 0: S.y -= 1
+			S.z += 1
+			if S.z == 0:
+				S.A = 20
+				S.C = 0
+				S.D = 1 if S.eL else 0
+				S.z = 1
+			_bike_dust()
+			if S.C > 0:
+				S.C -= 1
+				S.B = 45
+
 # ---------------- animation state name ----------------
 func _state_name() -> String:
 	match int(S.A):
@@ -853,8 +1038,11 @@ func _state_name() -> String:
 		15: return "jump"
 		16: return "run"
 		17: return "idle"
+		18, 19, 20, 21: return "bike"
 		23: return "power"
 	return "idle"
 
 func _draw() -> void:
+	if int(S.im) != -1 and int(S.A) in [18, 19, 20, 21] and world.objects:
+		world.objects.draw_bike(self, pos, facing, int(S.iq[S.im]) if S.im < S.iq.size() else 0)
 	anim.draw(self)

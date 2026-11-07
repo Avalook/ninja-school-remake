@@ -19,6 +19,7 @@ var exits := {}
 
 var player
 var enemies
+var objects
 var camera: Camera2D
 var cam_pos := Vector2.ZERO
 var cam_override_active := false
@@ -51,6 +52,9 @@ func _ready() -> void:
 	layer_actors = Node2D.new()
 	layer_actors.name = "Actors"
 	add_child(layer_actors)
+	objects = preload("res://scripts/world/objects.gd").new()
+	objects.world = self
+	layer_actors.add_child(objects)
 	layer_front = _layer("front")
 	layer_fx = Node2D.new()
 	layer_fx.name = "FX"
@@ -91,6 +95,7 @@ func load_map(id: int, spawn: Vector2, facing := 0) -> void:
 	flags = map["flags"].duplicate()
 	exits = map["exits"]
 	_apply_map_state(map.get("state", {}))
+	_decor_setup(id)
 	S.v = id
 	S.iP = w
 	S.iQ = h
@@ -98,13 +103,35 @@ func load_map(id: int, spawn: Vector2, facing := 0) -> void:
 	S.iS = h * 24
 	if id < 19:
 		S.W[id] = true
+	if objects:
+		objects.setup(id)
 	if player:
 		player.place(spawn, facing)
 	if enemies:
 		enemies.setup(map)
+	if player:
+		lead = view_size().x / 6.0 * player.facing
+	lead_v[0] = 0.0
+	cam_vx[0] = 0.0
+	cam_vy[0] = 0.0
 	cam_pos = _camera_target(true)
 	camera.position = cam_pos
 	map_loaded.emit(id)
+
+# big decor houses (original p(n): only maps 2 and 16), [image, tile x, tile y]; drawn behind the tiles
+# with the 22/24 parallax, anchored bottom-centre at (tx*24+12, ty*24)
+const DECOR := {2: [[0, 29, 13], [1, 34, 13], [2, 39, 13], [1, 46, 11], [2, 51, 11]],
+	16: [[0, 5, 11], [1, 14, 12], [2, 33, 10], [1, 53, 10], [0, 59, 11]]}
+var decor: Array = []
+var tex_h: Array = []
+
+func _decor_setup(id: int) -> void:
+	decor = []
+	if tex_h.is_empty():
+		for i in 3:
+			tex_h.append(load("res://art/tiles/h%d.png" % i))
+	for d in DECOR.get(id, []):
+		decor.append({"img": d[0], "x": d[1] * 24 + 12, "y": d[2] * 24})
 
 # per-map variables of the original after loading this map (monsters j*/k*, objects i*, NPCs lx..lA,
 # boss g*/h*) - player / quest / progress variables are never taken from the dump
@@ -114,12 +141,32 @@ var _re: RegEx
 func _apply_map_state(st: Dictionary) -> void:
 	if _re == null:
 		_re = RegEx.create_from_string(MAP_VAR)
-	for k in st:
+	# keys missing from a map's dump hold their boot value: reset all map variables first
+	var merged: Dictionary = {}
+	for k in Data.static_data:
+		if _re.search(k) != null:
+			merged[k] = Data.static_data[k]
+	merged.merge(st, true)
+	for k in merged:
 		if k in ["iP", "iQ", "iU", "ii"] or _re.search(k) == null:
 			continue
 		if k in S:
-			var v = st[k]
+			var v = merged[k]
 			S.set(k, v.duplicate(true) if v is Array else (int(v) if v is float else v))
+
+# original S(): springy plank tiles (0x800) dip while stood on (0x400 marker, drawn +1 px)
+func crumble_at(x: int, y: int) -> void:
+	_mark(x - 24, y, false); _mark(x - 24, y - 3, false)
+	_mark(x + 24, y, false); _mark(x + 24, y - 3, false)
+	if flags_at(x, y) & 0x800:
+		_mark(x, y, true); _mark(x, y - 3, true)
+
+func _mark(x: int, y: int, on: bool) -> void:
+	var tx := int(floor(x / TILE)); var ty := int(floor(y / TILE))
+	if tx < 0 or ty < 0 or tx >= w or ty >= h:
+		return
+	var i := ty * w + tx
+	flags[i] = (int(flags[i]) | 0x400) if on else (int(flags[i]) & ~0x400)
 
 func flags_at(x: float, y: float) -> int:
 	var tx := int(floor(x / TILE))
@@ -153,7 +200,7 @@ func _camera_target(snap := false) -> Vector2:
 	if cam_override_active:
 		t = cam_override_target - vs * Vector2(0.5, 0.5)
 	elif player:
-		t = Vector2(player.pos.x - vs.x * 0.5 + vs.x / 6.0 * player.facing, player.pos.y - vs.y * 0.75)
+		t = Vector2(player.pos.x - vs.x * 0.5 + lead, player.pos.y - vs.y * 0.75)
 	var maxx: float = max(0.0, (w - 1) * TILE - vs.x)
 	var maxy: float = max(0.0, (h - 1) * TILE - vs.y)
 	return Vector2(clampf(t.x, 0.0, maxx), clampf(t.y, 0.0, maxy))
@@ -165,12 +212,19 @@ func camera_override(target: Vector2, active: bool) -> void:
 func _process(delta: float) -> void:
 	if map_id < 0:
 		return
+	# look-ahead in the facing direction (original bI * fp), eased so turning never snaps
+	if player:
+		var want_lead: float = view_size().x / 6.0 * player.facing
+		lead = _damp(lead, want_lead, lead_v, 0.45, delta)
 	var t := _camera_target()
-	var tau := 0.14 if not cam_override_active else 0.35
+	var tau := 0.16 if not cam_override_active else 0.4
 	if (t - cam_pos).length() > 600.0:
 		cam_pos = t
+		cam_v = Vector2.ZERO
 	else:
-		cam_pos += (t - cam_pos) * (1.0 - exp(-delta / tau))
+		var nx := _damp(cam_pos.x, t.x, cam_vx, tau, delta)
+		var ny := _damp(cam_pos.y, t.y, cam_vy, tau * 1.6, delta)
+		cam_pos = Vector2(nx, ny)
 	if shake > 0.0:
 		shake = max(0.0, shake - delta)
 	var sh := Vector2(randf_range(-1, 1), randf_range(-1, 1)) * shake * 20.0
@@ -181,6 +235,21 @@ func _process(delta: float) -> void:
 	_check_exits()
 
 var shake := 0.0
+var lead := 0.0
+var lead_v := [0.0]
+var cam_vx := [0.0]
+var cam_vy := [0.0]
+var cam_v := Vector2.ZERO
+
+# critically damped spring (Unity SmoothDamp): continuous position AND velocity
+func _damp(cur: float, target: float, vel: Array, smooth: float, dt: float) -> float:
+	var omega: float = 2.0 / maxf(0.0001, smooth)
+	var x: float = omega * dt
+	var e: float = 1.0 / (1.0 + x + 0.48 * x * x + 0.235 * x * x * x)
+	var change := cur - target
+	var temp: float = (vel[0] + omega * change) * dt
+	vel[0] = (vel[0] - omega * temp) * e
+	return target + (change + temp) * e
 
 func screen_shake(amount := 0.12) -> void:
 	shake = max(shake, amount)

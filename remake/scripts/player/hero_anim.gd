@@ -73,7 +73,7 @@ func _want(p) -> String:
 		return "crouch"
 	if B == 21 and A == 7:
 		return "hurt"
-	if A == 6:
+	if A == 6 or A in [18, 19, 20, 21]:
 		return ""
 	if B in [8, 9, 10, 11]:
 		return "flip"

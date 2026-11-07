@@ -3,6 +3,21 @@ extends "res://scripts/core/state_base.gd"
 
 signal changed
 
+# original arrays that are null at boot (allocated per map); keywords get a trailing "_" (in -> in_)
+var iv: Array = []
+var iw: Array = []
+var ix: Array = []
+var iy: Array = []
+var iz: Array = []
+var iA: Array = []
+var iB: Array = []
+var in_: Array = []
+var io: Array = []
+var ip: Array = []
+var iq: Array = []
+var ir: Array = []
+var is_: Array = []
+
 func level_need() -> int:
 	return int(ak[clampi(M - 1, 0, ak.size() - 1)])
 

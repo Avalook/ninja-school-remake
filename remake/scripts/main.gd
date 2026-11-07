@@ -35,8 +35,9 @@ func _ready() -> void:
 	npcs.world = world
 	world.layer_actors.add_child(npcs)
 	world.layer_actors.move_child(npcs, 0)
-	if ResourceLoader.exists("res://scripts/enemies/enemy_manager.gd"):
-		enemies = load("res://scripts/enemies/enemy_manager.gd").new()
+	var em_s = load("res://scripts/enemies/enemy_manager.gd") if ResourceLoader.exists("res://scripts/enemies/enemy_manager.gd") and not OS.get_cmdline_user_args().has("--noenemies") else null
+	if em_s != null and em_s.can_instantiate():
+		enemies = em_s.new()
 		enemies.name = "Enemies"
 		world.enemies = enemies
 		if "world" in enemies:
@@ -44,8 +45,9 @@ func _ready() -> void:
 		world.layer_actors.add_child(enemies)
 		if enemies.has_signal("enemy_killed"):
 			enemies.enemy_killed.connect(_on_killed)
-	if ResourceLoader.exists("res://scripts/story/story.gd"):
-		story = load("res://scripts/story/story.gd").new()
+	var st_s = load("res://scripts/story/story.gd") if ResourceLoader.exists("res://scripts/story/story.gd") and not OS.get_cmdline_user_args().has("--nostory") else null
+	if st_s != null and st_s.can_instantiate():
+		story = st_s.new()
 		story.name = "Story"
 		if "world" in story:
 			story.world = world
@@ -127,6 +129,9 @@ func _set_music(t: int) -> void:
 
 var run_t := 0.0
 var shots_done := {}
+var ft: Array = []
+var cam_hist: Array = []
+var hero_hist: Array = []
 
 # test automation: --keys=right@0.5-2.0,jump@1.0-1.2  --shots=1.0,2.5 --out=/dir  --quit=4
 func _auto(delta: float) -> void:
@@ -149,6 +154,23 @@ func _auto(delta: float) -> void:
 				img.save_png("%s/shot_%s.png" % [auto.get("out", "/tmp"), t])
 	if auto.has("log") and Engine.get_process_frames() % 30 == 0:
 		print("[t=%.2f] map=%d A=%d B=%d pos=%s vel=%s G=%d/%d I=%d mode=%s" % [run_t, world.map_id, S.A, S.B, player.pos, player.vel, S.G, S.H, S.I, Game.mode])
+	if auto.has("ftlog"):
+		ft.append(delta)
+		cam_hist.append(world.camera.position.x)
+		hero_hist.append(player.pos.x)
+		if run_t > 0.6:
+			print("[f] %.4f %.3f %.3f %d %s %.2f %d" % [delta, world.camera.position.x, player.pos.x, S.A, player.anim.cur, Performance.get_monitor(Performance.TIME_PROCESS) * 1000, Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)])
+	if auto.has("quit") and auto.has("ftlog") and run_t >= float(auto["quit"]):
+		ft.sort()
+		var n := ft.size()
+		var jit := 0.0
+		for i in range(2, cam_hist.size()):
+			# screen-space hero position second difference = visible judder
+			var a: float = hero_hist[i] - cam_hist[i]
+			var b: float = hero_hist[i - 1] - cam_hist[i - 1]
+			var c: float = hero_hist[i - 2] - cam_hist[i - 2]
+			jit = max(jit, abs(a - 2 * b + c))
+		print("[ft] frames=%d median=%.2fms p95=%.2fms p99=%.2fms max=%.2fms hero_screen_jerk_max=%.3fpx" % [n, ft[n / 2] * 1000, ft[int(n * 0.95)] * 1000, ft[int(n * 0.99)] * 1000, ft[n - 1] * 1000, jit])
 	if auto.has("quit") and run_t >= float(auto["quit"]):
 		get_tree().quit()
 

@@ -15,6 +15,13 @@ func _draw() -> void:
 	var y1 := int(ceil((cam.y + vs.y) / 24.0)) + 1
 	var bF := vs.x * 0.5
 	var wt: int = S.w
+	if which == "back":
+		for d in world.decor:
+			var t: Texture2D = world.tex_h[d["img"]]
+			var ow: Vector2 = Vector2(t.get_width(), t.get_height()) / 4.0   # HD x4 of the original image
+			var sx: float = d["x"] - cam.x - bF
+			var cx: float = cam.x + bF + sx * 22.0 / 24.0
+			draw_texture_rect(t, Rect2(cx - ow.x * 0.5, d["y"] - ow.y, ow.x, ow.y), false)
 	for tx in range(max(0, x0), min(world.w, x1)):
 		for ty in range(max(0, y0), min(world.h, y1)):
 			var f: int = world.flag_tile(tx, ty)
@@ -52,6 +59,22 @@ func _draw() -> void:
 					_tile(id, Vector2(px, py + 2))
 				if f & 0x1000:
 					_tile(id, Vector2(px, py))
+	if which == "front":
+		_signs(cam, vs)
+
+func _signs(cam: Vector2, vs: Vector2) -> void:
+	var n: int = int(S.jq)
+	var f := ThemeDB.fallback_font
+	for i in n:
+		if i >= S.jm.size():
+			break
+		var x: float = float(S.jn[i])
+		var y: float = float(S.jo[i])
+		if x + 80 < cam.x or x > cam.x + vs.x + 80:
+			continue
+		var t: String = str(S.jm[i])
+		draw_string_outline(f, Vector2(x, y - 3), t, HORIZONTAL_ALIGNMENT_LEFT, -1, 9, 3, Color(0.15, 0.08, 0.02))
+		draw_string(f, Vector2(x, y - 3), t, HORIZONTAL_ALIGNMENT_LEFT, -1, 9, Color(1, 0.95, 0.75))
 
 func _tile(id: int, p: Vector2) -> void:
 	if id <= 0:
