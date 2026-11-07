@@ -1,4 +1,4 @@
-# Headless story tests: the remake story module (scripts/story) vs the ORIGINAL game as oracle.
+# Headless story tests: the remake story module (sim/story_sim.gd + view/story_view.gd) vs the ORIGINAL game as oracle.
 # Run: tests/story_run_tests.sh   (or: godot --headless --path . --script res://tests/story_test.gd)
 # Oracle logs: tests/story_oracle/expected/*.log, produced by tests/story_oracle/story_oracle.gd running the
 # transpiled original (../game) on tests/story_oracle/scripts/*.txt (refresh: story_run_tests.sh --oracle).
@@ -9,7 +9,7 @@
 extends SceneTree
 
 const Stubs := preload("res://tests/story_stubs.gd")
-const StoryScript := preload("res://scripts/story/story.gd")
+const StoryScript := preload("res://view/story_view.gd")
 const StateBase := preload("res://scripts/core/state_base.gd")
 
 var st
@@ -289,31 +289,31 @@ func test_menus() -> void:
 	st.G = 50
 	st.H = 200
 	st.V[1] = 1
-	check(story.menus.use_potion(1) and st.G == 200 and st.V[1] == 0, "HP potion: +400 clamped to H, consumed")
-	check(not story.menus.use_potion(1), "empty slot does nothing")
+	check(story.items.use_potion(1) and st.G == 200 and st.V[1] == 0, "HP potion: +400 clamped to H, consumed")
+	check(not story.items.use_potion(1), "empty slot does nothing")
 	st.W[2] = true
-	eq(story.menus.travel_check(5)["result"], "not_visited", "unvisited location")
-	eq(story.menus.travel_check(0)["result"], "here", "current location")
-	var c: Dictionary = story.menus.travel_check(2)
+	eq(story.items.travel_check(5)["result"], "not_visited", "unvisited location")
+	eq(story.items.travel_check(0)["result"], "here", "current location")
+	var c: Dictionary = story.items.travel_check(2)
 	eq(c.get("cost"), ((50 + 60 + 70) << 1) / 3, "travel cost 2/3 of kQ[0..2]")
 	st.dg = 120
-	check(not story.menus.travel(2), "lr >= dg refused (120 == cost)")
+	check(not story.items.travel(2), "lr >= dg refused (120 == cost)")
 	st.dg = 1000
-	check(story.menus.travel(2) and world.map_id == 2 and st.dg == 880, "travel pays and warps")
+	check(story.items.travel(2) and world.map_id == 2 and st.dg == 880, "travel pays and warps")
 	eq(player.pos, Vector2(int(st.kT[2]) * 24, int(st.kU[2]) * 24), "spawn at kT/kU tile")
 	# shop
 	st.dg = 1000
 	st.V = [99, 0, 0, 0, 0, 0]
-	story.menus.buy(0)
+	story.items.buy(0)
 	eq(st.V[0], 100, "potion bought (99 -> 100: the original refuses only when the sum > 99)")
-	story.menus.buy(1)
+	story.items.buy(1)
 	eq(st.V[1], 0, "HP group already > 99: refused silently")
-	eq(story.menus.buy(6), "Không cần thiết phải mua vũ khí này vì vũ khí đang sử dụng mạnh hơn!", "own weapon tier 0")
+	eq(story.items.buy(6), "Không cần thiết phải mua vũ khí này vì vũ khí đang sử dụng mạnh hơn!", "own weapon tier 0")
 	st.M = 5
-	eq(story.menus.buy(7), "Bạn phải đạt cấp độ 10 mới có thể mua vũ khí này!", "level gate kq")
+	eq(story.items.buy(7), "Bạn phải đạt cấp độ 10 mới có thể mua vũ khí này!", "level gate kq")
 	st.M = 10
 	st.dg = 12000
-	check(story.menus.buy(7) == "" and st.x == 1 and st.dg == 0, "weapon tier 1 bought")
+	check(story.items.buy(7) == "" and st.x == 1 and st.dg == 0, "weapon tier 1 bought")
 	# game menu via UI.choose: 0 = use item -> slot 3 -> back, back
 	st.I = 10
 	st.J = 150

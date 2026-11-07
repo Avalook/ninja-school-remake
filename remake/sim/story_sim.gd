@@ -1,107 +1,76 @@
-# Story: cutscenes, map-entry triggers, NPC talk / quests, rewards, menus (agent B module).
-#
-# Runs the ORIGINAL story rules on the original variables (autoload S) at the original 25 Hz:
+# StorySim: the ORIGINAL story rules on the original variables (S) at the original 25 Hz. No Node, no UI, no await.
 #   map entry      m(n) a.java L4097 (before load), f(n) L3478 (girl companion), n(n) L4132
-#   cutscenes      cutscene_player.gd  (D/C L4660-4784, ad() L6992, V() L5881)
-#   NPC / quests   npc_quests.gd       (talk switch L8361, z() L2393, L(n) L11672, u() L2112)
-#   menus          menus.gd            (as() L14282, aq() L14174, world map d=6, ap() L14009, title d=3)
+#   cutscenes      sim/story/cutscene.gd  (D/C L4660-4784, ad() L6992, V() L5881)
+#   NPC / quests   sim/story/quests.gd    (talk switch L8361, z() L2393, L(n) L11672, u() L2112)
+#   items / travel sim/story/items.gd     (aq() L14174, hot keys L8315, world map d=6/7, ap() L14009)
+# The view (view/story_view.gd) owns UI, menus, input, Game.mode and the camera node.
 #
-# Integration (see archive/docs/REMAKE_PLAN.md "Story"):
-#   story.attach(world)              world: map_loaded(id) signal, player, camera_override(), flags
-#   on_map_enter(id)                 called automatically from world.map_loaded (or call it yourself)
-#   tick()                           25 Hz; auto-connected to Game.tick25 when Game exists
-#   on_enemy_killed(type, pos)       EnemyManager.enemy_killed -> quest counters (O / fF), scroll drop
-#   on_player_attack(airborne)       player melee/shuriken swing -> quest 11 (air hits)
-#   interact()                       talk key (-7) when standing: NPC / girl / classmate
-#   is_cutscene_active(), is_busy()  player input must come from script_keys while active
-#   game_menu(), title_menu(), open_shop(kv), quick_potion(hp)
-# Enemy module keeps the boss variables the triggers read: S.gV (boar 22 = dead), S.gS/gT (boar pos),
-# S.ia (map-96 boss), S.hj (Toniku hp), S.hu (final boss 22 = dead), S.hs/ht, S.gq/gr (girl).
-extends Node
+# Effects leave the sim as events through on_event (called immediately, in the original order):
+#   {"t": "say", "lines", "anchor", "id"}   dialogue box; the view calls close_dialog(id) when it is closed
+#   "title" (text, seconds) | "hide_title" | "notice" (text) | "marker" (map, pos, npc) | "scroll" (pos)
+#   "weapon" (tier) | "changed" | "cutscene_started" (group, seq) | "cutscene_finished" (seq) | "to_title"
+#   "mode" (m) | "warp" (map, spawn) | "camera" (target, active) | "camera_snap"
+# Without on_event they are queued in `out`.
+# Still kept (World milestone): reads/writes `world` (map json, set_flag_tile) and `player` (pos, facing,
+# is_standing, place, scripted, script_keys), like sim/player_sim.gd.
+extends RefCounted
 
-signal cutscene_started(group: int, seq: int)
-signal cutscene_finished(seq: int)
-signal notice_shown(text: String)
-signal marker_changed(map_id: int, pos: Vector2, npc: int)
-signal scroll_dropped(pos: Vector2)
-signal weapon_changed(tier: int)
-signal music_toggled(on: bool)
-signal return_to_title
-signal quit_to_title
-signal story_state_changed
-
-const CutscenePlayer := preload("res://scripts/story/cutscene_player.gd")
-const NpcQuests := preload("res://scripts/story/npc_quests.gd")
-const Menus := preload("res://scripts/story/menus.gd")
+const Cutscene := preload("res://sim/story/cutscene.gd")
+const Quests := preload("res://sim/story/quests.gd")
+const Items := preload("res://sim/story/items.gd")
 
 var st              # original state (autoload S, or a state_base instance in tests)
-var ui              # autoload UI (say / title_card / popup / choose [/ notice / hide_title_card])
-var world           # World node
-var player          # Player node (pos, facing, state, script_keys, scripted, place())
-var game            # autoload Game (mode, goto_map) - optional
+var world           # World node (map json, collision flags)
+var player          # player (pos, facing, is_standing, place, scripted, script_keys)
+var data            # Data autoload (map(id), static_data) - optional
 
 var cutscene
 var quests
-var menus
+var items
 
-var handle_input := false     # true: poll talk / menu / potion actions here (main.gd may do it)
+var on_event := Callable()
+var out: Array = []
 var notice_text := ""        # c(String): current notice (original cr), shown while S.cp
 var events: Array = []        # story log (tests compare it with the oracle)
 var verbose := false
 var _dialog_open := 0
-var _menu_open := false
+var _dialogs := {}            # open dialogue id -> {"kind": "talk", "cb"} | {"kind": "cut", "tok"}
+var _dialog_seq := 0
 var _static := {}
 var _last_enter := [-1, -1]
 
 func _init() -> void:
-	cutscene = CutscenePlayer.new(self)
-	quests = NpcQuests.new(self)
-	menus = Menus.new(self)
+	cutscene = Cutscene.new(self)
+	quests = Quests.new(self)
+	items = Items.new(self)
 
-func _ready() -> void:
-	var root := get_tree().root
-	if st == null:
-		st = root.get_node_or_null("S")
-	if ui == null:
-		ui = root.get_node_or_null("UI")
-	if game == null:
-		game = root.get_node_or_null("Game")
-	if game and game.has_signal("tick25") and not game.tick25.is_connected(tick):
-		game.tick25.connect(tick)
-	var w = world if world != null else get_tree().get_first_node_in_group("world")
-	if w:
-		attach(w)
-
-func attach(w) -> void:
-	world = w
-	player = w.player if "player" in w else null
-	if w.has_signal("map_loaded") and not w.map_loaded.is_connected(on_map_enter):
-		w.map_loaded.connect(on_map_enter)
+func emit(ev: Dictionary) -> void:
+	if on_event.is_valid():
+		on_event.call(ev)
+	else:
+		out.append(ev)
 
 # ================================================================= public API
 func is_cutscene_active() -> bool:
 	return st != null and bool(st.fV)
 
-func is_busy() -> bool:
-	return is_cutscene_active() or _dialog_open > 0 or _menu_open
+func dialog_open() -> bool:
+	return _dialog_open > 0
 
 func talk_label() -> String:
 	return str(quests.talk_target().get("label", ""))
 
-func interact() -> void:
-	if is_busy():
-		return
+# talk key next to someone: opens a dialogue (event "say") or returns {"shop": kv} for the view's shop menu
+func interact() -> Dictionary:
 	var t: Dictionary = quests.talk_target()
 	match str(t.get("kind", "")):
 		"npc":
-			await talk(int(t["index"]))
+			return quests.talk(int(t["index"]))
 		"girl":
-			await quests.talk_girl()
+			quests.talk_girl()
 		"classmate":
-			await quests.talk_classmate(int(t["index"]))
-
-func talk(npc_index: int) -> void:
-	await quests.talk(npc_index)
+			quests.talk_classmate(int(t["index"]))
+	return {}
 
 func on_enemy_killed(type: int, pos := Vector2.ZERO) -> void:
 	quests.on_enemy_killed(type, pos)
@@ -109,30 +78,9 @@ func on_enemy_killed(type: int, pos := Vector2.ZERO) -> void:
 func on_player_attack(airborne: bool) -> void:
 	quests.on_player_attack(airborne)
 
-func game_menu() -> void:
-	if is_busy():
-		return
-	_menu_open = true
-	await menus.game_menu()
-	_menu_open = false
-
-func open_shop(kv: int) -> void:
-	_menu_open = true
-	await menus.shop(kv)
-	_menu_open = false
-
-func title_menu() -> String:
-	return await menus.title_menu()
-
-func quick_potion(hp: bool) -> bool:
-	return menus.quick_potion(hp)
-
 # ================================================================= 25 Hz tick (run() d==1 order)
 func tick() -> void:
 	if st == null:
-		return
-	# UI.say switches Game.mode to "dialogue": the original keeps running ad()/V()/camera then
-	if game and "mode" in game and str(game.mode) not in ["play", "cutscene", "dialogue"]:
 		return
 	_sync_player_in()
 	cutscene.tick_triggers()          # ad()
@@ -143,29 +91,12 @@ func tick() -> void:
 	cutscene.tick_camera()
 	_push_camera()
 
-func _process(_dt: float) -> void:
-	if not handle_input or st == null or is_busy():
-		return
-	if game and "mode" in game and str(game.mode) != "play":
-		return
-	if _just("talk"):
-		interact()
-	elif _just("menu"):
-		game_menu()
-	elif _just("hp_potion"):
-		quick_potion(true)
-	elif _just("mp_potion"):
-		quick_potion(false)
-
-func _just(action: String) -> bool:
-	return InputMap.has_action(action) and Input.is_action_just_pressed(action)
-
 # ================================================================= map entry
 # Order of the original loader (Midlet.run L381): m(v) ... f(v) g(v) ... n(v) last.
-func on_map_enter(id: int) -> void:
+# frame: the view's process frame, so the signal and a manual call in the same frame run it once.
+func on_map_enter(id: int, frame := -1) -> void:
 	if st == null:
 		return
-	var frame := Engine.get_process_frames()
 	if _last_enter[0] == id and _last_enter[1] == frame:
 		return                           # already handled this load (signal + manual call)
 	_last_enter = [id, frame]
@@ -362,7 +293,6 @@ func _load_map_story_state(id: int) -> void:
 func _map_json(id: int) -> Dictionary:
 	if world and "map" in world and world.map is Dictionary and int(world.map.get("id", -999)) == id:
 		return world.map
-	var data = get_tree().root.get_node_or_null("Data") if is_inside_tree() else null
 	if data and data.has_method("map"):
 		var d = data.map(id)
 		return d if d is Dictionary else {}
@@ -374,7 +304,6 @@ func _map_json(id: int) -> Dictionary:
 
 func _static_json() -> Dictionary:
 	if _static.is_empty():
-		var data = get_tree().root.get_node_or_null("Data") if is_inside_tree() else null
 		if data and "static_data" in data and data.static_data is Dictionary and not data.static_data.is_empty():
 			_static = data.static_data
 		else:
@@ -415,28 +344,20 @@ func _apply_player_control() -> void:
 	player.scripted = bool(st.fV) or _dialog_open > 0
 
 func _push_camera(snap := false) -> void:
-	if world == null or not world.has_method("camera_override"):
-		return
 	if st.fx:
-		world.camera_override(Vector2.ZERO, false)
+		emit({"t": "camera", "target": Vector2.ZERO, "active": false})
 	else:
-		world.camera_override(Vector2(st.fL + st.bF, st.fM + st.bG), true)
+		emit({"t": "camera", "target": Vector2(st.fL + st.bF, st.fM + st.bG), "active": true})
 	if snap:
 		camera_snap()
 
 func camera_snap() -> void:
-	if world and world.has_method("camera_snap"):
-		world.camera_snap()
+	emit({"t": "camera_snap"})
 
 func warp(map_id: int, spawn: Vector2) -> void:
 	st.fh = int(spawn.x)
 	st.fi = int(spawn.y)
-	if game and game.has_method("goto_map") and "world" in game and game.world:
-		game.goto_map(map_id, spawn)
-	elif world and world.has_method("load_map"):
-		world.load_map(map_id, spawn)
-	else:
-		on_map_enter(map_id)
+	emit({"t": "warp", "map": map_id, "spawn": spawn})
 
 # i(24, row, 0) L11582: clear the collision flags of tile column 24, rows 0..max_row
 func clear_barrier(max_row: int) -> void:
@@ -450,30 +371,42 @@ func clear_barrier(max_row: int) -> void:
 			if k >= 0 and k < world.flags.size():
 				world.flags[k] = 0
 
-# a(String[], cb, x, y) L4670 + its end in run() (L8246: M() paging then z())
+# ---------------------------------------------------------------- dialogue boxes
+# a(String[], cb, x, y) L4670 + its end in run() (L8246: M() paging then z()): close_dialog runs z().
 func dialog(lines: Array, cb: int, anchor: Vector2) -> void:
 	_dialog_open += 1
 	st.iC = true
 	st.iG = cb
 	_apply_player_control()
-	await say(lines, anchor)
-	st.iC = false
-	_dialog_open -= 1
-	quests.dialog_end(cb)
-	_apply_player_control()
+	say(lines, anchor, {"kind": "talk", "cb": cb})
 
-func say(lines: Array, anchor: Vector2) -> void:
+# opens a box (event "say"); `end` says what close_dialog does: talk z(cb) | cut (cutscene token) | none
+func say(lines: Array, anchor: Vector2, end := {}) -> int:
 	var typed: Array[String] = []
 	for l in lines:
 		typed.append(str(l))
 	log_event("say %s" % JSON.stringify(typed))
-	if ui and ui.has_method("say"):
-		await ui.say(typed, anchor)
+	_dialog_seq += 1
+	_dialogs[_dialog_seq] = end
+	emit({"t": "say", "lines": typed, "anchor": anchor, "id": _dialog_seq})
+	return _dialog_seq
+
+# the view closed dialogue box `id` (the point where the original's paging M() returned)
+func close_dialog(id: int) -> void:
+	var end: Dictionary = _dialogs.get(id, {})
+	_dialogs.erase(id)
+	match str(end.get("kind", "")):
+		"talk":
+			st.iC = false
+			_dialog_open -= 1
+			quests.dialog_end(int(end["cb"]))
+			_apply_player_control()
+		"cut":
+			cutscene.dialog_closed(int(end["tok"]))
 
 func show_title_card(text: String, seconds: float) -> void:
 	log_event("title %s" % text)
-	if ui and ui.has_method("title_card"):
-		ui.title_card(text, seconds)
+	emit({"t": "title", "text": text, "seconds": seconds})
 
 # c(String) L4761: short notice line (HUD), 150 ticks
 func notice(text: String) -> void:
@@ -482,12 +415,7 @@ func notice(text: String) -> void:
 	st.cq = 0
 	st.cp = true
 	log_event("note %s" % text)
-	notice_shown.emit(text)
-	if ui and text != "":
-		if ui.has_method("notice"):
-			ui.notice(text)
-		elif ui.has_method("popup"):
-			ui.popup(text)          # non-blocking toast
+	emit({"t": "notice", "text": text})
 
 # a(int,int,int,int) L4626: objective marker (map ge, position gf/gg, NPC gm)
 func set_marker(map_id: int, x: int, y: int, npc: int) -> void:
@@ -495,16 +423,13 @@ func set_marker(map_id: int, x: int, y: int, npc: int) -> void:
 	st.gf = x
 	st.gg = y
 	st.gm = npc
-	marker_changed.emit(map_id, Vector2(x, y), npc)
+	emit({"t": "marker", "map": map_id, "pos": Vector2(x, y), "npc": npc})
 
 func set_mode(m: String) -> void:
-	if game and "mode" in game:
-		game.mode = m
+	emit({"t": "mode", "mode": m})
 
 func state_changed() -> void:
-	story_state_changed.emit()
-	if st and st.has_signal("changed"):
-		st.changed.emit()
+	emit({"t": "changed"})
 
 func save_game() -> void:
 	if st.has_method("save_game"):
@@ -539,13 +464,3 @@ func continue_game() -> bool:
 	set_mode("play")
 	warp(st.v, Vector2(st.fh, st.fi))
 	return true
-
-# "Chỉ dẫn": original loads map 101 (not exported) and plays group 8 = sequence 16 (classmates'
-# Q&A about the controls) then returns to the title (opcode 29). The remake plays its dialogue.
-func play_tutorial() -> void:
-	var ops: Array = st.az[16]
-	var args: Array = st.aA[16]
-	for k in ops.size():
-		if int(ops[k]) == 4:
-			await say(st.aG[int(args[k])], Vector2.ZERO)
-	return_to_title.emit()

@@ -1,0 +1,28 @@
+anh | truoc vs sau (refactor) | truoc vs truoc lan 2 (code cu, khong doi gi)
+intro_m99/shot_1.0.png | None | None | cung vung
+intro_m99/shot_2.5.png | None | None | cung vung
+intro_m99/shot_4.0.png | None | None | cung vung
+intro_m99/shot_6.5.png | (47, 616, 132, 749) | (47, 616, 132, 749) | cung vung
+intro_m99/shot_9.0.png | (235, 607, 320, 739) | (235, 607, 320, 740) | KHAC
+m0_ayumi/shot_0.8.png | (309, 287, 1600, 820) | (309, 287, 1600, 816) | KHAC
+m0_ayumi/shot_1.6.png | (309, 289, 1600, 820) | (309, 289, 1600, 820) | cung vung
+m0_ayumi/shot_3.0.png | (309, 288, 1600, 814) | (309, 288, 1600, 814) | cung vung
+m0_ayumi/shot_5.0.png | (309, 286, 1600, 820) | (309, 286, 1600, 820) | cung vung
+m97_cutscene/shot_1.0.png | None | None | cung vung
+m97_cutscene/shot_2.2.png | None | None | cung vung
+m97_cutscene/shot_3.4.png | None | None | cung vung
+m97_cutscene/shot_4.6.png | None | None | cung vung
+intro_m99/shot_1.0.png pixel lech ngoai vung khong tat dinh (noi 8 px): 0
+intro_m99/shot_2.5.png pixel lech ngoai vung khong tat dinh (noi 8 px): 0
+intro_m99/shot_4.0.png pixel lech ngoai vung khong tat dinh (noi 8 px): 0
+intro_m99/shot_6.5.png pixel lech ngoai vung khong tat dinh (noi 8 px): 0
+intro_m99/shot_9.0.png pixel lech ngoai vung khong tat dinh (noi 8 px): 0
+m0_ayumi/shot_0.8.png pixel lech ngoai vung khong tat dinh (noi 8 px): 1
+m0_ayumi/shot_1.6.png pixel lech ngoai vung khong tat dinh (noi 8 px): 0
+m0_ayumi/shot_3.0.png pixel lech ngoai vung khong tat dinh (noi 8 px): 0
+m0_ayumi/shot_5.0.png pixel lech ngoai vung khong tat dinh (noi 8 px): 0
+m97_cutscene/shot_1.0.png pixel lech ngoai vung khong tat dinh (noi 8 px): 0
+m97_cutscene/shot_2.2.png pixel lech ngoai vung khong tat dinh (noi 8 px): 0
+m97_cutscene/shot_3.4.png pixel lech ngoai vung khong tat dinh (noi 8 px): 0
+m97_cutscene/shot_4.6.png pixel lech ngoai vung khong tat dinh (noi 8 px): 0
+TONG 1

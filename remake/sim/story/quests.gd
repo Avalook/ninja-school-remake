@@ -1,4 +1,4 @@
-# NPC talk + quest logic of the original, ported 1:1 on the original variables (S.*).
+# Quests (sim): NPC talk + quest logic of the original, ported 1:1 on the original variables (S.*).
 #
 #   talk(npc)          run() d==1, "Giao tiếp" switch (a.java L8361-8753, `switch (a.lA[var4_8])`)
 #   talk_classmate(i)  run() "Trò chuyện" (L8754)       talk_girl()  "Nói chuyện" (L8758)
@@ -249,11 +249,12 @@ func npc_dialog(i: int) -> Dictionary:
 func _d(lines, cb: int) -> Dictionary:
 	return {"lines": Array(lines), "cb": cb}
 
-# talk to NPC i (the player pressed "Giao tiếp" next to it)
-func talk(i: int) -> void:
+# talk to NPC i (the player pressed "Giao tiếp" next to it): opens the dialogue, or returns
+# {"shop": kv} and the view opens the shop menu (ap())
+func talk(i: int) -> Dictionary:
 	var st = story.st
 	if i < 0 or i >= int(st.lx):
-		return
+		return {}
 	story.log_event("talk npc=%d kind=%d map=%d O=%d" % [i, int(st.lA[i]), st.v, st.O])
 	var r := npc_dialog(i)
 	# L8751: talking to the marked NPC clears the objective marker
@@ -261,31 +262,31 @@ func talk(i: int) -> void:
 		st.ge = -1
 	if r.has("shop"):
 		st.kv = int(r["shop"])
-		await story.menus.shop(st.kv)
-		return
+		return {"shop": st.kv}
 	if r.has("lines"):
-		await story.dialog(r["lines"], int(r["cb"]), Vector2(int(st.ly[i]), int(st.lz[i]) - 40))
+		story.dialog(r["lines"], int(r["cb"]), Vector2(int(st.ly[i]), int(st.lz[i]) - 40))
+	return {}
 
 # "Trò chuyện" (L8754): classmate faces the player and says its dy lines
 func talk_classmate(i: int) -> void:
 	var st = story.st
 	st.dM[i] = -st.fp
-	await story.dialog(st.dy[i], 0, Vector2(int(st.dC[i]), int(st.dD[i]) - 44))
+	story.dialog(st.dy[i], 0, Vector2(int(st.dC[i]), int(st.dD[i]) - 44))
 
 # "Nói chuyện" (L8758): the girl companion (gq, gr)
 func talk_girl() -> void:
 	var st = story.st
 	var at := Vector2(st.gq, st.gr - 44)
 	if st.gn:
-		await story.dialog(st.aI[0], 0, at)
+		story.dialog(st.aI[0], 0, at)
 	elif st.eX:
 		st.gn = true
-		await story.dialog(st.aI[2], 0, at)
+		story.dialog(st.aI[2], 0, at)
 	elif st.eW:
 		st.eW = false
-		await story.dialog(st.aI[3], 26, at)
+		story.dialog(st.aI[3], 26, at)
 	else:
-		await story.dialog(st.aI[1], 0, at)
+		story.dialog(st.aI[1], 0, at)
 
 # ---------------------------------------------------------------- z()
 func dialog_end(cb: int) -> void:
@@ -497,7 +498,7 @@ func drop_scroll(p: Vector2) -> void:
 	st.fI = int(p.x)
 	st.fJ = int(p.y)
 	st.fK = 1
-	story.scroll_dropped.emit(p)
+	story.emit({"t": "scroll", "pos": p})
 
 # ---------------------------------------------------------------- per tick
 func tick() -> void:

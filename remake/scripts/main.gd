@@ -1,4 +1,4 @@
-# Main: title screen -> world. Wires World, Player, Enemies (sim/enemies_sim.gd + view/enemies_view.gd), Story (scripts/story),
+# Main: title screen -> world. Wires World, Player, Enemies (sim/enemies_sim.gd + view/enemies_view.gd), Story (sim/story_sim.gd + view/story_view.gd),
 # music (original per-map track MF_t), pause menu and settings.
 extends Node2D
 
@@ -47,7 +47,7 @@ func _ready() -> void:
 		world.layer_actors.add_child(enemies)
 		if enemies.has_signal("enemy_killed"):
 			enemies.enemy_killed.connect(_on_killed)
-	var st_s = load("res://scripts/story/story.gd") if ResourceLoader.exists("res://scripts/story/story.gd") and not OS.get_cmdline_user_args().has("--nostory") else null
+	var st_s = load("res://view/story_view.gd") if ResourceLoader.exists("res://view/story_view.gd") and not OS.get_cmdline_user_args().has("--nostory") else null
 	if st_s != null and st_s.can_instantiate():
 		story = st_s.new()
 		story.name = "Story"
@@ -137,6 +137,7 @@ func _tick25() -> void:
 # test automation: --trace=file writes the rule state once per tick (player + monsters), used by
 # tests/player_trace.sh to prove a refactor does not change behaviour (run with --fixed-fps 60).
 var _trace_f: FileAccess
+var _trace_ev := 0
 func _trace_tick() -> void:
 	if _trace_f == null:
 		_trace_f = FileAccess.open(str(auto["trace"]), FileAccess.WRITE)
@@ -167,6 +168,17 @@ func _trace_tick() -> void:
 		for d in enemies.drops.coins + enemies.drops.items:
 			dr.append("%d,%d,%d" % [d.age, d.x, d.y])
 		l += " D=" + ";".join(dr) + " K=%d,%d" % [enemies.drops.scroll_state, enemies.drops.scroll_y]
+	if story:
+		# story rule state (cutscene interpreter, camera emulation, quest, marker, girl) + new story log lines
+		l += " ST=%s,%d,%d,%d,%d,%d,%s,%s,%s,%d|%s,%d,%d,%d,%d,%s|%d,%d,%d,%d|%s,%d,%d,%d,%s,%d,%d|%d,%d,%d,%d|%s,%d,%d,%d,%d,%d|%s%s%s%s%s%s,%s,%s,%d,%d,%d,%d,%d,%d,%s" % [
+			S.fV, S.fW, S.fX, S.gc, S.ii, S.ig, S.ih, S.gd, S.iC, S.iG,
+			S.fx, S.fL, S.fM, S.fR, S.fS, S.fY, S.ge, S.gf, S.gg, S.gm,
+			S.cp, S.cq, S.fK, S.fI, S.fD, S.fB, S.fC, S.lK, S.lN, S.lL, S.lM,
+			S.gn, S.gp, S.gq, S.gr, S.gC, S.gu,
+			S.eH, S.eI, S.eJ, S.eK, S.eL, S.eT, S.dz, S.dA, S.dB, S.v, S.kv, S.dg, S.x, S.E, Game.mode]
+		var ev: Array = story.events
+		l += " SEV=" + JSON.stringify(ev.slice(_trace_ev))
+		_trace_ev = ev.size()
 	_trace_f.store_line(l)
 	_trace_f.flush()
 

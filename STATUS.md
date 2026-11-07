@@ -1,6 +1,6 @@
 # STATUS — Ninja School PC remake
 
-Cập nhật: 2026-11-07, phiên M1 mục 2a enemies (nhánh `m1-enemies-split` tách từ `main` 6629201).
+Cập nhật: 2026-11-07, phiên M1 mục 2b story (nhánh `m1-story-split` tách từ `main` 46572ae).
 Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. Phần nào chỉ lấy lại từ
 `analysis/claude/progress.json` mà chưa chạy lại thì có ghi chú rõ.
 
@@ -11,12 +11,81 @@ Kế hoạch: `ROADMAP.md`. File này ghi **đã kiểm bằng chạy thật**. 
 - **M1 mục 2a (enemies) xong**: `enemy_manager.gd` tách thành `remake/sim/enemies_sim.gd` (+ `sim/enemies/`: quái,
   3 boss, bạn học, projectiles) và `remake/view/enemies_view.gd` (+ `view/sprites.gd`). Hành vi không đổi:
   trace 14 kịch bản khớp 100%, oracle 12 map 500/500 tick, 16 ảnh trùng từng pixel. Kết quả ở bảng bên dưới.
+- **M1 mục 2b (story) xong**: `scripts/story/` tách thành `remake/sim/story_sim.gd` (+ `sim/story/`: cutscene,
+  quests, items) và `remake/view/story_view.gd` (+ `view/story_menus.gd`). Hộp thoại không còn `await` trong luật.
+  Hành vi không đổi: story oracle 77 check, trace 23 kịch bản khớp 100%. Kết quả ở bảng bên dưới.
 - Mục M1 "làm tương tự cho enemies, story, world, drops, projectiles" đã chia 5 mục con trong ROADMAP.
-  Mục tiếp theo: M1 mục 2b, tách story.
+  Mục tiếp theo: M1 mục 2c, tách world (va chạm).
+- Đã thêm vào ROADMAP (chưa làm): M1 đồng hồ game cho mọi thứ chạy theo thời gian trong view; M2 Boss kịch bản
+  trace trận golem đầy đủ có cutscene mở trận.
 - Đã merge `m1-sim-view` vào `main` (2026-11-07). Việc phát hiện trong phiên đã thêm vào ROADMAP:
   M1 (di chuyển native bước cố định 100 Hz), M2 Combat (sửa Xích Mao, cờ thật của Xích Mao, trace A = 18/19/23).
 - Codex đang vẽ trong `art_src/` trên nhánh `claude/project-directory-codex-c71a67`.
   Nhánh này **không tạo, không sửa** gì trong `art_src/`.
+
+## M1 mục 2b: kế hoạch tách story (viết trước khi sửa code, nhánh `m1-story-split` tách từ `main` 46572ae)
+Nguồn: `remake/scripts/story/` — `story.gd` (Node, 551 dòng: map entry m/f/g/n, tick 25 Hz, dialog, warp, title
+flow), `cutscene_player.gd` (D/C, ad(), V(), camera fL/fM/fR/fS), `npc_quests.gd` (talk switch, z(), L(n), u(),
+nhặt bí kíp), `menus.gd` (vòng `UI.choose` + luật bình/bản đồ/shop). Hộp thoại đang chạy bằng `await ui.say()`
+ngay trong luật.
+
+**`remake/sim/story_sim.gd`** (`git mv` từ `story.gd`; RefCounted, không Node, không UI, không `await`):
+- Luật: `on_map_enter` (+ `_load_map_story_state`, `_m`, `_f`, `_g_variants`, `_n`), `tick()` (ad() → V() →
+  player control → quests → camera), `talk_target`, `talk(i)`, `talk_classmate`, `talk_girl`, `notice`,
+  `set_marker`, `clear_barrier`, `reset_state`, `new_game`, `continue_game`.
+- `sim/story/cutscene.gd` (`git mv` từ `cutscene_player.gd`) và `sim/story/quests.gd` (`git mv` từ `npc_quests.gd`).
+- Luật trong `menus.gd` (dùng bình, bình nhanh, vị trí hiện tại, giá chuyển map, kiểm tra chuyển, chuyển map, mua)
+  chuyển sang `sim/story/items.gd`. Phần còn lại của `menus.gd` (vòng chọn, nhãn, popup, màn tiêu đề, chỉ dẫn)
+  thành `view/story_menus.gd` (`git mv`).
+- **Hộp thoại không `await` trong sim nữa:** sim đặt `iC/iG` (hoặc `gd` cho cutscene), phát event `say` kèm mã
+  hộp thoại; view chạy `UI.say`, xong thì gọi `sim.close_dialog(mã)` → sim chạy z()/kết thúc thoại cutscene.
+  Hàm `close_dialog` chạy đúng chỗ `await` cũ trả về nên thứ tự không đổi. Mã cutscene giữ cơ chế token (`abort`).
+- Mọi chỗ sim gọi UI/Game/World-camera/signal thành event gửi **ngay lúc phát sinh** qua `sim.on_event`
+  (như sim enemies): `say`, `title`, `hide_title`, `notice`, `marker`, `scroll`, `weapon`, `changed`
+  (story_state_changed + `S.changed`), `cutscene_started/finished`, `to_title`, `mode`, `warp`, `camera`,
+  `camera_snap`. `warp` chạy đồng bộ trong view nên `on_map_enter` lồng vào vẫn đúng thời điểm cũ.
+- Sim không gọi `get_tree()`/`Engine`: view truyền số frame cho chống gọi đôi `on_map_enter`, và truyền Data.
+- Còn giữ (để mục World xử lý): sim vẫn đọc/ghi `world` (map json, `set_flag_tile` khi mở rào) và `player`
+  (pos/facing/`is_standing`/`place`/`scripted`/`script_keys`) như `player_sim.gd`, `enemies_sim.gd`.
+
+**`remake/view/story_view.gd`** (Node, thay `Story` trong `main.gd`, giữ nguyên API cũ cho main/test/player_sim:
+`st`, `ui`, `world`, `attach`, `tick`, `events`, `notice_text`, `quests`, `cutscene`, `menus`, `is_busy`,
+`is_cutscene_active`, `talk_label`, `interact`, `on_enemy_killed`, `on_player_attack`, `game_menu`, `open_shop`,
+`title_menu`, `quick_potion`, `new_game`, `continue_game`, các signal):
+- Nối `Game.tick25` và `world.map_loaded` như cũ (cùng thứ tự), đọc phím (`handle_input`), xử lý event
+  (UI.say/title_card/notice, Game.mode, goto_map, camera_override), phát lại signal cùng tên.
+
+**Test chứng minh không đổi hành vi** (ghi mốc bằng code trước refactor)
+1. `remake/tests/player_trace.sh`: dòng trace thêm `ST=` (biến cutscene/camera/quest/marker/cô bé/cờ truyện,
+   `Game.mode`) và `SEV=` (dòng log story mới trong tick). Thêm 7 kịch bản story có `--autoskip`: new game
+   intro (map 99 → 4 → 0), map 0 ba giai đoạn quest (nói chuyện NPC), map 97 cutscene sông, map 9 quest 10,
+   map 3 quest 3. Mốc 14 kịch bản cũ ghi lại vì thêm trường; phần trường cũ phải giống mốc cũ từng dòng.
+2. `remake/tests/story_run_tests.sh` (so với log oracle game gốc) vẫn 77 check, 0 fail.
+3. `remake/tests/run_enemies_oracle.sh 500 …` 12 map và `tests/enemies_shots.sh` 16 ảnh vẫn như trước.
+4. Ảnh có cửa sổ cutscene intro (title card, hộp thoại) trước/sau → `review/2026-11-07/m1_story_split/`.
+
+## M1 mục 2b: kết quả (chạy 2026-11-07)
+Mốc ghi **bằng code trước refactor** (main 46572ae + chỉ thêm hook test), rồi mới sửa code.
+| Kiểm tra | Trước refactor | Sau refactor |
+|---|---|---|
+| `remake/tests/story_run_tests.sh` (so với log oracle game gốc) | 77 check, 0 fail | **77 check, 0 fail** |
+| `remake/tests/player_trace.sh`: 14 kịch bản cũ, dòng trace thêm `ST=`/`SEV=` | ghi lại mốc; phần trường cũ giống mốc cũ 14/14, 0 dòng lệch | **14/14 khớp 100%** |
+| `remake/tests/player_trace.sh`: 9 kịch bản story mới (`--autoskip`; intro 99→4→0, map 0 ba giai đoạn, nói chuyện Ayumi/Takanashi nhận quest, cutscene sông 97, quest 10 map 9, quest 3 map 3) | ghi mốc; chạy lại lần 2 khớp 100% (tất định) | **9/9 khớp 100%, 0 SCRIPT ERROR** |
+| Độ nhạy | đổi luật notice `cq >= 150` → `151`: story_m0_ayumi lệch 1024 dòng | đã hoàn nguyên |
+| `remake/tests/run_enemies_oracle.sh 500` (12 map) | | **12 map 500/500 tick**, output giống hệt lần trước |
+| `remake/tests/story_shots.sh` (mới; có cửa sổ, 3 cảnh × 4–5 ảnh, `--fixed-fps 60 --seed=1`) | 2 lần chạy code cũ: 6/13 ảnh lệch ở NPC/hero đứng thở | **7/13 ảnh trùng từng pixel; 6 ảnh lệch đúng vùng mà code cũ chạy 2 lần cũng lệch** (ngoài vùng đó: 1 pixel ở mép sprite) |
+
+Bằng chứng: `review/2026-11-07/m1_story_split/` (3 ảnh sau refactor, ảnh trước/sau + mặt nạ lệch map 0,
+`pixel_compare.txt`, `player_trace_check.txt`, `enemies_oracle_after.txt`). Mốc trace: `remake/tests/player_trace/expected/`.
+`tools/diff_suite.sh` (JAR so với `game/`) không chạy lại: phiên này không đụng `game/` hay emulator.
+
+Đã làm đúng kế hoạch. Ghi chú:
+- Ảnh có cửa sổ lệch giữa các lần chạy vì `scripts/world/npcs.gd:51,79` (NPC đứng thở, dấu "!") chạy theo
+  `Time.get_ticks_msec()`. Thuộc mục M1 mới "đồng hồ game cho view".
+- Mã hộp thoại: `sim.say()` trả id, view gọi `sim.close_dialog(id)` khi `UI.say` xong. Cutscene giữ token nên
+  hộp thoại cũ sau `abort()` (new game/title) bị bỏ qua như trước.
+- Test gọi luật menu qua `story.items.*` (trước là `story.menus.*`).
+- Kịch bản `story_m3_q3` có A = 18/19 (xe máy đứng/chạy), nên mục "trace phủ xe máy" ở M2 đã có một phần (chưa có A = 23).
 
 ## M1 mục 2a: kế hoạch tách enemies (viết trước khi sửa code, nhánh `m1-enemies-split` tách từ `main` 6629201)
 Nguồn: `remake/scripts/enemies/` — `enemy_manager.gd` (Node2D, 535 dòng) điều phối `enemy.gd`, `monster_types.gd`,
@@ -244,7 +313,8 @@ Chỉ đọc, không pull, không reset, không xoá gì:
 - **Ảnh có cửa sổ không tất định giữa các lần chạy** (có từ trước, không phải do refactor): `world/background.gd`
   đổi ngày/đêm mỗi lần mở game (đếm trong `user://remake_cfg.ini`), `fx_layer.gd` seed FX bằng `randf()`.
   `tests/enemies_shots.sh` cố định bộ đếm về 0 rồi trả lại file cũ, và chạy `--seed=1`. Mũi tên "tiếp" của hộp
-  thoại (`ui.gd:293`) nháy theo giờ thật (`Time.get_ticks_msec`), có thể làm ảnh lệch vài trăm pixel ở góc hộp thoại.
+  thoại (`ui.gd:293`) và NPC đứng thở / dấu "!" (`world/npcs.gd:51,79`) chạy theo giờ thật (`Time.get_ticks_msec`), làm
+  ảnh lệch ở các vùng đó.
   Nếu muốn ảnh review luôn so được: chuyển các chỗ này sang đồng hồ game (mục World / UI).
 - Trace m95: golem đứng chờ (`hu = 0`) vì không có cutscene mở trận; trận golem có trong oracle (`ACT_95`, `hu = 1`).
 - Còn TODO trong sim enemies: phi tiêu và kiếm trúng bạn đồng hành đối thủ `hf` (dC/dD) chưa làm (mục 2e Projectiles).
@@ -253,7 +323,7 @@ Chỉ đọc, không pull, không reset, không xoá gì:
   `--map=1,1416,216 --set=eH=false;eT=true;I=300` + nhấn phím biến hình → A luôn = 1. Sửa ở M2 (combat) kèm diff test.
 - Cờ dùng cho Xích Mao trong remake là `S.eT`, nhưng `story.gd` dùng `eT` làm cờ cốt truyện "Toniku thành
   sát thủ" (đặt true ở map 4 prologue, false ở map 0). Cần đọc `a.java` xem cờ kỹ năng Xích Mao thật là biến nào.
-- Xe máy: trace có A = 20/21 nhưng chưa có 18/19 (đứng/chạy trên xe). Cần kịch bản leo xe chắc chắn hơn.
+- Xe máy: kịch bản `story_m3_q3` (2026-11-07) đã có A = 18/19/20/21. Xích Mao (A = 23) vẫn chưa phủ.
 - `remake/` trong worktree mới phải chạy `godot --headless --path remake --import` trước, nếu không mọi test
   in hàng trăm nghìn SCRIPT ERROR (texture null) dù luật vẫn chạy.
 - **Điều tra sau:** fm94 (`game/tests/scripts/fm94.txt`) làm oracle `game/` in 3 lần

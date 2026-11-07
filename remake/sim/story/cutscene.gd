@@ -1,4 +1,4 @@
-# CutscenePlayer: the original cutscene system, interpreting the ORIGINAL tables at 25 Hz.
+# Cutscene (sim): the original cutscene system, interpreting the ORIGINAL tables at 25 Hz.
 #
 #   groups    av/aw/ax/ay  (D(n) a.java L4780 starts group n, ad() L6992 evaluates its triggers)
 #   sequences az/aA/aB     (C(n) L4660 starts sequence n, V() L5881 interprets it)
@@ -8,12 +8,12 @@
 # so the remaining timeline is delayed exactly like in the original).
 #
 # The native player is driven through player.scripted / player.script_keys (original F(n)/G(n)
-# key presses), the camera through world.camera_override(center, active). The original camera
+# key presses), the camera through the story sim's "camera" event (view: world.camera_override). The original camera
 # variables fL/fM (target) and fR/fS (camera top-left, eased 1/4 per tick: run() lbl817 ~L9127)
 # are emulated here, because triggers (kind 4: fh > fR + q) and pans (12/14) depend on them.
 extends RefCounted
 
-var story            # story.gd (owner): st (state), ui, world, player
+var story            # sim/story_sim.gd (owner): st (state), world, player, emit()
 
 # key code -> script_keys name (original keyPressed codes, see game/core/core.gd header)
 const KEY_NAMES := {-1: "jump", -2: "down", -3: "left", -4: "right", -5: "attack",
@@ -44,7 +44,7 @@ func start_sequence(n: int) -> void:
 	st.gd = false
 	_release_all_keys()            # a.c()/a.d(): clear held/pressed keys
 	story.log_event("seq %d map=%d fh=%d fi=%d" % [n, st.v, st.fh, st.fi])
-	story.cutscene_started.emit(st.ig, n)
+	story.emit({"t": "cutscene_started", "group": st.ig, "seq": n})
 
 func is_active() -> bool:
 	return bool(story.st.fV)
@@ -109,7 +109,7 @@ func tick_sequence() -> bool:
 	if not st.fV:
 		return false
 	if st.gd:
-		return false               # dialogue open: UI.say is awaited by _run_dialog()
+		return false               # dialogue open: the view closes it (dialog_closed)
 	var seq: int = st.fW
 	var ops: Array = st.az[seq]
 	var args: Array = st.aA[seq]
@@ -134,8 +134,7 @@ func tick_sequence() -> bool:
 			if not story.player_standing():
 				return false
 			st.fY = false
-			if story.ui and story.ui.has_method("hide_title_card"):
-				story.ui.hide_title_card()
+			story.emit({"t": "hide_title"})
 			var anchor := _speaker_anchor(arg)
 			st.fX += 1
 			st.gd = true
@@ -151,7 +150,7 @@ func tick_sequence() -> bool:
 			st.fX += 1
 			_release_all_keys()
 			story.log_event("seq_end %d" % seq)
-			story.cutscene_finished.emit(seq)
+			story.emit({"t": "cutscene_finished", "seq": seq})
 		8:   # unbind camera from the player
 			st.fx = false
 			st.fX += 1
@@ -252,7 +251,7 @@ func tick_sequence() -> bool:
 			st.fV = false
 			_release_all_keys()
 			story.log_event("to_title")
-			story.return_to_title.emit()
+			story.emit({"t": "to_title"})
 			return true
 		30:  # quest 10 done: girl back at school, meet Ayumi
 			st.O = -1
@@ -283,10 +282,12 @@ func tick_sequence() -> bool:
 # dialogue of a cutscene (V() case 4 + its end, L5889-5897: M() paging, then iC/gd false, z())
 func _run_dialog(lines: Array, anchor: Vector2) -> void:
 	_dialog_token += 1
-	var tok := _dialog_token
 	story.st.iG = -1
 	story.st.iC = true
-	await story.say(lines, anchor)
+	story.say(lines, anchor, {"kind": "cut", "tok": _dialog_token})
+
+# the view closed the box opened by _run_dialog (stale boxes after abort() are ignored)
+func dialog_closed(tok: int) -> void:
 	if tok != _dialog_token:
 		return
 	story.st.iC = false

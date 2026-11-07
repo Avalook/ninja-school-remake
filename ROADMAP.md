@@ -116,7 +116,8 @@ và chỉ qua mốc khi chủ dự án đồng ý. Claude không tự đánh gi�
   - [x] Enemies: quái thường, 3 boss, hội bạn cùng lớp, và projectiles (phi tiêu, ám khí, hạt) vì
         projectiles trúng quái/boss/bạn học trong cùng một vòng lặp → `sim/enemies_sim.gd` + `view/enemies_view.gd`.
         _(2026-11-07, nhánh `m1-enemies-split`. Trace 14 kịch bản + oracle 12 map + 16 ảnh khớp 100%, xem STATUS.md.)_
-  - [ ] Story: `story.gd`, `npc_quests.gd`, `cutscene_player.gd`, `menus.gd` (luật quest/cutscene tách khỏi UI).
+  - [x] Story: `story.gd`, `npc_quests.gd`, `cutscene_player.gd`, `menus.gd` (luật quest/cutscene tách khỏi UI).
+        _(2026-11-07, nhánh `m1-story-split`. Story oracle 77 check + trace 23 kịch bản (9 kịch bản story mới) khớp 100%, xem STATUS.md.)_
   - [ ] World (va chạm): `world.gd` (cờ ô `flags_at`, lối ra, camera mà luật đọc), `objects.gd`, `npcs.gd`.
   - [ ] Drops: `drops.gd` (xu, bình, bí kíp; luật `w % 20` đã ở sim enemies, phần nhặt và vẽ còn trộn).
   - [ ] Projectiles: phần còn lại sau mục Enemies (nếu có), ví dụ phi tiêu của bạn đồng hành `hf` (TODO trong code).
